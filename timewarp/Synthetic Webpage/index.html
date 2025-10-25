@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MegaShop - Your Ultimate Shopping Destination</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <marquee>🎉 MEGA SALE! Up to 70% OFF on Selected Items | Free Shipping on Orders Over $50 | Flash Deals Every Hour | New Arrivals Daily 🎉</marquee>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <h1>🛒 MegaShop</h1>
+                    <span class="tagline">Your Ultimate Shopping Destination</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products, brands, and more...">
+                    <button>🔍 Search</button>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn">👤 Account</button>
+                    <button class="header-btn">❤️ Wishlist <span class="badge">12</span></button>
+                    <button class="header-btn">🛒 Cart <span class="badge">5</span></button>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="#">🏠 Home</a></li>
+                    <li><a href="#">🔥 Hot Deals</a></li>
+                    <li><a href="#">👕 Fashion</a></li>
+                    <li><a href="#">💻 Electronics</a></li>
+                    <li><a href="#">🏠 Home & Garden</a></li>
+                    <li><a href="#">⚽ Sports</a></li>
+                    <li><a href="#">🎮 Toys & Games</a></li>
+                    <li><a href="#">📚 Books</a></li>
+                    <li><a href="#">🎨 Arts & Crafts</a></li>
+                    <li><a href="#">🚗 Automotive</a></li>
+                    <li><a href="#">💄 Beauty</a></li>
+                    <li><a href="#">🍔 Food</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Banner Carousel -->
+    <section class="hero-section">
+        <div class="hero-carousel">
+            <div class="hero-slide active">
+                <img src="placeholder.png" alt="Banner 1">
+                <div class="hero-content">
+                    <h2>Summer Collection 2024</h2>
+                    <p>Save up to 60% on trending fashion</p>
+                    <button class="cta-btn">Shop Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="hero-indicators">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- Quick Categories -->
+    <section class="quick-categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <img src="placeholder.png" alt="Electronics">
+                    <h3>Electronics</h3>
+                    <p>5000+ Items</p>
+                </div>
+                <div class="category-card">
+                    <img src="placeholder.png" alt="Fashion">
+                    <h3>Fashion</h3>
+                    <p>8000+ Items</p>
+                </div>
+                <div class="category-card">
+                    <img src="placeholder.png" alt="Home">
+                    <h3>Home & Kitchen</h3>
+                    <p>3500+ Items</p>
+                </div>
+                <div class="category-card">
+                    <img src="placeholder.png" alt="Beauty">
+                    <h3>Beauty</h3>
+                    <p>2000+ Items</p>
+                </div>
+                <div class="category-card">
+                    <img src="placeholder.png" alt="Sports">
+                    <h3>Sports</h3>
+                    <p>1500+ Items</p>
+                </div>
+                <div class="category-card">
+                    <img src="placeholder.png" alt="Books">
+                    <h3>Books</h3>
+                    <p>4000+ Items</p>
+                </div>
+                <div class="category-card">
+                    <img src="placeholder.png" alt="Toys">
+                    <h3>Toys & Games</h3>
+                    <p>2500+ Items</p>
+                </div>
+                <div class="category-card">
+                    <img src="placeholder.png" alt="Automotive">
+                    <h3>Automotive</h3>
+                    <p>1200+ Items</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flash Deals Timer -->
+    <section class="flash-deals">
+        <div class="container">
+            <div class="deals-header">
+                <h2>⚡ Flash Deals - Ends In:</h2>
+                <div class="timer">
+                    <div class="time-unit"><span class="time-value">08</span><span class="time-label">Hours</span></div>
+                    <div class="time-unit"><span class="time-value">32</span><span class="time-label">Minutes</span></div>
+                    <div class="time-unit"><span class="time-value">15</span><span class="time-label">Seconds</span></div>
+                </div>
+            </div>
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <span class="deal-badge">70% OFF</span>
+                    <img src="placeholder.png" alt="Product">
+                    <h4>Wireless Headphones Pro</h4>
+                    <div class="price">
+                        <span class="old-price">$299.99</span>
+                        <span class="new-price">$89.99</span>
+                    </div>
+                    <div class="deal-progress">
+                        <div class="progress-bar" style="width: 65%"></div>
+                        <span class="sold-text">65% Claimed</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="deal-card">
+                    <span class="deal-badge">55% OFF</span>
+                    <img src="placeholder.png" alt="Product">
+                    <h4>Smart Watch Series X</h4>
+                    <div class="price">
+                        <span class="old-price">$399.99</span>
+                        <span class="new-price">$179.99</span>
+                    </div>
+                    <div class="deal-progress">
+                        <div class="progress-bar" style="width: 42%"></div>
+                        <span class="sold-text">42% Claimed</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="deal-card">
+                    <span class="deal-badge">60% OFF</span>
+                    <img src="placeholder.png" alt="Product">
+                    <h4>4K Ultra HD Camera</h4>
+                    <div class="price">
+                        <span class="old-price">$599.99</span>
+                        <span class="new-price">$239.99</span>
+                    </div>
+                    <div class="deal-progress">
+                        <div class="progress-bar" style="width: 78%"></div>
+                        <span class="sold-text">78% Claimed</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="deal-card">
+                    <span class="deal-badge">50% OFF</span>
+                    <img src="placeholder.png" alt="Product">
+                    <h4>Gaming Keyboard RGB</h4>
+                    <div class="price">
+                        <span class="old-price">$149.99</span>
+                        <span class="new-price">$74.99</span>
+                    </div>
+                    <div class="deal-progress">
+                        <div class="progress-bar" style="width: 33%"></div>
+                        <span class="sold-text">33% Claimed</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area with Sidebar -->
+    <section class="main-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Sidebar Filters -->
+                <aside class="sidebar">
+                    <div class="filter-section">
+                        <h3>🔍 Filters</h3>
+                        
+                        <div class="filter-group">
+                            <h4>Category</h4>
+                            <label><input type="checkbox"> Electronics (1234)</label>
+                            <label><input type="checkbox"> Fashion (2345)</label>
+                            <label><input type="checkbox"> Home & Garden (987)</label>
+                            <label><input type="checkbox"> Sports (567)</label>
+                            <label><input type="checkbox"> Beauty (890)</label>
+                            <label><input type="checkbox"> Books (432)</label>
+                            <label><input type="checkbox"> Toys (321)</label>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Price Range</h4>
+                            <label><input type="checkbox"> Under $25 (345)</label>
+                            <label><input type="checkbox"> $25 - $50 (567)</label>
+                            <label><input type="checkbox"> $50 - $100 (890)</label>
+                            <label><input type="checkbox"> $100 - $200 (234)</label>
+                            <label><input type="checkbox"> $200 - $500 (123)</label>
+                            <label><input type="checkbox"> Over $500 (89)</label>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Brand</h4>
+                            <label><input type="checkbox"> TechPro (234)</label>
+                            <label><input type="checkbox"> StyleMax (345)</label>
+                            <label><input type="checkbox"> HomeEssentials (123)</label>
+                            <label><input type="checkbox"> SportsFit (456)</label>
+                            <label><input type="checkbox"> BeautyGlow (234)</label>
+                            <label><input type="checkbox"> SmartLife (567)</label>
+                            <label><input type="checkbox"> Premium Plus (89)</label>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Customer Rating</h4>
+                            <label><input type="checkbox"> ⭐⭐⭐⭐⭐ & Up (567)</label>
+                            <label><input type="checkbox"> ⭐⭐⭐⭐ & Up (890)</label>
+                            <label><input type="checkbox"> ⭐⭐⭐ & Up (1234)</label>
+                            <label><input type="checkbox"> ⭐⭐ & Up (1567)</label>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Discount</h4>
+                            <label><input type="checkbox"> 50% or more (123)</label>
+                            <label><input type="checkbox"> 40% or more (234)</label>
+                            <label><input type="checkbox"> 30% or more (345)</label>
+                            <label><input type="checkbox"> 20% or more (456)</label>
+                            <label><input type="checkbox"> 10% or more (567)</label>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Availability</h4>
+                            <label><input type="checkbox"> In Stock (1890)</label>
+                            <label><input type="checkbox"> On Sale (567)</label>
+                            <label><input type="checkbox"> New Arrivals (234)</label>
+                            <label><input type="checkbox"> Bestsellers (123)</label>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Shipping</h4>
+                            <label><input type="checkbox"> Free Shipping (890)</label>
+                            <label><input type="checkbox"> Same Day Delivery (234)</label>
+                            <label><input type="checkbox"> Express Shipping (567)</label>
+                        </div>
+
+                        <button class="apply-filters">Apply Filters</button>
+                        <button class="clear-filters">Clear All</button>
+                    </div>
+
+                    <!-- Sidebar Ads -->
+                    <div class="sidebar-ad">
+                        <img src="placeholder.png" alt="Ad">
+                        <h4>Special Offer!</h4>
+                        <p>Get 20% off your first order</p>
+                        <button>Claim Now</button>
+                    </div>
+
+                    <div class="sidebar-ad">
+                        <img src="placeholder.png" alt="Ad">
+                        <h4>Newsletter</h4>
+                        <p>Subscribe for exclusive deals</p>
+                        <input type="email" placeholder="Your email">
+                        <button>Subscribe</button>
+                    </div>
+                </aside>
+
+                <!-- Products Grid -->
+                <main class="products-section">
+                    <div class="products-header">
+                        <div class="results-info">
+                            <h2>Featured Products</h2>
+                            <p>Showing 1-48 of 15,234 results</p>
+                        </div>
+                        <div class="sort-options">
+                            <label>Sort by:</label>
+                            <select>
+                                <option>Best Match</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Customer Rating</option>
+                                <option>Newest First</option>
+                                <option>Bestselling</option>
+                            </select>
+                            <button class="view-toggle">Grid</button>
+                            <button class="view-toggle">List</button>
+                        </div>
+                    </div>
+
+                    <div class="products-grid">
+                        <!-- Product Card 1 -->
+                        <div class="product-card">
+                            <div class="product-badges">
+                                <span class="badge-new">NEW</span>
+                                <span class="badge-sale">-25%</span>
+                            </div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">TechPro</span>
+                                <h4>Wireless Bluetooth Earbuds Pro</h4>
+                                <div class="rating">
+                                    ⭐⭐⭐⭐⭐ <span>(1,234 reviews)</span>
+                                </div>
+                                <div class="price">
+                                    <span class="old-price">$79.99</span>
+                                    <span class="new-price">$59.99</span>
+                                </div>
+                                <div class="product-features">
+                                    <span>✓ Free Shipping</span>
+                                    <span>✓ In Stock</span>
+                                </div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 2 -->
+                        <div class="product-card">
+                            <div class="product-badges">
+                                <span class="badge-hot">HOT</span>
+                            </div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">StyleMax</span>
+                                <h4>Premium Cotton T-Shirt Pack</h4>
+                                <div class="rating">
+                                    ⭐⭐⭐⭐ <span>(856 reviews)</span>
+                                </div>
+                                <div class="price">
+                                    <span class="new-price">$29.99</span>
+                                </div>
+                                <div class="product-features">
+                                    <span>✓ Free Shipping</span>
+                                    <span>✓ In Stock</span>
+                                </div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 3 -->
+                        <div class="product-card">
+                            <div class="product-badges">
+                                <span class="badge-sale">-40%</span>
+                            </div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">SmartLife</span>
+                                <h4>Smart Home Security Camera</h4>
+                                <div class="rating">
+                                    ⭐⭐⭐⭐⭐ <span>(2,345 reviews)</span>
+                                </div>
+                                <div class="price">
+                                    <span class="old-price">$149.99</span>
+                                    <span class="new-price">$89.99</span>
+                                </div>
+                                <div class="product-features">
+                                    <span>✓ Free Shipping</span>
+                                    <span>✓ Low Stock</span>
+                                </div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 4 -->
+                        <div class="product-card">
+                            <div class="product-badges">
+                                <span class="badge-new">NEW</span>
+                            </div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">SportsFit</span>
+                                <h4>Yoga Mat with Carrying Strap</h4>
+                                <div class="rating">
+                                    ⭐⭐⭐⭐ <span>(567 reviews)</span>
+                                </div>
+                                <div class="price">
+                                    <span class="new-price">$24.99</span>
+                                </div>
+                                <div class="product-features">
+                                    <span>✓ Free Shipping</span>
+                                    <span>✓ In Stock</span>
+                                </div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 5 -->
+                        <div class="product-card">
+                            <div class="product-badges">
+                                <span class="badge-sale">-30%</span>
+                            </div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">BeautyGlow</span>
+                                <h4>Organic Skincare Gift Set</h4>
+                                <div class="rating">
+                                    ⭐⭐⭐⭐⭐ <span>(1,890 reviews)</span>
+                                </div>
+                                <div class="price">
+                                    <span class="old-price">$99.99</span>
+                                    <span class="new-price">$69.99</span>
+                                </div>
+                                <div class="product-features">
+                                    <span>✓ Free Shipping</span>
+                                    <span>✓ In Stock</span>
+                                </div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 6 -->
+                        <div class="product-card">
+                            <div class="product-badges">
+                                <span class="badge-hot">HOT</span>
+                                <span class="badge-sale">-50%</span>
+                            </div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">TechPro</span>
+                                <h4>Mechanical Gaming Keyboard</h4>
+                                <div class="rating">
+                                    ⭐⭐⭐⭐⭐ <span>(3,456 reviews)</span>
+                                </div>
+                                <div class="price">
+                                    <span class="old-price">$159.99</span>
+                                    <span class="new-price">$79.99</span>
+                                </div>
+                                <div class="product-features">
+                                    <span>✓ Free Shipping</span>
+                                    <span>✓ In Stock</span>
+                                </div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <!-- Product Cards 7-24 (More products) -->
+                        <div class="product-card">
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">HomeEssentials</span>
+                                <h4>Stainless Steel Cookware Set</h4>
+                                <div class="rating">⭐⭐⭐⭐ <span>(678 reviews)</span></div>
+                                <div class="price"><span class="new-price">$129.99</span></div>
+                                <div class="product-features"><span>✓ Free Shipping</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-badges"><span class="badge-new">NEW</span></div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">TechPro</span>
+                                <h4>Laptop Stand Adjustable Aluminum</h4>
+                                <div class="rating">⭐⭐⭐⭐⭐ <span>(234 reviews)</span></div>
+                                <div class="price"><span class="new-price">$39.99</span></div>
+                                <div class="product-features"><span>✓ In Stock</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-badges"><span class="badge-sale">-20%</span></div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">StyleMax</span>
+                                <h4>Designer Sunglasses Collection</h4>
+                                <div class="rating">⭐⭐⭐⭐ <span>(445 reviews)</span></div>
+                                <div class="price"><span class="old-price">$99.99</span><span class="new-price">$79.99</span></div>
+                                <div class="product-features"><span>✓ Free Shipping</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">SportsFit</span>
+                                <h4>Resistance Bands Set of 5</h4>
+                                <div class="rating">⭐⭐⭐⭐⭐ <span>(1,234 reviews)</span></div>
+                                <div class="price"><span class="new-price">$19.99</span></div>
+                                <div class="product-features"><span>✓ Free Shipping</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-badges"><span class="badge-hot">HOT</span></div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">SmartLife</span>
+                                <h4>Smart LED Light Bulbs 4-Pack</h4>
+                                <div class="rating">⭐⭐⭐⭐ <span>(789 reviews)</span></div>
+                                <div class="price"><span class="new-price">$34.99</span></div>
+                                <div class="product-features"><span>✓ In Stock</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-badges"><span class="badge-sale">-35%</span></div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">BeautyGlow</span>
+                                <h4>Hair Dryer Professional Ionic</h4>
+                                <div class="rating">⭐⭐⭐⭐⭐ <span>(2,123 reviews)</span></div>
+                                <div class="price"><span class="old-price">$89.99</span><span class="new-price">$58.99</span></div>
+                                <div class="product-features"><span>✓ Free Shipping</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">HomeEssentials</span>
+                                <h4>Memory Foam Pillow Set of 2</h4>
+                                <div class="rating">⭐⭐⭐⭐ <span>(567 reviews)</span></div>
+                                <div class="price"><span class="new-price">$44.99</span></div>
+                                <div class="product-features"><span>✓ Free Shipping</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-badges"><span class="badge-new">NEW</span></div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">TechPro</span>
+                                <h4>Wireless Mouse Ergonomic</h4>
+                                <div class="rating">⭐⭐⭐⭐⭐ <span>(890 reviews)</span></div>
+                                <div class="price"><span class="new-price">$29.99</span></div>
+                                <div class="product-features"><span>✓ In Stock</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-badges"><span class="badge-sale">-45%</span></div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">StyleMax</span>
+                                <h4>Leather Wallet RFID Blocking</h4>
+                                <div class="rating">⭐⭐⭐⭐ <span>(1,456 reviews)</span></div>
+                                <div class="price"><span class="old-price">$49.99</span><span class="new-price">$27.49</span></div>
+                                <div class="product-features"><span>✓ Free Shipping</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">SportsFit</span>
+                                <h4>Dumbbells Set Adjustable 50lbs</h4>
+                                <div class="rating">⭐⭐⭐⭐⭐ <span>(678 reviews)</span></div>
+                                <div class="price"><span class="new-price">$89.99</span></div>
+                                <div class="product-features"><span>✓ Free Shipping</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-badges"><span class="badge-hot">HOT</span><span class="badge-sale">-25%</span></div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">SmartLife</span>
+                                <h4>Robot Vacuum Cleaner Smart</h4>
+                                <div class="rating">⭐⭐⭐⭐⭐ <span>(3,789 reviews)</span></div>
+                                <div class="price"><span class="old-price">$399.99</span><span class="new-price">$299.99</span></div>
+                                <div class="product-features"><span>✓ Free Shipping</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">BeautyGlow</span>
+                                <h4>Makeup Brush Set Professional</h4>
+                                <div class="rating">⭐⭐⭐⭐ <span>(1,234 reviews)</span></div>
+                                <div class="price"><span class="new-price">$39.99</span></div>
+                                <div class="product-features"><span>✓ In Stock</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-badges"><span class="badge-sale">-30%</span></div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">HomeEssentials</span>
+                                <h4>Coffee Maker 12-Cup Programmable</h4>
+                                <div class="rating">⭐⭐⭐⭐⭐ <span>(2,567 reviews)</span></div>
+                                <div class="price"><span class="old-price">$79.99</span><span class="new-price">$55.99</span></div>
+                                <div class="product-features"><span>✓ Free Shipping</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-badges"><span class="badge-new">NEW</span></div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">TechPro</span>
+                                <h4>USB-C Hub 7-in-1 Adapter</h4>
+                                <div class="rating">⭐⭐⭐⭐ <span>(456 reviews)</span></div>
+                                <div class="price"><span class="new-price">$24.99</span></div>
+                                <div class="product-features"><span>✓ In Stock</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">StyleMax</span>
+                                <h4>Canvas Backpack School Bag</h4>
+                                <div class="rating">⭐⭐⭐⭐⭐ <span>(1,890 reviews)</span></div>
+                                <div class="price"><span class="new-price">$34.99</span></div>
+                                <div class="product-features"><span>✓ Free Shipping</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-badges"><span class="badge-hot">HOT</span></div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">SportsFit</span>
+                                <h4>Protein Shaker Bottle Set</h4>
+                                <div class="rating">⭐⭐⭐⭐ <span>(789 reviews)</span></div>
+                                <div class="price"><span class="new-price">$14.99</span></div>
+                                <div class="product-features"><span>✓ In Stock</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-badges"><span class="badge-sale">-40%</span></div>
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">SmartLife</span>
+                                <h4>Digital Alarm Clock with USB Port</h4>
+                                <div class="rating">⭐⭐⭐⭐⭐ <span>(1,567 reviews)</span></div>
+                                <div class="price"><span class="old-price">$39.99</span><span class="new-price">$23.99</span></div>
+                                <div class="product-features"><span>✓ Free Shipping</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <button class="wishlist-btn">❤️</button>
+                            <img src="placeholder.png" alt="Product">
+                            <div class="product-info">
+                                <span class="brand">BeautyGlow</span>
+                                <h4>Facial Cleansing Brush Electric</h4>
+                                <div class="rating">⭐⭐⭐⭐ <span>(890 reviews)</span></div>
+                                <div class="price"><span class="new-price">$49.99</span></div>
+                                <div class="product-features"><span>✓ In Stock</span></div>
+                                <button class="add-to-cart">Add to Cart</button>
+                                <button class="quick-view">Quick View</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="page-btn">« Previous</button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">4</button>
+                        <button class="page-btn">5</button>
+                        <span>...</span>
+                        <button class="page-btn">50</button>
+                        <button class="page-btn">Next »</button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotional Banners -->
+    <section class="promo-banners">
+        <div class="container">
+            <div class="promo-grid">
+                <div class="promo-card">
+                    <img src="placeholder.png" alt="Promo">
+                    <div class="promo-content">
+                        <h3>Summer Collection</h3>
+                        <p>Up to 60% OFF</p>
+                        <button>Shop Now</button>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <img src="placeholder.png" alt="Promo">
+                    <div class="promo-content">
+                        <h3>Tech Gadgets</h3>
+                        <p>Latest Innovations</p>
+                        <button>Explore</button>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <img src="placeholder.png" alt="Promo">
+                    <div class="promo-content">
+                        <h3>Home Essentials</h3>
+                        <p>Save Big Today</p>
+                        <button>Discover</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Amazing products and fast shipping! I've been shopping here for years and never disappointed."</p>
+                    <div class="customer">
+                        <img src="placeholder.png" alt="Customer">
+                        <div>
+                            <h4>Sarah Johnson</h4>
+                            <span>Verified Buyer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Great prices and excellent customer service. Highly recommend to everyone!"</p>
+                    <div class="customer">
+                        <img src="placeholder.png" alt="Customer">
+                        <div>
+                            <h4>Mike Chen</h4>
+                            <span>Verified Buyer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Best online shopping experience! Quality products at unbeatable prices."</p>
+                    <div class="customer">
+                        <img src="placeholder.png" alt="Customer">
+                        <div>
+                            <h4>Emily Rodriguez</h4>
+                            <span>Verified Buyer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐</div>
+                    <p>"Love the variety of products available. Always find what I'm looking for!"</p>
+                    <div class="customer">
+                        <img src="placeholder.png" alt="Customer">
+                        <div>
+                            <h4>David Kim</h4>
+                            <span>Verified Buyer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>📧 Subscribe to Our Newsletter</h2>
+                <p>Get exclusive deals, new arrivals, and special offers delivered to your inbox!</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address">
+                    <button>Subscribe Now</button>
+                </div>
+                <div class="newsletter-benefits">
+                    <span>✓ 10% Off First Order</span>
+                    <span>✓ Exclusive Deals</span>
+                    <span>✓ Early Access to Sales</span>
+                    <span>✓ Free Shipping Codes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h3>About MegaShop</h3>
+                    <p>Your trusted online shopping destination since 2010. We offer the best products at unbeatable prices with exceptional customer service.</p>
+                    <div class="social-links">
+                        <a href="#">📘 Facebook</a>
+                        <a href="#">🐦 Twitter</a>
+                        <a href="#">📸 Instagram</a>
+                        <a href="#">💼 LinkedIn</a>
+                        <a href="#">📺 YouTube</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Order History</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Sell on MegaShop</a></li>
+                        <li><a href="#">Become a Partner</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop by Category</h3>
+                    <ul>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Fashion & Apparel</a></li>
+                        <li><a href="#">Home & Garden</a></li>
+                        <li><a href="#">Sports & Outdoors</a></li>
+                        <li><a href="#">Beauty & Personal Care</a></li>
+                        <li><a href="#">Toys & Games</a></li>
+                        <li><a href="#">Books & Media</a></li>
+                        <li><a href="#">Automotive</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company Info</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press Room</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>📍 123 Shopping Street</li>
+                        <li>New York, NY 10001</li>
+                        <li>📞 1-800-MEGASHOP</li>
+                        <li>📧 support@megashop.com</li>
+                        <li>🕐 Mon-Fri: 9AM-9PM</li>
+                        <li>🕐 Sat-Sun: 10AM-6PM</li>
+                    </ul>
+                    <h3 style="margin-top: 20px;">We Accept</h3>
+                    <div class="payment-methods">
+                        <span>💳 Visa</span>
+                        <span>💳 Mastercard</span>
+                        <span>💳 Amex</span>
+                        <span>💳 PayPal</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-features">
+                    <div class="feature">
+                        <span class="icon">🚚</span>
+                        <div>
+                            <h4>Free Shipping</h4>
+                            <p>On orders over $50</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="icon">💰</span>
+                        <div>
+                            <h4>Money Back</h4>
+                            <p>30-day guarantee</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="icon">🔒</span>
+                        <div>
+                            <h4>Secure Payment</h4>
+                            <p>100% protected</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="icon">📞</span>
+                        <div>
+                            <h4>24/7 Support</h4>
+                            <p>Dedicated support</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="copyright">© 2024 MegaShop. All Rights Reserved. | Trusted by over 10 million customers worldwide</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <button class="fab" title="Live Chat">💬</button>
+        <button class="fab" title="Compare Products">⚖️</button>
+        <button class="fab" title="Recently Viewed">👁️</button>
+        <button class="fab" title="Back to Top">⬆️</button>
+    </div>
+
+    <!-- Notification Popup -->
+    <div class="notification-popup">
+        <span class="close-notification">×</span>
+        <p>🎉 <strong>Sarah M.</strong> just purchased <strong>Wireless Headphones</strong> from California</p>
+    </div>
+</body>
+</html>
+

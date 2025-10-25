@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Wikipedia{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-links">
+                <a href="/">Main Page</a> | 
+                <a href="#" id="recentChanges">Recent changes</a> | 
+                Protected page | 
+                <a href="#" id="randomPage">Random page</a> | 
+                <select class="special-pages">
+                    <option>Special pages</option>
+                    <option>What links here</option>
+                    <option>Related changes</option>
+                </select>
+                <button class="go-btn" onclick="window.location.href='/'">Go</button>
+            </div>
+            <div class="user-info">
+                Guest User
+            </div>
+        </div>
+    </div>
+
+    <!-- Language/Search Bar -->
+    <div class="lang-bar">
+        <div class="lang-content">
+            <a href="#">Printable version</a><br>
+            Other languages: 
+            <a href="#">Dansk</a> | 
+            <a href="#">Deutsch</a> | 
+            <a href="#">Español</a> | 
+            <a href="#">Français</a> | 
+            <a href="#">Nederlands</a> | 
+            <a href="#">Polski</a> | 
+            <a href="#">Português</a>
+        </div>
+        <div class="search-box">
+            <input type="text" id="mainSearch" class="search-input" placeholder="Search...">
+            <button class="search-btn" onclick="performSearch()">Search</button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <table class="main-table" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <!-- Left Sidebar -->
+            <td class="sidebar" valign="top">
+                <div class="logo-container">
+                    <div class="logo">
+                        <div class="logo-icon">W</div>
+                        <div class="logo-text">
+                            <div class="logo-title">WIKIPEDIA</div>
+                            <div class="logo-subtitle">The Free Encyclopedia</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="nav-section">
+                    <a href="/">Main Page</a><br>
+                    <a href="#">Recent changes</a><br>
+                    <a href="#" id="randomSidebar">Random page</a><br>
+                    <a href="#">Watch list</a><br>
+                    <a href="#">Current events</a>
+                </div>
+
+                <div class="nav-section">
+                    <strong>Protected page</strong><br>
+                    <a href="#">Talk page</a><br>
+                    <a href="#">History</a><br>
+                    <a href="#">What links here</a><br>
+                    <a href="#">Watch links</a>
+                </div>
+
+                <div class="nav-section">
+                    <a href="#">Bug reports</a><br>
+                    <a href="#">Special pages</a>
+                </div>
+            </td>
+
+            <!-- Main Content Area -->
+            <td class="content-area" valign="top">
+                {% block content %}{% endblock %}
+            </td>
+        </tr>
+    </table>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

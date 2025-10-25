@@ -1,0 +1,263 @@
+/* Reset and Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Top Bar */
+.top-bar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #000000;
+    padding: 3px 10px;
+    font-size: 10pt;
+}
+
+.top-bar-content {
+    display: table;
+    width: 100%;
+}
+
+.top-links {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.user-info {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.special-pages {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10pt;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+}
+
+.go-btn {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10pt;
+    border: 1px outset #cccccc;
+    background-color: #dddddd;
+    padding: 1px 6px;
+    cursor: pointer;
+}
+
+.go-btn:active {
+    border-style: inset;
+}
+
+/* Language Bar */
+.lang-bar {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    font-size: 9pt;
+    border-bottom: 1px solid #999999;
+    display: table;
+    width: 100%;
+}
+
+.lang-content {
+    display: table-cell;
+    vertical-align: middle;
+    width: 70%;
+}
+
+.search-box {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+}
+
+/* Main Table Layout */
+.main-table {
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 180px;
+    background-color: #ffffff;
+    border-right: 1px solid #999999;
+    padding: 10px;
+    font-size: 10pt;
+}
+
+.logo-container {
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo-image {
+    width: 135px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.logo-text {
+    margin-top: 8px;
+}
+
+.logo-title {
+    font-size: 14pt;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #000000;
+}
+
+.logo-subtitle {
+    font-size: 8pt;
+    font-style: italic;
+    color: #333333;
+}
+
+.nav-section {
+    margin-bottom: 15px;
+    padding: 8px;
+    background-color: #e8e8e8;
+    border: 1px solid #999999;
+}
+
+/* Content Area */
+.content-area {
+    background-color: #ffffff;
+    padding: 15px 25px;
+    font-size: 11pt;
+}
+
+.page-title {
+    font-size: 20pt;
+    font-weight: normal;
+    margin: 0 0 5px 0;
+    padding: 0;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.page-subtitle {
+    font-size: 9pt;
+    font-style: italic;
+    color: #666666;
+    margin: 0 0 15px 0;
+}
+
+.intro-text {
+    line-height: 1.6;
+    margin-bottom: 12px;
+    text-align: justify;
+}
+
+/* Content Box (for "This day in history" section) */
+.content-box {
+    background-color: #f9f9f9;
+    border: 1px solid #aaaaaa;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.box-title {
+    font-weight: bold;
+    margin: 0 0 8px 0;
+}
+
+.content-box p {
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 14pt;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+    padding: 0;
+}
+
+/* Links */
+a {
+    color: #0000EE;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #551A8B;
+}
+
+a:active {
+    color: #FF0000;
+}
+
+a:hover {
+    color: #0000EE;
+}
+
+/* Search Elements */
+.search-input {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10pt;
+    border: 1px solid #000000;
+    padding: 2px;
+}
+
+.search-btn {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10pt;
+    border: 1px outset #cccccc;
+    background-color: #dddddd;
+    padding: 2px 8px;
+    cursor: pointer;
+}
+
+.search-btn:active {
+    border-style: inset;
+}
+
+/* Footer */
+.footer-text {
+    font-size: 10pt;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.footer-search {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10pt;
+    border: 1px solid #000000;
+    padding: 2px;
+}
+
+.access-info {
+    font-size: 9pt;
+    color: #666666;
+    margin-top: 10px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #aaaaaa;
+    margin: 15px 0;
+}
+
+/* Emphasis */
+em {
+    font-style: italic;
+}
+
+strong {
+    font-weight: bold;
+}
+
