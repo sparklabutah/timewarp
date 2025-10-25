@@ -1,3 +1,0 @@
-simplewiki-latest-pages-articles using wget
-extract the bz2 file to get the .xml file
-

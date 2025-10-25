@@ -2,6 +2,8 @@
 *.xml
 *.pkl
 *.bz2
+*.xml.bz2
+__backup
 
 # But DO track the env/simplewiki project folder
 !env/
