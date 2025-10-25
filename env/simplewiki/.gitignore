@@ -1,12 +1,6 @@
-# Large Wikipedia Data Files
-env/simplewiki/*.xml
-env/simplewiki/*.pkl
-env/simplewiki/*.bz2
-
-# But DO track the env/simplewiki project folder
-!env/
-!env/simplewiki/
-!env/simplewiki/**
+# Wikipedia Data Files (Large files - don't commit!)
+*.xml
+*.pkl
 
 # Python
 __pycache__/
@@ -32,8 +26,9 @@ wheels/
 
 # Virtual Environment
 venv/
-.venv/
-.env/
+env/
+ENV/
+.venv
 
 # Flask
 instance/
@@ -62,10 +57,3 @@ instance/
 # OS Files
 Thumbs.db
 desktop.ini
-
-# Node modules (if any)
-node_modules/
-
-# Nested Git repositories (subprojects)
-WebShop/
-
