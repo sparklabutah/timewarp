@@ -1,0 +1,71 @@
+# Large Wikipedia Data Files
+env/simplewiki/*.xml
+env/simplewiki/*.pkl
+env/simplewiki/*.bz2
+
+# But DO track the env/simplewiki project folder
+!env/
+!env/simplewiki/
+!env/simplewiki/**
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+.venv/
+.env/
+
+# Flask
+instance/
+.webassets-cache
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# OS Files
+Thumbs.db
+desktop.ini
+
+# Node modules (if any)
+node_modules/
+
+# Nested Git repositories (subprojects)
+WebShop/
+
