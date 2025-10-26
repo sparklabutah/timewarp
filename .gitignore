@@ -71,3 +71,4 @@ node_modules/
 # Nested Git repositories (subprojects)
 WebShop/
 
+env/simplewiki/simplewiki-latest-pages-articles.xml.bz2
