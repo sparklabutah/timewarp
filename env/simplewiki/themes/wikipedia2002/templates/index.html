@@ -2,122 +2,143 @@
 
 {% block title %}Main Page - Wikipedia{% endblock %}
 
+{% block topbar %}<a href="/" class="internal" title="Main Page">Main Page</a> |
+<a href="#" id="recentChanges" class="internal" title="Special:Recentchanges">Recent changes</a> |
+Protected page |
+<a href="#" class="internal" title="History">History</a> |
+<form method="get" class="inline" action="/"><input type="hidden" name="PHPSESSID" value="">
+<select name="wpDropdown">
+<option value="Special:Specialpages">Special pages</option>
+<option value="Special:Preferences">Set my user preferences</option>
+<option value="Special:Watchlist">My watchlist</option>
+<option value="Special:Recentchanges">Recently updated pages</option>
+<option value="Special:Upload">Upload image files</option>
+<option value="Special:Imagelist">Image list</option>
+<option value="Special:Listusers">Registered users</option>
+<option value="Special:Statistics">Site statistics</option>
+<option value="Special:Randompage" id="randomDropdown">Random article</option>
+<option value="Special:Lonelypages">Orphaned articles</option>
+<option value="Special:Unusedimages">Orphaned images</option>
+<option value="Special:Popularpages">Popular articles</option>
+<option value="Special:Wantedpages">Most wanted articles</option>
+<option value="Special:Shortpages">Short articles</option>
+<option value="Special:Longpages">Long articles</option>
+<option value="Special:Newpages">Newly created articles</option>
+<option value="Special:Allpages">All pages by title</option>
+<option value="Special:Ipblocklist">Blocked IP addresses</option>
+<option value="Special:Booksources">External book sources</option>
+</select>
+<input type="submit" value="Go" name="redirect">
+</form>
+<p class="subtitle"><a href="#" class="internal" title="Printable version">Printable version</a>
+<br>Other languages: <a href="#" class="external" title="da:Forside">Dansk</a> | <a href="#" class="external" title="de:Hauptseite">Deutsch</a> | <a href="#" class="external" title="eo:Hejmpagxo">Esperanto</a> | <a href="#" class="external" title="es:Portada">Español</a> | <a href="#" class="external" title="fr:HomePage">Français</a> | <a href="#" class="external" title="nl:Hoofdpagina">Nederlands</a> | <a href="#" class="external" title="pl:Polska_Wikipedia">Polski</a> | <a href="#" class="external" title="pt:HomePage">Português</a>
+</p>{% endblock %}
+
+{% block quickbar_page %}<strong>Protected page</strong>
+<br><a href="#" class="internal" title="Talk page">Talk page</a>
+<br><a href="#" class="internal" title="History">History</a>
+<br><a href="#" class="internal" title="Special:Whatlinkshere">What links here</a>
+<br><a href="#" class="internal" title="Special:Recentchangeslinked">Watch links</a>{% endblock %}
+
 {% block content %}
-<h1 class="page-title">Main Page</h1>
-<p class="page-subtitle">From Wikipedia, the free encyclopedia.</p>
+<h1 class="pagetitle">Main Page</h1>
+<p class="subtitle">From Wikipedia, the free encyclopedia.</p>
 
-<p class="intro-text">
-    <strong>Welcome</strong> to <a href="/">Wikipedia</a>, a collaborative project to produce a free and complete 
-    <a href="#">encyclopedia</a> in <a href="#">every language</a>. This is a local reader for Simple Wikipedia. 
-    Anyone, <em>including you</em>, can search and read articles from this collection. 
-    Use the <a href="#">search box</a> above or browse by category below.
+<p>       
 </p>
-
-<p class="intro-text">
-    The content of Wikipedia is covered by the <a href="#">GNU Free Documentation License</a>, which means 
-    that it is free and will remain so forever. See <a href="#">wikipedia:Copyrights</a> for the details and 
-    <a href="#">open content</a> and <a href="#">free content</a> for background.
-</p>
-
-<!-- Search Section -->
-<div class="content-box">
-    <p class="box-title"><em>Quick Search</em></p>
-    <p>
-        Enter an article title to begin: 
-        <input type="text" id="quickSearch" class="search-input" size="30" placeholder="e.g., Science, History...">
-        <button class="search-btn" onclick="performQuickSearch()">Search</button>
-    </p>
-    <p><em>Try these</em>: 
-        <a href="/wiki/Science">Science</a> - 
-        <a href="/wiki/History">History</a> - 
-        <a href="/wiki/Geography">Geography</a> - 
-        <a href="/wiki/Technology">Technology</a> - 
-        <a href="/wiki/Mathematics">Mathematics</a>
-    </p>
-</div>
-
-<!-- Philosophy Section -->
-<h2 class="section-title">Philosophy, Mathematics, and Natural Science</h2>
 <p>
-    <a href="/wiki/Astronomy">Astronomy and astrophysics</a> - <a href="/wiki/Biology">Biology</a> - 
-    <a href="/wiki/Chemistry">Chemistry</a> - <a href="/wiki/Earth">Earth science</a> - <a href="/wiki/Mathematics">Mathematics</a> - 
-    <a href="/wiki/Philosophy">Philosophy</a> - <a href="/wiki/Physics">Physics</a> - <a href="/wiki/Statistics">Statistics</a>
+<strong><a href="/">Welcome</a> to <a href="/">Wikipedia</a></strong>, a collaborative project to produce a free and complete <a href="#">encyclopedia</a> in <a href="#">every language</a>.
+We started in January <a href="/wiki/2001">2001</a> and are already working on over 88,000 <a href="#">articles</a> in the English version, with more being added and improved all the time. Anyone can edit any article right now, without even having to log in. You can copyedit, expand an article, write a little or write a lot.
+See the <a href="#">Wikipedia FAQ</a> for more background information about the project, and the <a href="#">help page</a> for information on how to use and contribute to Wikipedia.
 </p>
 
-<!-- Social Sciences Section -->
-<h2 class="section-title">Social Sciences</h2>
 <p>
-    <a href="/wiki/Anthropology">Anthropology</a> - <a href="/wiki/Archaeology">Archaeology</a> - <a href="/wiki/Economics">Economics</a> - 
-    <a href="/wiki/Geography">Geography</a> - <a href="/wiki/History">History</a> - <a href="/wiki/Science">History of science and technology</a> - 
-    <a href="/wiki/Language">Language</a> - <a href="/wiki/Linguistics">Linguistics</a> - <a href="/wiki/Politics">Political science</a> - 
-    <a href="/wiki/Psychology">Psychology</a> - <a href="/wiki/Sociology">Sociology</a>
+The content of Wikipedia is covered by the <a href="#">GNU Free Documentation License</a>, which means that it is free and will remain so forever. See <a href="#">wikipedia:Copyrights</a> for the details and <a href="#">open content</a> and <a href="#">free content</a> for background.
 </p>
 
-<!-- Applied Arts Section -->
-<h2 class="section-title">Applied Arts and Sciences</h2>
-<p>
-    <a href="/wiki/Agriculture">Agriculture</a> - <a href="/wiki/Architecture">Architecture</a> - <a href="/wiki/Business">Business and industry</a> - 
-    <a href="/wiki/Communication">Communication</a> - <a href="/wiki/Computer">Computer science</a> - <a href="/wiki/Education">Education</a> - 
-    <a href="/wiki/Engineering">Engineering</a> - <a href="/wiki/Health">Health science</a> - 
-    <a href="/wiki/Law">Law</a> - <a href="/wiki/Library">Library and information science</a> - 
-    <a href="/wiki/Technology">Technology</a> - <a href="/wiki/Transport">Transport</a>
-</p>
-
-<!-- Culture Section -->
-<h2 class="section-title">Culture</h2>
-<p>
-    <a href="/wiki/Art">Art</a> - <a href="/wiki/Cooking">Cooking</a> - <a href="/wiki/Dance">Dance</a> - 
-    <a href="/wiki/Entertainment">Entertainment</a> - <a href="/wiki/Film">Film</a> - <a href="/wiki/Game">Games</a> - 
-    <a href="/wiki/Hobby">Hobbies</a> - <a href="/wiki/Literature">Literature</a> - 
-    <a href="/wiki/Music">Music</a> - <a href="/wiki/Opera">Opera</a> - <a href="/wiki/Painting">Painting</a> - 
-    <a href="/wiki/Recreation">Recreation</a> - <a href="/wiki/Religion">Religion</a> - <a href="/wiki/Sculpture">Sculpture</a> - 
-    <a href="/wiki/Sport">Sports</a> - <a href="/wiki/Theater">Theater</a> - <a href="/wiki/Tourism">Tourism</a>
-</p>
-
-<!-- Other Category Schemes Section -->
-<h2 class="section-title">Other Category Schemes</h2>
-<p>
-    <a href="/wiki/Wikipedia">About Wikipedia</a> - <a href="/wiki/Library">Library systems</a> - 
-    <a href="/wiki/Topic">Wikipedia arranged by topic</a> - <a href="/wiki/List">Various Lists</a> - 
-    <a href="/wiki/Timeline">Historical timeline</a> - <a href="/wiki/History">Historical anniversaries</a> - 
-    <a href="/wiki/Biography">Biographies</a> - <a href="/wiki/Event">Current events</a>
-</p>
-
-<!-- Footer -->
 <hr>
-<p class="footer-text">
-    Protected page | <a href="/">Main Page</a> | <a href="#">About Wikipedia</a> | 
-    <a href="#" onclick="location.reload()">Recent changes</a> |
-    <input type="text" id="footerSearch" class="footer-search" size="20" placeholder="Search...">
-    <button class="search-btn" onclick="performFooterSearch()">Search</button>
+
+<p>
 </p>
-<p class="access-info">
-    This page has been accessed <span id="accessCount">616199</span> times. The page was last modified 08:12 Nov 13, 2002.
+<dl><dd><em><a href="#">This day in history</a></em>: <a href="/wiki/October">October 30</a>
+</dd><dd><em><a href="#">Ongoing events</a></em>: <a href="#">Israeli-Palestinian conflict</a> - <a href="#">War on Terrorism</a> - <a href="#">terrorist incidents</a>
+</dd><dd><em><a href="#">In the news</a></em>: <a href="#">World events</a> - <a href="#">Technology</a> - <a href="#">Science discoveries</a> - <a href="#">Sports</a>
+</dd><dd><em><a href="#">Recent deaths</a></em>: <a href="#">Notable persons</a> - <a href="#">Historical figures</a>
+</dd></dl>
+<p>
 </p>
 
-<script>
-function performQuickSearch() {
-    const query = document.getElementById('quickSearch').value.trim();
-    if (query) {
-        window.location.href = '/wiki/' + encodeURIComponent(query);
-    }
-}
+<hr>
 
-function performFooterSearch() {
-    const query = document.getElementById('footerSearch').value.trim();
-    if (query) {
-        window.location.href = '/wiki/' + encodeURIComponent(query);
-    }
-}
+<p>
+</p>
+<dl><dd><strong>Philosophy, Mathematics, and Natural Science</strong>
+</dd><dd><a href="/wiki/Astronomy">Astronomy and astrophysics</a> - <a href="/wiki/Biology">Biology</a> - <a href="/wiki/Chemistry">Chemistry</a> - <a href="/wiki/Earth">Earth science</a> - <a href="/wiki/Mathematics">Mathematics</a> - <a href="/wiki/Philosophy">Philosophy</a> - <a href="/wiki/Physics">Physics</a> - <a href="/wiki/Statistics">Statistics</a>
+</dd></dl>
+<p>
+</p>
 
-// Enter key support
-document.getElementById('quickSearch').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') performQuickSearch();
-});
+<dl><dd><strong>Social Sciences</strong>
+</dd><dd><a href="/wiki/Anthropology">Anthropology</a> - <a href="/wiki/Archaeology">Archaeology</a> - <a href="/wiki/Economics">Economics</a> - <a href="/wiki/Geography">Geography</a> - <a href="/wiki/History">History</a> - <a href="/wiki/Science">History of science and technology</a> - <a href="/wiki/Language">Language</a> - <a href="/wiki/Linguistics">Linguistics</a> - <a href="/wiki/Politics">Political science</a> - <a href="/wiki/Psychology">Psychology</a> - <a href="/wiki/Sociology">Sociology</a>
+</dd></dl>
+<p>
+</p>
 
-document.getElementById('footerSearch').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') performFooterSearch();
-});
-</script>
+<dl><dd><strong>Applied Arts and Sciences</strong>
+</dd><dd><a href="/wiki/Agriculture">Agriculture</a> - <a href="/wiki/Architecture">Architecture</a> - <a href="/wiki/Business">Business and industry</a> - <a href="/wiki/Communication">Communication</a> - <a href="/wiki/Computer">Computer science</a> - <a href="/wiki/Education">Education</a> - <a href="/wiki/Engineering">Engineering</a> - <a href="/wiki/Health">Health science</a> - <a href="/wiki/Law">Law</a> - <a href="/wiki/Library">Library and information science</a> - <a href="/wiki/Technology">Technology</a> - <a href="/wiki/Transport">Transport</a>
+</dd></dl>
+<p>
+</p>
+
+<dl><dd><strong>Culture</strong>
+</dd><dd><a href="/wiki/Classics">Classics</a> - <a href="/wiki/Cooking">Cooking</a> - <a href="/wiki/Dance">Dance</a> - <a href="/wiki/Entertainment">Entertainment</a> - <a href="/wiki/Film">Film</a> - <a href="/wiki/Game">Games</a> - <a href="/wiki/Handicraft">Handicraft</a> - <a href="/wiki/Hobby">Hobbies</a> - <a href="/wiki/Literature">Literature</a> - <a href="/wiki/Music">Music</a> - <a href="/wiki/Opera">Opera</a> - <a href="/wiki/Painting">Painting</a> - <a href="/wiki/Recreation">Recreation</a> - <a href="/wiki/Religion">Religion</a> - <a href="/wiki/Sculpture">Sculpture</a> - <a href="/wiki/Sport">Sports</a> - <a href="/wiki/Theater">Theater</a> - <a href="/wiki/Tourism">Tourism</a> - <a href="/wiki/Art">Visual arts and design</a>
+</dd></dl>
+
+<hr>
+<p>
+</p>
+
+<dl><dd><strong>Other Category Schemes</strong>
+</dd><dd><a href="/wiki/Wikipedia">About Wikipedia category schemes</a> - <a href="/wiki/Library">Library of Congress catalog scheme</a> - <a href="/wiki/Dewey">Dewey Decimal System</a> - <a href="/wiki/Topic">Wikipedia arranged by topic</a> - <a href="/wiki/List">Various Lists</a> - <a href="/wiki/Timeline">Historical timeline</a> - <a href="/wiki/History">Historical anniversaries</a> - <a href="/wiki/Biography">Biographies</a> - <a href="/wiki/Event">Current events</a>
+</dd></dl>
+<p>
+</p>
+
+<hr>
+<p>
+</p>
+
+<dl><dd><strong>About the project:</strong>
+</dd><dd><a href="#">Announcements</a> - <a href="#">FAQ</a> - <a href="#">Policy</a> - <a href="#">Bug reports and feature requests</a> - <a href="#">Wikipedia and Nupedia</a> - <a href="#">Wikipedians</a> - <a href="#">Wikipedia Commentary</a> - <a href="#">Mailing lists</a> - <a href="#">Wikipedia Chat</a> - <a href="#">New topics</a> - <a href="#">Brilliant prose</a> - <a href="#">Requested articles</a> - <a href="#">Help desk</a> - <a href="#">Wikipedia utilities</a> - <a href="#">Wikipedia database download</a> - <a href="#">Public domain resources</a> - <a href="#">Sandbox</a> - <a href="#">Friends of Wikipedia</a>
+</dd></dl>
+<p>
+</p>
+
+<dl><dd> <strong>Press coverage:</strong>
+</dd><dd><em><a href="#">News Article (2002)</a></em> - <em><a href="#">The New York Times (2001)</a></em> - <em><a href="#">MIT's Technology Review (2001)</a></em>
+</dd></dl>
+<p>
+</p>
+
+<hr>
+<p>
+</p>
+
+<p>
+</p>
+<dl><dd><strong>Wikipedias in other languages</strong>
+</dd><dd><a href="#">About the non-English Wikipedias</a> - <a href="#">Afrikaans</a> - <a href="#">Arabic (Araby)</a> - <a href="#">Basque (Euskara)</a> - <a href="#">Catalan (Català)</a> - <a href="#">Chinese (Hanyu)</a> - <a href="#">Danish (Dansk)</a> - <a href="#">Dutch (Nederlands)</a> - <a href="#">Esperanto</a> - <a href="#">Estonian (Eesti)</a> - <a href="#">French (Français)</a> - <a href="#">Frisian (Frysk)</a> - <a href="#">German (Deutsch)</a> - <a href="#">Italian (Italiano)</a> - <a href="#">Japanese (Nihongo)</a> - <a href="#">Latin (Latina)</a> - <a href="#">Norwegian (Norsk)</a> - <a href="#">Polish (Polska)</a> - <a href="#">Portuguese (Português)</a> - <a href="#">Russian (Russkiy)</a> - <a href="#">Serbocroatian (Srpskohrvatska)</a> - <a href="#">Slovene (Slovensko)</a> - <a href="#">Spanish (Castellano)</a> - <a href="#">Swedish (Svensk)</a>
+</dd></dl>
+{% endblock %}
+
+{% block footer %}<table width="98%" border="0" cellspacing="0"><tr><td width="152">&nbsp;</td><td class="bottom" align="left" valign="top"><strong>Protected page</strong> |
+<a href="#" class="internal" title="Talk page">Talk page</a> |
+<a href="#" class="internal" title="History">History</a> |
+<a href="#" class="internal" title="Special:Whatlinkshere">What links here</a> |
+<a href="#" class="internal" title="Special:Recentchangeslinked">Watch links</a>
+<br>Other languages: <a href="#" class="external" title="da:Forside">Dansk</a> | <a href="#" class="external" title="de:Hauptseite">Deutsch</a> | <a href="#" class="external" title="eo:Hejmpagxo">Esperanto</a> | <a href="#" class="external" title="es:Portada">Español</a> | <a href="#" class="external" title="fr:HomePage">Français</a> | <a href="#" class="external" title="nl:Hoofdpagina">Nederlands</a> | <a href="#" class="external" title="pl:Polska_Wikipedia">Polski</a> | <a href="#" class="external" title="pt:HomePage">Português</a>
+
+<br><a href="/" class="internal" title="Main Page">Main Page</a> | <a href="#" class="internal" title="Wikipedia:About">About Wikipedia</a> | <a href="#" class="internal" title="Special:Recentchanges">Recent changes</a> | <form class="inline" method="get" action="/"><input type="hidden" name="PHPSESSID" value=""><input type="text" name="search" size="16" value="">
+<input type="submit" value="Search"></form><br><span id="pagestats">This page has been accessed 536122 times. The page was last modified 16:53 Oct 28, 2002.</span></td></tr></table>
 {% endblock %}
 

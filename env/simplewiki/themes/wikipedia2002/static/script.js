@@ -1,38 +1,21 @@
 // Wikipedia 2002 Retro Theme - JavaScript
 
-// Main search functionality
-function performSearch() {
-    const query = document.getElementById('mainSearch').value.trim();
+// Topbar search functionality
+function performTopbarSearch() {
+    const query = document.getElementById('topbarSearch').value.trim();
     if (query) {
         window.location.href = '/wiki/' + encodeURIComponent(query);
     }
+    return false; // Prevent form submission
 }
 
-function performSidebarSearch() {
-    const query = document.getElementById('sidebarSearch').value.trim();
+// Footer search functionality
+function performFooterSearch() {
+    const query = document.getElementById('footerSearch').value.trim();
     if (query) {
         window.location.href = '/wiki/' + encodeURIComponent(query);
     }
-}
-
-// Enter key support for main search
-const mainSearch = document.getElementById('mainSearch');
-if (mainSearch) {
-    mainSearch.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
-}
-
-// Enter key support for sidebar search
-const sidebarSearch = document.getElementById('sidebarSearch');
-if (sidebarSearch) {
-    sidebarSearch.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            performSidebarSearch();
-        }
-    });
+    return false; // Prevent form submission
 }
 
 // Random page functionality
@@ -78,6 +61,32 @@ if (recentChanges) {
     recentChanges.addEventListener('click', function(e) {
         e.preventDefault();
         alert('Recent changes feature is not available in this offline reader.');
+    });
+}
+
+const recentChangesSidebar = document.getElementById('recentChangesSidebar');
+if (recentChangesSidebar) {
+    recentChangesSidebar.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Recent changes feature is not available in this offline reader.');
+    });
+}
+
+// Random dropdown functionality
+const randomDropdown = document.getElementById('randomDropdown');
+if (randomDropdown) {
+    randomDropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        fetch('/random')
+            .then(response => response.json())
+            .then(data => {
+                if (data.title) {
+                    window.location.href = '/wiki/' + encodeURIComponent(data.title);
+                }
+            })
+            .catch(error => {
+                console.error('Random article error:', error);
+            });
     });
 }
 

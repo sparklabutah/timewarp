@@ -1,16 +1,62 @@
-/* Wikipedia 2002 Retro Theme */
+/* Wikipedia 2002 Authentic Theme */
 
-/* Reset and Base Styles */
-body {
-    margin: 0;
-    padding: 0;
+/* Base Styles - Matching original Wikipedia 2002 */
+.bodytext { }
+
+h1.pagetitle {
+    padding-top: 0; 
+    margin-top: 0; 
+    padding-bottom: 0; 
+    margin-bottom: 0;
+}
+
+p.subtitle { 
+    padding-top: 0; 
+    margin-top: 0; 
+}
+
+a.interwiki, a.external { 
+    color: #3366BB; 
+}
+
+body { 
+    margin: 0px; 
+    padding: 4px; 
     font-family: 'Times New Roman', Times, serif;
     font-size: 12pt;
     background-color: #ffffff;
     color: #000000;
 }
 
+a.stub { 
+    color:#772233; 
+    text-decoration:none; 
+}
+
+a.printable { 
+    text-decoration: underline; 
+}
+
+form.inline { 
+    display: inline; 
+}
+
+#content { 
+    position: absolute; 
+    top: 0;  
+    margin: 0; 
+    padding: 0; 
+}
+
 /* Top Bar */
+#topbar { 
+    padding: 4px; 
+}
+
+td.top { 
+    border-bottom: 2px solid #000000; 
+}
+
 .top-bar {
     background-color: #ffffff;
     border-bottom: 1px solid #000000;
@@ -85,7 +131,14 @@ body {
     padding: 0;
 }
 
-/* Sidebar */
+/* Quickbar (Sidebar) - Matching original Wikipedia 2002 */
+#quickbar { 
+    width: 140px; 
+    padding: 4px; 
+    visibility: visible; 
+    z-index: 99; 
+}
+
 .sidebar {
     width: 180px;
     background-color: #ffffff;
@@ -165,7 +218,11 @@ body {
     padding: 1px 4px;
 }
 
-/* Content Area */
+/* Article Section - Matching original Wikipedia 2002 */
+#article { 
+    padding: 4px; 
+}
+
 .content-area {
     background-color: #ffffff;
     padding: 15px 25px;
@@ -222,7 +279,11 @@ body {
     line-height: 1.5;
 }
 
-/* Section Titles */
+/* Section Titles - Matching original Wikipedia 2002 */
+h2, h3, h4, h5, h6 { 
+    margin-bottom: 0; 
+}
+
 .section-title {
     font-size: 14pt;
     font-weight: bold;
@@ -315,7 +376,15 @@ a:hover {
     border-style: inset;
 }
 
-/* Footer */
+/* Footer - Matching original Wikipedia 2002 */
+#footer { 
+    padding: 4px; 
+}
+
+td.bottom { 
+    border-top: 2px solid #000000; 
+}
+
 .footer-text {
     font-size: 10pt;
     line-height: 1.6;
@@ -336,10 +405,27 @@ a:hover {
     font-style: italic;
 }
 
+#pagestats {
+    font-size: 9pt;
+    color: #666666;
+    font-style: italic;
+}
+
 hr {
     border: 0;
     border-top: 1px solid #aaaaaa;
     margin: 15px 0;
+}
+
+/* Definition lists for categories - Matching original Wikipedia 2002 */
+dl {
+    margin: 0;
+    padding: 0;
+}
+
+dd {
+    margin-left: 0;
+    margin-bottom: 5px;
 }
 
 /* Emphasis */

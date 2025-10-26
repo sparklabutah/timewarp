@@ -2,55 +2,64 @@
 
 {% block title %}{{ title }} - Wikipedia{% endblock %}
 
+{% block topbar %}<a href="/" class="internal" title="Main Page">Main Page</a> |
+<a href="#" class="internal" title="Special:Recentchanges">Recent changes</a> |
+<a href="#" class="internal" title="{{ title }}">Edit this page</a> |
+<a href="#" class="internal" title="{{ title }}">History</a> |
+<form method="get" class="inline" action="/"><input type="hidden" name="PHPSESSID" value="">
+<select name="wpDropdown">
+<option value="Special:Specialpages">Special pages</option>
+<option value="Special:Preferences">Set my user preferences</option>
+<option value="Special:Watchlist">My watchlist</option>
+<option value="Special:Recentchanges">Recently updated pages</option>
+<option value="Special:Upload">Upload image files</option>
+<option value="Special:Imagelist">Image list</option>
+<option value="Special:Listusers">Registered users</option>
+<option value="Special:Statistics">Site statistics</option>
+<option value="Special:Randompage" id="randomDropdown">Random article</option>
+<option value="Special:Lonelypages">Orphaned articles</option>
+<option value="Special:Unusedimages">Orphaned images</option>
+<option value="Special:Popularpages">Popular articles</option>
+<option value="Special:Wantedpages">Most wanted articles</option>
+<option value="Special:Shortpages">Short articles</option>
+<option value="Special:Longpages">Long articles</option>
+<option value="Special:Newpages">Newly created articles</option>
+<option value="Special:Allpages">All pages by title</option>
+<option value="Special:Ipblocklist">Blocked IP addresses</option>
+<option value="Special:Maintenance">Maintenance page</option>
+<option value="Special:Booksources">External book sources</option>
+</select>
+<input type="submit" value="Go" name="redirect">
+</form>
+<p class="subtitle"><a href="#" class="internal" title="{{ title }}">Printable version</a>
+<br>Other languages: <a href="#" class="external" title="eo:Hejmpagxo">Esperanto</a> | <a href="#" class="external" title="nl:Antropologie">Dutch</a> | <a href="#" class="external" title="pl:Polska_Wikipedia">Polish</a> | <a href="#" class="external" title="fr:HomePage">French</a> | <a href="#" class="external" title="de:Hauptseite">German</a>
+</p>{% endblock %}
+
+{% block quickbar_page %}<strong><a href="#" class="internal" title="{{ title }}">Edit this page</a></strong>
+<br><a href="#" class="new" title="Talk:{{ title }}">Talk page</a>
+<br><a href="#" class="internal" title="{{ title }}">History</a>
+<br><a href="#" class="internal" title="Special:Whatlinkshere">What links here</a>
+<br><a href="#" class="internal" title="Special:Recentchangeslinked">Watch links</a>{% endblock %}
+
 {% block content %}
-<h1 class="page-title">{{ title }}</h1>
-<p class="page-subtitle">From Wikipedia, the free encyclopedia.</p>
+<h1 class="pagetitle">{{ title }}</h1><p class="subtitle">From Wikipedia, the free encyclopedia.
 
-{% if timestamp %}
-<p class="article-meta">
-    <em>Last modified: {{ timestamp.split('T')[0] }}</em>
 </p>
-{% endif %}
-
-<div class="article-content">
-    {{ content|safe }}
-</div>
-
-<!-- Article Footer -->
-<hr>
-<p class="footer-text">
-    <a href="/">Main Page</a> | 
-    <a href="#" onclick="history.back()">Back</a> | 
-    <a href="#" id="randomFooter">Random page</a> | 
-    <input type="text" id="articleSearch" class="footer-search" size="20" placeholder="Search...">
-    <button class="search-btn" onclick="performArticleSearch()">Search</button>
+<p>
 </p>
-<p class="access-info">
-    This page has been accessed <span id="accessCount">{{ range(10000, 999999) | random }}</span> times. The page was last modified {% if timestamp %}{{ timestamp.split('T')[0] }}{% else %}Nov 13, 2002{% endif %}.
+<p>
+{{ content|safe }}
 </p>
+{% endblock %}
 
-<script>
-function performArticleSearch() {
-    const query = document.getElementById('articleSearch').value.trim();
-    if (query) {
-        window.location.href = '/wiki/' + encodeURIComponent(query);
-    }
-}
+{% block footer %}<table width="98%" border="0" cellspacing="0"><tr><td width="152">&nbsp;</td><td class="bottom" align="left" valign="top"><strong><a href="#" class="internal" title="{{ title }}">Edit this page</a></strong> |
+<a href="#" class="new" title="Talk:{{ title }}">Talk page</a> |
+<a href="#" class="internal" title="{{ title }}">History</a> |
+<a href="#" class="internal" title="Special:Whatlinkshere">What links here</a> |
+<a href="#" class="internal" title="Special:Recentchangeslinked">Watch links</a>
+<br>Other languages: <a href="#" class="external" title="eo:Hejmpagxo">Esperanto</a> | <a href="#" class="external" title="nl:Antropologie">Dutch</a> | <a href="#" class="external" title="pl:Polska_Wikipedia">Polish</a> | <a href="#" class="external" title="fr:HomePage">French</a> | <a href="#" class="external" title="de:Hauptseite">German</a>
 
-document.getElementById('articleSearch').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') performArticleSearch();
-});
-
-document.getElementById('randomFooter').addEventListener('click', function(e) {
-    e.preventDefault();
-    fetch('/random')
-        .then(response => response.json())
-        .then(data => {
-            if (data.title) {
-                window.location.href = '/wiki/' + encodeURIComponent(data.title);
-            }
-        });
-});
-</script>
+<br><a href="/" class="internal" title="Main Page">Main Page</a> | <a href="#" class="internal" title="Wikipedia:About">About Wikipedia</a> | <a href="#" class="internal" title="Special:Recentchanges">Recent changes</a> | <form class="inline" method="get" action="/"><input type="hidden" name="PHPSESSID" value=""><input type="text" name="search" size="16" value="">
+<input type="submit" value="Search"></form><br><span id="pagestats">This page has been accessed {{ range(1000, 99999) | random }} times. The page was last modified {% if timestamp %}{{ timestamp.split('T')[0] }}{% else %}00:25 Sep 19, 2002{% endif %}.</span></td></tr></table>
 {% endblock %}
 

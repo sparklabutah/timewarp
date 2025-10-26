@@ -1,97 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>{% block title %}Wikipedia{% endblock %}</title>
+    <meta name="robots" content="index,follow">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style type="text/css" media="screen"><!--
+    a.new, a.internal, a.external { text-decoration: underline; }
+    a.new { color: #CC2200; }
+    #quickbar a.new { color: CC2200; }
+    #quickbar { position: absolute; top: 4px; left: 4px; border-right: 2px solid #000000; }
+    #article { margin-left: 152px; margin-right: 4px; }
+    //--></style>
 </head>
-<body>
-    <!-- Top Navigation Bar -->
-    <div class="top-bar">
-        <div class="top-bar-content">
-            <div class="top-links">
-                <a href="/">Main Page</a> | 
-                <a href="#" id="recentChanges">Recent changes</a> | 
-                Protected page | 
-                <a href="#" id="randomPage">Random page</a> | 
-                <select class="special-pages">
-                    <option>Special pages</option>
-                    <option>What links here</option>
-                    <option>Related changes</option>
+
+<body bgcolor="#FFFFFF">
+
+<div id="content">
+<div id="topbar"><table width="98%" border="0" cellspacing="0"><tr><td width="152">&nbsp;</td><td class="top" align="left" valign="top">{% block topbar %}
+<a href="/" class="internal" title="Main Page">Main Page</a> |
+<a href="#" id="recentChanges" class="internal" title="Special:Recentchanges">Recent changes</a> |
+Edit this page |
+<a href="#" class="internal" title="History">History</a> |
+<form method="get" class="inline" action="/"><input type="hidden" name="PHPSESSID" value="">
+<select name="wpDropdown">
+<option value="Special:Specialpages">Special pages</option>
+<option value="Special:Preferences">Set my user preferences</option>
+<option value="Special:Watchlist">My watchlist</option>
+<option value="Special:Recentchanges">Recently updated pages</option>
+<option value="Special:Upload">Upload image files</option>
+<option value="Special:Imagelist">Image list</option>
+<option value="Special:Listusers">Registered users</option>
+<option value="Special:Statistics">Site statistics</option>
+<option value="Special:Randompage" id="randomDropdown">Random article</option>
+<option value="Special:Lonelypages">Orphaned articles</option>
+<option value="Special:Unusedimages">Orphaned images</option>
+<option value="Special:Popularpages">Popular articles</option>
+<option value="Special:Wantedpages">Most wanted articles</option>
+<option value="Special:Shortpages">Short articles</option>
+<option value="Special:Longpages">Long articles</option>
+<option value="Special:Newpages">Newly created articles</option>
+<option value="Special:Allpages">All pages by title</option>
+<option value="Special:Ipblocklist">Blocked IP addresses</option>
+<option value="Special:Maintenance">Maintenance page</option>
+<option value="Special:Booksources">External book sources</option>
                 </select>
-                <button class="go-btn" onclick="window.location.href='/'">Go</button>
-            </div>
-            <div class="user-info">
-                Guest User
-            </div>
-        </div>
-    </div>
+<input type="submit" value="Go" name="redirect">
+</form>
+<p class="subtitle">{% block subtitle %}<a href="#" class="internal" title="Printable version">Printable version</a>
+<br>Other languages: <a href="#" class="external" title="da:Forside">Dansk</a> | <a href="#" class="external" title="de:Hauptseite">Deutsch</a> | <a href="#" class="external" title="eo:Hejmpagxo">Esperanto</a> | <a href="#" class="external" title="es:Portada">Español</a> | <a href="#" class="external" title="fr:HomePage">Français</a> | <a href="#" class="external" title="nl:Hoofdpagina">Nederlands</a> | <a href="#" class="external" title="pl:Polska_Wikipedia">Polski</a> | <a href="#" class="external" title="pt:HomePage">Português</a>{% endblock %}
+</p>{% endblock %}</td>
+<td class="top" valign="top" align="right" width="200" nowrap>127.0.0.1
+<br><a href="#" class="internal" title="Special:Userlogin">Log in</a> | <a href="#" class="internal" title="Wikipedia:Help">Help</a>
+<br><form class="inline" method="get" action="#" onsubmit="return performTopbarSearch();"><input type="hidden" name="PHPSESSID" value=""><input type="text" id="topbarSearch" name="search" size="16" value="">
+<input type="submit" value="Search"></form></td></tr></table>
+</div>
 
-    <!-- Language/Search Bar -->
-    <div class="lang-bar">
-        <div class="lang-content">
-            <a href="#">Printable version</a><br>
-            Other languages: 
-            <a href="#">Dansk</a> | 
-            <a href="#">Deutsch</a> | 
-            <a href="#">Español</a> | 
-            <a href="#">Français</a> | 
-            <a href="#">Nederlands</a> | 
-            <a href="#">Polski</a> | 
-            <a href="#">Português</a>
-        </div>
-        <div class="search-box">
-            <input type="text" id="mainSearch" class="search-input" placeholder="Search...">
-            <button class="search-btn" onclick="performSearch()">Search</button>
-        </div>
-    </div>
+<div id="article">{% block content %}{% endblock %}</div><br clear="all">
 
-    <!-- Main Container -->
-    <table class="main-table" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-            <!-- Left Sidebar -->
-            <td class="sidebar" valign="top">
-                <div class="logo-container">
-                    <div class="logo">
-                        <div class="logo-icon">W</div>
-                        <div class="logo-text">
-                            <div class="logo-title">WIKIPEDIA</div>
-                            <div class="logo-subtitle">The Free Encyclopedia</div>
-                        </div>
-                    </div>
-                </div>
+<div id="footer">{% block footer %}<table width="98%" border="0" cellspacing="0"><tr><td width="152">&nbsp;</td><td class="bottom" align="left" valign="top"><strong>Edit this page</strong> |
+<a href="#" class="internal" title="Talk page">Talk page</a> |
+<a href="#" class="internal" title="History">History</a> |
+<a href="#" class="internal" title="Special:Whatlinkshere">What links here</a> |
+<a href="#" class="internal" title="Special:Recentchangeslinked">Watch links</a>
+<br>Other languages: <a href="#" class="external" title="da:Forside">Dansk</a> | <a href="#" class="external" title="de:Hauptseite">Deutsch</a> | <a href="#" class="external" title="eo:Hejmpagxo">Esperanto</a> | <a href="#" class="external" title="es:Portada">Español</a> | <a href="#" class="external" title="fr:HomePage">Français</a> | <a href="#" class="external" title="nl:Hoofdpagina">Nederlands</a> | <a href="#" class="external" title="pl:Polska_Wikipedia">Polski</a> | <a href="#" class="external" title="pt:HomePage">Português</a>
 
-                <!-- Navigation Links -->
-                <div class="nav-section">
-                    <a href="/">Main Page</a><br>
-                    <a href="#">Recent changes</a><br>
-                    <a href="#" id="randomSidebar">Random page</a><br>
-                    <a href="#">Watch list</a><br>
-                    <a href="#">Current events</a>
-                </div>
+<br><a href="/" class="internal" title="Main Page">Main Page</a> | <a href="#" class="internal" title="Wikipedia:About">About Wikipedia</a> | <a href="#" class="internal" title="Special:Recentchanges">Recent changes</a> | <form class="inline" method="get" action="#" onsubmit="return performFooterSearch();"><input type="hidden" name="PHPSESSID" value=""><input type="text" id="footerSearch" name="search" size="16" value="">
+<input type="submit" value="Search"></form><br><span id="pagestats">{% block pagestats %}This page has been accessed 536122 times. The page was last modified 16:53 Oct 28, 2002.{% endblock %}</span></td></tr></table>
+{% endblock %}</div>
+</div>
 
-                <div class="nav-section">
-                    <strong>Protected page</strong><br>
-                    <a href="#">Talk page</a><br>
-                    <a href="#">History</a><br>
-                    <a href="#">What links here</a><br>
-                    <a href="#">Watch links</a>
-                </div>
+<div id="quickbar">
+<a href="/"><img border="0" src="{{ url_for('static', filename='wiki.png') }}" alt="[Main Page]" onerror="this.style.display='none'"></a>
+<hr><a href="/" class="internal" title="Main Page">Main Page</a>
+<br><a href="#" id="recentChangesSidebar" class="internal" title="Special:Recentchanges">Recent changes</a>
+<br><a href="#" id="randomSidebar" class="internal" title="Special:Randompage">Random page</a>
+<br><a href="#" class="internal" title="Special:Watchlist">Watch list</a>
+<br><a href="#" class="internal" title="Current events">Current events</a>
+<hr>{% block quickbar_page %}<strong>Edit this page</strong>
+<br><a href="#" class="internal" title="Talk page">Talk page</a>
+<br><a href="#" class="internal" title="History">History</a>
+<br><a href="#" class="internal" title="Special:Whatlinkshere">What links here</a>
+<br><a href="#" class="internal" title="Special:Recentchangeslinked">Watch links</a>{% endblock %}
+<hr><a href="#" class="internal" title="Wikipedia:Bug reports">Bug reports</a>
+<br><a href="#" class="internal" title="Special:Specialpages">Special pages</a>
+</div>
 
-                <div class="nav-section">
-                    <a href="#">Bug reports</a><br>
-                    <a href="#">Special pages</a>
-                </div>
-            </td>
-
-            <!-- Main Content Area -->
-            <td class="content-area" valign="top">
-                {% block content %}{% endblock %}
-            </td>
-        </tr>
-    </table>
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
 

@@ -1,0 +1,39 @@
+.bodytext { }
+h1.pagetitle {
+ padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;
+}
+p.subtitle { padding-top: 0; margin-top: 0; }
+a.interwiki, a.external { color: #3366BB; }
+body { margin: 0px; padding: 4px; }
+a.stub { color:#772233; text-decoration:none; }
+a.printable { text-decoration: underline; }
+form.inline { display: inline; }
+#content { position: absolute; top: 0;  margin: 0; padding: 0; }
+#topbar { padding: 4px; }
+td.top { border-bottom: 2px solid #000000; }
+#quickbar { width: 140px; padding: 4px; visibility: visible; z-index: 99; }
+#article { padding: 4px; }
+#footer { padding: 4px; }
+td.bottom { border-top: 2px solid #000000; }
+h2, h3, h4, h5, h6 { margin-bottom: 0; }
+
+/*
+     FILE ARCHIVED ON 13:51:10 Oct 04, 2002 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 02:18:03 Oct 26, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.903
+  exclusion.robots: 0.034
+  exclusion.robots.policy: 0.016
+  esindex: 0.022
+  cdx.remote: 9.405
+  LoadShardBlock: 113.093 (3)
+  PetaboxLoader3.datanode: 80.762 (4)
+  load_resource: 65.699
+  PetaboxLoader3.resolve: 36.146
+*/
