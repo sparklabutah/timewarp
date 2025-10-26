@@ -1,6 +1,7 @@
 """
 Wikinews UI - Flask Backend
 Parses Wikinews XML dump and serves news articles with a modern news UI
+Uses mwparserfromhell for proper MediaWiki parsing and HTML pre-caching
 """
 
 import xml.etree.ElementTree as ET
@@ -10,14 +11,30 @@ import pickle
 import os
 import random
 from datetime import datetime
+import sys
+import mwparserfromhell
 
 # Get the directory where this script is located
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Initialize Flask
+# Determine theme from command line argument
+THEME = 'classic'  # Default theme
+if len(sys.argv) > 1:
+    if sys.argv[1] == '-1' or sys.argv[1] == 'classic':
+        THEME = 'classic'
+    elif sys.argv[1] == '-2' or sys.argv[1] == 'modern':
+        THEME = 'modern'
+    elif sys.argv[1] == '-3' or sys.argv[1] == 'wikinews2002':
+        THEME = 'wikinews2002'
+    elif sys.argv[1] == '-4' or sys.argv[1] == 'wikinews2001':
+        THEME = 'wikinews2001'
+
+print(f"Using theme: {THEME}")
+
+# Initialize Flask with theme-specific paths
 app = Flask(__name__,
-            template_folder=os.path.join(SCRIPT_DIR, 'templates'),
-            static_folder=os.path.join(SCRIPT_DIR, 'static'))
+            template_folder=os.path.join(SCRIPT_DIR, 'themes', THEME, 'templates'),
+            static_folder=os.path.join(SCRIPT_DIR, 'themes', THEME, 'static'))
 
 # Paths relative to the script location
 XML_DUMP_PATH = os.path.join(SCRIPT_DIR, 'enwikinews-latest-pages-articles-multistream.xml.bz2')
@@ -43,42 +60,69 @@ def extract_category(text):
 
 
 def parse_and_clean_wikitext(wikitext):
-    """Parse wikitext and return cleaned HTML for news articles"""
+    """
+    Parse wikitext and return cleaned HTML for news articles
+    Uses mwparserfromhell for proper MediaWiki parsing
+    """
     if not wikitext:
         return ""
     
     try:
-        # Remove templates (keep doing until no more templates)
-        prev_len = 0
-        while len(wikitext) != prev_len:
-            prev_len = len(wikitext)
-            wikitext = re.sub(r'\{\{[^{}]*\}\}', '', wikitext)
+        # Parse wikitext using mwparserfromhell
+        wikicode = mwparserfromhell.parse(wikitext)
         
-        # Remove tables
-        wikitext = re.sub(r'\{\|.*?\|\}', '', wikitext, flags=re.DOTALL)
+        # Remove templates
+        templates = wikicode.filter_templates()
+        for template in templates:
+            try:
+                wikicode.remove(template)
+            except:
+                pass
         
-        # Remove HTML comments
-        wikitext = re.sub(r'<!--.*?-->', '', wikitext, flags=re.DOTALL)
+        # Remove comments
+        comments = wikicode.filter_comments()
+        for comment in comments:
+            try:
+                wikicode.remove(comment)
+            except:
+                pass
         
-        # Remove category links
-        wikitext = re.sub(r'\[\[Category:.*?\]\]', '', wikitext, flags=re.IGNORECASE)
+        # Remove tags (like <ref>, <gallery>, etc.)
+        tags = wikicode.filter_tags()
+        for tag in tags:
+            try:
+                wikicode.remove(tag)
+            except:
+                pass
         
-        # Remove file/image links
-        wikitext = re.sub(r'\[\[(File|Image):.*?\]\]', '', wikitext, flags=re.DOTALL | re.IGNORECASE)
+        # Remove file/image links and category links using wikilinks filter
+        wikilinks = wikicode.filter_wikilinks()
+        for link in wikilinks:
+            try:
+                title = str(link.title)
+                # Remove if it's a File:, Image:, or Category: link
+                if title.lower().startswith(('file:', 'image:', 'category:')):
+                    wikicode.remove(link)
+            except:
+                pass
+        
+        # Get the cleaned wikitext
+        cleaned_wikitext = str(wikicode)
         
         # Remove __NOTOC__, __FORCETOC__, etc.
-        wikitext = re.sub(r'__[A-Z]+__', '', wikitext)
+        cleaned_wikitext = re.sub(r'__[A-Z]+__', '', cleaned_wikitext)
         
         # Clean up extra whitespace
-        wikitext = re.sub(r'\n\n+', '\n\n', wikitext)
+        cleaned_wikitext = re.sub(r'\n\n+', '\n\n', cleaned_wikitext)
         
-        # Convert to HTML
-        html = convert_wikitext_to_html(wikitext)
+        # Convert remaining wikitext to HTML
+        html = convert_wikitext_to_html(cleaned_wikitext)
         
         return html
         
     except Exception as e:
         print(f"Error parsing wikitext: {e}")
+        # Fallback: return basic paragraphs
         return '<p>' + '</p><p>'.join(wikitext.split('\n\n')[:10]) + '</p>'
 
 

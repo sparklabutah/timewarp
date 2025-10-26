@@ -1,0 +1,49 @@
+.bodytext { }
+h1.pagetitle {
+ padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;
+}
+p.subtitle { padding-top: 0; margin-top: 0; }
+p.subpages { font-size:small;}
+a.interwiki, a.external { color: #3366BB; }
+body { margin: 0px; padding: 4px; }
+a.stub { color:#772233; text-decoration:none; }
+a.printable { text-decoration: underline; }
+a.stub { color:#772233; text-decoration:none; }
+form.inline { display: inline; }
+#content { position: absolute; top: 0;  margin: 0; padding: 0; }
+#topbar { padding: 4px; }
+td.top { border-bottom: 2px solid #000000; }
+#quickbar { width: 140px; padding: 4px; visibility: visible; z-index: 99; }
+#article { padding: 4px; }
+#footer { padding: 4px; }
+#pagestats {
+ font-size: 9pt;
+}
+td.bottom { border-top: 2px solid #000000; }
+h2, h3, h4, h5, h6 { margin-bottom: 0; }
+h2 { font-size: 125%; }
+h3 { font-size: 112.5%; }
+h4 { font-size: 106.25%; }
+h5 { font-size: 103.125%; }
+h6 { font-size: 100%; }
+
+/*
+     FILE ARCHIVED ON 10:54:07 Feb 01, 2003 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 05:39:56 Oct 26, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.592
+  exclusion.robots: 0.024
+  exclusion.robots.policy: 0.01
+  esindex: 0.01
+  cdx.remote: 10.979
+  LoadShardBlock: 133.08 (3)
+  PetaboxLoader3.resolve: 84.232 (4)
+  PetaboxLoader3.datanode: 118.524 (4)
+  load_resource: 100.04
+*/

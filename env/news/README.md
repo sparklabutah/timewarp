@@ -122,7 +122,8 @@ env/news/
 ### Article Parsing
 
 - Uses `xml.etree.ElementTree` for efficient XML parsing
-- Wikitext is converted to HTML using regex-based parsing
+- Wikitext is converted to HTML using `mwparserfromhell` (proper MediaWiki parser)
+- Regex-based post-processing for HTML conversion
 - Categories are extracted from article metadata
 - Articles are sorted by publication date
 

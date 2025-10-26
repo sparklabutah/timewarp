@@ -1,7 +1,7 @@
 """
 Simple Wikipedia UI - Flask Backend
 Parses Wikipedia XML dump and serves articles with a Wikipedia-like UI
-OPTIMIZED VERSION with regex-based parsing and HTML pre-caching
+OPTIMIZED VERSION with MediaWiki parser and HTML pre-caching
 """
 
 import xml.etree.ElementTree as ET
@@ -11,6 +11,7 @@ import pickle
 import os
 import random
 import sys
+import mwparserfromhell
 
 # Get the directory where this script is located
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -50,43 +51,61 @@ def parse_and_clean_wikitext(wikitext):
     """
     Parse wikitext and return cleaned HTML
     This is used during indexing to pre-process articles
-    Uses regex-based approach to avoid wikitextparser mutation issues
+    Uses mwparserfromhell for proper MediaWiki parsing
     """
     if not wikitext:
         return ""
     
     try:
-        # Use regex to remove complex elements BEFORE parsing
-        # This is more reliable than mutating parsed objects
+        # Parse wikitext using mwparserfromhell
+        wikicode = mwparserfromhell.parse(wikitext)
         
-        # Remove templates (nested and multiline)
-        # Keep removing until no more templates found
-        prev_len = 0
-        while len(wikitext) != prev_len:
-            prev_len = len(wikitext)
-            # Remove {{...}} carefully handling nesting
-            wikitext = re.sub(r'\{\{[^{}]*\}\}', '', wikitext)
+        # Remove templates
+        templates = wikicode.filter_templates()
+        for template in templates:
+            try:
+                wikicode.remove(template)
+            except:
+                pass
         
-        # Remove tables {|...|}
-        wikitext = re.sub(r'\{\|.*?\|\}', '', wikitext, flags=re.DOTALL)
+        # Remove comments
+        comments = wikicode.filter_comments()
+        for comment in comments:
+            try:
+                wikicode.remove(comment)
+            except:
+                pass
         
-        # Remove HTML comments
-        wikitext = re.sub(r'<!--.*?-->', '', wikitext, flags=re.DOTALL)
+        # Remove tags (like <ref>, <gallery>, etc.)
+        tags = wikicode.filter_tags()
+        for tag in tags:
+            try:
+                wikicode.remove(tag)
+            except:
+                pass
         
-        # Remove category links
-        wikitext = re.sub(r'\[\[Category:.*?\]\]', '', wikitext, flags=re.IGNORECASE)
+        # Remove file/image links and category links using wikilinks filter
+        wikilinks = wikicode.filter_wikilinks()
+        for link in wikilinks:
+            try:
+                title = str(link.title)
+                # Remove if it's a File:, Image:, or Category: link
+                if title.lower().startswith(('file:', 'image:', 'category:')):
+                    wikicode.remove(link)
+            except:
+                pass
         
-        # Remove file/image links
-        wikitext = re.sub(r'\[\[(File|Image):.*?\]\]', '', wikitext, flags=re.DOTALL | re.IGNORECASE)
+        # Get the cleaned wikitext
+        cleaned_wikitext = str(wikicode)
         
         # Remove __NOTOC__, __FORCETOC__, etc.
-        wikitext = re.sub(r'__[A-Z]+__', '', wikitext)
+        cleaned_wikitext = re.sub(r'__[A-Z]+__', '', cleaned_wikitext)
         
         # Clean up extra whitespace
-        wikitext = re.sub(r'\n\n+', '\n\n', wikitext)
+        cleaned_wikitext = re.sub(r'\n\n+', '\n\n', cleaned_wikitext)
         
         # Convert remaining wikitext to HTML
-        html = convert_wikitext_to_html(wikitext)
+        html = convert_wikitext_to_html(cleaned_wikitext)
         
         return html
         

@@ -2,10 +2,16 @@
 
 ## 🚀 Quick Start (3 Steps)
 
-### 1. Install Flask
+### 1. Install Dependencies
 
 ```bash
-pip install Flask
+pip install -r requirements.txt
+```
+
+Or manually:
+
+```bash
+pip install Flask mwparserfromhell
 ```
 
 ### 2. Run the Application
