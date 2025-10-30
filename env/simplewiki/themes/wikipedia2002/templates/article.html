@@ -47,9 +47,24 @@
 </p>
 <p>
 </p>
-<p>
+
+<!-- Overview -->
+<div id="overview" class="overview-box">
+ 
+{% if first_paragraph_html %}
+{{ first_paragraph_html|replace('<p>', '<p class="overview-text">' ~ title ~ ' ', 1)|safe }}
+{% else %}
+<p class="overview-text">{{ title }} {{ content|safe }}</p>
+{% endif %}
+</div>
+
+<div id="article-body">
+{% if remainder_html %}
+{{ remainder_html|safe }}
+{% else %}
 {{ content|safe }}
-</p>
+{% endif %}
+</div>
 {% endblock %}
 
 {% block footer %}<table width="98%" border="0" cellspacing="0"><tr><td width="152">&nbsp;</td><td class="bottom" align="left" valign="top"><strong><a href="#" class="internal" title="{{ title }}">Edit this page</a></strong> |

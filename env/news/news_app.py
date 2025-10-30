@@ -6,6 +6,7 @@ Uses mwparserfromhell for proper MediaWiki parsing and HTML pre-caching
 
 import xml.etree.ElementTree as ET
 import re
+from html import escape
 from flask import Flask, render_template, request, jsonify
 import pickle
 import os
@@ -68,6 +69,10 @@ def parse_and_clean_wikitext(wikitext):
         return ""
     
     try:
+        # Convert tables FIRST before mwparserfromhell processes them
+        # (mwparserfromhell doesn't handle tables well)
+        wikitext = convert_wikitables_to_html(wikitext)
+        
         # Parse wikitext using mwparserfromhell
         wikicode = mwparserfromhell.parse(wikitext)
         
@@ -190,6 +195,78 @@ def convert_wikitext_to_html(text):
         result.append('</ol>')
     
     return '\n'.join(result)
+
+
+# --- MediaWiki table conversion (lightweight) ---
+TABLE_RE = re.compile(r"\{\|[\s\S]*?\|\}", re.MULTILINE)
+
+
+def _attrs_to_html(attrs: str) -> str:
+    attrs = attrs.strip()
+    return f" {attrs}" if attrs else ""
+
+
+def _split_cells(line: str):
+    if line.startswith("!"):
+        sep = "!!" if "!!" in line else "!"
+        cells = [c.strip() for c in line.split(sep) if c.strip() != ""]
+        return [("th", c) for c in cells]
+    if line.startswith("|"):
+        if "||" in line:
+            return [("td", p.strip()) for p in line.split("||")]
+        return [("td", line[1:].strip())]
+    return []
+
+
+def _render_cell(tag: str, raw: str) -> str:
+    if "|" in raw:
+        params, text = raw.split("|", 1)
+        return f"<{tag}{_attrs_to_html(params)}>{escape(text.strip())}</{tag}>"
+    return f"<{tag}>{escape(raw.strip())}</{tag}>"
+
+
+def _wikitable_to_html(table_text: str) -> str:
+    lines = table_text.strip().splitlines()
+    if not lines or not lines[0].startswith("{|"):
+        return table_text
+    table_attrs = lines[0][2:].strip()
+    html_parts = [f"<table{_attrs_to_html(table_attrs)}>"]
+    in_row = False
+    for line in lines[1:]:
+        line = line.rstrip()
+        if not line:
+            continue
+        if line.startswith("|}"):
+            if in_row:
+                html_parts.append("</tr>")
+                in_row = False
+            html_parts.append("</table>")
+            break
+        if line.startswith("|-"):
+            if in_row:
+                html_parts.append("</tr>")
+            row_attrs = line[2:].strip()
+            html_parts.append(f"<tr{_attrs_to_html(row_attrs)}>")
+            in_row = True
+            continue
+        if line.startswith(("|", "!")):
+            cells = _split_cells(line)
+            if cells:
+                if not in_row:
+                    html_parts.append("<tr>")
+                    in_row = True
+                for tag, raw in cells:
+                    html_parts.append(_render_cell(tag, raw))
+            continue
+        if in_row:
+            html_parts.append(f"<td>{escape(line.strip())}</td>")
+    return "\n".join(html_parts)
+
+
+def convert_wikitables_to_html(wikitext: str) -> str:
+    def _repl(m):
+        return _wikitable_to_html(m.group(0))
+    return TABLE_RE.sub(_repl, wikitext)
 
 
 def parse_xml_dump():

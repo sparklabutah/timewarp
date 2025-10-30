@@ -12,7 +12,7 @@ body {
     background-color: white;
     color: black;
     padding: 10px 20px;
-    line-height: 1.5;
+    line-height: 1.10;
 }
 
 /* Links */
@@ -38,14 +38,14 @@ a:hover {
 }
 
 .page-title {
-    font-size: 18pt;
+    font-size: 24pt;
     font-weight: bold;
-    margin: 0;
+    margin: 0 0 4px 0;
 }
 
 .page-title a {
     color: #0000EE;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .page-actions {
@@ -58,14 +58,14 @@ a:hover {
 
 /* Top Navigation */
 .top-nav {
-    font-size: 10pt;
-    margin-bottom: 5px;
+    font-size: 12pt;
+    margin-bottom: 6px;
 }
 
 /* Edit Message */
 .edit-message {
-    font-size: 10pt;
-    margin: 5px 0;
+    font-size: 11pt;
+    margin: 6px 0;
 }
 
 .edit-message em {
@@ -99,6 +99,10 @@ a:hover {
     color: black;
 }
 
+.first-section {
+    margin-top: 44px; /* extra space above the first category block */
+}
+
 /* Footer Navigation */
 .footer-nav {
     font-size: 10pt;
@@ -117,7 +121,7 @@ a:hover {
 
 /* Article Content */
 .article-content {
-    line-height: 1.6;
+    line-height: 1.45;
 }
 
 .article-content h1 {
@@ -157,6 +161,22 @@ a:hover {
 
 .article-content li {
     margin-bottom: 5px;
+}
+
+/* Uniform font sizing inside main content areas */
+.content,
+.content * {
+    font-size: 12pt;
+}
+
+.article-content,
+.article-content * {
+    font-size: 12pt;
+}
+
+/* Simple tab-style left padding for homepage sections */
+.tabbed {
+    padding-left: 24px;
 }
 
 /* Talk Section */
@@ -199,6 +219,8 @@ a:hover {
 ul {
     list-style-position: inside;
 }
+
+
 
 
 

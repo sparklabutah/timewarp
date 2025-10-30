@@ -1,3 +1,7 @@
+/* Indentation helper for main page sections */
+.indent-2tab {
+    margin-left: 2em;
+}
 /* Wikipedia 2002 Authentic Theme */
 
 /* Base Styles - Matching original Wikipedia 2002 */
@@ -137,6 +141,13 @@ td.top {
     padding: 4px; 
     visibility: visible; 
     z-index: 99; 
+}
+
+#quickbar img.logo-2002 {
+    width: 135px;
+    height: auto;
+    display: block;
+    margin: 4px auto 8px auto;
 }
 
 .sidebar {
@@ -463,5 +474,96 @@ strong {
         text-align: left;
         margin-bottom: 5px;
     }
+}
+
+/* Table of Contents */
+.toc {
+    /* 2002: leaner TOC look */
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 8px 0 12px 0;
+    display: block;
+    font-size: 11pt;
+}
+
+.toc-title {
+    text-align: left;
+    font-weight: bold;
+    font-size: 11pt;
+    margin-bottom: 4px;
+}
+
+.toc-toggle {
+    font-size: 10pt;
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+.toc-toggle a {
+    color: #0000EE;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.toc-list {
+    margin: 4px 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.toc-list li {
+    margin: 2px 0;
+    padding-left: 0;
+    break-inside: avoid;
+}
+
+.toc-list a {
+    text-decoration: none;
+}
+
+.toc-list a:hover {
+    text-decoration: underline;
+}
+
+/* Nested TOC levels */
+.toc-level-1 {
+    margin-left: 0;
+}
+
+.toc-level-2 {
+    margin-left: 15px;
+}
+
+.toc-level-3 {
+    margin-left: 30px;
+}
+
+.toc-level-4,
+.toc-level-5,
+.toc-level-6 {
+    margin-left: 45px;
+}
+
+/* TOC numbering */
+.toc-number {
+    margin-right: 5px;
+}
+
+/* Two-column layout for wider screens */
+@media (min-width: 800px) {
+    .toc-list {
+        column-count: 2;
+        column-gap: 24px;
+    }
+}
+
+/* Indentation (tabspace) before category blocks */
+.category dd {
+    margin-left: 18px;
+}
+
+.category dd + dd {
+    margin-top: 2px;
 }
 

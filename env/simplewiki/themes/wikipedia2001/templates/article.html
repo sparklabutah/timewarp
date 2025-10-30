@@ -5,7 +5,11 @@
 
 {% block content %}
 <div class="article-content">
-    {{ content|safe }}
+    {% if '<p>' in content %}
+        {{ content|replace('<p>', '<p>' ~ title ~ ' ', 1)|safe }}
+    {% else %}
+        <p>{{ title }} {{ content|safe }}</p>
+    {% endif %}
 </div>
 
 <hr class="separator">

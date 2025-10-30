@@ -31,8 +31,16 @@
         {% block content %}{% endblock %}
     </div>
 
-    <!-- Footer -->
+    <!-- Date line above footer -->
+    <div class="date-footer">
+        Today is {{ now().strftime('%A, %B %d, %Y') if now else 'Wednesday, August 8, 2001' }}.
+    </div>
+
+    <!-- Talk link and separator -->
+    <p class="talk-link"><a href="/Talk">/Talk</a></p>
     <hr class="separator">
+
+    <!-- Footer -->
     <div class="footer-nav">
         <a href="/">HomePage</a> | 
         <a href="#">RecentChanges</a> | 
@@ -43,16 +51,19 @@
     </p>
     <p class="page-info">
         <a href="#">Edit text of this page</a> | <a href="#">View other revisions</a><br>
-        Last edited {% if timestamp %}{{ timestamp.split('T')[0] }}{% else %}August 8, 2001{% endif %}
+        Last edited {% if timestamp %}{{ timestamp.split('T')[0] }}{% else %}August 8, 2001{% endif %} (diff)
     </p>
 
-    <div class="date-footer">
-        Today is {{ now().strftime('%A, %B %d, %Y') if now else 'Wednesday, August 8, 2001' }}.
-    </div>
+    <!-- Bottom Search -->
+    <form class="search-form" onsubmit="window.location.href='/wiki/' + encodeURIComponent(this.elements['q'].value); return false;">
+        Search: <input type="text" name="q" class="search-input" />
+    </form>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
+
+
 
 
 

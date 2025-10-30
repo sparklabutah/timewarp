@@ -6,7 +6,9 @@ OPTIMIZED VERSION with MediaWiki parser and HTML pre-caching
 
 import xml.etree.ElementTree as ET
 import re
-from flask import Flask, render_template, request, jsonify
+from html import escape
+from flask import Flask, render_template, request, jsonify, send_from_directory
+import json
 import pickle
 import os
 import random
@@ -38,10 +40,11 @@ app = Flask(__name__,
 # Paths relative to the script location
 XML_DUMP_PATH = os.path.join(SCRIPT_DIR, 'simplewiki-latest-pages-articles.xml')
 INDEX_CACHE_PATH = os.path.join(SCRIPT_DIR, 'wiki_index.pkl')  # Now stores pre-parsed HTML!
+LOGOS_DIR = os.path.join(SCRIPT_DIR, 'logos')
 
 # Optional: Limit number of articles for testing (set to None for all)
 # TESTING: Set to 1000 for quick testing, None for full indexing
-MAX_ARTICLES = None  # Change to 1000 for testing!
+MAX_ARTICLES = 1000  # Change to 1000 for testing!
 
 # Global index of articles (stores pre-parsed HTML for instant serving!)
 article_index = {}
@@ -57,6 +60,10 @@ def parse_and_clean_wikitext(wikitext):
         return ""
     
     try:
+        # Convert tables FIRST before mwparserfromhell processes them
+        # (mwparserfromhell doesn't handle tables well)
+        wikitext = convert_wikitables_to_html(wikitext)
+        
         # Parse wikitext using mwparserfromhell
         wikicode = mwparserfromhell.parse(wikitext)
         
@@ -179,6 +186,122 @@ def convert_wikitext_to_html(text):
         result.append('</ol>')
     
     return '\n'.join(result)
+
+
+# --- MediaWiki table conversion (lightweight) ---
+TABLE_RE = re.compile(r"\{\|[\s\S]*?\|\}", re.MULTILINE)
+
+
+def _attrs_to_html(attrs: str) -> str:
+    attrs = attrs.strip()
+    return f" {attrs}" if attrs else ""
+
+
+def _split_cells(line: str):
+    if line.startswith("!"):
+        sep = "!!" if "!!" in line else "!"
+        cells = [c.strip() for c in line.split(sep) if c.strip() != ""]
+        return [("th", c) for c in cells]
+    if line.startswith("|"):
+        if "||" in line:
+            return [("td", p.strip()) for p in line.split("||")]
+        return [("td", line[1:].strip())]
+    return []
+
+
+def _render_cell(tag: str, raw: str) -> str:
+    if "|" in raw:
+        params, text = raw.split("|", 1)
+        return f"<{tag}{_attrs_to_html(params)}>{escape(text.strip())}</{tag}>"
+    return f"<{tag}>{escape(raw.strip())}</{tag}>"
+
+
+def _wikitable_to_html(table_text: str) -> str:
+    lines = table_text.strip().splitlines()
+    if not lines or not lines[0].startswith("{|"):
+        return table_text
+    table_attrs = lines[0][2:].strip()
+    html_parts = [f"<table{_attrs_to_html(table_attrs)}>"]
+    in_row = False
+    for line in lines[1:]:
+        line = line.rstrip()
+        if not line:
+            continue
+        if line.startswith("|}"):
+            if in_row:
+                html_parts.append("</tr>")
+                in_row = False
+            html_parts.append("</table>")
+            break
+        if line.startswith("|-"):
+            if in_row:
+                html_parts.append("</tr>")
+            row_attrs = line[2:].strip()
+            html_parts.append(f"<tr{_attrs_to_html(row_attrs)}>")
+            in_row = True
+            continue
+        if line.startswith(("|", "!")):
+            cells = _split_cells(line)
+            if cells:
+                if not in_row:
+                    html_parts.append("<tr>")
+                    in_row = True
+                for tag, raw in cells:
+                    html_parts.append(_render_cell(tag, raw))
+            continue
+        if in_row:
+            html_parts.append(f"<td>{escape(line.strip())}</td>")
+    return "\n".join(html_parts)
+
+
+def convert_wikitables_to_html(wikitext: str) -> str:
+    def _repl(m):
+        return _wikitable_to_html(m.group(0))
+    return TABLE_RE.sub(_repl, wikitext)
+
+
+def build_overview_links(html: str):
+    """Group anchors under nearest h2/h3 heading from article HTML.
+    Returns a list of {'section': str, 'links': [{'href','text'}]}.
+    """
+    if not html:
+        return []
+    sections = []
+    headings = list(re.finditer(r"<h[23][^>]*>(.*?)</h[23]>", html, flags=re.IGNORECASE | re.DOTALL))
+    if not headings:
+        links = [
+            {'href': m.group(1), 'text': re.sub(r"<[^>]+>", "", m.group(2)).strip()}
+            for m in re.finditer(r"<a[^>]*href=\"([^\"]+)\"[^>]*>(.*?)</a>", html, flags=re.IGNORECASE | re.DOTALL)
+            if m.group(2).strip()
+        ]
+        if links:
+            sections.append({'section': 'Links', 'links': links})
+        return sections
+    for i, h in enumerate(headings):
+        title = re.sub(r"<[^>]+>", "", h.group(1)).strip() or 'Section'
+        start = h.end()
+        end = headings[i + 1].start() if i + 1 < len(headings) else len(html)
+        chunk = html[start:end]
+        links = []
+        for m in re.finditer(r"<a[^>]*href=\"([^\"]+)\"[^>]*>(.*?)</a>", chunk, flags=re.IGNORECASE | re.DOTALL):
+            text = re.sub(r"<[^>]+>", "", m.group(2)).strip()
+            if text:
+                links.append({'href': m.group(1), 'text': text})
+        if links:
+            sections.append({'section': title, 'links': links})
+    return sections
+
+
+def split_first_paragraph(html: str):
+    """Return (first_paragraph_html, remainder_html)."""
+    if not html:
+        return None, ""
+    m = re.search(r"<p[^>]*>.*?</p>", html, flags=re.IGNORECASE | re.DOTALL)
+    if not m:
+        return None, html
+    first_para = html[m.start():m.end()]
+    remainder = html[m.end():]
+    return first_para, remainder
 
 
 def parse_xml_dump():
@@ -312,9 +435,14 @@ def article(title):
         return render_template('404.html', title=title), 404
     
     # Return pre-parsed HTML directly - no parsing needed!
+    overview_links = build_overview_links(article_data['html'])
+    first_paragraph_html, remainder_html = split_first_paragraph(article_data['html'])
     return render_template('article.html', 
                          title=article_data['title'],
                          content=article_data['html'],
+                         first_paragraph_html=first_paragraph_html,
+                         remainder_html=remainder_html,
+                         overview_links=overview_links,
                          timestamp=article_data.get('timestamp', ''))
 
 
@@ -348,6 +476,31 @@ def random_article():
         return jsonify({'title': article_index[random_key]['title']})
     return jsonify({'title': None})
 
+
+@app.route('/logos/<path:filename>')
+def logos(filename):
+    """Serve logo and shared image assets from env/simplewiki/logos"""
+    return send_from_directory(LOGOS_DIR, filename)
+
+
+@app.route('/overview/<topic>')
+def overview(topic):
+    """Render an overview page for a topic using 2002 theme structure.
+    Looks for JSON at themes/<THEME>/overviews/<topic>.json
+    """
+    overviews_dir = os.path.join(SCRIPT_DIR, 'themes', THEME, 'overviews')
+    json_path = os.path.join(overviews_dir, f'{topic}.json')
+    if not os.path.exists(json_path):
+        return render_template('404.html', title=f'Overview: {topic}'), 404
+    try:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception:
+        return render_template('404.html', title=f'Overview: {topic}'), 404
+
+    title = data.get('title', f'Overview of {topic.title()}')
+    sections = data.get('sections', [])
+    return render_template('overview.html', title=title, sections=sections)
 
 if __name__ == '__main__':
     # Load or create article index
