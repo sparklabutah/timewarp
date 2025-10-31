@@ -23,13 +23,8 @@
 <script>
 document.getElementById('random404').addEventListener('click', function(e) {
     e.preventDefault();
-    fetch('/random')
-        .then(response => response.json())
-        .then(data => {
-            if (data.title) {
-                window.location.href = `/wiki/${encodeURIComponent(data.title)}`;
-            }
-        });
+    // Navigate directly to /random route, which will redirect to a random article
+    window.location.href = '/random';
 });
 </script>
 {% endblock %}

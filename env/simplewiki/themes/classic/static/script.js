@@ -62,19 +62,8 @@ document.addEventListener('click', function(e) {
 const randomBtn = document.getElementById('randomBtn');
 if (randomBtn) {
     randomBtn.addEventListener('click', function() {
-        fetch('/random')
-            .then(response => response.json())
-            .then(data => {
-                if (data.title) {
-                    window.location.href = `/wiki/${encodeURIComponent(data.title)}`;
-                } else {
-                    alert('Could not find a random article');
-                }
-            })
-            .catch(error => {
-                console.error('Random article error:', error);
-                alert('Error getting random article');
-            });
+        // Navigate directly to /random route, which will redirect to a random article
+        window.location.href = '/random';
     });
 }
 

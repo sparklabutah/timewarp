@@ -32,7 +32,7 @@
         </header>
 
         <div class="article-content">
-            {{ content|safe }}
+            {{ content|replace('<p>', '<p><strong>' ~ title ~ '</strong> ', 1)|safe }}
         </div>
 
         <footer class="article-footer">
@@ -96,13 +96,8 @@ document.querySelectorAll('.toc-list a').forEach(link => {
 // Random article button
 document.getElementById('randomLink').addEventListener('click', function(e) {
     e.preventDefault();
-    fetch('/random')
-        .then(response => response.json())
-        .then(data => {
-            if (data.title) {
-                window.location.href = `/wiki/${encodeURIComponent(data.title)}`;
-            }
-        });
+    // Navigate directly to /random route, which will redirect to a random article
+    window.location.href = '/random';
 });
 </script>
 {% endblock %}

@@ -16,25 +16,56 @@ import sys
 import mwparserfromhell
 import bz2
 import socket
+import subprocess
+import time
 
 # Get the directory where this script is located
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Determine theme from command line argument
-THEME = 'classic'  # Default theme
-if len(sys.argv) > 1:
-    if sys.argv[1] == '-1' or sys.argv[1] == 'classic':
-        THEME = 'classic'
-    elif sys.argv[1] == '-2' or sys.argv[1] == 'modern':
-        THEME = 'modern'
-    elif sys.argv[1] == '-3' or sys.argv[1] == 'wikipedia2002':
-        THEME = 'wikipedia2002'
-    elif sys.argv[1] == '-4' or sys.argv[1] == 'wikipedia2001':
-        THEME = 'wikipedia2001'
-    elif sys.argv[1] == '-5' or sys.argv[1] == 'wikipedia2004':
-        THEME = 'wikipedia2004'
-    elif sys.argv[1] == '-6' or sys.argv[1] == 'wikipedia2025':
-        THEME = 'wikipedia2025'
+def _parse_args(argv):
+    """Parse CLI args for theme selection and optional port override."""
+    num_to_theme = {
+        '1': 'wikipedia2001',
+        '2': 'wikipedia2002',
+        '3': 'wikipedia2004',
+        '4': 'wikipedia2005-20',
+        '5': 'wikipedia2025',
+        '6': 'classic',
+        '7': 'modern',
+    }
+    name_aliases = {
+        'classic': 'classic',
+        'modern': 'modern',
+        'wikipedia2001': 'wikipedia2001',
+        'wikipedia2002': 'wikipedia2002',
+        'wikipedia2004': 'wikipedia2004',
+        'wikipedia2005-20': 'wikipedia2005-20',
+        'wikipedia2025': 'wikipedia2025',
+        'all': 'all',
+    }
+    selected_theme = 'classic'
+    port_override = None
+    run_all = False
+    for raw in argv[1:]:
+        arg = raw.lstrip('-').lower()
+        if raw.startswith('--port='):
+            try:
+                port_override = int(raw.split('=', 1)[1])
+            except Exception:
+                pass
+            continue
+        if arg in num_to_theme:
+            selected_theme = num_to_theme[arg]
+        elif arg in name_aliases:
+            if name_aliases[arg] == 'all':
+                run_all = True
+            else:
+                selected_theme = name_aliases[arg]
+    return selected_theme, port_override, run_all
+
+
+# Determine theme and port from command line arguments
+THEME, PORT_OVERRIDE, RUN_ALL = _parse_args(sys.argv)
 
 print(f"Using theme: {THEME}")
 
@@ -576,18 +607,45 @@ def find_free_port(start_port=5000, max_attempts=100):
 
 
 if __name__ == '__main__':
-    # Load or create article index
-    load_or_create_index()
-    
-    # Find a free port
-    port = find_free_port()
-    
-    # Run the Flask app
-    print("\n" + "="*60)
-    print("Simple Wikipedia UI is starting...")
-    print(f"Open your browser and go to: http://localhost:{port}")
-    print("="*60 + "\n")
-    
-    # Use use_reloader=False to avoid issues with port binding in debug mode
-    app.run(debug=True, port=port, use_reloader=False)
+    # If -all provided, spawn six servers (1-6) on successive ports
+    if RUN_ALL:
+        # Ensure cache exists so children load quickly
+        load_or_create_index()
+        base_port = PORT_OVERRIDE if PORT_OVERRIDE else find_free_port()
+        theme_nums = ['1', '2', '3', '4', '5', '6']  # exclude 7 (modern)
+        procs = []
+        print("\n" + "="*60)
+        print("Starting multiple Simple Wikipedia UI servers...")
+        for i, num in enumerate(theme_nums):
+            port = base_port + i
+            cmd = [sys.executable, __file__, num, f"--port={port}"]
+            try:
+                p = subprocess.Popen(cmd)
+                procs.append((num, port, p.pid))
+            except Exception as e:
+                print(f"Failed to start server {num} on port {port}: {e}")
+        for num, port, pid in procs:
+            print(f"Server {num} running at http://localhost:{port} (PID {pid})")
+        print("="*60 + "\n")
+        # Keep parent alive to avoid abrupt exit; wait for children
+        try:
+            while True:
+                time.sleep(3600)
+        except KeyboardInterrupt:
+            pass
+    else:
+        # Load or create article index
+        load_or_create_index()
+        
+        # Determine port
+        port = PORT_OVERRIDE if PORT_OVERRIDE else find_free_port()
+        
+        # Run the Flask app
+        print("\n" + "="*60)
+        print("Simple Wikipedia UI is starting...")
+        print(f"Open your browser and go to: http://localhost:{port}")
+        print("="*60 + "\n")
+        
+        # Use use_reloader=False to avoid issues with port binding in debug mode
+        app.run(debug=True, port=port, use_reloader=False)
 

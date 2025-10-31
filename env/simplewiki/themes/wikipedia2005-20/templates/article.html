@@ -6,7 +6,8 @@
 
 {% block content %}
 
-<p class="page-subtitle">From Wikipedia, the free encyclopedia.</p>
+<h1 id="firstHeading" class="firstHeading">{{ title }}</h1>
+<div id="siteSub">From Wikipedia, the free encyclopedia.</div>
 
 <!-- Lead/overview paragraph -->
 <div class="content-box" id="lead-section">
@@ -75,7 +76,7 @@
     toggle.textContent = hidden ? '[show]' : '[hide]';
   });
 
-  // Place TOC right before the first section heading, or after the lead if none
+  // Relocate TOC: after first h2 (first section), otherwise after the intro/lead
   const tocEl = document.getElementById('toc');
   const firstH2 = article.querySelector('h2');
   const lead = document.getElementById('lead-section');
