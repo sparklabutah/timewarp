@@ -276,8 +276,8 @@ td.top {
 }
 
 .error-box {
-    background-color: #ffeeee;
-    border-color: #cc0000;
+    background-color: transparent;
+    border: none;
 }
 
 .box-title {

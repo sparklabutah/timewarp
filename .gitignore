@@ -1,4 +1,4 @@
-# Large Wikipedia Data Files
+.cursor
 *.xml
 *.pkl
 *.bz2
@@ -72,3 +72,4 @@ node_modules/
 WebShop/
 
 env/simplewiki/simplewiki-latest-pages-articles.xml.bz2
+env/simplewiki/wiki_index.pkl

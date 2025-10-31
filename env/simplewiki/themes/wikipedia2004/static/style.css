@@ -1,0 +1,550 @@
+/**
+ * Wikipedia 2004 Theme (MonoBook Skin)
+ * Based on the classic MediaWiki MonoBook skin from 2004
+ */
+
+/* Top Bar */
+#top-bar {
+    position: static;
+    background: white;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+#top-bar a {
+    color: #0645ad;
+    text-decoration: none;
+}
+
+#top-bar a:hover {
+    text-decoration: underline;
+}
+
+/* General Body Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #000000;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.8em;
+    line-height: 1.5em;
+}
+
+/* Main Wrapper */
+#globalWrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#column-content {
+    width: 100%;
+    float: right;
+    margin: 0 0 0 -12.2em;
+    padding: 0;
+}
+
+#content {
+    margin: 2.8em 0 0 12.2em;
+    padding: 1em;
+    position: relative;
+    z-index: 2;
+    background: white;
+    color: black;
+    border: 1px solid #aaaaaa;
+    border-right: none;
+    line-height: 1.5em;
+}
+
+/* Sidebar */
+#column-one {
+    padding-top: 10px;
+    width: 12.2em;
+    float: left;
+}
+
+/* First Heading */
+.firstHeading {
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0.1em;
+    border-bottom: 1px solid #aaaaaa;
+    font-size: 188%;
+    font-weight: bold; /* Make page title bold (e.g., Main Page) */
+    line-height: 1.2em;
+}
+
+/* Site Subtitle */
+#siteSub {
+    display: none;
+    font-size: 92%;
+    font-weight: normal;
+    color: #666666;
+    margin: 0.3em 0 1.4em 0;
+}
+
+#contentSub {
+    font-size: 84%;
+    line-height: 1.2em;
+    margin: 0 0 1.4em 1em;
+    color: #7d7d7d;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #0645ad;
+    background: none;
+}
+
+a:visited {
+    color: #0b0080;
+}
+
+a:active {
+    color: #faa700;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Content Tabs (Page Actions) */
+#p-cactions {
+    position: absolute;
+    top: 1.3em;
+    left: 11.5em;
+    margin: 0;
+    white-space: nowrap;
+    line-height: 1.1em;
+    overflow: visible;
+    background: white;
+    border-collapse: collapse;
+    padding: 0;
+    list-style: none;
+    font-size: 95%;
+}
+
+#p-cactions h5 {
+    display: none;
+}
+
+#p-cactions ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#p-cactions li {
+    display: inline;
+    border: 1px solid #aaaaaa;
+    border-bottom: none;
+    padding: 0;
+    margin: 0 0.3em 0 0;
+    overflow: visible;
+    background: white;
+}
+
+#p-cactions li.selected {
+    border-color: #fabd23;
+    padding: 0 0 0.2em 0;
+    font-weight: bold;
+}
+
+#p-cactions li a {
+    background-color: white;
+    color: #002bb8;
+    border: none;
+    padding: 0 0.8em 0.3em;
+    text-decoration: none;
+    text-transform: lowercase;
+    position: relative;
+    margin: 0;
+}
+
+#p-cactions li.selected a {
+    z-index: 3;
+    background-color: #ffffff;
+    padding: 0 1em 0.2em;
+}
+
+#p-cactions li a:hover {
+    z-index: 3;
+    text-decoration: none;
+    background-color: #ffffff;
+}
+
+#p-cactions h5 {
+    display: none;
+}
+
+#p-cactions li.istalk {
+    margin-right: 0;
+}
+
+#p-cactions li.istalk a {
+    padding-right: 0.5em;
+}
+
+#p-cactions #ca-addsection a {
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+}
+
+/* Logo */
+#p-logo {
+    z-index: 3;
+    position: relative;
+    width: 12.2em;
+    margin-bottom: 1em;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#p-logo a {
+    display: block;
+    text-decoration: none;
+}
+
+#p-logo img {
+    max-width: 135px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Portlets (Sidebar Boxes) */
+.portlet {
+    border: none;
+    margin: 0 0 0.5em 0;
+    float: none;
+    padding: 0;
+    width: 11.6em;
+    overflow: hidden;
+}
+
+.portlet h5 {
+    display: none; /* Match screenshot: no section titles text */
+}
+
+.portlet .pBody {
+    font-size: 95%;
+    background-color: white;
+    border-collapse: collapse;
+    border: 1px solid #aaaaaa;
+    padding: 0 0.8em 0.3em 0.5em;
+}
+
+.portlet ul {
+    line-height: 1.5em;
+    list-style-type: square;
+    list-style-image: url(data:image/gif;base64,R0lGODlhBQAFAIABAAAAAAAAACH5BAEAAAEALAAAAAAFAAUAAAIGjI+pywIAOw==);
+    font-size: 95%;
+    margin: 0.3em 0 0 1.5em;
+    padding: 0;
+}
+
+.portlet li {
+    padding: 0;
+    margin: 0;
+}
+
+/* Search in top bar */
+#topSearch {
+    padding: 2px;
+    border: 1px solid #aaaaaa;
+    font-size: 95%;
+}
+
+/* Footer */
+#footer {
+    background-color: white;
+    border-top: 1px solid #fabd23;
+    border-bottom: 1px solid #fabd23;
+    margin: 0.6em 0 1em 0;
+    padding: 0.4em 0 1.2em 0;
+    text-align: center;
+    font-size: 90%;
+}
+
+#footer li {
+    display: inline;
+    margin: 0 1.3em;
+}
+
+/* Sidebar separators and link color as screenshot */
+#column-one .portlet { border-top: 2px solid #bfbfbf; padding-top: 6px; }
+#column-one .portlet:first-child { border-top: none; padding-top: 0; }
+
+#column-one a, #column-one a:visited, #column-one a:hover, #column-one a:active {
+    color: #0000EE; /* Classic blue from early Wikipedia */
+}
+
+/* Make first link of second group bold (View source) like screenshot */
+#p-actions .pBody ul li:first-child a { font-weight: bold; }
+
+#f-poweredbyico, #f-copyrightico {
+    margin: 0 8px;
+    position: relative;
+    top: -2px;
+    display: inline-block;
+}
+
+#f-poweredbyico img,
+#f-copyrightico img {
+    border: none;
+}
+
+#f-list {
+    list-style: none;
+    margin: 0.3em 0 0 0;
+    padding: 0;
+}
+
+#f-list li {
+    padding: 0.1em 0;
+}
+
+/* Visual Clear */
+.visualClear {
+    clear: both;
+}
+
+/* Footer 2004 styling */
+.footer-2004 {
+    text-align: left;
+    font-size: 0.9em;
+    color: #000;
+    padding: 8px 12px 14px 12px;
+    border-top: 1px solid #aaaaaa;
+}
+.footer-2004 a { color: #0000EE; }
+.footer-2004 .footer-toplinks { border-bottom: 1px solid #aaaaaa; padding-bottom: 6px; margin-bottom: 8px; }
+.footer-2004 .footer-navsearch { margin: 4px 0 6px 0; }
+.footer-2004 input[type="text"] { border: 1px solid #aaa; padding: 2px; }
+.footer-2004 input[type="submit"] { padding: 1px 6px; }
+
+/* Article Content Styling */
+#article-content {
+    line-height: 1.6em;
+}
+
+#article-content p {
+    margin: 0.5em 0;
+}
+
+#article-content h2 {
+    font-size: 150%;
+    font-weight: bold; /* Bold section headings */
+    margin: 0.6em 0 0.25em 0;
+    padding: 0;
+    border-bottom: 1px solid #aaaaaa;
+    line-height: 1.3em;
+}
+
+#article-content h3 {
+    font-size: 132%;
+    font-weight: bold; /* Bold subsections */
+    margin: 0.3em 0 0 0;
+}
+
+#article-content h4 {
+    font-size: 116%;
+    font-weight: bold; /* Bold deeper subsections */
+    margin: 0.3em 0 0 0;
+}
+
+#article-content h5,
+#article-content h6 {
+    font-size: 100%;
+    font-weight: bold;
+    margin: 0.3em 0 0 0;
+}
+
+#article-content ul {
+    line-height: 1.5em;
+    list-style-type: disc;
+    margin: 0.3em 0 0 1.5em;
+    padding: 0;
+}
+
+#article-content ol {
+    line-height: 1.5em;
+    margin: 0.3em 0 0 3.2em;
+    padding: 0;
+    list-style-image: none;
+}
+
+#article-content li {
+    margin-bottom: 0.1em;
+}
+
+#article-content ul ul,
+#article-content ol ol {
+    margin-top: 0;
+}
+
+/* Tables */
+table {
+    font-size: 100%;
+}
+
+/* Print Footer */
+.printfooter {
+    display: none;
+}
+
+/* Main Page Specific Styles */
+#mainpage h2 {
+    font-size: 120%;
+    font-weight: bold;
+    margin: 0;
+}
+
+#mainpage p {
+    margin: 0.5em 0;
+}
+
+#mainpage a {
+    color: #0645ad;
+}
+
+#mainpage a:visited {
+    color: #0b0080;
+}
+
+/* Definition lists styling for main page */
+dl {
+    margin: 0.5em 0;
+}
+
+dd {
+    margin-left: 0;
+    margin-bottom: 0.5em;
+    line-height: 1.6em;
+}
+
+/* Current events box */
+.current-events {
+    line-height: 1.6em;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    #column-content {
+        margin: 0;
+    }
+    
+    #content {
+        margin: 2.8em 0.5em 0 0.5em;
+        border: 1px solid #aaaaaa;
+    }
+    
+    #column-one {
+        display: none;
+    }
+    
+    #p-cactions {
+        left: 0.5em;
+    }
+}
+
+/* Utility Classes */
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.left {
+    text-align: left;
+}
+
+.floatright {
+    float: right;
+    clear: right;
+    margin: 0 0 1em 1em;
+}
+
+.floatleft {
+    float: left;
+    clear: left;
+    margin: 0 1em 1em 0;
+}
+
+/* Code and Pre */
+code {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 1px 4px;
+}
+
+pre {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 1em;
+    overflow: auto;
+}
+
+/* Strong and Em */
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+/* Blockquote */
+blockquote {
+    margin: 1em 2em;
+    padding-left: 1em;
+    border-left: 4px solid #ddd;
+}
+
+/* HR */
+hr {
+    height: 1px;
+    color: #aaaaaa;
+    background-color: #aaaaaa;
+    border: 0;
+    margin: 0.2em 0;
+}
+
+/* Table of contents (Wikipedia 2004 look) */
+#toc {
+    width: auto;
+    max-width: 600px;
+    border: 1px solid #aaaaaa;
+    background: #f3f2ff; /* subtle lavender like the screenshot */
+    padding: 6px 10px 8px 10px;
+    margin: 10px 0 14px 0;
+}
+
+#toc .toc-title {
+    font-weight: bold;
+    margin: 0 0 6px 0;
+}
+
+#toc .toc-toggle a {
+    color: #0645ad;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+#toc .toc-list {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+#toc .toc-list li {
+    margin: 2px 0;
+}
+
+#toc .toc-level-1 { margin-left: 0; }
+#toc .toc-level-2 { margin-left: 15px; }
+#toc .toc-level-3 { margin-left: 30px; }
+

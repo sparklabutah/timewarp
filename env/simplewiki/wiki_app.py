@@ -7,13 +7,15 @@ OPTIMIZED VERSION with MediaWiki parser and HTML pre-caching
 import xml.etree.ElementTree as ET
 import re
 from html import escape
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_from_directory, redirect, url_for
 import json
 import pickle
 import os
 import random
 import sys
 import mwparserfromhell
+import bz2
+import socket
 
 # Get the directory where this script is located
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -29,6 +31,10 @@ if len(sys.argv) > 1:
         THEME = 'wikipedia2002'
     elif sys.argv[1] == '-4' or sys.argv[1] == 'wikipedia2001':
         THEME = 'wikipedia2001'
+    elif sys.argv[1] == '-5' or sys.argv[1] == 'wikipedia2004':
+        THEME = 'wikipedia2004'
+    elif sys.argv[1] == '-6' or sys.argv[1] == 'wikipedia2025':
+        THEME = 'wikipedia2025'
 
 print(f"Using theme: {THEME}")
 
@@ -38,7 +44,7 @@ app = Flask(__name__,
             static_folder=os.path.join(SCRIPT_DIR, 'themes', THEME, 'static'))
 
 # Paths relative to the script location
-XML_DUMP_PATH = os.path.join(SCRIPT_DIR, 'simplewiki-latest-pages-articles.xml')
+XML_DUMP_PATH = os.path.join(SCRIPT_DIR, 'simplewiki-latest-pages-articles.xml.bz2')
 INDEX_CACHE_PATH = os.path.join(SCRIPT_DIR, 'wiki_index.pkl')  # Now stores pre-parsed HTML!
 LOGOS_DIR = os.path.join(SCRIPT_DIR, 'logos')
 
@@ -122,14 +128,32 @@ def parse_and_clean_wikitext(wikitext):
         return '<p>' + '</p><p>'.join(wikitext.split('\n\n')[:10]) + '</p>'
 
 
+def slugify_heading(text):
+    """Convert heading text to a URL-friendly slug"""
+    # Remove HTML tags first
+    text = re.sub(r'<[^>]+>', '', text)
+    # Remove markdown formatting (*, _, etc.)
+    text = re.sub(r'\*+|_+', '', text)
+    # Remove any remaining special characters except spaces, letters, numbers
+    text = re.sub(r'[^\w\s-]', '', text)
+    # Replace spaces with underscores and return
+    return text.strip().replace(' ', '_').replace('-', '_')
+
+
 def convert_wikitext_to_html(text):
     """Convert remaining wikitext markup to HTML"""
-    # Convert headings
-    text = re.sub(r'^======\s*(.*?)\s*======', r'<h6>\1</h6>', text, flags=re.MULTILINE)
-    text = re.sub(r'^=====\s*(.*?)\s*=====', r'<h5>\1</h5>', text, flags=re.MULTILINE)
-    text = re.sub(r'^====\s*(.*?)\s*====', r'<h4>\1</h4>', text, flags=re.MULTILINE)
-    text = re.sub(r'^===\s*(.*?)\s*===', r'<h3>\1</h3>', text, flags=re.MULTILINE)
-    text = re.sub(r'^==\s*(.*?)\s*==', r'<h2>\1</h2>', text, flags=re.MULTILINE)
+    # Helper function to add ID to heading
+    def add_heading_id(match, tag):
+        heading_text = match.group(1)
+        heading_id = slugify_heading(heading_text)
+        return f'<{tag} id="{heading_id}">{heading_text}</{tag}>'
+    
+    # Convert headings with IDs
+    text = re.sub(r'^======\s*(.*?)\s*======', lambda m: add_heading_id(m, 'h6'), text, flags=re.MULTILINE)
+    text = re.sub(r'^=====\s*(.*?)\s*=====', lambda m: add_heading_id(m, 'h5'), text, flags=re.MULTILINE)
+    text = re.sub(r'^====\s*(.*?)\s*====', lambda m: add_heading_id(m, 'h4'), text, flags=re.MULTILINE)
+    text = re.sub(r'^===\s*(.*?)\s*===', lambda m: add_heading_id(m, 'h3'), text, flags=re.MULTILINE)
+    text = re.sub(r'^==\s*(.*?)\s*==', lambda m: add_heading_id(m, 'h2'), text, flags=re.MULTILINE)
     
     # Convert bold and italic
     text = re.sub(r"'''''(.*?)'''''", r'<strong><em>\1</em></strong>', text)
@@ -278,7 +302,16 @@ def build_overview_links(html: str):
             sections.append({'section': 'Links', 'links': links})
         return sections
     for i, h in enumerate(headings):
+        # Extract heading text and ID
+        heading_tag = h.group(0)
         title = re.sub(r"<[^>]+>", "", h.group(1)).strip() or 'Section'
+        # Try to extract ID from heading tag
+        id_match = re.search(r'id="([^"]+)"', heading_tag)
+        if id_match:
+            section_id = id_match.group(1)
+        else:
+            # Fallback: generate slug from title
+            section_id = slugify_heading(title)
         start = h.end()
         end = headings[i + 1].start() if i + 1 < len(headings) else len(html)
         chunk = html[start:end]
@@ -287,8 +320,8 @@ def build_overview_links(html: str):
             text = re.sub(r"<[^>]+>", "", m.group(2)).strip()
             if text:
                 links.append({'href': m.group(1), 'text': text})
-        if links:
-            sections.append({'section': title, 'links': links})
+        # Add all sections, even if they don't have links
+        sections.append({'section': title, 'section_id': section_id, 'links': links})
     return sections
 
 
@@ -323,53 +356,54 @@ def parse_xml_dump():
     # XML namespace
     ns = {'mw': 'http://www.mediawiki.org/xml/export-0.11/'}
     
-    # Use iterparse for memory efficiency with large files
-    context = ET.iterparse(XML_DUMP_PATH, events=('start', 'end'))
-    context = iter(context)
-    
-    count = 0
-    start_time = time.time()
-    
-    for event, elem in context:
-        if event == 'end' and elem.tag == '{http://www.mediawiki.org/xml/export-0.11/}page':
-            # Extract page data
-            title_elem = elem.find('mw:title', ns)
-            ns_elem = elem.find('mw:ns', ns)
-            text_elem = elem.find('.//mw:text', ns)
-            timestamp_elem = elem.find('.//mw:timestamp', ns)
-            
-            if title_elem is not None and ns_elem is not None and text_elem is not None:
-                title = title_elem.text
-                namespace = ns_elem.text
-                text = text_elem.text or ""
-                timestamp = timestamp_elem.text if timestamp_elem is not None else ""
+    # Open bz2 compressed file and use iterparse for memory efficiency
+    with bz2.open(XML_DUMP_PATH, 'rb') as f:
+        context = ET.iterparse(f, events=('start', 'end'))
+        context = iter(context)
+        
+        count = 0
+        start_time = time.time()
+        
+        for event, elem in context:
+            if event == 'end' and elem.tag == '{http://www.mediawiki.org/xml/export-0.11/}page':
+                # Extract page data
+                title_elem = elem.find('mw:title', ns)
+                ns_elem = elem.find('mw:ns', ns)
+                text_elem = elem.find('.//mw:text', ns)
+                timestamp_elem = elem.find('.//mw:timestamp', ns)
                 
-                # Only index main namespace articles (ns=0)
-                if namespace == '0' and title and len(text) > 0:
-                    # PRE-PARSE: Convert wikitext to HTML now!
-                    html_content = parse_and_clean_wikitext(text)
+                if title_elem is not None and ns_elem is not None and text_elem is not None:
+                    title = title_elem.text
+                    namespace = ns_elem.text
+                    text = text_elem.text or ""
+                    timestamp = timestamp_elem.text if timestamp_elem is not None else ""
                     
-                    # Store title, pre-parsed HTML, and timestamp
-                    article_index[title.lower()] = {
-                        'title': title,
-                        'html': html_content,
-                        'timestamp': timestamp
-                    }
-                    count += 1
-                    
-                    # Progress reporting with time estimates
-                    if count % 100 == 0:
-                        elapsed = time.time() - start_time
-                        rate = count / elapsed
-                        print(f"Parsed {count} articles ({rate:.1f} articles/sec, {elapsed:.1f}s elapsed)")
-                    
-                    # Check if we've hit the limit
-                    if MAX_ARTICLES and count >= MAX_ARTICLES:
-                        print(f"\nReached limit of {MAX_ARTICLES} articles - stopping early")
-                        break
-            
-            # Clear element to free memory
-            elem.clear()
+                    # Only index main namespace articles (ns=0)
+                    if namespace == '0' and title and len(text) > 0:
+                        # PRE-PARSE: Convert wikitext to HTML now!
+                        html_content = parse_and_clean_wikitext(text)
+                        
+                        # Store title, pre-parsed HTML, and timestamp
+                        article_index[title.lower()] = {
+                            'title': title,
+                            'html': html_content,
+                            'timestamp': timestamp
+                        }
+                        count += 1
+                        
+                        # Progress reporting with time estimates
+                        if count % 100 == 0:
+                            elapsed = time.time() - start_time
+                            rate = count / elapsed
+                            print(f"Parsed {count} articles ({rate:.1f} articles/sec, {elapsed:.1f}s elapsed)")
+                        
+                        # Check if we've hit the limit
+                        if MAX_ARTICLES and count >= MAX_ARTICLES:
+                            print(f"\nReached limit of {MAX_ARTICLES} articles - stopping early")
+                            break
+                
+                # Clear element to free memory
+                elem.clear()
     
     elapsed = time.time() - start_time
     print("="*70)
@@ -419,6 +453,22 @@ def load_or_create_index():
 @app.route('/')
 def index():
     """Main page with search"""
+    # Check if there's a search query
+    search_query = request.args.get('search', '').strip()
+    
+    if search_query:
+        # Try to find the article
+        search_lower = search_query.lower()
+        article_data = article_index.get(search_lower)
+        
+        if article_data:
+            # Article found, redirect to article page
+            return redirect(url_for('article', title=article_data['title']))
+        else:
+            # Article not found, show search results/404 page
+            return render_template('404.html', query=search_query, title=search_query), 404
+    
+    # No search query, show main page
     return render_template('index.html')
 
 
@@ -432,7 +482,7 @@ def article(title):
     article_data = article_index.get(title.lower())
     
     if not article_data:
-        return render_template('404.html', title=title), 404
+        return render_template('404.html', query=title, title=title), 404
     
     # Return pre-parsed HTML directly - no parsing needed!
     overview_links = build_overview_links(article_data['html'])
@@ -473,14 +523,24 @@ def random_article():
     """Get a random article"""
     if article_index:
         random_key = random.choice(list(article_index.keys()))
-        return jsonify({'title': article_index[random_key]['title']})
-    return jsonify({'title': None})
+        title = article_index[random_key]['title']
+        # Redirect to the random article page
+        return redirect(url_for('article', title=title))
+    # If no articles, redirect to home
+    return redirect(url_for('index'))
 
 
 @app.route('/logos/<path:filename>')
 def logos(filename):
     """Serve logo and shared image assets from env/simplewiki/logos"""
     return send_from_directory(LOGOS_DIR, filename)
+
+
+@app.route('/theme_assets/<path:filename>')
+def theme_assets(filename):
+    """Serve assets located under the active theme's assets directory."""
+    assets_dir = os.path.join(SCRIPT_DIR, 'themes', THEME, 'assets')
+    return send_from_directory(assets_dir, filename)
 
 
 @app.route('/overview/<topic>')
@@ -502,15 +562,32 @@ def overview(topic):
     sections = data.get('sections', [])
     return render_template('overview.html', title=title, sections=sections)
 
+
+def find_free_port(start_port=5000, max_attempts=100):
+    """Find a free port starting from start_port"""
+    for port in range(start_port, start_port + max_attempts):
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.bind(('localhost', port))
+                return port
+        except OSError:
+            continue
+    raise RuntimeError(f"Could not find a free port in range {start_port}-{start_port + max_attempts}")
+
+
 if __name__ == '__main__':
     # Load or create article index
     load_or_create_index()
     
+    # Find a free port
+    port = find_free_port()
+    
     # Run the Flask app
     print("\n" + "="*60)
     print("Simple Wikipedia UI is starting...")
-    print("Open your browser and go to: http://localhost:5000")
+    print(f"Open your browser and go to: http://localhost:{port}")
     print("="*60 + "\n")
     
-    app.run(debug=True, port=5000)
+    # Use use_reloader=False to avoid issues with port binding in debug mode
+    app.run(debug=True, port=port, use_reloader=False)
 

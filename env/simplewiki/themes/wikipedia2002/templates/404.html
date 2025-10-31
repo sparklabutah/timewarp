@@ -17,16 +17,9 @@
 <h2 class="section-title">Suggestions:</h2>
 <ul class="suggestion-list">
     <li>Check the spelling of the article title you entered</li>
-    <li>Try using the search box to find similar articles</li>
     <li>Return to the <a href="/">Main Page</a></li>
     <li>Try a <a href="#" id="random404">random page</a></li>
 </ul>
-
-<h2 class="section-title">Search for related articles:</h2>
-<p>
-    <input type="text" id="errorSearch" class="search-input" size="40" placeholder="Search for articles...">
-    <button class="search-btn" onclick="performErrorSearch()">Search</button>
-</p>
 
 <!-- Footer -->
 <hr>
@@ -40,17 +33,6 @@
 </p>
 
 <script>
-function performErrorSearch() {
-    const query = document.getElementById('errorSearch').value.trim();
-    if (query) {
-        window.location.href = '/wiki/' + encodeURIComponent(query);
-    }
-}
-
-document.getElementById('errorSearch').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') performErrorSearch();
-});
-
 document.getElementById('random404').addEventListener('click', function(e) {
     e.preventDefault();
     fetch('/random')

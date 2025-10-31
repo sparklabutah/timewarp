@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{% block title %}Wikipedia, the free encyclopedia{% endblock %}</title>
+    <meta name="keywords" content="{% block keywords %}Wikipedia, encyclopedia, free content{% endblock %}">
+    <meta name="robots" content="index,follow">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body class="mediawiki">
+<!-- Top Navigation Bar -->
+<div id="top-bar" style="background: white; border-bottom: 1px solid #aaa; padding: 5px 10px; font-size: 0.8em;">
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td style="text-align: left;">
+                <a href="/">Main Page</a> | 
+                <a href="#">Recent changes</a> | 
+                <a href="#">View source</a> | 
+                <a href="#">Page history</a> | 
+                <a href="#">Printable version</a> | 
+                <a href="#">Disclaimers</a>
+            </td>
+            <td style="text-align: right; white-space: nowrap;">
+                Not logged in | 
+                <a href="#">Log in</a> | 
+                <a href="#">Help</a>
+                &nbsp;&nbsp;&nbsp;
+                <form method="get" action="/" style="display: inline; margin: 0;">
+                    <input type="text" id="topSearch" name="search" size="16" style="font-size: 95%; padding: 1px;" value="">
+                    <input type="submit" value="Go" style="font-size: 95%; padding: 1px 6px;">
+                    <input type="submit" value="Search" style="font-size: 95%; padding: 1px 6px;">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="globalWrapper">
+    <div id="column-content">
+        <div id="content">
+            <a name="top" id="top"></a>
+            <h1 class="firstHeading">{% block page_title %}Main Page{% endblock %}</h1>
+            <div id="bodyContent">
+                <h3 id="siteSub">From Wikipedia, the free encyclopedia.</h3>
+                <div id="contentSub">{% block content_sub %}{% endblock %}</div>
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    
+    <div id="column-one">
+        <div class="portlet" id="p-logo">
+            <a href="/" title="Main Page">
+                <img src="{{ url_for('logos', filename='logoModern.png') }}" alt="Wikipedia" style="width: 135px; height: auto; display: block; margin: 0 auto;">
+            </a>
+        </div>
+        
+        <div class="portlet" id="p-navigation">
+            <h5>navigation</h5>
+            <div class="pBody">
+                <ul>
+                    <li><a href="/">Main Page</a></li>
+                    <li><a href="#" id="recentChanges">Recent changes</a></li>
+                    <li><a href="#" id="randomPage">Random page</a></li>
+                    <li><a href="#">Current events</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="portlet" id="p-actions">
+            <h5>view source</h5>
+            <div class="pBody">
+                <ul>
+                    <li><a href="#">View source</a></li>
+                    <li><a href="#">Discuss this page</a></li>
+                    <li><a href="#">Page history</a></li>
+                    <li><a href="#">What links here</a></li>
+                    <li><a href="#">Related changes</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="portlet" id="p-special">
+            <h5>toolbox</h5>
+            <div class="pBody">
+                <ul>
+                    <li><a href="#">Special pages</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Donations</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        {% block sidebar_extra %}{% endblock %}
+    </div>
+    
+    <div class="visualClear"></div>
+    
+    <div id="footer" class="footer-2004">
+        <div class="footer-toplinks">
+            <a href="#"><strong>View source</strong></a> |
+            <a href="#">Discuss this page</a> |
+            <a href="#">Page history</a> |
+            <a href="#">What links here</a> |
+            <a href="#">Related changes</a>
+        </div>
+        <div class="footer-navsearch">
+            <a href="/">Main Page</a> |
+            <a href="#">About Wikipedia</a> |
+            <a href="#">Recent changes</a>
+            <form method="get" action="/" style="display:inline;margin-left:8px;">
+                <input type="text" name="search" size="25">
+                <input type="submit" value="Go"> <input type="submit" value="Search">
+            </form>
+        </div>
+        <div class="footer-notes">
+            This page was last modified {% block lastmod %}{% endblock %}. All text is available under the terms of the
+            the <a href="#">GNU Free Documentation License</a> (see <a href="#">Copyrights</a> for details). <a href="#">Disclaimers</a>.<br>
+            Wikipedia is powered by <a href="#">MediaWiki</a>, an open source <a href="#">wiki</a> engine.
+        </div>
+    </div>
+</div>
+</body>
+</html>

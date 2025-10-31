@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block body_class %}main-page{% endblock %}
+
+{% block title %}Wikipedia, the free encyclopedia{% endblock %}
+
+{% block page_title %}Main Page{% endblock %}
+
+{% block main_page_active %}active{% endblock %}
+
+{% block content %}
+<div class="main-page-intro">
+    <div class="welcome-text">
+        Welcome to <a href="/">Wikipedia</a>,
+    </div>
+    <p style="margin-top: 4px; font-size: 16px;">
+        the <a href="#">free encyclopedia</a> that <a href="#">anyone can edit</a>.
+    </p>
+    <p class="stats-text">
+        <a href="#">114,595</a> active editors · <a href="#">7,083,022</a> articles in <a href="#">English</a>
+    </p>
+</div>
+
+<div class="main-page-grid">
+    <!-- Left Column -->
+    <div class="grid-column">
+        <!-- From today's featured article -->
+        <section class="main-page-section featured-section">
+            <h2 class="section-heading">From today's featured article</h2>
+            <div class="section-content">
+                <div class="featured-article">
+                    <div class="featured-image">
+                        <img src="{{ url_for('theme_assets', filename='The_Great_Lozenge-Maker_A_Hint_to_Paterfamilias.jpg') }}" alt="Cartoon in Punch" style="width: 150px; height: auto; float: left; margin-right: 16px; margin-bottom: 8px;">
+                        <div style="font-size: 12px; color: #54595d; clear: left; margin-top: 4px;">Cartoon in <a href="/wiki/Punch">Punch</a></div>
+                    </div>
+                    <p>On 30 October 1858 <a href="/wiki/a batch of sweets poisoned hundreds">a batch of sweets poisoned hundreds</a> in <a href="/wiki/Bradford">Bradford</a>, England. The confectionery had been accidentally <a href="/wiki/adulterated">adulterated</a> with poisonous <a href="/wiki/arsenic trioxide">arsenic trioxide</a>. About five pounds (two kilograms) of <a href="/wiki/sweets">sweets</a> were sold to the public, leading to around 20 deaths and more than 200 people suffering the effects of <a href="/wiki/arsenic poisoning">arsenic poisoning</a>. With increasing <a href="/wiki/urbanisation">urbanisation</a> and the rise in shop-purchased food, adulterants became a growing problem. With the cost of sugar high, replacing it with substitutes was common. For the sweets concerned, Bradford-born confectioner Joseph...</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Right Column -->
+    <div class="grid-column">
+        <!-- In the news -->
+        <section class="main-page-section news-section">
+            <h2 class="section-heading">In the news</h2>
+            <div class="section-content">
+                <ul class="news-list">
+                    <li>
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img src="{{ url_for('theme_assets', filename='Hurricane_Melissa_at_landfall_true_color.png') }}" alt="Hurricane Melissa" style="width: 120px; height: auto;">
+                                <div style="font-size: 11px; color: #54595d; margin-top: 4px;">Hurricane Melissa</div>
+                            </div>
+                            <p><strong><a href="/wiki/Hurricane Melissa">Hurricane Melissa</a></strong> (<em>satellite image shown</em>) leaves more than 40 people dead across the Caribbean.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <p>More than 130 people are killed in <a href="/wiki/police operation">a police operation</a> in <a href="/wiki/Rio de Janeiro">Rio de Janeiro</a>.</p>
+                    </li>
+                    <li>
+                        <p>In the <a href="/wiki/Sudanese civil war">Sudanese civil war</a>, at least 2,500 people are killed in <a href="/wiki/massacres">massacres</a> after <a href="/wiki/Al-Fashir">Al-Fashir is captured</a> by the <a href="/wiki/Rapid Support Forces">Rapid Support Forces</a>.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Full width sections below -->
+<div class="main-page-grid">
+    <div class="grid-column">
+        <!-- Encyclopedia -->
+        <section class="main-page-section encyclopedia-section">
+            <h2 class="section-heading">Encyclopedia</h2>
+            <div class="section-content">
+                <div class="topic-group">
+                    <h3>Mathematical and Natural Sciences</h3>
+                    <p><a href="/wiki/Astronomy">Astronomy</a> - <a href="/wiki/Biology">Biology</a> - <a href="/wiki/Chemistry">Chemistry</a> - <a href="/wiki/Computer%20science">Computer science</a> - <a href="/wiki/Earth%20science">Earth science</a> - <a href="/wiki/Ecology">Ecology</a> - <a href="/wiki/Health%20science">Health science</a> - <a href="/wiki/Mathematics">Mathematics</a> - <a href="/wiki/Physics">Physics</a> - <a href="/wiki/Statistics">Statistics</a></p>
+                </div>
+                
+                <div class="topic-group">
+                    <h3>Applied Arts and Sciences</h3>
+                    <p><a href="/wiki/Agriculture">Agriculture</a> - <a href="/wiki/Architecture">Architecture</a> - <a href="/wiki/Business">Business</a> - <a href="/wiki/Communication">Communication</a> - <a href="/wiki/Education">Education</a> - <a href="/wiki/Engineering">Engineering</a> - <a href="/wiki/Government">Government</a> - <a href="/wiki/Law">Law</a> - <a href="/wiki/Library%20and%20information%20science">Library and information science</a> - <a href="/wiki/Medicine">Medicine</a> - <a href="/wiki/Politics">Politics</a> - <a href="/wiki/Public%20administration">Public administration</a> - <a href="/wiki/Technology">Technology</a> - <a href="/wiki/Transport">Transport</a></p>
+                </div>
+                
+                <div class="topic-group">
+                    <h3>Social Sciences and Philosophy</h3>
+                    <p><a href="/wiki/Anthropology">Anthropology</a> - <a href="/wiki/Archaeology">Archaeology</a> - <a href="/wiki/Economics">Economics</a> - <a href="/wiki/Geography">Geography</a> - <a href="/wiki/History">History</a> - <a href="/wiki/History%20of%20science%20and%20technology">History of science and technology</a> - <a href="/wiki/Language">Language</a> - <a href="/wiki/Linguistics">Linguistics</a> - <a href="/wiki/Mythology">Mythology</a> - <a href="/wiki/Philosophy">Philosophy</a> - <a href="/wiki/Political%20science">Political science</a> - <a href="/wiki/Psychology">Psychology</a> - <a href="/wiki/Sociology">Sociology</a></p>
+                </div>
+                
+                <div class="topic-group">
+                    <h3>Culture and Fine Arts</h3>
+                    <p><a href="/wiki/Classics">Classics</a> - <a href="/wiki/Cooking">Cooking</a> - <a href="/wiki/Dance">Dance</a> - <a href="/wiki/Entertainment">Entertainment</a> - <a href="/wiki/Film">Film</a> - <a href="/wiki/Game">Games</a> - <a href="/wiki/Gardening">Gardening</a> - <a href="/wiki/Handicraft">Handicraft</a> - <a href="/wiki/Hobby">Hobbies</a> - <a href="/wiki/Internet">Internet</a> - <a href="/wiki/Literature">Literature</a> - <a href="/wiki/Music">Music</a> - <a href="/wiki/Opera">Opera</a> - <a href="/wiki/Painting">Painting</a> - <a href="/wiki/Radio">Radio</a> - <a href="/wiki/Recreation">Recreation</a> - <a href="/wiki/Religion">Religion</a> - <a href="/wiki/Sculpture">Sculpture</a> - <a href="/wiki/Sport">Sports</a> - <a href="/wiki/Television">Television</a> - <a href="/wiki/Theater">Theater</a> - <a href="/wiki/Tourism">Tourism</a> - <a href="/wiki/Visual%20arts%20and%20design">Visual arts and design</a></p>
+                </div>
+                
+                <div class="topic-group">
+                    <h3>Other Category Schemes</h3>
+                    <p><a href="/wiki/Category">About our category schemes</a> - <a href="/wiki/Alphabetical">Alphabetical order by title</a> - <a href="/wiki/Academic">By academic discipline</a> - <a href="/wiki/Timeline">Historical timeline</a> - <a href="/wiki/Themed">Themed timelines</a> - <a href="/wiki/Calendar">Calendar</a> - <a href="/wiki/Reference">Reference tables</a> - <a href="/wiki/Biography">Biographies</a> - <a href="/wiki/Countries">Countries</a> - <a href="/wiki/How-tos">How-tos</a></p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div class="grid-column">
+        <!-- Community -->
+        <section class="main-page-section community-section">
+            <h2 class="section-heading">Community</h2>
+            <div class="section-content">
+                <div class="topic-group">
+                    <h3>Writing Articles</h3>
+                    <p><a href="#">Welcome, newcomers</a> - <a href="#">Policy</a> - <a href="#">Copyrights</a> - <a href="#">How to edit</a> - <a href="#">Guide to layout and style</a> - <a href="#">Public domain</a> and <a href="#">shared resources</a> - <a href="#">Requested articles</a> and <a href="#">pictures</a> - <a href="#">Featured articles</a> and <a href="#">pictures</a> - <a href="#">Reference desk</a> - <a href="#">Projects</a></p>
+                </div>
+                
+                <div class="topic-group">
+                    <h3>About the Project</h3>
+                    <p><a href="#">About Wikipedia</a> - <a href="#">Wikimedia</a> - <a href="#">Announcements</a> - <a href="#">FAQ</a> - <a href="#">Statistics</a> - <a href="#">Contact us</a> - <a href="#">Village pump</a> - <a href="#">Wikipedians</a> - <a href="#">Chat</a> - <a href="#">Mailing lists</a> - <a href="#">Utilities</a> - <a href="#">Software</a> - <a href="#">Friends of Wikipedia</a> - <a href="#">Press coverage</a> - <a href="#">Donations</a></p>
+                </div>
+                
+                <div class="topic-group">
+                    <h3>Wikipedia languages</h3>
+                    <p>This Wikipedia is written in <a href="#">English</a>. Many other Wikipedias are available; some of the largest are listed below.</p>
+                    <div class="languages-category-inline">
+                        <div class="category-label-inline">1,000,000+ articles</div>
+                        <p class="languages-list-inline"><a href="#">العربية</a> · <a href="#">Deutsch</a> · <a href="#">Español</a> · <a href="#">فارسی</a> · <a href="#">Français</a> · <a href="#">Italiano</a> · <a href="#">Nederlands</a> · <a href="#">日本語</a> · <a href="#">Polski</a> · <a href="#">Português</a> · <a href="#">Русский</a> · <a href="#">Svenska</a> · <a href="#">Українська</a> · <a href="#">Tiếng Việt</a> · <a href="#">中文</a></p>
+                    </div>
+                    <div class="languages-category-inline">
+                        <div class="category-label-inline">250,000+ articles</div>
+                        <p class="languages-list-inline"><a href="#">Bahasa Indonesia</a> · <a href="#">Bahasa Melayu</a> · <a href="#">Bân-lâm-gú</a> · <a href="#">Български</a> · <a href="#">Català</a> · <a href="#">Čeština</a> · <a href="#">Dansk</a> · <a href="#">Eesti</a> · <a href="#">Ελληνικά</a> · <a href="#">Esperanto</a> · <a href="#">Euskara</a> · <a href="#">עברית</a> · <a href="#">Հայերեն</a> · <a href="#">한국어</a> · <a href="#">Magyar</a> · <a href="#">Norsk bokmål</a> · <a href="#">Română</a> · <a href="#">Simple English</a> · <a href="#">Slovenčina</a> · <a href="#">Srpski</a> · <a href="#">Srpskohrvatski</a> · <a href="#">Suomi</a> · <a href="#">Türkçe</a> · <a href="#">O'zbekcha</a></p>
+                    </div>
+                    <div class="languages-category-inline">
+                        <div class="category-label-inline">50,000+ articles</div>
+                        <p class="languages-list-inline"><a href="#">Asturianu</a> · <a href="#">Azərbaycanca</a> · <a href="#">বাংলা</a> · <a href="#">Bosanski</a> · <a href="#">کوردی</a> · <a href="#">Frysk</a> · <a href="#">Gaeilge</a> · <a href="#">Galego</a> · <a href="#">Hrvatski</a> · <a href="#">ქართული</a> · <a href="#">Kurdî</a> · <a href="#">Latviešu</a> · <a href="#">Lietuvių</a> · <a href="#">മലയാളം</a> · <a href="#">Македонски</a> · <a href="#">မြန်မာဘာသာ</a> · <a href="#">Norsk nynorsk</a> · <a href="#">ਪੰਜਾਬੀ</a> · <a href="#">Shqip</a> · <a href="#">Slovenščina</a> · <a href="#">ไทย</a> · <a href="#">తెలుగు</a> · <a href="#">اردو</a></p>
+                    </div>
+                    <p class="languages-footer-inline"><a href="#" class="languages-more-inline"><span class="languages-icon">🔤</span> <span>353 languages</span> <span class="dropdown-arrow">▼</span></a></p>
+                </div>
+                
+                <div class="topic-group">
+                    <h3>Sister Projects</h3>
+                    <p><a href="#">Nupedia</a> - <a href="#">Meta-Wikipedia</a> - <a href="#">September 11 Memorial Wiki</a> - <a href="#">Wiktionary</a> - <a href="#">Wikibooks</a> - <a href="#">Wikiquote</a> - <a href="#">Wikisource</a> - <a href="#">Wikimedia</a></p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
