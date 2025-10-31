@@ -1,0 +1,956 @@
+[
+  {
+    "sites": [
+      "map",
+      "wikipedia"
+    ],
+    "task_id": 97,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Tell me the distance to drive from Carnegie Mellon University to the top computer science school in massachusetts",
+    "instantiation_dict": {},
+    "intent": "Tell me the distance to drive from Carnegie Mellon University to the top computer science school in massachusetts",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "914km"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "914 km"
+    },
+    "intent_template_id": 120
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 265,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "What's the closest national park to {{city}}? How far is it to drive there?",
+    "instantiation_dict": {
+      "city": "Boston"
+    },
+    "intent": "What's the closest national park to Boston? How far is it to drive there?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Acadia National Park",
+          "457km"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Acadia National Park\n457km"
+    },
+    "intent_template_id": 85
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 266,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "What's the closest national park to {{city}}?",
+    "instantiation_dict": {
+      "city": "the largest city in Maine"
+    },
+    "intent": "What's the closest national park to the largest city in Maine?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "exact_match": "Acadia National Park"
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Acadia National Park"
+    },
+    "intent_template_id": 85
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 267,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "What's the closest national park to {{city}}? How long it takes to drive there?",
+    "instantiation_dict": {
+      "city": "the hometown of Stephen King"
+    },
+    "intent": "What's the closest national park to the hometown of Stephen King? How long it takes to drive there?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Acadia National Park"
+        ],
+        "fuzzy_match": [
+          "1h 23min"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Acadia National Park\n1h 23min"
+    },
+    "intent_template_id": 85
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 268,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "What's the closest national park to {{city}}? How long does it take to bike there?",
+    "instantiation_dict": {
+      "city": "Vinalhaven, ME"
+    },
+    "intent": "What's the closest national park to Vinalhaven, ME? How long does it take to bike there?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Acadia National Park"
+        ],
+        "fuzzy_match": [
+          "10h 33min"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Acadia National Park\n10h 33min"
+    },
+    "intent_template_id": 85
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 424,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Find the page of {{description}} on the map.",
+    "instantiation_dict": {
+      "description": "the place where Mr. Rogers was filmed"
+    },
+    "intent": "Find the page of the place where Mr. Rogers was filmed on the map.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
+          "required_contents": {
+            "must_include": [
+              "Pittsburgh"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 371
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 425,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Find the page of {{description}} on the map.",
+    "instantiation_dict": {
+      "description": "the longest bridge in the Western hemisphere"
+    },
+    "intent": "Find the page of the longest bridge in the Western hemisphere on the map.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
+          "required_contents": {
+            "must_include": [
+              "Mackinac Bridge"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 371
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 426,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Find the page of {{description}} on the map.",
+    "instantiation_dict": {
+      "description": "the place in Pennsylvania where a plane crashed during the September 11th attacks"
+    },
+    "intent": "Find the page of the place in Pennsylvania where a plane crashed during the September 11th attacks on the map.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
+          "required_contents": {
+            "must_include": [
+              "Somerset County"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 371
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 427,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Find the page of {{description}} on the map.",
+    "instantiation_dict": {
+      "description": "the university that has most Turning Award winners"
+    },
+    "intent": "Find the page of the university that has most Turning Award winners on the map.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
+          "required_contents": {
+            "must_include": [
+              "Massachusetts Institute of Technology"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 371
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 428,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Find the page of {{description}} on the map.",
+    "instantiation_dict": {
+      "description": "the undergrad college of the person who developed the Nash equilibrium"
+    },
+    "intent": "Find the page of the undergrad college of the person who developed the Nash equilibrium on the map.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
+          "required_contents": {
+            "must_include": [
+              "Carnegie Mellon University"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 371
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 429,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Find the page of {{description}} on the map.",
+    "instantiation_dict": {
+      "description": "the colleges where The Chair was filmed in Pittsburgh"
+    },
+    "intent": "Find the page of the colleges where The Chair was filmed in Pittsburgh on the map.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
+          "required_contents": {
+            "must_include": [
+              "Chatham University"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 371
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 430,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Find the page of {{description}} on the map.",
+    "instantiation_dict": {
+      "description": "the college(s) where The Chair was filmed in Pennsylvania other than the ones in Pittsburgh"
+    },
+    "intent": "Find the page of the college(s) where The Chair was filmed in Pennsylvania other than the ones in Pittsburgh on the map.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
+          "required_contents": {
+            "must_include": [
+              "Washington & Jefferson College"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 371
+  },
+  {
+    "sites": [
+      "gitlab",
+      "wikipedia"
+    ],
+    "task_id": 556,
+    "require_login": true,
+    "storage_state": "./.auth/gitlab_state.json",
+    "start_url": "__GITLAB__",
+    "geolocation": null,
+    "intent_template": "Create a repo named {{name}} with {{topics}} in a README file",
+    "instantiation_dict": {
+      "name": "nolan_honest_fans",
+      "topics": "movies directed by Christopher Nolan"
+    },
+    "intent": "Create a repo named nolan_honest_fans with movies directed by Christopher Nolan in a README file",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
+          "locator": "",
+          "required_contents": {
+            "must_include": [
+              "Following",
+              "Memento",
+              "Insomnia",
+              "Batman Begins",
+              "The Prestige",
+              "The Dark Knight",
+              "Inception",
+              "The Dark Knight Rises",
+              "Interstellar",
+              "Dunkirk",
+              "Tenet",
+              "Oppenheimer"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 87
+  },
+  {
+    "sites": [
+      "gitlab",
+      "wikipedia"
+    ],
+    "task_id": 557,
+    "require_login": true,
+    "storage_state": "./.auth/gitlab_state.json",
+    "start_url": "__GITLAB__",
+    "geolocation": null,
+    "intent_template": "Create a repo named {{name}} with {{topics}} in a README file",
+    "instantiation_dict": {
+      "name": "nolan_old_fans",
+      "topics": "movies directed by Christopher Nolan before 2010"
+    },
+    "intent": "Create a repo named nolan_old_fans with movies directed by Christopher Nolan before 2010 in a README file",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "__GITLAB__/byteblaze/nolan_old_fans/-/raw/main/README.md",
+          "locator": "",
+          "required_contents": {
+            "must_include": [
+              "Following",
+              "Memento",
+              "Insomnia",
+              "Batman Begins",
+              "The Prestige",
+              "The Dark Knight"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 87
+  },
+  {
+    "sites": [
+      "gitlab",
+      "wikipedia"
+    ],
+    "task_id": 558,
+    "require_login": true,
+    "storage_state": "./.auth/gitlab_state.json",
+    "start_url": "__GITLAB__",
+    "geolocation": null,
+    "intent_template": "Create a repo named {{name}} with {{topics}} in a README file",
+    "instantiation_dict": {
+      "name": "nolan_young_fans",
+      "topics": "movies directed by Christopher Nolan after 2010"
+    },
+    "intent": "Create a repo named nolan_young_fans with movies directed by Christopher Nolan after 2010 in a README file",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "__GITLAB__/byteblaze/nolan_young_fans/-/raw/main/README.md",
+          "locator": "",
+          "required_contents": {
+            "must_include": [
+              "Inception",
+              "The Dark Knight Rises",
+              "Interstellar",
+              "Dunkirk",
+              "Tenet",
+              "Oppenheimer"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 87
+  },
+  {
+    "sites": [
+      "gitlab",
+      "wikipedia"
+    ],
+    "task_id": 559,
+    "require_login": true,
+    "storage_state": "./.auth/gitlab_state.json",
+    "start_url": "__GITLAB__",
+    "geolocation": null,
+    "intent_template": "Create a repo named {{name}} with {{topics}} in a README file",
+    "instantiation_dict": {
+      "name": "nolan_followers",
+      "topics": "career timeline of Christopher Nolan"
+    },
+    "intent": "Create a repo named nolan_followers with career timeline of Christopher Nolan in a README file",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "__GITLAB__/byteblaze/nolan_followers/-/raw/main/README.md",
+          "locator": "",
+          "required_contents": {
+            "must_include": [
+              "1993–2003: Early career and breakthrough",
+              "2003–2013: Widespread recognition",
+              "2014–2019: Established Hollywood auteur",
+              "2020–present"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 87
+  },
+  {
+    "sites": [
+      "gitlab",
+      "wikipedia"
+    ],
+    "task_id": 560,
+    "require_login": true,
+    "storage_state": "./.auth/gitlab_state.json",
+    "start_url": "__GITLAB__",
+    "geolocation": null,
+    "intent_template": "Create a repo named {{name}} with {{topics}} in a README file",
+    "instantiation_dict": {
+      "name": "nolan_academy_awards",
+      "topics": "movies that won Academy Awards by Christopher Nolan"
+    },
+    "intent": "Create a repo named nolan_academy_awards with movies that won Academy Awards by Christopher Nolan in a README file",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "__GITLAB__/byteblaze/nolan_academy_awards/-/raw/main/README.md",
+          "locator": "",
+          "required_contents": {
+            "must_include": [
+              "The Dark Knight",
+              "Inception",
+              "Interstellar",
+              "Dunkirk",
+              "Tenet"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 87
+  },
+  {
+    "sites": [
+      "gitlab",
+      "wikipedia"
+    ],
+    "task_id": 561,
+    "require_login": true,
+    "storage_state": "./.auth/gitlab_state.json",
+    "start_url": "__GITLAB__",
+    "geolocation": null,
+    "intent_template": "Create a repo named {{name}} with {{topics}} in a README file",
+    "instantiation_dict": {
+      "name": "bafta_awards_nolan",
+      "topics": "movies that are nominated BAFTA Awards by Christopher Nolan"
+    },
+    "intent": "Create a repo named bafta_awards_nolan with movies that are nominated BAFTA Awards by Christopher Nolan in a README file",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "__GITLAB__/byteblaze/bafta_awards_nolan/-/raw/main/README.md",
+          "locator": "",
+          "required_contents": {
+            "must_include": [
+              "Batman Begins",
+              "The Dark Knight",
+              "Inception",
+              "The Dark Knight Rises",
+              "Interstellar",
+              "Dunkirk",
+              "Tenet"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 87
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 737,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Show me the way from {{location}} to the home stadium of {{sport_team}} {{time}}",
+    "instantiation_dict": {
+      "location": "Carnegie Mellon University",
+      "sport_team": "Philadelphia 76ers",
+      "time": ""
+    },
+    "intent": "Show me the way from Carnegie Mellon University to the home stadium of Philadelphia 76ers ",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_from\"').value",
+          "required_contents": {
+            "must_include": [
+              "Carnegie Mellon University",
+              "Pittsburgh"
+            ]
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_to\"').value",
+          "required_contents": {
+            "must_include": [
+              "Wells Fargo Center",
+              "South Philadelphia Sports Complex"
+            ]
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "1"
+          }
+        }
+      ]
+    },
+    "intent_template_id": 94
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 738,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Show me the way from {{location}} to the home stadium of {{sport_team}} {{time}}",
+    "instantiation_dict": {
+      "location": "Carnegie Mellon University",
+      "sport_team": "Philadelphia 76ers",
+      "time": "in the 70th"
+    },
+    "intent": "Show me the way from Carnegie Mellon University to the home stadium of Philadelphia 76ers in the 70th",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_from\"').value",
+          "required_contents": {
+            "must_include": [
+              "Carnegie Mellon University",
+              "Pittsburgh"
+            ]
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_to\"').value",
+          "required_contents": {
+            "must_include": [
+              "3601 South Broad Street",
+              "South Philadelphia"
+            ]
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "1"
+          }
+        }
+      ]
+    },
+    "intent_template_id": 94
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 739,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Show me the way from {{location}} to the home stadium of {{sport_team}} {{time}}",
+    "instantiation_dict": {
+      "location": "Carnegie Mellon University",
+      "sport_team": "Yankees",
+      "time": "in the 80th"
+    },
+    "intent": "Show me the way from Carnegie Mellon University to the home stadium of Yankees in the 80th",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_from\"').value",
+          "required_contents": {
+            "must_include": [
+              "Carnegie Mellon University",
+              "Pittsburgh"
+            ]
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_to\"').value",
+          "required_contents": {
+            "must_include": [
+              "Yankee Stadium",
+              "East 161st Street"
+            ]
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "1"
+          }
+        }
+      ]
+    },
+    "intent_template_id": 94
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 740,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Show me the way from {{location}} to the home stadium of {{sport_team}} {{time}}",
+    "instantiation_dict": {
+      "location": "Carnegie Mellon University",
+      "sport_team": "NYC NBA team",
+      "time": ""
+    },
+    "intent": "Show me the way from Carnegie Mellon University to the home stadium of NYC NBA team ",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_from\"').value",
+          "required_contents": {
+            "must_include": [
+              "Carnegie Mellon University",
+              "Pittsburgh"
+            ]
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_to\"').value",
+          "required_contents": {
+            "must_include": [
+              "Madison Square Garden",
+              "Pennsylvania Plaza",
+              "Manhattan",
+              "New York"
+            ]
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "1"
+          }
+        }
+      ]
+    },
+    "intent_template_id": 94
+  },
+  {
+    "sites": [
+      "wikipedia",
+      "map"
+    ],
+    "task_id": 741,
+    "require_login": true,
+    "storage_state": null,
+    "start_url": "__MAP__",
+    "geolocation": null,
+    "intent_template": "Show me the way from {{location}} to the home stadium of {{sport_team}} {{time}}",
+    "instantiation_dict": {
+      "location": "Carnegie Mellon University",
+      "sport_team": "Boston home NBA team",
+      "time": ""
+    },
+    "intent": "Show me the way from Carnegie Mellon University to the home stadium of Boston home NBA team ",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_from\"').value",
+          "required_contents": {
+            "must_include": [
+              "Carnegie Mellon University",
+              "Pittsburgh"
+            ]
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_to\"').value",
+          "required_contents": {
+            "must_include": [
+              "TD Garden",
+              "Boston",
+              "Massachusetts"
+            ]
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "1"
+          }
+        }
+      ]
+    },
+    "intent_template_id": 94
+  }
+]

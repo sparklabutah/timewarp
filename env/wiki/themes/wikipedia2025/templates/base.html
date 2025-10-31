@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Wikipedia, the free encyclopedia{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('logos', filename='logoModernCropped.png') }}" type="image/png">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <!-- Side Navigation Menu -->
+    <nav class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <h2>Main menu</h2>
+            <button class="side-menu-close" id="menuClose">move to sidebar</button>
+        </div>
+        <ul class="side-menu-list">
+            <li><a href="/" class="menu-link">Main page</a></li>
+            <li><a href="/" class="menu-link">Contents</a></li>
+            <li><a href="/" class="menu-link">Current events</a></li>
+            <li><a href="/random" class="menu-link">Random article</a></li>
+            <li><a href="/" class="menu-link">About Wikipedia</a></li>
+            <li><a href="/" class="menu-link">Contact us</a></li>
+            <li><a href="/" class="menu-link">Contribute</a></li>
+        </ul>
+        <div class="side-menu-divider"></div>
+        <ul class="side-menu-list">
+            <li><a href="/" class="menu-link">Help</a></li>
+            <li><a href="/" class="menu-link">Learn to edit</a></li>
+            <li><a href="/" class="menu-link">Community portal</a></li>
+            <li><a href="/" class="menu-link">Recent changes</a></li>
+            <li><a href="/" class="menu-link">Upload file</a></li>
+            <li><a href="/" class="menu-link">Special pages</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Overlay for menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-start">
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span class="hamburger-icon">☰</span>
+                </button>
+                <a href="/" class="logo-link">
+                    <img src="{{ url_for('logos', filename='logoModernCropped.png') }}" alt="Wikipedia" class="logo-image">
+                    <div class="logo-text">
+                        <span class="logo-title">Wikipedia</span>
+                        <span class="logo-subtitle">The Free Encyclopedia</span>
+                    </div>
+                </a>
+                <form class="search-form" method="get" action="/">
+                    <button type="button" class="search-icon">🔍</button>
+                    <input type="text" name="search" placeholder="Search Wikipedia" class="search-input">
+                    <button type="submit" class="search-button">Search</button>
+                </form>
+            </div>
+            <div class="header-end">
+                <div class="user-links">
+                    <a href="#" class="user-link">Donate</a>
+                    <a href="#" class="user-link">Create account</a>
+                    <a href="#" class="user-link">Log in</a>
+                    <button class="more-options">⋯</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub-header navigation -->
+    <nav class="sub-header">
+        <div class="sub-header-container">
+            <div class="nav-tabs">
+                <a href="/" class="nav-tab {% block main_page_active %}{% endblock %}">{% block nav_main_tab %}Main Page{% endblock %}</a>
+                <a href="#" class="nav-tab">Talk</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="nav-action active">Read</a>
+                <a href="#" class="nav-action">View source</a>
+                <a href="#" class="nav-action">View history</a>
+                <div class="nav-dropdown">
+                    <button class="nav-action dropdown-toggle">Tools <span class="dropdown-arrow">▼</span></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="main-content">
+        <!-- Left Sidebar (Table of Contents for articles) -->
+        {% block left_sidebar %}{% endblock %}
+        
+        <div class="content-container">
+            <article class="article-content">
+                <h1 class="article-title">{% block page_title %}Main Page{% endblock %}</h1>
+                {% block content %}{% endblock %}
+            </article>
+        </div>
+        
+        <!-- Appearance Sidebar -->
+        <aside class="sidebar">
+            <div class="appearance-panel">
+                <div class="appearance-header">
+                    <span>Appearance</span>
+                    <a href="#" class="appearance-hide">hide</a>
+                </div>
+                <div class="appearance-section">
+                    <div class="appearance-label">Text</div>
+                    <div class="appearance-options">
+                        <label class="appearance-option">
+                            <input type="radio" name="text-size" value="small">
+                            <span>Small</span>
+                        </label>
+                        <label class="appearance-option">
+                            <input type="radio" name="text-size" value="standard" checked>
+                            <span>Standard</span>
+                        </label>
+                        <label class="appearance-option">
+                            <input type="radio" name="text-size" value="large">
+                            <span>Large</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="appearance-section">
+                    <div class="appearance-label">Width</div>
+                    <div class="appearance-options">
+                        <label class="appearance-option">
+                            <input type="radio" name="width" value="standard" checked>
+                            <span>Standard</span>
+                        </label>
+                        <label class="appearance-option">
+                            <input type="radio" name="width" value="wide">
+                            <span>Wide</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="appearance-section">
+                    <div class="appearance-label">Color (beta)</div>
+                    <div class="appearance-options">
+                        <label class="appearance-option">
+                            <input type="radio" name="color" value="automatic">
+                            <span>Automatic</span>
+                        </label>
+                        <label class="appearance-option">
+                            <input type="radio" name="color" value="light" checked>
+                            <span>Light</span>
+                        </label>
+                        <label class="appearance-option">
+                            <input type="radio" name="color" value="dark">
+                            <span>Dark</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>Text is available under the <a href="#">Creative Commons Attribution-ShareAlike License 4.0</a>; additional terms may apply. By using this site, you agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>. Wikipedia® is a registered trademark of the <a href="#">Wikimedia Foundation, Inc.</a>, a non-profit organization.</p>
+                    <div class="footer-nav-links">
+                        <a href="#">Privacy policy</a>
+                        <a href="#">About Wikipedia</a>
+                        <a href="#">Disclaimers</a>
+                        <a href="#">Contact Wikipedia</a>
+                        <a href="#">Code of Conduct</a>
+                        <a href="#">Developers</a>
+                        <a href="#">Statistics</a>
+                        <a href="#">Cookie statement</a>
+                        <a href="#">Mobile view</a>
+                    </div>
+                </div>
+                <div class="footer-logos">
+                    <a href="#" class="footer-logo-wikimedia">
+                        <span class="footer-logo-icon">🌐</span>
+                        <span class="footer-logo-text">WIKIMEDIA project</span>
+                    </a>
+                    <a href="#" class="footer-logo-mediawiki">
+                        <span class="footer-logo-icon">⚙</span>
+                        <span class="footer-logo-text">Powered by MediaWiki</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
