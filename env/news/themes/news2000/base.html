@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}News - The Free News Source{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Top white utility bar -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+    <tr>
+        <td valign="middle" style="padding: 2px 5px;">
+            <font size="1">
+            <span style="background: #000000; color: #FFFFFF; padding: 1px 3px; font-weight: bold;">NEWS</span>
+            <span style="color: #000000; margin-left: 5px;"><a href="/" style="color: #000000; text-decoration: none;">HOMEPAGE</a> | WORLD SERVICE | EDUCATION</span>
+            </font>
+        </td>
+        <td align="right" valign="middle" style="padding: 2px 5px;">
+            <font size="1"><span style="color: #0066CC;">low graphics version | feedback | help</span></font>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Main red header -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#CC0000">
+    <tr>
+        <td valign="middle" style="padding: 5px 10px;">
+            <font size="6" color="#FFFFFF" face="Arial, Helvetica, sans-serif"><b>NEWS</b></font>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Main three-column layout using table -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top">
+        <!-- Left Navigation Column -->
+        <td width="150" bgcolor="#ffffff">
+            <table width="100%" border="0" cellpadding="4" cellspacing="0">
+            <tr><td bgcolor="#e0e0e0"><b><font size="2">Front Page</font></b></td></tr>
+            <tr><td><font size="2"><a href="/search?q=World">World</a></font></td></tr>
+            <tr><td><font size="2"><a href="/search?q=UK">UK</a></font></td></tr>
+            <tr><td><font size="2"><a href="/search?q=Business">Business</a></font></td></tr>
+            <tr><td><font size="2"><a href="/search?q=Sci/Tech">Sci/Tech</a></font></td></tr>
+            <tr><td><font size="2"><a href="/search?q=Health">Health</a></font></td></tr>
+            <tr><td><font size="2"><a href="/search?q=Education">Education</a></font></td></tr>
+            <tr><td><font size="2"><a href="/search?q=Entertainment">Entertainment</a></font></td></tr>
+            <tr><td height="10"></td></tr>
+            <tr><td bgcolor="#e0e0e0"><b><font size="2">In Depth</font></b></td></tr>
+            <tr><td><font size="2"><a href="#" id="randomNavLink">Random Article</a></font></td></tr>
+            <tr><td height="10"></td></tr>
+            <tr><td bgcolor="#e0e0e0"><b><font size="2">news in other languages</font></b></td></tr>
+            <tr><td><font size="1"><a href="#">العربية</a></font></td></tr>
+            <tr><td><font size="1"><a href="#">中文</a></font></td></tr>
+            </table>
+        </td>
+
+        <!-- Center Content Column -->
+        <td>
+            <table width="100%" border="0" cellpadding="8" cellspacing="0">
+            <tr><td>
+            {% block content %}{% endblock %}
+            </td></tr>
+            </table>
+        </td>
+
+        <!-- Right Sidebar -->
+        <td width="170" bgcolor="#ffffff">
+            <table width="100%" border="0" cellpadding="4" cellspacing="0">
+            <tr><td bgcolor="#e0e0e0"><b><font size="2">Search News Online</font></b></td></tr>
+            <tr><td>
+                <input type="text" id="sidebarSearch" size="15" style="width:100%">
+                <input type="button" id="sidebarSearchBtn" value="Go">
+                <div id="sidebarSearchResults" class="search-results"></div>
+            </td></tr>
+            <tr><td><font size="1"><a href="#">Advanced search options</a></font></td></tr>
+            <tr><td height="10"></td></tr>
+            <tr><td bgcolor="#e0e0e0"><b><font size="2">Quick Links</font></b></td></tr>
+            <tr><td><font size="2"><a href="/">Front Page</a></font></td></tr>
+            <tr><td><font size="2"><a href="/browse">Browse All</a></font></td></tr>
+            <tr><td><font size="2"><a href="#" id="sidebarRandom">Random Article</a></font></td></tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-bbc-small">NEWS</span>
+            </div>
+            <div class="footer-nav">
+                <a href="/">News Front Page</a> | 
+                <a href="/browse">Browse All</a> | 
+                <a href="#" id="footerRandom">Random Article</a>
+            </div>
+            <div class="footer-back">
+                <a href="#top">^^ Back to top</a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>News - The Free News Source. All content is available under the Creative Commons Attribution 2.5 License.</p>
+            <p>This is a local reader interface using a News XML dump.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Random article links
+        function setupRandomLinks() {
+            const randomLinks = ['randomNavLink', 'sidebarRandom', 'footerRandom'];
+            randomLinks.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        fetch('/random')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.title) {
+                                    window.location.href = `/news/${encodeURIComponent(data.title)}`;
+                                }
+                            });
+                    });
+                }
+            });
+        }
+        setupRandomLinks();
+    </script>
+</body>
+</html>
+

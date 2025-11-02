@@ -7,28 +7,62 @@ Uses mwparserfromhell for proper MediaWiki parsing and HTML pre-caching
 import xml.etree.ElementTree as ET
 import re
 from html import escape
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import pickle
 import os
 import random
 from datetime import datetime
 import sys
 import mwparserfromhell
+import socket
+import subprocess
+import time
 
 # Get the directory where this script is located
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Determine theme from command line argument
-THEME = 'classic'  # Default theme
-if len(sys.argv) > 1:
-    if sys.argv[1] == '-1' or sys.argv[1] == 'classic':
-        THEME = 'classic'
-    elif sys.argv[1] == '-2' or sys.argv[1] == 'modern':
-        THEME = 'modern'
-    elif sys.argv[1] == '-3' or sys.argv[1] == 'wikinews2002':
-        THEME = 'wikinews2002'
-    elif sys.argv[1] == '-4' or sys.argv[1] == 'wikinews2001':
-        THEME = 'wikinews2001'
+def _parse_args(argv):
+    """Parse CLI args for theme selection and optional port override."""
+    num_to_theme = {
+        '1': 'news2000',
+        '2': 'news2004',
+        '3': 'news2008',
+        '4': 'news2016',
+        '5': 'news2025',
+        '6': 'classic',
+    }
+    name_aliases = {
+        'classic': 'classic',
+        'news2000': 'news2000',
+        'news2004': 'news2004',
+        'news2008': 'news2008',
+        'news2016': 'news2016',
+        'news2025': 'news2025',
+        'all': 'all',
+    }
+    selected_theme = 'classic'
+    port_override = None
+    run_all = False
+    for raw in argv[1:]:
+        arg = raw.lstrip('-').lower()
+        if raw.startswith('--port='):
+            try:
+                port_override = int(raw.split('=', 1)[1])
+            except Exception:
+                pass
+            continue
+        if arg in num_to_theme:
+            selected_theme = num_to_theme[arg]
+        elif arg in name_aliases:
+            if name_aliases[arg] == 'all':
+                run_all = True
+            else:
+                selected_theme = name_aliases[arg]
+    return selected_theme, port_override, run_all
+
+
+# Determine theme and port from command line arguments
+THEME, PORT_OVERRIDE, RUN_ALL = _parse_args(sys.argv)
 
 print(f"Using theme: {THEME}")
 
@@ -36,6 +70,25 @@ print(f"Using theme: {THEME}")
 app = Flask(__name__,
             template_folder=os.path.join(SCRIPT_DIR, 'themes', THEME, 'templates'),
             static_folder=os.path.join(SCRIPT_DIR, 'themes', THEME, 'static'))
+
+# Custom Jinja2 filters
+def article_url_filter(title):
+    """
+    Generate proper URL for article titles.
+    If title starts with http:// or https://, return it as-is (external link).
+    Otherwise, return local article path.
+    """
+    if title and (title.startswith('http://') or title.startswith('https://')):
+        return title
+    return f"/news/{title}"
+
+def is_external_link_filter(title):
+    """Check if a title is an external HTTP/HTTPS link"""
+    return title and (title.startswith('http://') or title.startswith('https://'))
+
+# Register filters explicitly
+app.jinja_env.filters['article_url'] = article_url_filter
+app.jinja_env.filters['is_external_link'] = is_external_link_filter
 
 # Paths relative to the script location
 XML_DUMP_PATH = os.path.join(SCRIPT_DIR, 'enwikinews-latest-pages-articles-multistream.xml.bz2')
@@ -145,9 +198,18 @@ def convert_wikitext_to_html(text):
     text = re.sub(r"'''(.*?)'''", r'<strong>\1</strong>', text)
     text = re.sub(r"''(.*?)''", r'<em>\1</em>', text)
     
-    # Convert internal links [[Link]] or [[Link|Display]]
-    text = re.sub(r'\[\[([^\|\]]+)\|([^\]]+)\]\]', r'<a href="/news/\1">\2</a>', text)
-    text = re.sub(r'\[\[([^\]]+)\]\]', r'<a href="/news/\1">\1</a>', text)
+    # Helper function to clean interwiki prefixes from links
+    def clean_link(match):
+        link = match.group(1)
+        display = match.group(2) if len(match.groups()) > 1 else link
+        # Remove interwiki prefixes (w:, en:, etc.)
+        cleaned_link = re.sub(r'^[a-z]{1,10}:', '', link)
+        cleaned_display = re.sub(r'^[a-z]{1,10}:', '', display)
+        return f'<a href="/news/{cleaned_link}">{cleaned_display}</a>'
+    
+    # Convert internal links [[Link|Display]] and [[Link]]
+    text = re.sub(r'\[\[([^\|\]]+)\|([^\]]+)\]\]', clean_link, text)
+    text = re.sub(r'\[\[([^\]]+)\]\]', clean_link, text)
     
     # Convert external links
     text = re.sub(r'\[https?:([^\s\]]+)\s+([^\]]+)\]', r'<a href="http\1" target="_blank">\2</a>', text)
@@ -396,6 +458,12 @@ def load_or_create_index():
     return article_index, articles_by_date
 
 
+@app.route('/assets/<filename>')
+def assets(filename):
+    """Serve files from the assets folder"""
+    return send_from_directory(os.path.join(SCRIPT_DIR, 'assets'), filename)
+
+
 @app.route('/')
 def index():
     """Main news page"""
@@ -423,27 +491,153 @@ def article(title):
                          categories=article_data.get('categories', []))
 
 
+def strip_html(html):
+    """Remove HTML tags and return plain text"""
+    if not html:
+        return ""
+    # Remove HTML tags
+    text = re.sub(r'<[^>]+>', ' ', html)
+    # Decode HTML entities (basic ones)
+    text = text.replace('&nbsp;', ' ').replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>').replace('&quot;', '"')
+    # Clean up whitespace
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()
+
+
 @app.route('/search')
 def search():
-    """Search for articles"""
-    query = request.args.get('q', '').lower().strip()
+    """Search for articles - searches in title, content, and categories"""
+    query = request.args.get('q', '').strip()
+    page = int(request.args.get('page', 1))
+    # Classic theme uses 3x3 grid, so 9 items per page
+    per_page = 9 if THEME == 'classic' else 10
+    
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
     
     if not query:
-        return jsonify([])
+        if is_ajax:
+            return jsonify([])
+        return render_template('search.html', 
+                             query='', 
+                             results=[],
+                             page=1,
+                             total_pages=0,
+                             total_results=0,
+                             theme=THEME)
+    
+    # Split query into individual words
+    query_words = re.findall(r'\b\w+\b', query.lower())
+    if not query_words:
+        if is_ajax:
+            return jsonify([])
+        return render_template('search.html', 
+                             query=query, 
+                             results=[],
+                             page=1,
+                             total_pages=0,
+                             total_results=0,
+                             theme=THEME)
+    
+    query_lower = query.lower()
+    results = []
     
     # Search in article index
-    results = []
     for key, data in article_index.items():
-        if query in key:
+        title = data.get('title', '')
+        title_lower = title.lower()
+        html_content = data.get('html', '')
+        
+        # Extract plain text from HTML for searching
+        content_text = strip_html(html_content).lower()
+        
+        # Get categories
+        categories = data.get('categories', [])
+        categories_text = ' '.join([cat.lower() for cat in categories])
+        
+        # Calculate relevance score
+        score = 0
+        matches = []
+        
+        # Title matches (highest priority)
+        if query_lower in title_lower:
+            score += 100  # Exact phrase in title
+            matches.append('title')
+        else:
+            # Count word matches in title
+            title_word_matches = sum(1 for word in query_words if word in title_lower)
+            if title_word_matches > 0:
+                score += title_word_matches * 50  # Each word match in title
+                matches.append(f'title ({title_word_matches} words)')
+        
+        # Category matches (medium priority)
+        if query_lower in categories_text:
+            score += 30  # Exact phrase in categories
+            matches.append('category')
+        else:
+            category_word_matches = sum(1 for word in query_words if word in categories_text)
+            if category_word_matches > 0:
+                score += category_word_matches * 20  # Each word match in categories
+                matches.append(f'category ({category_word_matches} words)')
+        
+        # Content matches (lower priority)
+        if query_lower in content_text:
+            score += 10  # Exact phrase in content
+            matches.append('content')
+        else:
+            # Count word matches in content
+            content_word_matches = sum(1 for word in query_words if word in content_text)
+            if content_word_matches > 0:
+                score += content_word_matches * 1  # Each word match in content
+                matches.append(f'content ({content_word_matches} words)')
+        
+        # Only include if at least one word matched
+        if score > 0:
+            date_str = data['date'].strftime('%Y-%m-%d') if data.get('date') else ''
             results.append({
-                'title': data['title'],
-                'date': data['date'].strftime('%Y-%m-%d') if data.get('date') else ''
+                'title': title,
+                'date': date_str,
+                'date_obj': data.get('date'),  # Keep original date object for sorting
+                'score': score,
+                'matches': ', '.join(matches) if matches else 'content'
             })
-            
-            if len(results) >= 20:
-                break
     
-    return jsonify(results)
+    # Sort by relevance score (highest first), then by date (newest first)
+    # Use negative score for descending order, and negative timestamp for newest first
+    results.sort(key=lambda x: (
+        -x['score'], 
+        -(x['date_obj'].timestamp() if x.get('date_obj') else 0)
+    ))
+    
+    # Calculate pagination
+    total_results = len(results)
+    total_pages = (total_results + per_page - 1) // per_page
+    
+    # Get results for current page
+    start = (page - 1) * per_page
+    end = start + per_page
+    page_results = results[start:end]
+    
+    # Debug output
+    print(f"Search: '{query}' | Total: {total_results} | Page: {page}/{total_pages} | Showing: {len(page_results)} results")
+    
+    # Remove score, matches, and date_obj from response (only used for sorting)
+    for result in page_results:
+        result.pop('score', None)
+        result.pop('matches', None)
+        result.pop('date_obj', None)
+    
+    # Return JSON for AJAX requests
+    if is_ajax:
+        return jsonify(page_results[:500])  # Limit for AJAX
+    
+    # Return HTML page for direct navigation
+    return render_template('search.html', 
+                         query=query, 
+                         results=page_results,
+                         page=page,
+                         total_pages=total_pages,
+                         total_results=total_results,
+                         theme=THEME)
 
 
 @app.route('/random')
@@ -459,7 +653,8 @@ def random_article():
 def browse():
     """Browse all articles chronologically"""
     page = int(request.args.get('page', 1))
-    per_page = 50
+    # Classic theme uses 3x3 grid, so 9 items per page
+    per_page = 9 if THEME == 'classic' else 10
     
     start = (page - 1) * per_page
     end = start + per_page
@@ -473,15 +668,58 @@ def browse():
                          total_pages=total_pages)
 
 
+def find_free_port(start_port=5001, max_attempts=100):
+    """Find a free port starting from start_port"""
+    for port in range(start_port, start_port + max_attempts):
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.bind(('localhost', port))
+                return port
+        except OSError:
+            continue
+    raise RuntimeError(f"Could not find a free port in range {start_port}-{start_port + max_attempts}")
+
+
 if __name__ == '__main__':
-    # Load or create article index
-    load_or_create_index()
-    
-    # Run the Flask app
-    print("\n" + "="*60)
-    print("Wikinews UI is starting...")
-    print("Open your browser and go to: http://localhost:5001")
-    print("="*60 + "\n")
-    
-    app.run(debug=True, port=5001)
+    # If -all provided, spawn six servers (1-6) on successive ports
+    if RUN_ALL:
+        # Ensure cache exists so children load quickly
+        load_or_create_index()
+        base_port = PORT_OVERRIDE if PORT_OVERRIDE else find_free_port()
+        theme_nums = ['1', '2', '3', '4', '5', '6']
+        procs = []
+        print("\n" + "="*60)
+        print("Starting multiple Wikinews UI servers...")
+        for i, num in enumerate(theme_nums):
+            port = base_port + i
+            cmd = [sys.executable, __file__, num, f"--port={port}"]
+            try:
+                p = subprocess.Popen(cmd)
+                procs.append((num, port, p.pid))
+            except Exception as e:
+                print(f"Failed to start server {num} on port {port}: {e}")
+        for num, port, pid in procs:
+            print(f"Server {num} running at http://localhost:{port} (PID {pid})")
+        print("="*60 + "\n")
+        # Keep parent alive to avoid abrupt exit; wait for children
+        try:
+            while True:
+                time.sleep(3600)
+        except KeyboardInterrupt:
+            pass
+    else:
+        # Load or create article index
+        load_or_create_index()
+        
+        # Determine port
+        port = PORT_OVERRIDE if PORT_OVERRIDE else find_free_port()
+        
+        # Run the Flask app
+        print("\n" + "="*60)
+        print("Wikinews UI is starting...")
+        print(f"Open your browser and go to: http://localhost:{port}")
+        print("="*60 + "\n")
+        
+        # Use use_reloader=False to avoid issues with port binding in debug mode
+        app.run(debug=True, port=port, use_reloader=False)
 

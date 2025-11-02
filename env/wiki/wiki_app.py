@@ -25,25 +25,29 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 def _parse_args(argv):
     """Parse CLI args for theme selection and optional port override."""
     num_to_theme = {
-        '1': 'wikipedia2001',
-        '2': 'wikipedia2002',
-        '3': 'wikipedia2004',
-        '4': 'wikipedia2005-20',
-        '5': 'wikipedia2025',
-        '6': 'classic',
+        '1': '1-2001',
+        '2': '2-2002',
+        '3': '3-2003-4',
+        '4': '4-2005-2022',
+        '5': '5-2023-2025',
+        '6': '6-minimal',
         '7': 'modern',
     }
     name_aliases = {
-        'classic': 'classic',
+        'classic': '6-minimal',
+        'minimal': '6-minimal',
         'modern': 'modern',
-        'wikipedia2001': 'wikipedia2001',
-        'wikipedia2002': 'wikipedia2002',
-        'wikipedia2004': 'wikipedia2004',
-        'wikipedia2005-20': 'wikipedia2005-20',
-        'wikipedia2025': 'wikipedia2025',
+        '2001': '1-2001',
+        '2002': '2-2002',
+        '2003': '3-2003-4',
+        '2004': '3-2003-4',
+        '2005': '4-2005-2022',
+        '2022': '4-2005-2022',
+        '2023': '5-2023-2025',
+        '2025': '5-2023-2025',
         'all': 'all',
     }
-    selected_theme = 'classic'
+    selected_theme = '6-minimal'
     port_override = None
     run_all = False
     for raw in argv[1:]:
@@ -70,9 +74,17 @@ THEME, PORT_OVERRIDE, RUN_ALL = _parse_args(sys.argv)
 print(f"Using theme: {THEME}")
 
 # Initialize Flask with theme-specific paths
+# Check if theme has subdirectories or flat structure
+theme_path = os.path.join(SCRIPT_DIR, 'themes', THEME)
+has_templates_subdir = os.path.exists(os.path.join(theme_path, 'templates'))
+has_static_subdir = os.path.exists(os.path.join(theme_path, 'static'))
+
+template_folder = os.path.join(theme_path, 'templates') if has_templates_subdir else theme_path
+static_folder = os.path.join(theme_path, 'static') if has_static_subdir else theme_path
+
 app = Flask(__name__,
-            template_folder=os.path.join(SCRIPT_DIR, 'themes', THEME, 'templates'),
-            static_folder=os.path.join(SCRIPT_DIR, 'themes', THEME, 'static'))
+            template_folder=template_folder,
+            static_folder=static_folder)
 
 # Paths relative to the script location
 XML_DUMP_PATH = os.path.join(SCRIPT_DIR, 'simplewiki-latest-pages-articles.xml.bz2')

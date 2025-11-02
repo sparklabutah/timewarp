@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Browse News - News{% endblock %}
+
+{% block content %}
+<!-- Browse Header -->
+<table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr><td>
+<font size="4"><b>Browse All News Articles</b></font>
+<br>
+<font size="2" color="#666666">
+Showing page {{ page }} of {{ total_pages }}
+</font>
+</td></tr>
+</table>
+
+<br>
+
+<!-- Articles List -->
+{% for article in articles %}
+<table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr><td>
+<font size="2">
+<a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #003366; text-decoration: underline;">{{ article.title }}</a>
+{% if article.date %}
+<br><font size="1" color="#666666">{{ article.date.strftime('%B %d, %Y') if article.date else 'Unknown date' }}</font>
+{% endif %}
+</font>
+</td></tr>
+</table>
+{% if not loop.last %}
+<hr size="1" color="#cccccc">
+{% endif %}
+{% endfor %}
+
+<br><br>
+
+<!-- Pagination -->
+{% if total_pages > 1 %}
+<table width="100%" border="0" cellpadding="5" cellspacing="0" bgcolor="#F5F1E8">
+<tr><td style="text-align: center;">
+<font size="2" face="Arial, Helvetica, sans-serif">
+
+<!-- Previous link -->
+{% if page > 1 %}
+<a href="/browse?page={{ page - 1 }}" style="color: #CC0000; text-decoration: none; padding: 4px 10px; border: 1px solid #CC9966; background-color: #FFFFFF; margin: 0 2px; font-weight: bold;">&laquo; Previous</a>
+{% else %}
+<span style="color: #999999; padding: 4px 10px; border: 1px solid #CCCCCC; background-color: #E8E4DC; margin: 0 2px;">&laquo; Previous</span>
+{% endif %}
+
+&nbsp;&nbsp;
+
+<!-- Page numbers -->
+{% set start_page = [1, page - 2]|max %}
+{% set end_page = [total_pages, page + 2]|min %}
+
+{% if start_page > 1 %}
+<a href="/browse?page=1" style="color: #003366; text-decoration: none; padding: 4px 10px; border: 1px solid #CC9966; background-color: #FFFFFF; margin: 0 2px;">1</a>
+{% if start_page > 2 %}
+<span style="padding: 0 5px; color: #666666;">...</span>
+{% endif %}
+{% endif %}
+
+{% for p in range(start_page, end_page + 1) %}
+    {% if p == page %}
+    <span style="color: #FFFFFF; background-color: #CC0000; padding: 4px 10px; border: 1px solid #CC0000; margin: 0 2px; font-weight: bold;">{{ p }}</span>
+    {% else %}
+    <a href="/browse?page={{ p }}" style="color: #003366; text-decoration: none; padding: 4px 10px; border: 1px solid #CC9966; background-color: #FFFFFF; margin: 0 2px;">{{ p }}</a>
+    {% endif %}
+{% endfor %}
+
+{% if end_page < total_pages %}
+{% if end_page < total_pages - 1 %}
+<span style="padding: 0 5px; color: #666666;">...</span>
+{% endif %}
+<a href="/browse?page={{ total_pages }}" style="color: #003366; text-decoration: none; padding: 4px 10px; border: 1px solid #CC9966; background-color: #FFFFFF; margin: 0 2px;">{{ total_pages }}</a>
+{% endif %}
+
+&nbsp;&nbsp;
+
+<!-- Next link -->
+{% if page < total_pages %}
+<a href="/browse?page={{ page + 1 }}" style="color: #CC0000; text-decoration: none; padding: 4px 10px; border: 1px solid #CC9966; background-color: #FFFFFF; margin: 0 2px; font-weight: bold;">Next &raquo;</a>
+{% else %}
+<span style="color: #999999; padding: 4px 10px; border: 1px solid #CCCCCC; background-color: #E8E4DC; margin: 0 2px;">Next &raquo;</span>
+{% endif %}
+
+</font>
+</td></tr>
+</table>
+{% endif %}
+
+{% endblock %}

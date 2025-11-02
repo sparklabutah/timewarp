@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - News{% endblock %}
+
+{% block content %}
+<div class="search-page">
+    <div class="search-header">
+        <h1>Search Results</h1>
+        {% if query %}
+        <p class="search-info">
+            Search for: "<strong>{{ query }}</strong>" - Found {{ total_results if total_results is defined else results|length }} result{% if (total_results if total_results is defined else results|length) != 1 %}s{% endif %}
+        </p>
+        {% else %}
+        <p class="search-info">Enter a search term to find articles</p>
+        {% endif %}
+    </div>
+
+    {% if query %}
+        {% if results %}
+        <div class="search-results-list">
+            {% for result in results %}
+            <article class="search-result-item-full">
+                <h3 class="result-title-full">
+                    <a {% if result.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ result.title|article_url }}">{{ result.title }}</a>
+                </h3>
+                {% if result.date %}
+                <div class="result-date-full">{{ result.date }}</div>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        {% if total_pages is defined and total_pages > 1 %}
+        <div class="pagination">
+            {% if page > 1 %}
+            <a href="/search?q={{ query }}&page={{ page - 1 }}" class="btn-page">← Previous</a>
+            {% else %}
+            <span class="btn-page disabled">← Previous</span>
+            {% endif %}
+            
+            <div class="page-numbers">
+                {% set start_page = [1, page - 2]|max %}
+                {% set end_page = [total_pages, page + 2]|min %}
+                
+                {% if start_page > 1 %}
+                <a href="/search?q={{ query }}&page=1" class="page-num">1</a>
+                {% if start_page > 2 %}
+                <span class="ellipsis">...</span>
+                {% endif %}
+                {% endif %}
+                
+                {% for p in range(start_page, end_page + 1) %}
+                    {% if p == page %}
+                    <span class="page-num active">{{ p }}</span>
+                    {% else %}
+                    <a href="/search?q={{ query }}&page={{ p }}" class="page-num">{{ p }}</a>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if end_page < total_pages %}
+                {% if end_page < total_pages - 1 %}
+                <span class="ellipsis">...</span>
+                {% endif %}
+                <a href="/search?q={{ query }}&page={{ total_pages }}" class="page-num">{{ total_pages }}</a>
+                {% endif %}
+            </div>
+            
+            {% if page < total_pages %}
+            <a href="/search?q={{ query }}&page={{ page + 1 }}" class="btn-page">Next →</a>
+            {% else %}
+            <span class="btn-page disabled">Next →</span>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        {% else %}
+        <div class="no-results-page">
+            <p>No results found for "<strong>{{ query }}</strong>"</p>
+            <p>Try a different search term or <a href="/browse">browse all articles</a>.</p>
+        </div>
+        {% endif %}
+    {% else %}
+    <div class="empty-search">
+        <p>Please enter a search term to find articles.</p>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+.search-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.search-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.search-header h1 {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.search-info {
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+.search-info strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.search-results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.search-result-item-full {
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.2s;
+}
+
+.search-result-item-full:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateX(4px);
+}
+
+.result-title-full {
+    margin-bottom: 0.5rem;
+}
+
+.result-title-full a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.result-title-full a:hover {
+    color: var(--primary-color);
+}
+
+.result-date-full {
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.no-results-page {
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.no-results-page p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.no-results-page strong {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.no-results-page a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.no-results-page a:hover {
+    text-decoration: underline;
+}
+
+.empty-search {
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.empty-search p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border-radius: 8px;
+}
+
+.btn-page {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-page:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-page.disabled {
+    background: var(--border-color);
+    color: var(--text-light);
+    cursor: not-allowed;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.page-num {
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.page-num:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.page-num.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: 600;
+}
+
+.ellipsis {
+    padding: 0 0.5rem;
+    color: var(--text-light);
+}
+</style>
+{% endblock %}
+

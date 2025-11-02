@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Browse News - News{% endblock %}
+
+{% block content %}
+<div class="browse-page">
+    <div class="browse-header">
+        <h1>Browse All News Articles</h1>
+        <p>Showing page {{ page }} of {{ total_pages }}</p>
+    </div>
+
+    <div class="browse-grid">
+        {% for article in articles %}
+        <article class="news-card">
+            <div class="news-card-header">
+                {% if article.categories %}
+                <div class="news-categories">
+                    {% for category in article.categories[:2] %}
+                    <span class="category-tag">{{ category }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <time class="news-date">
+                    {{ article.date.strftime('%B %d, %Y') if article.date else 'Unknown date' }}
+                </time>
+            </div>
+            <h3 class="news-title">
+                <a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}">{{ article.title }}</a>
+            </h3>
+            <div class="news-meta">
+                <span class="news-year">{{ article.year }}</span>
+                <a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" class="news-read-more" title="Read full article">
+                    <span>Read</span>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    </svg>
+                </a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if page > 1 %}
+        <a href="/browse?page={{ page - 1 }}" class="btn-page">← Previous</a>
+        {% else %}
+        <span class="btn-page disabled">← Previous</span>
+        {% endif %}
+        
+        <div class="page-numbers">
+            {% set start_page = [1, page - 2]|max %}
+            {% set end_page = [total_pages, page + 2]|min %}
+            
+            {% if start_page > 1 %}
+            <a href="/browse?page=1" class="page-num">1</a>
+            {% if start_page > 2 %}
+            <span class="ellipsis">...</span>
+            {% endif %}
+            {% endif %}
+            
+            {% for p in range(start_page, end_page + 1) %}
+                {% if p == page %}
+                <span class="page-num active">{{ p }}</span>
+                {% else %}
+                <a href="/browse?page={{ p }}" class="page-num">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+            
+            {% if end_page < total_pages %}
+            {% if end_page < total_pages - 1 %}
+            <span class="ellipsis">...</span>
+            {% endif %}
+            <a href="/browse?page={{ total_pages }}" class="page-num">{{ total_pages }}</a>
+            {% endif %}
+        </div>
+        
+        {% if page < total_pages %}
+        <a href="/browse?page={{ page + 1 }}" class="btn-page">Next →</a>
+        {% else %}
+        <span class="btn-page disabled">Next →</span>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

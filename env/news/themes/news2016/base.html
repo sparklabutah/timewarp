@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}News - The Free News Source{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="header-top-content">
+                <div class="header-left">
+                    <a href="/" class="sign-in-link">Sign in</a>
+                    <button class="search-icon" aria-label="Search">🔍</button>
+                </div>
+                <div class="header-center">
+                    <a href="/" class="nav-top-link">News</a>
+                    <a href="/search?q=Sport" class="nav-top-link">Sport</a>
+                    <a href="/search?q=Weather" class="nav-top-link">Weather</a>
+                    <a href="/search?q=Shop" class="nav-top-link">Shop</a>
+                    <a href="/search?q=Earth" class="nav-top-link">Earth</a>
+                    <a href="/search?q=Travel" class="nav-top-link">Travel</a>
+                    <a href="/browse" class="nav-top-link">More</a>
+                </div>
+                <div class="header-right">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Search" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="news-banner">
+            <div class="news-banner-content">
+                <div class="news-banner-title">NEWS</div>
+                <nav class="main-nav">
+                    <a href="/" class="nav-link active">Home</a>
+                    <a href="/search?q=Video" class="nav-link">Video</a>
+                    <a href="/search?q=World" class="nav-link">World</a>
+                    <a href="/search?q=UK" class="nav-link">UK</a>
+                    <a href="/search?q=Business" class="nav-link">Business</a>
+                    <a href="/search?q=Tech" class="nav-link">Tech</a>
+                    <a href="/search?q=Science" class="nav-link">Science</a>
+                    <a href="/search?q=Magazine" class="nav-link">Magazine</a>
+                    <a href="/search?q=Entertainment Arts" class="nav-link">Entertainment & Arts</a>
+                    <a href="/search?q=Health" class="nav-link">Health</a>
+                    <a href="/search?q=World News TV" class="nav-link">World News TV</a>
+                    <a href="/browse" class="nav-link">More</a>
+                </nav>
+            </div>
+        </div>
+        <div class="search-container-expanded" id="searchContainerExpanded" style="display: none;">
+            <input type="text" id="searchInputExpanded" placeholder="Search news..." autocomplete="off">
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>News Services</h3>
+                <ul>
+                    <li><a href="#">On your mobile</a></li>
+                    <li><a href="#">On your connected TV</a></li>
+                    <li><a href="#">Get news alerts</a></li>
+                    <li><a href="#">Contact News</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Explore the News</h3>
+                <ul>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Sport</a></li>
+                    <li><a href="#">Weather</a></li>
+                    <li><a href="#">Radio</a></li>
+                    <li><a href="#">TV</a></li>
+                    <li><a href="#">More</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <p>News - The Free News Source. All content is available under the Creative Commons Attribution 2.5 License.</p>
+                <p>This is a local reader interface using a News XML dump.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

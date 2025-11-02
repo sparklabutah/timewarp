@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Wikinews - The Free News Source{% endblock %}</title>
+    <title>{% block title %}News - The Free News Source{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -12,7 +12,7 @@
             <div class="logo">
                 <a href="/">
                     <span class="logo-icon">📰</span>
-                    <span class="logo-text">Wikinews</span>
+                    <span class="logo-text">News</span>
                 </a>
             </div>
             <nav class="nav">
@@ -35,14 +35,12 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>Wikinews - The Free News Source. All content is available under the Creative Commons Attribution 2.5 License.</p>
-            <p>This is a local reader interface using a Wikinews XML dump.</p>
+            <p>News - The Free News Source. All content is available under the Creative Commons Attribution 2.5 License.</p>
+            <p>This is a local reader interface using a News XML dump.</p>
         </div>
     </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
-
-
 

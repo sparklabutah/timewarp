@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - News{% endblock %}
+
+{% block content %}
+<div class="search-page">
+    <div class="search-header">
+        <h1>Search Results</h1>
+        {% if query %}
+        <p class="search-info">
+            Search for: "<strong>{{ query }}</strong>" - Found {{ total_results if total_results is defined else results|length }} result{% if (total_results if total_results is defined else results|length) != 1 %}s{% endif %}
+        </p>
+        {% else %}
+        <p class="search-info">Enter a search term to find articles</p>
+        {% endif %}
+    </div>
+
+    {% if query %}
+        {% if results %}
+        <div class="search-results-list">
+            {% for result in results %}
+            <article class="search-result-item">
+                <h3 class="result-title">
+                    <a {% if result.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ result.title|article_url }}">{{ result.title }}</a>
+                </h3>
+                {% if result.date %}
+                <div class="result-date">{{ result.date }}</div>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        {% if total_pages is defined and total_pages > 1 %}
+        <div class="pagination">
+            {% if page > 1 %}
+            <a href="/search?q={{ query }}&page={{ page - 1 }}" class="btn-page">← Previous</a>
+            {% else %}
+            <span class="btn-page disabled">← Previous</span>
+            {% endif %}
+            
+            <div class="page-numbers">
+                {% set start_page = [1, page - 2]|max %}
+                {% set end_page = [total_pages, page + 2]|min %}
+                
+                {% if start_page > 1 %}
+                <a href="/search?q={{ query }}&page=1" class="page-num">1</a>
+                {% if start_page > 2 %}
+                <span class="ellipsis">...</span>
+                {% endif %}
+                {% endif %}
+                
+                {% for p in range(start_page, end_page + 1) %}
+                    {% if p == page %}
+                    <span class="page-num active">{{ p }}</span>
+                    {% else %}
+                    <a href="/search?q={{ query }}&page={{ p }}" class="page-num">{{ p }}</a>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if end_page < total_pages %}
+                {% if end_page < total_pages - 1 %}
+                <span class="ellipsis">...</span>
+                {% endif %}
+                <a href="/search?q={{ query }}&page={{ total_pages }}" class="page-num">{{ total_pages }}</a>
+                {% endif %}
+            </div>
+            
+            {% if page < total_pages %}
+            <a href="/search?q={{ query }}&page={{ page + 1 }}" class="btn-page">Next →</a>
+            {% else %}
+            <span class="btn-page disabled">Next →</span>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        {% else %}
+        <div class="no-results">
+            <p>No results found for "<strong>{{ query }}</strong>"</p>
+            <p>Try a different search term or <a href="/browse">browse all articles</a>.</p>
+        </div>
+        {% endif %}
+    {% else %}
+    <div class="empty-search">
+        <p>Please enter a search term to find articles.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

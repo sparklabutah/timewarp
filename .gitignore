@@ -1,20 +1,13 @@
-.cursor
+#Ignore the references 
+references/
+
 *.xml
 *.pkl
 *.bz2
 *.xml.bz2
-__backup
-
-# But DO track the env/simplewiki project folder
-!env/
-!env/simplewiki/
-!env/simplewiki/**
 
 # Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
 .Python
 build/
 develop-eggs/
@@ -42,6 +35,7 @@ instance/
 .webassets-cache
 
 # IDEs
+.cursor
 .vscode/
 .idea/
 *.swp
@@ -67,9 +61,6 @@ desktop.ini
 
 # Node modules (if any)
 node_modules/
-
-# Nested Git repositories (subprojects)
-WebShop/
 
 env/simplewiki/simplewiki-latest-pages-articles.xml.bz2
 env/simplewiki/wiki_index.pkl

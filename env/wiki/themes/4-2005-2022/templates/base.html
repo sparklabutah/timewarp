@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Wikipedia, the free encyclopedia{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body class="mediawiki ltr sitedir-ltr">
+<!-- Page header -->
+<div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+
+<!-- Top navigation -->
+<div id="mw-navigation">
+    <div id="mw-head">
+        <div id="p-personal">
+            <ul>
+                <li><a href="#">Log in / create account</a></li>
+            </ul>
+        </div>
+        
+        <div id="left-navigation">
+            <div id="p-namespaces" class="vectorTabs">
+                <ul>
+                    <li><a href="/">Main Page</a></li>
+                    <li><a href="#">Discussion</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="right-navigation">
+            <div id="p-views" class="vectorTabs">
+                <ul>
+                    <li class="selected"><a href="#">Read</a></li>
+                    <li><a href="#">View source</a></li>
+                    <li><a href="#">View history</a></li>
+                </ul>
+            </div>
+            <div id="p-search">
+                <h3>Search</h3>
+                <form action="/" method="get">
+                    <input type="text" name="search" placeholder="Search" id="searchInput">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content" class="mw-body">
+    <a id="top"></a>
+    <div id="bodyContent">
+        <div id="contentSub">{% block content_sub %}{% endblock %}</div>
+        
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+<!-- Sidebar -->
+<div id="mw-panel" class="noprint">
+    <div id="p-logo">
+        <a href="/" title="Visit the main page">
+            <img src="{{ url_for('logos', filename='logoModern.png') }}" alt="Wikipedia">
+        </a>
+    </div>
+    
+    <div class="portal" id="p-navigation">
+        <div class="body">
+            <ul>
+                <li><a href="/">Main page</a></li>
+                <li><a href="#">Contents</a></li>
+                <li><a href="#">Featured content</a></li>
+                <li><a href="#">Current events</a></li>
+                <li><a href="/random">Random article</a></li>
+                <li><a href="#">Donate to Wikipedia</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="portal" id="p-interaction">
+        <h3>Interaction</h3>
+        <div class="body">
+            <ul>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">About Wikipedia</a></li>
+                <li><a href="#">Community portal</a></li>
+                <li><a href="#">Recent changes</a></li>
+                <li><a href="#">Contact Wikipedia</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="portal" id="p-tb">
+        <h3>Toolbox</h3>
+        <div class="body">
+            <ul>
+                <li><a href="#">What links here</a></li>
+                <li><a href="#">Related changes</a></li>
+                <li><a href="#">Upload file</a></li>
+                <li><a href="#">Special pages</a></li>
+                <li><a href="#">Permanent link</a></li>
+                <li><a href="#">Page information</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="portal" id="p-printexport">
+        <h3>Print/export</h3>
+        <div class="body">
+            <ul>
+                <li><a href="#">Create a book</a></li>
+                <li><a href="#">Download as PDF</a></li>
+                <li><a href="#">Printable version</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="portal" id="p-lang">
+        <h3>Languages</h3>
+        <div class="body">
+            <ul>
+                <li><a href="#">Deutsch</a></li>
+                <li><a href="#">Español</a></li>
+                <li><a href="#">Français</a></li>
+                <li><a href="#">日本語</a></li>
+                <li><a href="#">Português</a></li>
+                <li><a href="#">Русский</a></li>
+                <li><a href="#">中文</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="visualClear"></div>
+
+<!-- Footer -->
+<div id="footer">
+    <ul id="footer-info">
+        <li>This page was last modified on {% block lastmod %}31 October 2025{% endblock %}.</li>
+        <li>Text is available under the <a href="#">Creative Commons Attribution-ShareAlike License</a>; additional terms may apply.</li>
+    </ul>
+    <ul id="footer-places">
+        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">About Wikipedia</a></li>
+        <li><a href="#">Disclaimers</a></li>
+        <li><a href="#">Contact Wikipedia</a></li>
+        <li><a href="#">Mobile view</a></li>
+    </ul>
+    <ul id="footer-icons">
+        <li><a href="#"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='31'%3E%3Ctext x='5' y='20' font-size='12' fill='%23000'%3EWikimedia%3C/text%3E%3C/svg%3E" alt="Wikimedia Foundation"></a></li>
+        <li><a href="#"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='31'%3E%3Ctext x='5' y='20' font-size='12' fill='%23000'%3EPowered by MediaWiki%3C/text%3E%3C/svg%3E" alt="Powered by MediaWiki"></a></li>
+    </ul>
+</div>
+
+</body>
+</html>

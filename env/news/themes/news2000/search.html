@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - News{% endblock %}
+
+{% block content %}
+<!-- Search Header -->
+<table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr><td>
+<font size="4"><b>Search Results</b></font>
+<br>
+<font size="2" color="#666666">
+{% if query %}
+Search for: "<b>{{ query }}</b>" - Found {{ total_results if total_results is defined else results|length }} result{% if (total_results if total_results is defined else results|length) != 1 %}s{% endif %}
+{% else %}
+Enter a search term to find articles
+{% endif %}
+</font>
+</td></tr>
+</table>
+
+<br>
+
+{% if query %}
+    {% if results %}
+    <!-- Search Results -->
+    {% for result in results %}
+    <table width="100%" border="0" cellpadding="5" cellspacing="0">
+    <tr><td>
+    <font size="2">
+    <a {% if result.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ result.title|article_url }}" style="color: #003366; text-decoration: underline;">{{ result.title }}</a>
+    {% if result.date %}
+    <br><font size="1" color="#666666">{{ result.date }}</font>
+    {% endif %}
+    </font>
+    </td></tr>
+    </table>
+    {% if not loop.last %}
+    <hr size="1" color="#cccccc">
+    {% endif %}
+    {% endfor %}
+    
+    <!-- Pagination -->
+    {% if total_pages is defined and total_pages > 1 %}
+    <br><br>
+    <table width="100%" border="0" cellpadding="5" cellspacing="0">
+    <tr><td style="text-align: center;">
+    <font size="2">
+    
+    <!-- Previous link -->
+    {% if page > 1 %}
+    <a href="/search?q={{ query }}&page={{ page - 1 }}" style="color: #000099; text-decoration: underline;">[Previous]</a>
+    {% else %}
+    <span style="color: #999999;">[Previous]</span>
+    {% endif %}
+    
+    &nbsp;&nbsp;
+    
+    <!-- Page numbers as boxes -->
+    {% set start_page = [1, page - 4]|max %}
+    {% set end_page = [total_pages, page + 4]|min %}
+    
+    {% for p in range(start_page, end_page + 1) %}
+        {% if p == page %}
+        <span style="background-color: #000099; color: #FFFFFF; padding: 2px 6px; margin: 0 1px; border: 1px solid #000099;">[{{ p }}]</span>
+        {% else %}
+        <a href="/search?q={{ query }}&page={{ p }}" style="color: #000099; text-decoration: none; border: 1px solid #000099; padding: 2px 6px; margin: 0 1px; background-color: #FFFFFF;">[{{ p }}]</a>
+        {% endif %}
+    {% endfor %}
+    
+    {% if end_page < total_pages %}
+    <span style="padding: 0 3px;">...</span>
+    <a href="/search?q={{ query }}&page={{ total_pages }}" style="color: #000099; text-decoration: none; border: 1px solid #000099; padding: 2px 6px; margin: 0 1px; background-color: #FFFFFF;">[{{ total_pages }}]</a>
+    {% endif %}
+    
+    &nbsp;&nbsp;
+    
+    <!-- Next link -->
+    {% if page < total_pages %}
+    <a href="/search?q={{ query }}&page={{ page + 1 }}" style="color: #000099; text-decoration: underline;">[Next]</a>
+    {% else %}
+    <span style="color: #999999;">[Next]</span>
+    {% endif %}
+    
+    </font>
+    </td></tr>
+    </table>
+    {% endif %}
+    
+    {% else %}
+    <!-- No Results -->
+    <table width="100%" border="0" cellpadding="5" cellspacing="0">
+    <tr><td>
+    <font size="2">No results found for "<b>{{ query }}</b>"</font>
+    <br><br>
+    <font size="2">Try a different search term or browse <a href="/browse">all articles</a>.</font>
+    </td></tr>
+    </table>
+    {% endif %}
+{% else %}
+<!-- Empty Search -->
+<table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr><td>
+<font size="2">Please enter a search term to find articles.</font>
+</td></tr>
+</table>
+{% endif %}
+
+{% endblock %}
+
