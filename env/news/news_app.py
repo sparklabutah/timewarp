@@ -24,23 +24,30 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 def _parse_args(argv):
     """Parse CLI args for theme selection and optional port override."""
     num_to_theme = {
-        '1': 'news2000',
-        '2': 'news2004',
-        '3': 'news2008',
-        '4': 'news2016',
-        '5': 'news2025',
-        '6': 'classic',
+        '1': '1-2000s',
+        '2': '2-2004s',
+        '3': '3-2008s',
+        '4': '4-2016s',
+        '5': '5-2024s',
+        '6': '6-base-minimal',
     }
     name_aliases = {
-        'classic': 'classic',
-        'news2000': 'news2000',
-        'news2004': 'news2004',
-        'news2008': 'news2008',
-        'news2016': 'news2016',
-        'news2025': 'news2025',
+        'minimal': '6-base-minimal',
+        'base': '6-base-minimal',
+        'classic': '6-base-minimal',
+        '2000': '1-2000s',
+        '2000s': '1-2000s',
+        '2004': '2-2004s',
+        '2004s': '2-2004s',
+        '2008': '3-2008s',
+        '2008s': '3-2008s',
+        '2016': '4-2016s',
+        '2016s': '4-2016s',
+        '2024': '5-2024s',
+        '2024s': '5-2024s',
         'all': 'all',
     }
-    selected_theme = 'classic'
+    selected_theme = '6-base-minimal'
     port_override = None
     run_all = False
     for raw in argv[1:]:
@@ -68,8 +75,8 @@ print(f"Using theme: {THEME}")
 
 # Initialize Flask with theme-specific paths
 app = Flask(__name__,
-            template_folder=os.path.join(SCRIPT_DIR, 'themes', THEME, 'templates'),
-            static_folder=os.path.join(SCRIPT_DIR, 'themes', THEME, 'static'))
+            template_folder=os.path.join(SCRIPT_DIR, 'themes', THEME),
+            static_folder=os.path.join(SCRIPT_DIR, 'themes', THEME))
 
 # Custom Jinja2 filters
 def article_url_filter(title):

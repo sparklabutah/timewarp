@@ -18,26 +18,26 @@ def _parse_args(argv):
     num_to_theme = {
         '1': '1-2column-splitscreen-dark',
         '2': '2-blocks-cards-light',
-        '3': '3-classic-scroll-F-shape-dark',
+        '3': '3-modern-retro-dark',
         '4': '4-interactive-dark',
         '5': '5-magazine-light',
-        '6': '6-modern-retro-dark',
+        '6': '6-classic-scroll-F-shape-dark',
     }
     name_aliases = {
         '2column': '1-2column-splitscreen-dark',
         'splitscreen': '1-2column-splitscreen-dark',
         'blocks': '2-blocks-cards-light',
         'cards': '2-blocks-cards-light',
-        'classic': '3-classic-scroll-F-shape-dark',
-        'scroll': '3-classic-scroll-F-shape-dark',
+        'modern-retro': '3-modern-retro-dark',
+        'modernretro': '3-modern-retro-dark',
+        'retro': '3-modern-retro-dark',
         'interactive': '4-interactive-dark',
         'magazine': '5-magazine-light',
-        'modern-retro': '6-modern-retro-dark',
-        'modernretro': '6-modern-retro-dark',
-        'retro': '6-modern-retro-dark',
+        'classic': '6-classic-scroll-F-shape-dark',
+        'scroll': '6-classic-scroll-F-shape-dark',
         'all': 'all',
     }
-    selected_theme = '3-classic-scroll-F-shape-dark'
+    selected_theme = '6-classic-scroll-F-shape-dark'
     port_override = None
     run_all = False
     for raw in argv[1:]:
