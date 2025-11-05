@@ -93,7 +93,7 @@ LOGOS_DIR = os.path.join(SCRIPT_DIR, 'logos')
 
 # Optional: Limit number of articles for testing (set to None for all)
 # TESTING: Set to 1000 for quick testing, None for full indexing
-MAX_ARTICLES = 10000  # Change to 1000 for testing!
+MAX_ARTICLES = None  # Change to 1000 for testing!
 
 # Global index of articles (stores pre-parsed HTML for instant serving!)
 article_index = {}
