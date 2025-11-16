@@ -423,6 +423,13 @@ def parse_xml_dump():
                     
                     # Only index main namespace articles (ns=0)
                     if namespace == '0' and title and len(text) > 0:
+                        # SKIP REDIRECT PAGES
+                        # Redirects start with #REDIRECT [[Target]] or #redirect [[Target]]
+                        if text.strip().upper().startswith('#REDIRECT'):
+                            # Skip this page - it's a redirect, not actual content
+                            elem.clear()
+                            continue
+                        
                         # PRE-PARSE: Convert wikitext to HTML now!
                         html_content = parse_and_clean_wikitext(text)
                         
@@ -506,7 +513,9 @@ def index():
         
         if article_data:
             # Article found, redirect to article page
-            return redirect(url_for('article', title=article_data['title']))
+            # Convert spaces to underscores for URL (Wikipedia convention)
+            url_title = article_data['title'].replace(' ', '_')
+            return redirect(url_for('article', title=url_title))
         else:
             # Article not found, show search results/404 page
             return render_template('404.html', query=search_query, title=search_query), 404
@@ -521,8 +530,13 @@ def article(title):
     Display a Wikipedia article
     Uses pre-parsed HTML from index - INSTANT serving!
     """
+    # URL decode and normalize: replace underscores with spaces (Wikipedia convention)
+    from urllib.parse import unquote
+    title = unquote(title)  # Handle URL encoding like %20
+    title_normalized = title.replace('_', ' ')  # Replace underscores with spaces
+    
     # Look up article in index (case-insensitive)
-    article_data = article_index.get(title.lower())
+    article_data = article_index.get(title_normalized.lower())
     
     if not article_data:
         return render_template('404.html', query=title, title=title), 404
@@ -530,6 +544,7 @@ def article(title):
     # Return pre-parsed HTML directly - no parsing needed!
     overview_links = build_overview_links(article_data['html'])
     first_paragraph_html, remainder_html = split_first_paragraph(article_data['html'])
+    
     return render_template('article.html', 
                          title=article_data['title'],
                          content=article_data['html'],
@@ -567,8 +582,10 @@ def random_article():
     if article_index:
         random_key = random.choice(list(article_index.keys()))
         title = article_index[random_key]['title']
+        # Convert spaces to underscores for URL (Wikipedia convention)
+        url_title = title.replace(' ', '_')
         # Redirect to the random article page
-        return redirect(url_for('article', title=title))
+        return redirect(url_for('article', title=url_title))
     # If no articles, redirect to home
     return redirect(url_for('index'))
 

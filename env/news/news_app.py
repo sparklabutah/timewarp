@@ -552,16 +552,11 @@ def search():
     for key, data in article_index.items():
         title = data.get('title', '')
         title_lower = title.lower()
-        html_content = data.get('html', '')
-        
-        # Extract plain text from HTML for searching
-        content_text = strip_html(html_content).lower()
-        
         # Get categories
         categories = data.get('categories', [])
         categories_text = ' '.join([cat.lower() for cat in categories])
         
-        # Calculate relevance score
+        # Calculate relevance score (TITLE AND CATEGORY ONLY - faster search)
         score = 0
         matches = []
         
@@ -585,17 +580,6 @@ def search():
             if category_word_matches > 0:
                 score += category_word_matches * 20  # Each word match in categories
                 matches.append(f'category ({category_word_matches} words)')
-        
-        # Content matches (lower priority)
-        if query_lower in content_text:
-            score += 10  # Exact phrase in content
-            matches.append('content')
-        else:
-            # Count word matches in content
-            content_word_matches = sum(1 for word in query_words if word in content_text)
-            if content_word_matches > 0:
-                score += content_word_matches * 1  # Each word match in content
-                matches.append(f'content ({content_word_matches} words)')
         
         # Only include if at least one word matched
         if score > 0:

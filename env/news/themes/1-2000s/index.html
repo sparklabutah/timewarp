@@ -55,7 +55,7 @@
 <td width="33%">
 <font size="2"><b>Africa</b></font><br>
 {% for article in recent_articles[3:6] %}
-<font size="2">→ <a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}">{{ article.title[:50] }}...</a></font><br>
+<font size="2">→ <a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}">{{ article.title[:55] }}...</a></font><br>
 {% endfor %}
 </td>
 <td width="33%">
