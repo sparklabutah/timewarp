@@ -1,7 +1,3 @@
-anaconda-anon-usage @ file:///croot/anaconda-anon-usage_1753980460404/work
-anaconda-auth @ file:///croot/anaconda-cloud-auth-split_1747863777058/work
-anaconda-cli-base @ file:///croot/anaconda-cli-base_1741369443553/work
-annotated-types @ file:///work/perseverance-python-buildout/croot/annotated-types_1728386958747/work
 anyio==4.11.0
 archspec @ file:///croot/archspec_1709217642129/work
 argon2-cffi==25.1.0
