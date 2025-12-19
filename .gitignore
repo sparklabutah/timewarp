@@ -1,5 +1,11 @@
 #Ignore the references 
 references/
+my_agent_task_trace/
+trajectories/
+
+output_json.csv
+output.csv
+
 
 *.xml
 *.pkl
