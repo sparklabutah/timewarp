@@ -1,0 +1,297 @@
+/* Wikipedia 2002 Phase II Theme */
+/* Uses table-based layout, absolutely positioned sidebar */
+/* Period-appropriate CSS for late 2001/early 2002 */
+
+body { 
+    margin: 0px; 
+    padding: 4px; 
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Links */
+a {
+    color: #0000EE;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #551A8B;
+}
+
+a:active {
+    color: #FF0000;
+}
+
+a.interwiki, a.external { 
+    color: #3366BB; 
+}
+
+a.new { 
+    color: #CC2200; 
+}
+
+a.stub { 
+    color: #772233; 
+    text-decoration: none; 
+}
+
+/* Forms */
+form.inline { 
+    display: inline; 
+}
+
+/* Content container */
+#content { 
+    position: absolute; 
+    top: 0;  
+    margin: 0; 
+    padding: 0; 
+}
+
+/* Top Bar */
+#topbar { 
+    padding: 4px; 
+}
+
+td.top { 
+    border-bottom: 2px solid #000000; 
+}
+
+/* Quickbar (Sidebar) */
+#quickbar { 
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 140px; 
+    padding: 4px; 
+    border-right: 2px solid #000000;
+    z-index: 99; 
+}
+
+#quickbar img.logo-2002 {
+    width: 135px;
+    height: auto;
+    display: block;
+    margin: 4px auto 8px auto;
+}
+
+#quickbar a {
+    color: #0000EE;
+}
+
+#quickbar a.new {
+    color: #CC2200;
+}
+
+#quickbar hr {
+    border: 0;
+    border-top: 1px solid #000000;
+    margin: 8px 0;
+}
+
+/* Article */
+#article { 
+    margin-left: 152px;
+    margin-right: 4px;
+    padding: 4px; 
+}
+
+/* Page Title */
+h1.pagetitle {
+    padding-top: 0; 
+    margin-top: 0; 
+    padding-bottom: 0; 
+    margin-bottom: 0;
+    font-size: 24pt;
+    font-weight: bold;
+}
+
+p.subtitle { 
+    padding-top: 0; 
+    margin-top: 0;
+    font-size: 10pt;
+    font-style: italic;
+    color: #666666;
+}
+
+/* Section headings */
+h2 { 
+    font-size: 18pt;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+h3 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+h4, h5, h6 { 
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+
+/* Paragraphs and lists */
+p {
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+ul, ol {
+    margin: 8px 0 8px 25px;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 4px;
+}
+
+/* Definition lists for categories */
+dl {
+    margin: 0;
+    padding: 0;
+}
+
+dd {
+    margin-left: 18px;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+/* Footer */
+#footer { 
+    padding: 4px; 
+}
+
+td.bottom { 
+    border-top: 2px solid #000000; 
+}
+
+#pagestats {
+    font-size: 9pt;
+    color: #666666;
+    font-style: italic;
+}
+
+/* Horizontal rules */
+hr {
+    border: 0;
+    border-top: 1px solid #aaaaaa;
+    margin: 10px 0;
+}
+
+/* Content boxes */
+.overview-box {
+    margin-bottom: 10px;
+}
+
+.overview-text {
+    line-height: 1.5;
+}
+
+/* Forms and inputs */
+input[type="text"] {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10pt;
+    border: 1px solid #000000;
+    padding: 2px;
+}
+
+input[type="submit"] {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10pt;
+    border: 1px outset #cccccc;
+    background-color: #dddddd;
+    padding: 1px 6px;
+    cursor: pointer;
+}
+
+input[type="submit"]:active {
+    border-style: inset;
+}
+
+select {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10pt;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+}
+
+/* Indentation helper for main page sections */
+.indent-2tab {
+    margin-left: 2em;
+}
+
+/* Current events box */
+.current-events {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+/* Table of Contents - 2002 style */
+.toc {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 8px 0 12px 0;
+    font-size: 11pt;
+}
+
+.toc-title {
+    font-weight: bold;
+    font-size: 11pt;
+    margin-bottom: 4px;
+}
+
+.toc-toggle {
+    font-size: 10pt;
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+.toc-toggle a {
+    color: #0000EE;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.toc-list {
+    margin: 4px 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.toc-list li {
+    margin: 2px 0;
+}
+
+.toc-list a {
+    text-decoration: none;
+}
+
+.toc-list a:hover {
+    text-decoration: underline;
+}
+
+.toc-level-1 { margin-left: 0; }
+.toc-level-2 { margin-left: 15px; }
+.toc-level-3 { margin-left: 30px; }
+
+/* Emphasis */
+em {
+    font-style: italic;
+}
+
+strong {
+    font-weight: bold;
+}
+
+/* No responsive design - keep it authentic to 2002 */

@@ -1,0 +1,640 @@
+/* 1990s/2000 Amazon.com Styling - Period-Appropriate */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FFFFFF;
+    color: #000000;
+    line-height: 1.3;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 980px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+/* Top Utility Bar */
+.top-utility {
+    background: #FFFFFF;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 4px 0;
+    font-size: 10px;
+}
+
+.top-utility a {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.top-utility a:hover {
+    color: #0066CC;
+}
+
+/* Primary Navigation - Dark Blue */
+.nav-primary {
+    background: #003366;
+    color: #FFFFFF;
+    padding: 6px 0;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-primary a,
+.nav-primary .nav-link-btn {
+    color: #FFFFFF;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0 8px;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.nav-primary a:hover,
+.nav-primary .nav-link-btn:hover {
+    text-decoration: underline;
+}
+
+/* Secondary Navigation - Lighter Blue */
+.nav-secondary {
+    background: #336699;
+    color: #FFFFFF;
+    padding: 4px 0;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-secondary a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.nav-secondary a:hover {
+    text-decoration: underline;
+}
+
+/* Main Layout - Three Column with Tables */
+.main-layout {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.sidebar-left {
+    width: 180px;
+    vertical-align: top;
+    padding-right: 15px;
+}
+
+.main-content {
+    vertical-align: top;
+    padding: 0 15px;
+}
+
+.sidebar-right {
+    width: 200px;
+    vertical-align: top;
+    padding-left: 15px;
+}
+
+/* Left Sidebar - Search Box */
+.search-box {
+    background: #C8E6F5;
+    border: 1px solid #000080;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+.search-header {
+    background: #0066CC;
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 5px;
+    margin: -8px -8px 5px -8px;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-box input[type="text"],
+.search-box select {
+    width: 100%;
+    padding: 2px 4px;
+    border: 1px solid #000000;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-go-btn {
+    background: #FF9900;
+    color: #FFFFFF;
+    border: 1px solid #000000;
+    padding: 3px 10px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-go-btn:hover {
+    background: #FFAA00;
+}
+
+/* Browse Section */
+.browse-section {
+    margin-bottom: 15px;
+}
+
+.browse-header {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #000000;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.browse-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.browse-list li {
+    margin-bottom: 8px;
+}
+
+.browse-list ul {
+    list-style: none;
+    padding-left: 15px;
+    margin-top: 3px;
+}
+
+.browse-list a {
+    color: #0066CC;
+    text-decoration: underline;
+}
+
+.browse-list a:hover {
+    color: #CC0000;
+}
+
+/* Sidebar Sections */
+.sidebar-section {
+    margin-bottom: 15px;
+}
+
+.section-header {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #000000;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar-list li {
+    margin-bottom: 3px;
+}
+
+.sidebar-list a {
+    color: #0066CC;
+    text-decoration: underline;
+}
+
+.sidebar-list a:hover {
+    color: #CC0000;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+    background: #FFFFFF;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #CCCCCC;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+/* Instruction Box */
+.instruction-box {
+    background: #FFFFCC;
+    border: 1px solid #CCCC00;
+    padding: 8px;
+    margin-bottom: 12px;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.4;
+}
+
+/* Featured Section */
+.featured-section {
+    margin-bottom: 20px;
+}
+
+.featured-item {
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.featured-header {
+    font-size: 10px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.featured-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #0066CC;
+    margin-bottom: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.featured-link {
+    color: #0066CC;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+.featured-link:hover {
+    color: #CC0000;
+}
+
+/* Right Sidebar Box */
+.sidebar-box {
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 11px;
+}
+
+.box-title {
+    font-size: 11px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box-subtitle {
+    font-size: 10px;
+    font-weight: bold;
+    color: #000000;
+    margin: 6px 0 4px 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar-box ol {
+    padding-left: 18px;
+    margin: 6px 0;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar-box a {
+    color: #0066CC;
+    text-decoration: underline;
+}
+
+.sidebar-box a:hover {
+    color: #CC0000;
+}
+
+/* Results Page */
+.results-list {
+    margin-bottom: 20px;
+}
+
+.result-item {
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.result-img {
+    max-width: 120px;
+    max-height: 120px;
+    border: 1px solid #CCCCCC;
+    background: #F0F0F0;
+}
+
+.result-title {
+    color: #0066CC;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.3;
+}
+
+.result-title:hover {
+    color: #CC0000;
+}
+
+/* Buttons */
+.btn {
+    padding: 3px 10px;
+    border: 2px outset #CCCCCC;
+    background: #CCCCCC;
+    color: #000000;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn:active {
+    border-style: inset;
+}
+
+.btn:hover {
+    background: #AAAAAA;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.page-btn {
+    padding: 3px 8px;
+    background: #CCCCCC;
+    color: #000000;
+    border: 1px solid #000000;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 3px;
+}
+
+.page-btn:hover {
+    background: #AAAAAA;
+}
+
+.page-info {
+    margin: 0 10px;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Footer */
+.footer {
+    background: #F0F0F0;
+    border-top: 2px solid #000080;
+    padding: 12px 0;
+    margin-top: 25px;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer a {
+    color: #0066CC;
+    text-decoration: underline;
+}
+
+.footer a:hover {
+    color: #CC0000;
+}
+
+/* Links */
+a {
+    color: #0066CC;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #CC0000;
+}
+
+/* Product Page Specific */
+.product-details {
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.product-main-img {
+    max-width: 200px;
+    max-height: 300px;
+    border: 1px solid #CCCCCC;
+    background: #F0F0F0;
+}
+
+.btn-purchase {
+    padding: 8px 25px;
+    background: #FF9900;
+    color: #000000;
+    border: 2px outset #FF9900;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-purchase:active {
+    border-style: inset;
+}
+
+.btn-purchase:hover {
+    background: #FFAA00;
+}
+
+/* Radio Toolbar */
+.radio-toolbar {
+    margin: 5px 0;
+}
+
+.radio-toolbar label {
+    background-color: #F5F5F5;
+    padding: 8px 12px;
+    font-size: 12px;
+    border: 1px solid #444444;
+    margin-right: 5px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.radio-toolbar label:hover {
+    background-color: #FFF7D7;
+}
+
+/* Star Ratings */
+.star-active {
+    color: #FF9900;
+    margin: 0 2px;
+}
+
+.star-inactive {
+    color: #CCCCCC;
+    margin: 0 2px;
+}
+
+/* Instruction Text */
+#instruction-text {
+    background: #FFFFFF;
+    border: 2px solid #797474;
+    padding: 8px 12px;
+    margin: 15px 0;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#instruction-text h4 {
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    color: #000000;
+}
+
+/* Thank You Page */
+#thankyou {
+    color: #000000;
+    width: 100%;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding-bottom: 15px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+#stats {
+    background: white;
+    padding: 15px;
+    border: 1px solid #CCCCCC;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#stats h3 {
+    color: #000000;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+#stats pre {
+    background: #F5F5F5;
+    padding: 12px;
+    border: 1px solid #CCCCCC;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000000;
+    margin: 8px 0;
+    font-family: Arial, monospace;
+    text-align: center;
+}
+
+/* Product Info */
+.product-info {
+    font-size: 14px;
+    color: #000000;
+    line-height: 1.5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.product-title {
+    font-size: 13px;
+    font-weight: normal;
+    color: #0066CC;
+    text-decoration: underline;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.product-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    margin: 5px 0;
+}
+
+.product-asin {
+    font-size: 10px;
+    color: #666666;
+    margin-bottom: 3px;
+}
+
+/* List Items */
+.list-group-item {
+    background: white;
+    border: 1px solid #CCCCCC;
+    margin-bottom: 8px;
+    padding: 10px;
+}
+
+.list-group-item:hover {
+    border-color: #999999;
+    background: #FAFAFA;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border: 1px solid #CCCCCC;
+    padding: 12px;
+    margin: 10px 0;
+}
+
+.card-body {
+    padding: 0;
+}
+
+/* Utility */
+pre {
+    white-space: pre-line;
+    font-family: Arial, monospace;
+    font-size: 12px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-gray {
+    color: #AAAAAA;
+}
+
+.top-buffer {
+    margin-top: 10px;
+}
+
+.blue-text {
+    color: #0066CC;
+}

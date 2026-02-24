@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Complete - WebShop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <div class="announcement-bar"><marquee>🎉 Thank you for your purchase! | Check your email for order confirmation 🎉</marquee></div>
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div id="logo"><h1>🛒 WebShop</h1><span class="tagline">Your Ultimate Shopping Destination</span></div>
+            </div>
+        </div>
+    </header>
+    <div class="container" style="margin: 60px auto;">
+        <div class="row"><div class="col-md-8 col-md-offset-2">
+            <div id="thankyou" class="text-center">
+                <div style="font-size: 80px; margin-bottom: 20px;">🎉</div>
+                <h1>Thank You for Shopping!</h1>
+                <p style="font-size: 18px; color: rgba(255,255,255,0.9); margin-top: 20px;">Your order has been successfully completed!</p>
+            </div>
+            <div id="stats" class="text-center">
+                <h3 style="font-weight: 600;"><i class="glyphicon glyphicon-barcode"></i> Your Completion Code</h3>
+                <div class="code-box">{{ mturk_code }}</div>
+                <div style="display:none">
+                    <h2>Purchased</h2>
+                    <h4>asin<pre>{{ asin }}</pre></h4>
+                    <h4>options<pre>{{ options | tojson }}</pre></h4>
+                    <h4>attrs<pre>{{ purchased_attrs }}</pre></h4>
+                    <h4>category<pre>{{ category }}</pre></h4>
+                    <h4>query<pre>{{ query }}</pre></h4>
+                    <h4>product_category<pre>{{ product_category }}</pre></h4>
+                    <h4>goal_attrs<pre>{{ goal_attrs }}</pre></h4>
+                </div>
+            </div>
+        </div></div>
+    </div>
+    <footer class="main-footer"><div class="container"><div class="footer-top"><div class="footer-column"><h3>About WebShop</h3><p>Your AI-powered shopping assistant.</p></div><div class="footer-column"><h3>Customer Service</h3><ul><li><a href="#">Help Center</a></li><li><a href="#">Returns</a></li></ul></div></div><div class="footer-bottom"><p class="copyright">© 2024 WebShop. All Rights Reserved.</p></div></div></footer>
+    <div class="floating-buttons"><button class="fab" title="Help">💬</button></div>
+</body>
+</html>

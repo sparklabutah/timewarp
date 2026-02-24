@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{product_info.Title}} - WebShop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <marquee>🎉 SPECIAL OFFER! Free Shipping on Orders Over $50 | New Products Daily | AI-Powered Product Search | Best Deals Guaranteed 🎉</marquee>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div id="logo">
+                    <a href="{{url_for('index', session_id=session_id)}}" style="text-decoration: none; color: inherit;">
+                        <h1>🛒 WebShop</h1>
+                        <span class="tagline">Your Ultimate Shopping Destination</span>
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: flex; width: 100%;">
+                        <input class="form-control" type="text" name="search_query" placeholder="Search for products, brands, and more..." />
+                    </form>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn">👤 Account</button>
+                    <button class="header-btn">❤️ Wishlist</button>
+                    <button class="header-btn">🛒 Cart</button>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 20px; font-size: 14px; font-family: inherit;">🏠 Home</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="deals">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 20px; font-size: 14px; font-family: inherit;">🔥 Hot Deals</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="fashion">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 20px; font-size: 14px; font-family: inherit;">👕 Fashion</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="electronics">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 20px; font-size: 14px; font-family: inherit;">💻 Electronics</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="home">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 20px; font-size: 14px; font-family: inherit;">🏠 Home & Garden</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="sports">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 20px; font-size: 14px; font-family: inherit;">⚽ Sports</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="toys">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 20px; font-size: 14px; font-family: inherit;">🎮 Toys & Games</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="books">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 20px; font-size: 14px; font-family: inherit;">📚 Books</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="arts">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 20px; font-size: 14px; font-family: inherit;">🎨 Arts & Crafts</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="automotive">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 20px; font-size: 14px; font-family: inherit;">🚗 Automotive</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="beauty">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 20px; font-size: 14px; font-family: inherit;">💄 Beauty</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Product Details -->
+    <div class="container" style="margin-bottom: 40px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="padding: 25px;">
+                    <div class="row">
+                        <!-- Product Image and Options -->
+                        <div class="col-md-4">
+                            <div style="position: sticky; top: 100px;">
+                                <div style="text-align: center; margin-bottom: 25px; background: #f9f9f9; padding: 20px; border-radius: 10px;">
+                                    <img id="product-image" src="{{product_info.MainImage}}" class="item-page-img" alt="{{product_info.Title}}" style="max-width: 100%; border-radius: 8px;">
+                                </div>
+                                
+                                <!-- Product Options -->
+                                {% for option_name, option_contents in product_info.options.items() %}
+                                <div style="margin-bottom: 20px;">
+                                    <h4 style="color: #667eea; font-size: 15px; font-weight: 600; margin-bottom: 10px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">
+                                        <i class="glyphicon glyphicon-tag"></i> {{ option_name }}
+                                    </h4>
+                                    <div class="radio-toolbar">
+                                        {% for option_content in option_contents %}
+                                        {% set current_options = options.copy() %}
+                                        {% set _ = current_options.update({option_name: option_content}) %}
+                                        {% set url = url_for('item_page', session_id=session_id, asin=asin, keywords=keywords, page=page, options=current_options) %}
+                                        <input type="radio" id="radio_{{ option_name }}{{ loop.index0 }}" name="{{ option_name }}" value="{{ option_content }}" data-url="{{ url }}">
+                                        <label for="radio_{{ option_name }}{{ loop.index0 }}">{{ option_content }}</label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <!-- Buy Button - Prominent -->
+                                <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%); border-radius: 10px; text-align: center;">
+                                    <form method="post" action="{{url_for('done', session_id=session_id, asin=asin, options=options )}}">
+                                        <button type="submit" class="btn btn-lg purchase" style="width: 100%; font-size: 20px;">
+                                            <i class="glyphicon glyphicon-shopping-cart"></i> BUY NOW
+                                        </button>
+                                    </form>
+                                    <p style="color: white; font-size: 12px; margin: 10px 0 0 0;">
+                                        <i class="glyphicon glyphicon-ok-circle"></i> 100% Secure Checkout
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Information -->
+                        <div class="col-md-8">
+                            <div style="border-left: 3px solid #667eea; padding-left: 20px;">
+                                <h1 style="color: #333; font-size: 26px; font-weight: 700; margin: 0 0 15px 0; line-height: 1.3;">
+                                    {{product_info.Title}}
+                                </h1>
+                                
+                                <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                                        <div>
+                                            <h2 class="product-price" style="font-size: 36px; margin: 0; color: #667eea;">
+                                                {{product_info.Price}}
+                                            </h2>
+                                        </div>
+                                        <div style="text-align: right;">
+                                            <p style="color: #ffc107; font-size: 18px; margin: 0;">
+                                                <i class="glyphicon glyphicon-star" style="color: #ffc107;"></i> 
+                                                <strong>{{product_info.Rating}}</strong>
+                                            </p>
+                                            <p style="color: #888; font-size: 12px; margin: 5px 0 0 0;">Customer Rating</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Quick Info -->
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px;">
+                                    <div style="background: white; border: 2px solid #00b894; padding: 15px; border-radius: 8px; text-align: center;">
+                                        <div style="font-size: 24px; margin-bottom: 5px;">🚚</div>
+                                        <div style="font-size: 12px; font-weight: 600; color: #00b894;">FREE SHIPPING</div>
+                                    </div>
+                                    <div style="background: white; border: 2px solid #667eea; padding: 15px; border-radius: 8px; text-align: center;">
+                                        <div style="font-size: 24px; margin-bottom: 5px;">✓</div>
+                                        <div style="font-size: 12px; font-weight: 600; color: #667eea;">IN STOCK</div>
+                                    </div>
+                                    <div style="background: white; border: 2px solid #ffa726; padding: 15px; border-radius: 8px; text-align: center;">
+                                        <div style="font-size: 24px; margin-bottom: 5px;">🔒</div>
+                                        <div style="font-size: 12px; font-weight: 600; color: #ffa726;">SECURE</div>
+                                    </div>
+                                </div>
+
+                                <!-- Product Information Tabs -->
+                                <div style="margin-bottom: 20px;">
+                                    <h3 style="color: #667eea; font-size: 18px; font-weight: 600; margin-bottom: 15px; border-bottom: 3px solid #667eea; padding-bottom: 10px;">
+                                        <i class="glyphicon glyphicon-info-sign"></i> Product Details
+                                    </h3>
+                                    <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                                        <button class="btn btn-primary product-tab-btn active" data-tab="description" style="flex: 1; min-width: 120px; margin: 0;">
+                                            <i class="glyphicon glyphicon-file"></i> Description
+                                        </button>
+                                        <button class="btn btn-primary product-tab-btn" data-tab="features" style="flex: 1; min-width: 120px; margin: 0;">
+                                            <i class="glyphicon glyphicon-list-alt"></i> Features
+                                        </button>
+                                        <button class="btn btn-primary product-tab-btn" data-tab="reviews" style="flex: 1; min-width: 120px; margin: 0;">
+                                            <i class="glyphicon glyphicon-comment"></i> Reviews
+                                        </button>
+                                        {% if show_attrs %}
+                                        <button class="btn btn-primary product-tab-btn" data-tab="attributes" style="flex: 1; min-width: 120px; margin: 0;">
+                                            <i class="glyphicon glyphicon-tags"></i> Attributes
+                                        </button>
+                                        {% endif %}
+                                    </div>
+
+                                    <!-- Tab Content Sections -->
+                                    <div id="tab-description" class="product-tab-content active" style="display: block;">
+                                        <div class="card" style="padding: 25px; background: #f9f9f9; border-radius: 10px;">
+                                            <h4 style="color: #667eea; margin-bottom: 15px;">
+                                                <i class="glyphicon glyphicon-file"></i> Product Description
+                                            </h4>
+                                            <div class="product-info" style="line-height: 1.8; font-size: 16px; color: #555;">
+                                                {{product_info.Description}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="tab-features" class="product-tab-content" style="display: none;">
+                                        <div class="card" style="padding: 25px; background: #f9f9f9; border-radius: 10px;">
+                                            <h4 style="color: #667eea; margin-bottom: 15px;">
+                                                <i class="glyphicon glyphicon-list-alt"></i> Product Features
+                                            </h4>
+                                            <ul style="list-style: none; padding: 0;">
+                                                {% for bulletpoint in product_info.BulletPoints %}
+                                                <li style="padding: 12px 0; border-bottom: 1px solid #e0e0e0; line-height: 1.6;">
+                                                    <i class="glyphicon glyphicon-ok" style="color: #00b894; margin-right: 10px;"></i>
+                                                    <span class="product-info" style="font-size: 16px; color: #555;">{{bulletpoint | safe}}</span>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div id="tab-reviews" class="product-tab-content" style="display: none;">
+                                        <div class="card" style="padding: 25px; background: #f9f9f9; border-radius: 10px;">
+                                            <h4 style="color: #667eea; margin-bottom: 15px;">
+                                                <i class="glyphicon glyphicon-comment"></i> Customer Reviews
+                                            </h4>
+                                            <div style="display: flex; flex-direction: column; gap: 20px;">
+                                                {% if product_info.Reviews %}
+                                                    {% for review in product_info.Reviews %}
+                                                    <div style="background: white; border-radius: 10px; padding: 20px; border-left: 4px solid #667eea;">
+                                                        <h5 style="color: #333; font-size: 18px; font-weight: 600; margin: 0 0 10px 0;">"{{review.title if review.title else 'Review'}}"</h5>
+                                                        <div style="margin: 10px 0;">
+                                                            <span style="font-weight: 600; color: #667eea; margin-right: 10px;">{{review.score}}/5</span>
+                                                            {% for i in range(review.score | int) %}
+                                                            <span class="fa fa-star" style="color: #ffc107;"></span>
+                                                            {% endfor %}
+                                                            {% for i in range(5 - (review.score | int)) %}
+                                                            <span class="fa fa-star" style="color: #e0e0e0;"></span>
+                                                            {% endfor %}
+                                                        </div>
+                                                        <p style="color: #555; line-height: 1.6; margin: 10px 0 0 0;">{{review.body if review.body else 'No review text available.'}}</p>
+                                                    </div>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <div style="text-align: center; padding: 40px; color: #888;">
+                                                        <i class="glyphicon glyphicon-comment" style="font-size: 48px; margin-bottom: 15px; opacity: 0.3;"></i>
+                                                        <p style="font-size: 16px;">No reviews available for this product.</p>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% if show_attrs %}
+                                    <div id="tab-attributes" class="product-tab-content" style="display: none;">
+                                        <div class="card" style="padding: 25px; background: #f9f9f9; border-radius: 10px;">
+                                            <h4 style="color: #667eea; margin-bottom: 15px;">
+                                                <i class="glyphicon glyphicon-tags"></i> Product Attributes
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <ul style="list-style: none; padding: 0;">
+                                                        {% for attribute in product_info.Attributes %}
+                                                        <li style="padding: 10px 0; border-bottom: 1px solid #e0e0e0; line-height: 1.6;">
+                                                            <i class="glyphicon glyphicon-tag" style="color: #667eea; margin-right: 8px;"></i>
+                                                            <span style="font-size: 14px; color: #555;">{{attribute}}</span>
+                                                        </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div style="background: white; border-radius: 10px; padding: 20px;">
+                                                        <h5 style="color: #667eea; font-size: 16px; margin-bottom: 15px;">
+                                                            <i class="glyphicon glyphicon-info-sign"></i> Product Info
+                                                        </h5>
+                                                        <div style="margin-bottom: 10px;">
+                                                            <strong style="color: #333;">Category:</strong> 
+                                                            <span style="color: #555;">{{product_info.category}}</span>
+                                                        </div>
+                                                        <div style="margin-bottom: 10px;">
+                                                            <strong style="color: #333;">Query:</strong> 
+                                                            <span style="color: #555;">{{product_info.query}}</span>
+                                                        </div>
+                                                        <div style="margin-bottom: 10px;">
+                                                            <strong style="color: #333;">Product Category:</strong> 
+                                                            <span style="color: #555;">{{product_info.product_category}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                <!-- Trust Badges -->
+                                <div style="background: #f0f8ff; border: 2px dashed #667eea; padding: 20px; border-radius: 10px; margin-top: 25px;">
+                                    <h4 style="color: #667eea; font-size: 16px; font-weight: 600; margin-bottom: 15px;">
+                                        ✓ Why Shop With Us
+                                    </h4>
+                                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 14px;">
+                                        <div>✓ Secure Payment Processing</div>
+                                        <div>✓ Fast & Free Shipping</div>
+                                        <div>✓ Easy Returns Policy</div>
+                                        <div>✓ 24/7 Customer Support</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="copyright">© 2024 WebShop. All Rights Reserved. | Powered by AI</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <button class="fab" title="Help">💬</button>
+        <button class="fab" title="Back to Top">⬆️</button>
+    </div>
+    
+    <!-- Spin-the-Wheel Popup -->
+    <div id="twOverlay" class="tw-popup-overlay">
+        <div class="tw-popup">
+            <button id="twClose" class="tw-popup-close" aria-label="Close">✕</button>
+            <img id="twImage" src="/site_assets/spinning.gif" alt="Spin the Wheel" onerror="this.onerror=null;this.src='/assets/diagram.gif'">
+        </div>
+    </div>
+
+</body>
+<script>
+    (function() {
+        try {
+            var ACTIONS_KEY = 'tw_action_count';
+            var OPEN_KEY = 'tw_popup_open';
+            var overlay = document.getElementById('twOverlay');
+            var closeBtn = document.getElementById('twClose');
+
+            function getInt(key) {
+                var v = parseInt(localStorage.getItem(key) || '0', 10);
+                return isNaN(v) ? 0 : v;
+            }
+
+            function showPopup() {
+                if (!overlay) return;
+                overlay.style.display = 'flex';
+                localStorage.setItem(OPEN_KEY, '1');
+            }
+
+            function hidePopup() {
+                if (!overlay) return;
+                overlay.style.display = 'none';
+                localStorage.setItem(OPEN_KEY, '0');
+                localStorage.setItem(ACTIONS_KEY, '0');
+            }
+
+            // Restore popup if it was open
+            if (localStorage.getItem(OPEN_KEY) === '1') {
+                showPopup();
+            }
+
+            // Block clicks on the overlay background (modal behavior - cannot interact with page behind)
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    // Block all clicks on overlay - only close button can dismiss
+                    if (e.target === overlay) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                }, true);
+                // Also prevent any interaction from reaching elements below
+                overlay.addEventListener('mousedown', function(e) {
+                    if (e.target === overlay) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                }, true);
+            }
+
+            // Increment action count and check if popup should show
+            function incrementAction() {
+                var c = getInt(ACTIONS_KEY) + 1;
+                localStorage.setItem(ACTIONS_KEY, String(c));
+                if (c % 5 === 0 && localStorage.getItem(OPEN_KEY) !== '1') {
+                    showPopup();
+                }
+            }
+
+            // Track clicks on interactive elements
+            var lastClickIncrement = 0;
+            document.addEventListener('click', function(e) {
+                // Don't count if popup is open
+                if (localStorage.getItem(OPEN_KEY) === '1') return;
+
+                var target = e.target;
+                if (!target) return;
+                // Bubble up to check tagName
+                while (target && target.tagName && ['BUTTON', 'A', 'INPUT'].indexOf(target.tagName) === -1) {
+                    target = target.parentElement;
+                }
+                if (target && ['BUTTON', 'A', 'INPUT'].indexOf(target.tagName) !== -1) {
+                    var now = Date.now();
+                    if (now - lastClickIncrement < 250) return; // debounce
+                    lastClickIncrement = now;
+                    incrementAction();
+                }
+            }, true);
+
+            // Track scroll events as actions
+            var lastScrollIncrement = 0;
+            var lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            window.addEventListener('scroll', function() {
+                // Don't count if popup is open
+                if (localStorage.getItem(OPEN_KEY) === '1') return;
+
+                var now = Date.now();
+                var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                var scrollDelta = Math.abs(currentScrollTop - lastScrollTop);
+
+                // Only count significant scrolls (at least 100px) with debounce (500ms)
+                if (scrollDelta > 100 && now - lastScrollIncrement > 500) {
+                    lastScrollIncrement = now;
+                    lastScrollTop = currentScrollTop;
+                    incrementAction();
+                }
+            }, { passive: true });
+
+            // Close button handler
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    hidePopup();
+                });
+            }
+        } catch (err) {
+            // fail-safe: do nothing
+        }
+    })();
+</script>
+<script>
+    $(document).ready(function() {
+        $('input:radio').each(function() {
+            let options = JSON.parse(`{{ options | tojson }}`);
+            let optionValues = $.map(options, function(value, key) { return value });
+            
+            if (optionValues.includes($(this).val())) {
+                $(this).prop('checked', true);
+
+                let option_to_image = JSON.parse(`{{ product_info.option_to_image | tojson }}`);
+                let image_url = option_to_image[$(this).val()];
+
+                if (image_url) {
+                    $("#product-image").attr("src", image_url);
+                }
+            }
+            
+            // Reload with updated options
+            this.addEventListener("click", function() {
+                window.location.href = this.dataset.url;
+            });
+        });
+
+        // Tab switching functionality
+        $('.product-tab-btn').on('click', function() {
+            var tabName = $(this).data('tab');
+            
+            // Remove active class from all buttons and content
+            $('.product-tab-btn').removeClass('active');
+            $('.product-tab-content').hide().removeClass('active');
+            
+            // Add active class to clicked button and show corresponding content
+            $(this).addClass('active');
+            $('#tab-' + tabName).show().addClass('active');
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{% block title %}News - The Free News Source{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#003366" vlink="#660099" alink="#CC0000">
+    <!-- Top white utility bar -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+    <tr>
+        <td valign="middle" style="padding: 2px 5px;">
+            <font size="1" face="Verdana, Arial, Helvetica, sans-serif">
+            <span style="background: #000000; color: #FFFFFF; padding: 1px 3px; font-weight: bold;">NEWS</span>
+            <span style="color: #000000; margin-left: 5px;"><a href="/" style="color: #000000; text-decoration: none;">HOMEPAGE</a> | WORLD SERVICE | EDUCATION</span>
+            </font>
+        </td>
+        <td align="right" valign="middle" style="padding: 2px 5px;">
+            <font size="1" face="Verdana, Arial, Helvetica, sans-serif"><span style="color: #0066CC;">low graphics version | feedback | help</span></font>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Main red header -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#CC0000">
+    <tr>
+        <td valign="middle" style="padding: 5px 10px;">
+            <font size="6" color="#FFFFFF" face="Arial, Helvetica, sans-serif"><b>NEWS</b></font>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Main three-column layout using table -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top">
+        <!-- Left Navigation Column -->
+        <td width="150" bgcolor="#ffffff">
+            <table width="100%" border="0" cellpadding="4" cellspacing="0">
+            <tr><td bgcolor="#e0e0e0"><b><font size="2" face="Verdana, Arial, sans-serif">Front Page</font></b></td></tr>
+            <tr><td><font size="2" face="Verdana, Arial, sans-serif"><a href="/search?q=World">World</a></font></td></tr>
+            <tr><td><font size="2" face="Verdana, Arial, sans-serif"><a href="/search?q=UK">UK</a></font></td></tr>
+            <tr><td><font size="2" face="Verdana, Arial, sans-serif"><a href="/search?q=Business">Business</a></font></td></tr>
+            <tr><td><font size="2" face="Verdana, Arial, sans-serif"><a href="/search?q=Sci/Tech">Sci/Tech</a></font></td></tr>
+            <tr><td><font size="2" face="Verdana, Arial, sans-serif"><a href="/search?q=Health">Health</a></font></td></tr>
+            <tr><td><font size="2" face="Verdana, Arial, sans-serif"><a href="/search?q=Education">Education</a></font></td></tr>
+            <tr><td><font size="2" face="Verdana, Arial, sans-serif"><a href="/search?q=Entertainment">Entertainment</a></font></td></tr>
+            <tr><td height="10"></td></tr>
+            <tr><td bgcolor="#e0e0e0"><b><font size="2" face="Verdana, Arial, sans-serif">In Depth</font></b></td></tr>
+            <tr><td><font size="2" face="Verdana, Arial, sans-serif"><a href="#" id="randomNavLink">Random Article</a></font></td></tr>
+            <tr><td height="10"></td></tr>
+            <tr><td bgcolor="#e0e0e0"><b><font size="2" face="Verdana, Arial, sans-serif">news in other languages</font></b></td></tr>
+            <tr><td><font size="1" face="Verdana, Arial, sans-serif"><a href="#">العربية</a></font></td></tr>
+            <tr><td><font size="1" face="Verdana, Arial, sans-serif"><a href="#">中文</a></font></td></tr>
+            </table>
+        </td>
+
+        <!-- Center Content Column -->
+        <td>
+            <table width="100%" border="0" cellpadding="8" cellspacing="0">
+            <tr><td>
+            {% block content %}{% endblock %}
+            </td></tr>
+            </table>
+        </td>
+
+        <!-- Right Sidebar -->
+        <td width="170" bgcolor="#ffffff">
+            <table width="100%" border="0" cellpadding="4" cellspacing="0">
+            <tr><td bgcolor="#e0e0e0"><b><font size="2" face="Verdana, Arial, sans-serif">Search News Online</font></b></td></tr>
+            <tr><td>
+                <form action="/search" method="get">
+                <input type="text" name="q" size="15" style="width:100%; font-size: 10px; border: 1px solid #999999;">
+                <input type="submit" value="Go" style="font-size: 10px;">
+                </form>
+            </td></tr>
+            <tr><td><font size="1" face="Verdana, Arial, sans-serif"><a href="#">Advanced search options</a></font></td></tr>
+            <tr><td height="10"></td></tr>
+            <tr><td bgcolor="#e0e0e0"><b><font size="2" face="Verdana, Arial, sans-serif">Quick Links</font></b></td></tr>
+            <tr><td><font size="2" face="Verdana, Arial, sans-serif"><a href="/">Front Page</a></font></td></tr>
+            <tr><td><font size="2" face="Verdana, Arial, sans-serif"><a href="/browse">Browse All</a></font></td></tr>
+            <tr><td><font size="2" face="Verdana, Arial, sans-serif"><a href="#" id="sidebarRandom">Random Article</a></font></td></tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Footer -->
+    <table width="100%" border="0" cellpadding="5" cellspacing="0" bgcolor="#EEEEEE" style="border-top: 1px solid #999999; margin-top: 20px;">
+    <tr>
+        <td>
+            <font size="2" face="Verdana, Arial, sans-serif">
+            <span style="background: #CC0000; color: #FFFFFF; padding: 2px 5px; font-weight: bold;">NEWS</span>
+            </font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <font size="2" face="Verdana, Arial, sans-serif">
+            <a href="/">News Front Page</a> | 
+            <a href="/browse">Browse All</a> | 
+            <a href="#" id="footerRandom">Random Article</a>
+            </font>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <font size="1" face="Verdana, Arial, sans-serif"><a href="#top">^^ Back to top</a></font>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <font size="1" face="Verdana, Arial, sans-serif" color="#666666">
+            News - The Free News Source. All content is available under the Creative Commons Attribution 2.5 License.<br>
+            This is a local reader interface using a News XML dump.
+            </font>
+        </td>
+    </tr>
+    </table>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Random article links
+        function setupRandomLinks() {
+            var randomLinks = ['randomNavLink', 'sidebarRandom', 'footerRandom'];
+            for (var i = 0; i < randomLinks.length; i++) {
+                var el = document.getElementById(randomLinks[i]);
+                if (el) {
+                    el.onclick = function(e) {
+                        e.preventDefault();
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', '/random', true);
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                var data = JSON.parse(xhr.responseText);
+                                if (data.title) {
+                                    window.location.href = '/news/' + encodeURIComponent(data.title);
+                                }
+                            }
+                        };
+                        xhr.send();
+                    };
+                }
+            }
+        }
+        setupRandomLinks();
+    </script>
+</body>
+</html>

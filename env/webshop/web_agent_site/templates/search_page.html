@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MegaShop - Your Ultimate Shopping Destination</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="icon" href="data:,">
+    <style>
+        body { margin: 0; padding: 0; background: #f5f5f5; }
+        
+        /* Hero Banner Section */
+        .hero-carousel {
+            position: relative;
+            height: 450px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%);
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+        .hero-content-wrapper {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 50px;
+        }
+        .hero-text {
+            flex: 1;
+            z-index: 2;
+        }
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: 800;
+            color: #333;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .hero-text p {
+            font-size: 22px;
+            color: #666;
+            margin: 0 0 30px 0;
+        }
+        .hero-btn {
+            display: inline-block;
+            padding: 18px 45px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .hero-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+        .hero-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        .hero-image img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+        .hero-indicators {
+            text-align: center;
+            padding: 15px 0;
+            background: white;
+        }
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .dot.active {
+            background: #667eea;
+            width: 30px;
+            border-radius: 6px;
+        }
+        .dot:hover {
+            background: #667eea;
+        }
+        
+        /* Category Section */
+        .category-section {
+            background: white;
+            padding: 60px 0;
+        }
+        .category-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin: 0 0 40px 0;
+            color: #333;
+        }
+        .category-grid-custom {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 20px;
+        }
+        .category-item {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .category-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        .category-item .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: #f5f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .category-item .icon img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+        .category-item h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+        .category-item p {
+            font-size: 12px;
+            color: #888;
+            margin: 0;
+        }
+        
+        /* Task Info Bar */
+        .task-bar {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px 0;
+        }
+        .task-bar p {
+            margin: 0;
+            color: #856404;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 1200px) {
+            .category-grid-custom {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-carousel {
+                height: 350px;
+            }
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            .hero-text p {
+                font-size: 18px;
+            }
+            .hero-content-wrapper {
+                padding: 0 20px;
+            }
+            .category-grid-custom {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <marquee>🎉 MEGA SALE! Up to 70% OFF on Selected Items | Free Shipping on Orders Over $50 | Flash Deals Every Hour | New Arrivals Daily 🎉</marquee>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div id="logo">
+                    <h1>🛒 MegaShop</h1>
+                    <span class="tagline">Your Ultimate Shopping Destination</span>
+                </div>
+                <div class="search-bar">
+                    <form role="form" id="form-buscar" method="post" action="{{url_for('index', session_id=session_id)}}" style="display: flex; width: 100%;">
+                        <input id="search_input" class="form-control" type="text" name="search_query" placeholder="Search for products, brands, and more..." required/>
+                        <button class="btn btn-success" type="submit" style="white-space: nowrap;">
+                            🔍 Search
+                        </button>
+                    </form>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn">👤 Account</button>
+                    <button class="header-btn">❤️ Wishlist <span class="badge">12</span></button>
+                    <button class="header-btn">🛒 Cart <span class="badge">5</span></button>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🏠 Home</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="deals">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🔥 Hot Deals</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="fashion">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">👕 Fashion</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="electronics">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">💻 Electronics</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="home">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🏠 Home & Garden</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="sports">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">⚽ Sports</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="toys">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🎮 Toys & Games</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="books">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">📚 Books</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="arts">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🎨 Arts & Crafts</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="automotive">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🚗 Automotive</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="beauty">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">💄 Beauty</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Task Info Bar (subtle) -->
+    <div class="task-bar">
+        <div class="container">
+            <p><strong>🎯 Your Task:</strong> {{ instruction_text }}</p>
+        </div>
+    </div>
+
+    <!-- Hero Banner Carousel -->
+    <section class="hero-carousel">
+        <div class="container">
+            <div class="hero-content-wrapper">
+                <div class="hero-text">
+                    <h1>Summer Collection 2024</h1>
+                    <p>Save up to 60% on trending fashion</p>
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline;">
+                        <button type="button" class="hero-btn" onclick="document.getElementById('search_input').focus();">Shop Now</button>
+                    </form>
+                </div>
+                <div class="hero-image">
+                    <div style="font-size: 200px; opacity: 0.9;">🤖</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Indicators -->
+    <div class="hero-indicators">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <!-- Shop by Category -->
+    <section class="category-section">
+        <div class="container">
+            <h2>Shop by Category</h2>
+            <div class="category-grid-custom">
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="electronics">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">💻</div>
+                        </div>
+                        <h3>Electronics</h3>
+                        <p>5000+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="fashion">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">👕</div>
+                        </div>
+                        <h3>Fashion</h3>
+                        <p>8000+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="home">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">🏠</div>
+                        </div>
+                        <h3>Home & Kitchen</h3>
+                        <p>3500+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="beauty">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">💄</div>
+                        </div>
+                        <h3>Beauty</h3>
+                        <p>2000+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="sports">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">⚽</div>
+                        </div>
+                        <h3>Sports</h3>
+                        <p>1500+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="books">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">📚</div>
+                        </div>
+                        <h3>Books</h3>
+                        <p>4000+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="toys">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">🎮</div>
+                        </div>
+                        <h3>Toys & Games</h3>
+                        <p>2500+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="automotive">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">🚗</div>
+                        </div>
+                        <h3>Automotive</h3>
+                        <p>1200+ Items</p>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section style="background: #f9f9f9; padding: 50px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6" style="margin-bottom: 20px;">
+                    <div style="background: white; padding: 30px 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div style="font-size: 48px; margin-bottom: 15px;">🚚</div>
+                        <h4 style="font-size: 18px; font-weight: 600; margin: 10px 0 5px 0; color: #333;">Free Shipping</h4>
+                        <p style="font-size: 14px; color: #888; margin: 0;">On orders over $50</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" style="margin-bottom: 20px;">
+                    <div style="background: white; padding: 30px 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div style="font-size: 48px; margin-bottom: 15px;">💰</div>
+                        <h4 style="font-size: 18px; font-weight: 600; margin: 10px 0 5px 0; color: #333;">Money Back</h4>
+                        <p style="font-size: 14px; color: #888; margin: 0;">30-day guarantee</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" style="margin-bottom: 20px;">
+                    <div style="background: white; padding: 30px 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div style="font-size: 48px; margin-bottom: 15px;">🔒</div>
+                        <h4 style="font-size: 18px; font-weight: 600; margin: 10px 0 5px 0; color: #333;">Secure Payment</h4>
+                        <p style="font-size: 14px; color: #888; margin: 0;">100% protected</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" style="margin-bottom: 20px;">
+                    <div style="background: white; padding: 30px 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div style="font-size: 48px; margin-bottom: 15px;">📞</div>
+                        <h4 style="font-size: 18px; font-weight: 600; margin: 10px 0 5px 0; color: #333;">24/7 Support</h4>
+                        <p style="font-size: 14px; color: #888; margin: 0;">Dedicated support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h3>About MegaShop</h3>
+                    <p>Your trusted online shopping destination. We offer the best products at unbeatable prices with exceptional customer service.</p>
+                    <div class="social-links">
+                        <a href="#">📘 Facebook</a>
+                        <a href="#">🐦 Twitter</a>
+                        <a href="#">📸 Instagram</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Order History</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop by Category</h3>
+                    <ul>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Fashion & Apparel</a></li>
+                        <li><a href="#">Home & Garden</a></li>
+                        <li><a href="#">Sports & Outdoors</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2024 MegaShop. All Rights Reserved. | Trusted by over 10 million customers worldwide</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <button class="fab" title="Live Chat">💬</button>
+        <button class="fab" title="Back to Top">⬆️</button>
+    </div>
+
+    <script>
+        // Carousel dots functionality
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.addEventListener('click', function() {
+                document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - News{% endblock %}
+
+{% block content %}
+<div class="article-page">
+    <article class="article">
+        <header class="article-header">
+            <h1 class="article-title">{{ title }}</h1>
+            
+            <div class="article-meta">
+                <time class="article-time">{{ date }}</time>
+                <span class="article-location">News</span>
+            </div>
+        </header>
+
+        <div class="article-content">
+            {{ content|safe }}
+        </div>
+
+        <footer class="article-footer">
+            <p class="article-license">
+                This article is from News and is licensed under the 
+                <a href="https://creativecommons.org/licenses/by/2.5/" target="_blank">Creative Commons Attribution 2.5 License</a>.
+            </p>
+            <div class="article-actions">
+                <a href="/" class="btn-back">← Back to home</a>
+            </div>
+        </footer>
+    </article>
+</div>
+{% endblock %}
+
+
+
+

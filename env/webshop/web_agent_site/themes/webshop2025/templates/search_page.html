@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebShop - Your Ultimate Shopping Destination</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="icon" href="data:,">
+    <style>
+        body { margin: 0; padding: 0; background: #f5f5f5; }
+        
+        /* Hero Banner Section */
+        .hero-carousel {
+            position: relative;
+            height: 450px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%);
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+        .hero-content-wrapper {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 50px;
+            width: 100%;
+        }
+        .hero-carousel .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .hero-text {
+            flex: 1;
+            z-index: 2;
+        }
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: 800;
+            color: #333;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .hero-text p {
+            font-size: 22px;
+            color: #666;
+            margin: 0 0 30px 0;
+        }
+        .hero-btn {
+            display: inline-block;
+            padding: 18px 45px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .hero-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+        .hero-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        .hero-image img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+        .hero-indicators {
+            text-align: center;
+            padding: 15px 0;
+            background: white;
+        }
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .dot.active {
+            background: #667eea;
+            width: 30px;
+            border-radius: 6px;
+        }
+        .dot:hover {
+            background: #667eea;
+        }
+        
+        /* Category Section */
+        .category-section {
+            background: white;
+            padding: 60px 0;
+        }
+        .category-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin: 0 0 40px 0;
+            color: #333;
+        }
+        .category-grid-custom {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-gap: 20px;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        .category-grid-custom form {
+            margin: 0;
+        }
+        .category-item {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .category-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        .category-item .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: #f5f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .category-item .icon img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+        .category-item h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+        .category-item p {
+            font-size: 12px;
+            color: #888;
+            margin: 0;
+        }
+        
+        /* Task Info Bar */
+        .task-bar {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px 0;
+        }
+        .task-bar p {
+            margin: 0;
+            color: #856404;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 1200px) {
+            .category-grid-custom {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        /* Main Layout with Sidebars */
+        .main-content-wrapper {
+            display: flex;
+            gap: 20px;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+            position: sticky;
+            top: 100px;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 10px;
+        }
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #5568d3;
+        }
+        .sidebar h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        .sidebar-product {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .sidebar-product:hover {
+            background: #f0f4ff;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        .sidebar-product img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 6px;
+            background: white;
+            flex-shrink: 0;
+        }
+        .sidebar-product-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .sidebar-product-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin: 0 0 5px 0;
+            line-height: 1.3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .sidebar-product-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: #667eea;
+            margin: 0;
+        }
+        .main-content-area {
+            flex: 1;
+            min-width: 0;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        .main-content-area .container {
+            max-width: 100%;
+            padding: 0 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .main-content-area section {
+            width: 100%;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+        .hero-carousel .container {
+            max-width: 100%;
+            width: 100%;
+        }
+        
+        /* Featured Products Section */
+        .featured-product-card {
+            transition: all 0.3s ease;
+        }
+        .featured-product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+        .featured-product-card:hover img {
+            transform: scale(1.05);
+        }
+        .featured-product-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-carousel {
+                height: 350px;
+            }
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            .hero-text p {
+                font-size: 18px;
+            }
+            .hero-content-wrapper {
+                padding: 0 20px;
+            }
+            .category-grid-custom {
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 15px;
+                gap: 15px;
+            }
+            .hero-content-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+            .featured-product-card {
+                min-width: 180px;
+            }
+            .sidebar {
+                display: none;
+            }
+            .main-content-wrapper {
+                flex-direction: column;
+                padding: 10px;
+            }
+            .main-content-area {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        @media (min-width: 1200px) and (max-width: 1600px) {
+            .sidebar {
+                width: 240px;
+            }
+        }
+        @media (min-width: 1200px) {
+            .sidebar {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <marquee>🎉 MEGA SALE! Up to 70% OFF on Selected Items | Free Shipping on Orders Over $50 | Flash Deals Every Hour | New Arrivals Daily 🎉</marquee>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div id="logo">
+                    <a href="{{url_for('index', session_id=session_id)}}" style="text-decoration: none; color: inherit;">
+                        <h1>🛒 WebShop</h1>
+                        <span class="tagline">Your Ultimate Shopping Destination</span>
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <form role="form" id="form-buscar" method="post" action="{{url_for('index', session_id=session_id)}}">
+                        <input id="search_input" class="form-control" type="text" name="search_query" placeholder="Search for products, brands, and more..." required/>
+                    </form>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn">👤 Account</button>
+                    <button class="header-btn">❤️ Wishlist <span class="badge">12</span></button>
+                    <button class="header-btn">🛒 Cart <span class="badge">5</span></button>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🏠 Home</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="deals">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🔥 Hot Deals</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="fashion">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">👕 Fashion</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="electronics">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">💻 Electronics</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="home">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🏠 Home & Garden</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="sports">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">⚽ Sports</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="toys">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🎮 Toys & Games</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="books">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">📚 Books</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="arts">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🎨 Arts & Crafts</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="automotive">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🚗 Automotive</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="beauty">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">💄 Beauty</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content with Sidebars -->
+    <div class="main-content-wrapper">
+        <!-- Left Sidebar -->
+        <aside class="sidebar sidebar-left">
+            <h3>🔥 Hot Picks</h3>
+            {% set products_to_show = featured_items if featured_items else featured_products %}
+            {% if products_to_show %}
+                {% for product in products_to_show[:10] %}
+                {% if product %}
+                {% set product_image = product.MainImage if product.MainImage else (product.Image if product.Image else (product.image if product.image else '')) %}
+                {% set keywords_str = 'empty' %}
+                {% set item_page_url = url_for('item_page', session_id=session_id, asin=product.asin, keywords=keywords_str, page=1, options=dict()) %}
+                <a href="{{ item_page_url }}" class="sidebar-product">
+                    {% if product_image %}
+                    <img src="{{ product_image }}" alt="{{ product.Title }}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Crect fill=%22%23f0f0f0%22 width=%2260%22 height=%2260%22/%3E%3Ctext x=%2230%22 y=%2230%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2220%22%3E📦%3C/text%3E%3C/svg%3E'">
+                    {% else %}
+                    <div style="width: 60px; height: 60px; background: #f0f0f0; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 24px;">📦</div>
+                    {% endif %}
+                    <div class="sidebar-product-info">
+                        <p class="sidebar-product-title">{{ product.Title[:50] }}{% if product.Title|length > 50 %}...{% endif %}</p>
+                        <p class="sidebar-product-price">{{ product.Price }}</p>
+                    </div>
+                </a>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="main-content-area">
+    <!-- Hero Banner Carousel -->
+    <section class="hero-carousel">
+        <div class="container">
+            <div class="hero-content-wrapper">
+                <div class="hero-text">
+                    <h1>Summer Collection 2024</h1>
+                    <p>Save up to 60% on trending fashion</p>
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline;">
+                        <button type="button" class="hero-btn" onclick="document.getElementById('search_input').focus();">Shop Now</button>
+                    </form>
+                </div>
+                <div class="hero-image">
+                    {% set hero_img = (featured_dress.MainImage if featured_dress else (featured_products[0].MainImage if featured_products else None)) %}
+                    {% if hero_img %}
+                    <img src="{{ hero_img }}" alt="Featured Summer Dress" style="max-width: 100%; max-height: 380px; object-fit: contain; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" onerror="this.style.display='none'">
+                    {% else %}
+                    <div style="font-size: 200px; opacity: 0.9;">👗</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Indicators -->
+    <div class="hero-indicators">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <!-- Shop by Category -->
+    <section class="category-section">
+        <div class="container">
+            <h2>Shop by Category</h2>
+            <div class="category-grid-custom">
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="electronics">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">💻</div>
+                        </div>
+                        <h3>Electronics</h3>
+                        <p>5000+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="fashion">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">👕</div>
+                        </div>
+                        <h3>Fashion</h3>
+                        <p>8000+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="home">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">🏠</div>
+                        </div>
+                        <h3>Home & Kitchen</h3>
+                        <p>3500+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="beauty">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">💄</div>
+                        </div>
+                        <h3>Beauty</h3>
+                        <p>2000+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="sports">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">⚽</div>
+                        </div>
+                        <h3>Sports</h3>
+                        <p>1500+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="books">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">📚</div>
+                        </div>
+                        <h3>Books</h3>
+                        <p>4000+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="toys">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">🎮</div>
+                        </div>
+                        <h3>Toys & Games</h3>
+                        <p>2500+ Items</p>
+                    </button>
+                </form>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                    <input type="hidden" name="search_query" value="automotive">
+                    <button type="submit" class="category-item" style="width: 100%; border: 2px solid #f0f0f0; background: white;">
+                        <div class="icon">
+                            <div style="font-size: 40px;">🚗</div>
+                        </div>
+                        <h3>Automotive</h3>
+                        <p>1200+ Items</p>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    {% if featured_items or featured_products %}
+    <section style="background: white; padding: 60px 0;">
+        <div class="container">
+            <h2 style="font-size: 32px; font-weight: 700; text-align: center; margin: 0 0 40px 0; color: #333;">Featured Products</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin-bottom: 40px;">
+                {% set products_to_show = featured_items if featured_items else featured_products %}
+                {% for product in products_to_show[:8] %}
+                {% if product %}
+                <div class="featured-product-card" style="background: white; border: 2px solid #f0f0f0; border-radius: 12px; overflow: hidden; transition: all 0.3s; cursor: pointer; position: relative;">
+                    {% if loop.index % 3 == 0 %}
+                    <span style="position: absolute; top: 10px; left: 10px; background: #00b894; color: white; padding: 5px 10px; border-radius: 15px; font-size: 11px; font-weight: 700; z-index: 10;">NEW</span>
+                    {% endif %}
+                    {% if loop.index % 5 == 0 %}
+                    <span style="position: absolute; top: 10px; right: 10px; background: #ff4757; color: white; padding: 5px 10px; border-radius: 15px; font-size: 11px; font-weight: 700; z-index: 10;">SALE</span>
+                    {% endif %}
+                    {% set product_image = product.MainImage if product.MainImage else (product.Image if product.Image else (product.image if product.image else '')) %}
+                    {% set keywords_str = 'empty' %}
+                    {% set item_page_url = url_for('item_page', session_id=session_id, asin=product.asin, keywords=keywords_str, page=1, options=dict()) %}
+                    <a href="{{ item_page_url }}" style="text-decoration: none; color: inherit; display: block;">
+                        <div style="background: #f9f9f9; padding: 20px; height: 220px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            {% if product_image %}
+                            <img src="{{ product_image }}" alt="{{ product.Title }}" style="max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display: none; font-size: 48px; opacity: 0.3;">📦</div>
+                            {% else %}
+                            <div style="font-size: 48px; opacity: 0.3;">📦</div>
+                            {% endif %}
+                        </div>
+                        <div style="padding: 15px;">
+                            <h3 style="font-size: 14px; font-weight: 600; margin: 0 0 8px 0; color: #333; line-height: 1.4; height: 40px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+                                {{ product.Title[:80] }}{% if product.Title|length > 80 %}...{% endif %}
+                            </h3>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                                <span style="font-size: 20px; font-weight: 700; color: #667eea;">{{ product.Price }}</span>
+                                {% if product.Rating %}
+                                <span style="font-size: 12px; color: #888;">
+                                    <span style="color: #ffc107;">★</span> {{ product.Rating }}
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Features Section -->
+    <section style="background: #f9f9f9; padding: 50px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6" style="margin-bottom: 20px;">
+                    <div style="background: white; padding: 30px 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div style="font-size: 48px; margin-bottom: 15px;">🚚</div>
+                        <h4 style="font-size: 18px; font-weight: 600; margin: 10px 0 5px 0; color: #333;">Free Shipping</h4>
+                        <p style="font-size: 14px; color: #888; margin: 0;">On orders over $50</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" style="margin-bottom: 20px;">
+                    <div style="background: white; padding: 30px 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div style="font-size: 48px; margin-bottom: 15px;">💰</div>
+                        <h4 style="font-size: 18px; font-weight: 600; margin: 10px 0 5px 0; color: #333;">Money Back</h4>
+                        <p style="font-size: 14px; color: #888; margin: 0;">30-day guarantee</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" style="margin-bottom: 20px;">
+                    <div style="background: white; padding: 30px 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div style="font-size: 48px; margin-bottom: 15px;">🔒</div>
+                        <h4 style="font-size: 18px; font-weight: 600; margin: 10px 0 5px 0; color: #333;">Secure Payment</h4>
+                        <p style="font-size: 14px; color: #888; margin: 0;">100% protected</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" style="margin-bottom: 20px;">
+                    <div style="background: white; padding: 30px 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div style="font-size: 48px; margin-bottom: 15px;">📞</div>
+                        <h4 style="font-size: 18px; font-weight: 600; margin: 10px 0 5px 0; color: #333;">24/7 Support</h4>
+                        <p style="font-size: 14px; color: #888; margin: 0;">Dedicated support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        </div>
+        <!-- End Main Content Area -->
+
+        <!-- Right Sidebar -->
+        <aside class="sidebar sidebar-right">
+            <h3>⚡ Trending Now</h3>
+            {% set products_to_show = featured_items if featured_items else featured_products %}
+            {% if products_to_show %}
+                {% set products_length = products_to_show|length %}
+                {% for i in range(products_length - 1, -1, -1) %}
+                {% if loop.index0 < 10 %}
+                {% set product = products_to_show[i] %}
+                {% if product %}
+                {% set product_image = product.MainImage if product.MainImage else (product.Image if product.Image else (product.image if product.image else '')) %}
+                {% set keywords_str = 'empty' %}
+                {% set item_page_url = url_for('item_page', session_id=session_id, asin=product.asin, keywords=keywords_str, page=1, options=dict()) %}
+                <a href="{{ item_page_url }}" class="sidebar-product">
+                    {% if product_image %}
+                    <img src="{{ product_image }}" alt="{{ product.Title }}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Crect fill=%22%23f0f0f0%22 width=%2260%22 height=%2260%22/%3E%3Ctext x=%2230%22 y=%2230%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2220%22%3E📦%3C/text%3E%3C/svg%3E'">
+                    {% else %}
+                    <div style="width: 60px; height: 60px; background: #f0f0f0; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 24px;">📦</div>
+                    {% endif %}
+                    <div class="sidebar-product-info">
+                        <p class="sidebar-product-title">{{ product.Title[:50] }}{% if product.Title|length > 50 %}...{% endif %}</p>
+                        <p class="sidebar-product-price">{{ product.Price }}</p>
+                    </div>
+                </a>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+        </aside>
+    </div>
+    <!-- End Main Content Wrapper -->
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h3>About MegaShop</h3>
+                    <p>Your trusted online shopping destination. We offer the best products at unbeatable prices with exceptional customer service.</p>
+                    <div class="social-links">
+                        <a href="#">📘 Facebook</a>
+                        <a href="#">🐦 Twitter</a>
+                        <a href="#">📸 Instagram</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Order History</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop by Category</h3>
+                    <ul>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Fashion & Apparel</a></li>
+                        <li><a href="#">Home & Garden</a></li>
+                        <li><a href="#">Sports & Outdoors</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2024 WebShop. All Rights Reserved. | Trusted by over 10 million customers worldwide</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <button class="fab" title="Live Chat">💬</button>
+        <button class="fab" title="Back to Top">⬆️</button>
+    </div>
+
+    <script>
+        // Carousel dots functionality
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.addEventListener('click', function() {
+                document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+<!-- Spin-the-Wheel Popup (moved inside body) -->
+<div id="twOverlay" class="tw-popup-overlay">
+    <div class="tw-popup">
+        <button id="twClose" class="tw-popup-close" aria-label="Close">✕</button>
+        <img id="twImage" src="/site_assets/spinning.gif" alt="Spin the Wheel" onerror="this.onerror=null;this.src='/assets/diagram.gif'">
+    </div>
+</div>
+
+<script>
+    (function() {
+        try {
+            var ACTIONS_KEY = 'tw_action_count';
+            var OPEN_KEY = 'tw_popup_open';
+            var overlay = document.getElementById('twOverlay');
+            var closeBtn = document.getElementById('twClose');
+
+            function getInt(key) {
+                var v = parseInt(localStorage.getItem(key) || '0', 10);
+                return isNaN(v) ? 0 : v;
+            }
+
+            function showPopup() {
+                if (!overlay) return;
+                overlay.style.display = 'flex';
+                localStorage.setItem(OPEN_KEY, '1');
+            }
+
+            function hidePopup() {
+                if (!overlay) return;
+                overlay.style.display = 'none';
+                localStorage.setItem(OPEN_KEY, '0');
+                localStorage.setItem(ACTIONS_KEY, '0');
+            }
+
+            // Restore popup if it was open
+            if (localStorage.getItem(OPEN_KEY) === '1') {
+                showPopup();
+            }
+
+            // Block clicks on the overlay background (modal behavior - cannot interact with page behind)
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    // Block all clicks on overlay - only close button can dismiss
+                    if (e.target === overlay) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                }, true);
+                // Also prevent any interaction from reaching elements below
+                overlay.addEventListener('mousedown', function(e) {
+                    if (e.target === overlay) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                }, true);
+            }
+
+            // Increment action count and check if popup should show
+            function incrementAction() {
+                var c = getInt(ACTIONS_KEY) + 1;
+                localStorage.setItem(ACTIONS_KEY, String(c));
+                if (c % 5 === 0 && localStorage.getItem(OPEN_KEY) !== '1') {
+                    showPopup();
+                }
+            }
+
+            // Track clicks on interactive elements
+            var lastClickIncrement = 0;
+            document.addEventListener('click', function(e) {
+                // Don't count if popup is open
+                if (localStorage.getItem(OPEN_KEY) === '1') return;
+
+                var target = e.target;
+                if (!target) return;
+                // Bubble up to check tagName
+                while (target && target.tagName && ['BUTTON', 'A', 'INPUT'].indexOf(target.tagName) === -1) {
+                    target = target.parentElement;
+                }
+                if (target && ['BUTTON', 'A', 'INPUT'].indexOf(target.tagName) !== -1) {
+                    var now = Date.now();
+                    if (now - lastClickIncrement < 250) return; // debounce
+                    lastClickIncrement = now;
+                    incrementAction();
+                }
+            }, true);
+
+            // Track scroll events as actions
+            var lastScrollIncrement = 0;
+            var lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            window.addEventListener('scroll', function() {
+                // Don't count if popup is open
+                if (localStorage.getItem(OPEN_KEY) === '1') return;
+
+                var now = Date.now();
+                var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                var scrollDelta = Math.abs(currentScrollTop - lastScrollTop);
+
+                // Only count significant scrolls (at least 100px) with debounce (500ms)
+                if (scrollDelta > 100 && now - lastScrollIncrement > 500) {
+                    lastScrollIncrement = now;
+                    lastScrollTop = currentScrollTop;
+                    incrementAction();
+                }
+            }, { passive: true });
+
+            // Close button handler
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    hidePopup();
+                });
+            }
+        } catch (err) {
+            // fail-safe: do nothing
+        }
+    })();
+</script>
+
+</html>

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - News{% endblock %}
+
+{% block content %}
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr valign="top">
+<td>
+    <!-- Article Title -->
+    <font size="4" face="Arial, Helvetica, sans-serif" style="font-weight: bold; color: #000000;">{{ title }}</font>
+    <br><br>
+    
+    <!-- Article Meta -->
+    {% if date %}
+    <font size="1" color="#666666" face="Arial, Helvetica, sans-serif">{{ date }} | News</font>
+    {% else %}
+    <font size="1" color="#666666" face="Arial, Helvetica, sans-serif">News</font>
+    {% endif %}
+    <br><br>
+    
+    <!-- Article Content -->
+    <font size="2" face="Arial, Helvetica, sans-serif" style="line-height: 1.6; color: #000000;">
+        {{ content|safe }}
+    </font>
+    
+    <br><br>
+    <hr size="1" color="#E0E0E0">
+    <br>
+    
+    <!-- Footer -->
+    <font size="1" color="#666666" face="Arial, Helvetica, sans-serif">
+        This article is from News and is licensed under the 
+        <a href="https://creativecommons.org/licenses/by/2.5/" target="_blank" style="color: #0066CC;">Creative Commons Attribution 2.5 License</a>.
+    </font>
+    <br><br>
+    
+    <!-- Actions -->
+    <a href="/" style="color: #0066CC; text-decoration: underline; font-size: 11px; font-family: Arial, Helvetica, sans-serif;">← Back to home</a>
+    <font size="2" face="Arial, Helvetica, sans-serif"> | </font>
+    <a href="#" id="randomArticle" style="color: #0066CC; text-decoration: underline; font-size: 11px; font-family: Arial, Helvetica, sans-serif;">Read another article</a>
+</td>
+</tr>
+</table>
+
+<script>
+// Random article button
+document.getElementById('randomArticle').addEventListener('click', function(e) {
+    e.preventDefault();
+    fetch('/random')
+        .then(response => response.json())
+        .then(data => {
+            if (data.title) {
+                window.location.href = `/news/${encodeURIComponent(data.title)}`;
+            }
+        });
+});
+</script>
+{% endblock %}
+

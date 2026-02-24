@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Complete - WebShop.com</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <!-- Top Utility Links -->
+    <div class="top-utility">
+        <div class="container">
+            <div style="text-align: right;">
+                <a href="#">YOUR ACCOUNT</a> | <a href="#">HELP</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Primary Navigation -->
+    <div class="nav-primary">
+        <div class="container">
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline;">
+                <button type="submit" class="nav-link-btn">WELCOME</button>
+            </form> |
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline;">
+                <button type="submit" class="nav-link-btn">HOME</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Secondary Navigation -->
+    <div class="nav-secondary">
+        <div class="container">
+            <a href="#">HOW TO ORDER</a> | <a href="#">OUR GUARANTEE</a> | <a href="#">SITE GUIDE</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container main-layout">
+        <!-- Left Sidebar -->
+        <div class="sidebar-left">
+            <div class="browse-section">
+                <div class="browse-header">ORDER COMPLETE</div>
+                <p style="font-size: 10px; margin-top: 8px; line-height: 1.4;">
+                    Your order has been successfully processed. Thank you for shopping at WebShop.com!
+                </p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="product-details" style="margin-bottom: 20px;">
+                <h2 style="font-size: 14px; font-weight: bold; color: #000000; margin-bottom: 12px; border-bottom: 1px solid #CCCCCC; padding-bottom: 5px;">
+                    Order Confirmation
+                </h2>
+                <div style="font-size: 11px; line-height: 1.5; margin-bottom: 15px;">
+                    <p style="margin-bottom: 8px;"><strong>Thank you for your purchase!</strong></p>
+                    <p style="margin-bottom: 8px;">Your order has been successfully completed.</p>
+                </div>
+
+                <div style="background: #F0F0F0; border: 1px solid #CCCCCC; padding: 12px; margin-bottom: 15px;">
+                    <div style="font-size: 10px; font-weight: bold; color: #000080; margin-bottom: 8px;">
+                        Your Completion Code
+                    </div>
+                    <div style="background: white; border: 2px solid #DDD; padding: 20px; font-family: 'Courier New', monospace; font-size: 18px; font-weight: bold; color: #0F1111; margin-bottom: 15px;">
+                        {{ mturk_code }}
+                    </div>
+                </div>
+
+                <div style="font-size: 10px; color: #000000; line-height: 1.5;">
+                    <p style="margin-bottom: 5px;"><strong>What's Next?</strong></p>
+                    <p style="margin-bottom: 5px;">• You will receive an email confirmation shortly</p>
+                    <p style="margin-bottom: 5px;">• Your order will be processed and shipped within 1-2 business days</p>
+                    <p style="margin-bottom: 5px;">• You can track your order in "Your Account"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="sidebar-right">
+            <div class="sidebar-box">
+                <div class="box-title">Need Help?</div>
+                <ul style="list-style: none; padding: 0; font-size: 10px;">
+                    <li style="margin-bottom: 5px;"><a href="#">Track Your Order</a></li>
+                    <li style="margin-bottom: 5px;"><a href="#">Returns & Refunds</a></li>
+                    <li style="margin-bottom: 5px;"><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div style="font-size: 10px; color: #666; margin-bottom: 10px;">
+                <a href="#" style="color: #0066CC;">Text Only</a>
+            </div>
+            <div style="border-top: 1px solid #CCCCCC; padding-top: 10px; margin-bottom: 10px;">
+                <a href="#">1-Click Settings</a> | <a href="#">Shopping Cart</a> | <a href="#">Your Account</a> | <a href="#">Help</a>
+            </div>
+            <div style="font-size: 10px; color: #666;">
+                Copyright and disclaimer © 1996-1999, WebShop.com, Inc.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

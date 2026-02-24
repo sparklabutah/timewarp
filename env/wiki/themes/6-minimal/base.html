@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Simple Wikipedia{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="/">
+                    <span class="logo-icon">W</span>
+                    <span class="logo-text">Simple Wikipedia</span>
+                </a>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search Simple Wikipedia" autocomplete="off">
+                <div id="searchResults" class="search-results"></div>
+            </div>
+            <div class="header-actions">
+                <button id="randomBtn" class="btn-random">Random article</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>This is a Simple Wikipedia reader interface using a local XML dump.</p>
+            <p>Content is available under the Creative Commons Attribution-ShareAlike License.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

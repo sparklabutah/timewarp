@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - WebShop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="data:,">
+    <style>
+        .filters-sidebar {
+            background: white;
+            padding: 15px;
+            border: 1px solid #E0E0E0;
+        }
+        .filters-sidebar h3 {
+            font-size: 13px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #E0E0E0;
+            color: #000;
+        }
+        .filter-group-item {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #F0F0F0;
+        }
+        .filter-group-item h4 {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #000;
+        }
+        .filter-group-item label {
+            display: block;
+            padding: 4px 0;
+            cursor: pointer;
+            font-size: 11px;
+            color: #0066CC;
+            text-decoration: underline;
+        }
+        .filter-group-item label:hover {
+            color: #0000FF;
+        }
+        .product-card-custom {
+            background: white;
+            border: 1px solid #E0E0E0;
+            padding: 10px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .product-card-custom:hover {
+            border-color: #CCCCCC;
+        }
+        .product-img-wrapper {
+            background: white;
+            border: 1px solid #E0E0E0;
+            height: 180px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 5px;
+        }
+        .product-img-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <marquee>MEGA SALE! Up to 70% OFF on Selected Items | Free Shipping on Orders Over $50 | Flash Deals Every Hour</marquee>
+          </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <!-- Top Utility Bar -->
+        <div class="top-utility">
+            <div class="container">
+                <span>Hello. Sign in | Your Account | Help | Cart</span>
+            </div>
+        </div>
+        <div class="header-top">
+            <div class="container">
+                <div id="logo">
+                    <h1>WebShop</h1>
+                    <span class="tagline">Your Ultimate Shopping Destination</span>
+        </div>
+                <div class="search-bar">
+                    <form method="post" action="{{ url_for('index', session_id=session_id) }}" style="display: flex; width: 100%;">
+                        <input type="text" name="search_query" placeholder="Search for products, brands, and more..." required/>
+                        <button type="submit" style="white-space: nowrap;">GO</button>
+        </form>
+      </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Today's Deals</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Gifts & Wish Lists</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Your Account</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Cart</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="deals">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Hot Deals</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="fashion">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Fashion</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="electronics">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Electronics</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="home">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Home & Garden</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="sports">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Sports</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="toys">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Toys & Games</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="books">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Books</button>
+              </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="beauty">
+                            <button type="submit" style="background: none; border: none; cursor: pointer; padding: 8px 15px; font-size: 11px; font-family: inherit; color: #000; text-decoration: underline;">Beauty</button>
+              </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Task Info Bar -->
+    <div class="task-bar">
+        <div class="container">
+            <p><strong>Task:</strong> {{ instruction_text }}</p>
+        </div>
+      </div>
+
+    <!-- Main Content -->
+    <div class="container" style="padding: 30px 20px;">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="filters-sidebar">
+                    <h3>🔍 Filters</h3>
+                    
+                    <div class="filter-group-item">
+                        <form method="post" action="{{ url_for('index', session_id=session_id) }}">
+                            <button type="submit" class="btn btn-success" style="width: 100%; margin: 0;">← Back to Search</button>
+                        </form>
+          </div>
+                    
+                    <div class="filter-group-item">
+                        <h4>Category</h4>
+                        <label><input type="checkbox"> Electronics (1234)</label>
+                        <label><input type="checkbox"> Fashion (2345)</label>
+                        <label><input type="checkbox"> Home & Garden (987)</label>
+                        <label><input type="checkbox"> Sports (567)</label>
+                        <label><input type="checkbox"> Beauty (890)</label>
+                        <label><input type="checkbox"> Books (432)</label>
+                    </div>
+
+                    <div class="filter-group-item">
+                        <h4>Price Range</h4>
+                        <label><input type="checkbox"> Under $25</label>
+                        <label><input type="checkbox"> $25 - $50</label>
+                        <label><input type="checkbox"> $50 - $100</label>
+                        <label><input type="checkbox"> $100 - $200</label>
+                        <label><input type="checkbox"> Over $200</label>
+                    </div>
+
+                    <div class="filter-group-item">
+                        <h4>Customer Rating</h4>
+                        <label><input type="checkbox"> ⭐⭐⭐⭐⭐ & Up</label>
+                        <label><input type="checkbox"> ⭐⭐⭐⭐ & Up</label>
+                        <label><input type="checkbox"> ⭐⭐⭐ & Up</label>
+                    </div>
+
+                    <div class="filter-group-item" style="border-bottom: none;">
+                        <h4>Availability</h4>
+                        <label><input type="checkbox"> In Stock</label>
+                        <label><input type="checkbox"> On Sale</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div class="col-md-9">
+                <div style="background: white; padding: 12px; border: 1px solid #E0E0E0; margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                        <div>
+                            <h2 style="font-family: Georgia, serif; margin: 0; font-size: 18px; font-weight: bold; color: #000;">Featured Products</h2>
+                            <p style="margin: 5px 0 0 0; color: #666; font-size: 11px;">Showing 1-48 of {{total}} results</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <label style="margin: 0; font-size: 11px;">Sort by:</label>
+                            <select style="padding: 5px 10px; border: 1px solid #CCCCCC; font-size: 11px;">
+                                <option>Best Match</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Customer Rating</option>
+                            </select>
+                            <button class="view-toggle" style="padding: 6px 10px; background: #F0F0F0; color: #0066CC; border: 1px solid #CCCCCC; cursor: pointer; font-size: 11px; text-decoration: underline;">Grid</button>
+                            <button class="view-toggle" style="padding: 6px 10px; background: #F0F0F0; color: #0066CC; border: 1px solid #CCCCCC; cursor: pointer; font-size: 11px; text-decoration: underline;">List</button>
+                        </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    {% for item in products %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="product-card-custom">
+                            <div class="product-badges">
+                                {% if loop.index % 3 == 0 %}
+                                <span class="badge-new" style="position: absolute; top: 10px; left: 10px; background: #0066CC; color: white; padding: 3px 8px; font-size: 10px; font-weight: bold; z-index: 10; border: 1px solid #003399;">NEW</span>
+                                {% endif %}
+                                {% if loop.index % 5 == 0 %}
+                                <span class="badge-sale" style="position: absolute; top: 10px; right: 10px; background: #CC0000; color: white; padding: 3px 8px; font-size: 10px; font-weight: bold; z-index: 10; border: 1px solid #990000;">SALE</span>
+                                {% endif %}
+                            </div>
+                            <button class="wishlist-btn" style="position: absolute; top: 10px; right: 10px; background: white; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 10;">❤️</button>
+                            {% set item_page_url = url_for('item_page', session_id=session_id, asin=item.asin, keywords=keywords, page=page, options=dict() ) %}
+                            <a href="{{ item_page_url }}" style="text-decoration: none; color: inherit;">
+                                <div class="product-img-wrapper">
+                                    <img src="{{item.MainImage}}" alt="{{item.Title}}" onerror="this.parentElement.innerHTML='<div style=\'font-size: 48px;\'>📦</div>'">
+                                </div>
+                                <div style="padding: 5px 0;">
+                                    <h4 style="font-size: 12px; margin: 5px 0; font-weight: normal; line-height: 1.3; min-height: 35px; overflow: hidden; color: #0066CC; text-decoration: underline;">{{item.Title}}</h4>
+                                    <div style="margin: 5px 0; color: #FF9900; font-size: 11px;">
+                                        ⭐⭐⭐⭐⭐ <span style="color: #666; font-size: 10px;">(1,234)</span>
+                                    </div>
+                                    <div style="margin: 8px 0;">
+                                        <span style="color: #000; font-size: 14px; font-weight: bold;">{{item.Price}}</span>
+                                    </div>
+                                    <div style="font-size: 10px; color: #0066CC; margin: 5px 0; text-decoration: underline;">
+                                        <div>Free Shipping</div>
+                                        <div>In Stock</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{{ item_page_url }}" style="display: block; width: 100%; padding: 6px; background: #FF9900; color: white; text-align: center; border: 1px solid #E68900; text-decoration: none; font-weight: bold; margin-top: 8px; font-size: 11px;">Add to Cart</a>
+                            <button style="width: 100%; padding: 6px; background: #F0F0F0; border: 1px solid #CCCCCC; cursor: pointer; margin-top: 5px; font-size: 11px; color: #0066CC; text-decoration: underline;">Quick View</button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+                <!-- Pagination -->
+                <div class="pagination" style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 40px;">
+                    {% if page > 1 %}
+                    <form method="post" action="{{url_for('search_results', session_id=session_id, keywords=keywords, page=page - 1)}}" style="display: inline;">
+                        <button type="submit" class="page-btn">« Previous</button>
+                    </form>
+                    {% endif %}
+                    <button class="page-btn active">{{page}}</button>
+                    <form method="post" action="{{url_for('search_results', session_id=session_id, keywords=keywords, page=page + 1)}}" style="display: inline;">
+                        <button type="submit" class="page-btn">Next »</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="copyright">© 2024 WebShop. All Rights Reserved. | Powered by AI</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <button class="fab" title="Help">💬</button>
+        <button class="fab" title="Back to Top">⬆️</button>
+    </div>
+  </body>
+</html>

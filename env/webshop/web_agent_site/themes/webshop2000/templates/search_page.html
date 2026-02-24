@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>WebShop.com - Welcome</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="icon" href="data:,">
+</head>
+<body bgcolor="#FFFFFF">
+    <!-- Top Utility Links -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="border-bottom: 1px solid #CCCCCC;">
+    <tr>
+        <td align="right" style="padding: 4px 10px;">
+            <font size="1" face="Arial, Helvetica, sans-serif">
+            <a href="#">YOUR ACCOUNT</a> | <a href="#">HELP</a>
+            <span style="margin-left: 10px;">🛒</span>
+            </font>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Primary Navigation -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#003366">
+    <tr>
+        <td style="padding: 6px 10px;">
+            <font size="1" color="#FFFFFF" face="Arial, Helvetica, sans-serif">
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <button type="submit" style="background: none; border: none; color: #FFFFFF; cursor: pointer; font-size: 10px; font-weight: bold; font-family: Arial, sans-serif; text-transform: uppercase;">WELCOME</button>
+            </form> |
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <input type="hidden" name="search_query" value="books">
+                <button type="submit" style="background: none; border: none; color: #FFFFFF; cursor: pointer; font-size: 10px; font-weight: bold; font-family: Arial, sans-serif; text-transform: uppercase;">BOOKS</button>
+            </form> |
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <input type="hidden" name="search_query" value="music">
+                <button type="submit" style="background: none; border: none; color: #FFFFFF; cursor: pointer; font-size: 10px; font-weight: bold; font-family: Arial, sans-serif; text-transform: uppercase;">MUSIC</button>
+            </form> |
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <input type="hidden" name="search_query" value="video">
+                <button type="submit" style="background: none; border: none; color: #FFFFFF; cursor: pointer; font-size: 10px; font-weight: bold; font-family: Arial, sans-serif; text-transform: uppercase;">VIDEO</button>
+            </form> |
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <input type="hidden" name="search_query" value="toys">
+                <button type="submit" style="background: none; border: none; color: #FFFFFF; cursor: pointer; font-size: 10px; font-weight: bold; font-family: Arial, sans-serif; text-transform: uppercase;">TOYS &amp; GAMES</button>
+            </form> |
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <input type="hidden" name="search_query" value="electronics">
+                <button type="submit" style="background: none; border: none; color: #FFFFFF; cursor: pointer; font-size: 10px; font-weight: bold; font-family: Arial, sans-serif; text-transform: uppercase;">ELECTRONICS</button>
+            </form> |
+            <a href="#" style="color: #FFFFFF; text-decoration: none;">e-CARDS</a> |
+            <a href="#" style="color: #FFFFFF; text-decoration: none;">AUCTIONS</a>
+            </font>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Secondary Navigation -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#336699">
+    <tr>
+        <td style="padding: 4px 10px;">
+            <font size="1" color="#FFFFFF" face="Arial, Helvetica, sans-serif">
+            <a href="#" style="color: #FFFFFF; text-decoration: none;">HOW TO ORDER</a> | 
+            <a href="#" style="color: #FFFFFF; text-decoration: none;">OUR GUARANTEE</a> | 
+            <a href="#" style="color: #FFFFFF; text-decoration: none;">SITE GUIDE</a>
+            </font>
+        </td>
+        <td align="right" style="padding: 4px 10px;">
+            <font size="1" color="#FFFFFF" face="Arial, Helvetica, sans-serif" id="current-date"></font>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Main Content Area - Three Column Table Layout -->
+    <table width="980" border="0" cellpadding="0" cellspacing="0" align="center" style="margin-top: 10px;">
+    <tr valign="top">
+        <!-- Left Sidebar -->
+        <td width="180" style="padding-right: 15px;">
+            <!-- Search Box -->
+            <table width="100%" border="0" cellpadding="8" cellspacing="0" bgcolor="#C8E6F5" style="border: 1px solid #000080; margin-bottom: 15px;">
+            <tr>
+                <td bgcolor="#0066CC" style="margin: -8px; padding: 2px 5px;">
+                    <font size="1" color="#FFFFFF" face="Arial, Helvetica, sans-serif"><b>SEARCH</b></font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}">
+                        <input type="text" name="search_query" style="width: 100%; padding: 2px 4px; font-size: 10px; border: 1px solid #000000;" placeholder="Search...">
+                        <br>
+                        <input type="submit" value="GO!" style="background: #FF9900; color: #FFFFFF; border: 1px solid #000000; padding: 3px 10px; font-size: 10px; font-weight: bold; cursor: pointer; margin-top: 5px;">
+                    </form>
+                </td>
+            </tr>
+            </table>
+
+            <!-- Browse Section -->
+            <font size="1" face="Arial, Helvetica, sans-serif"><b>BROWSE</b></font>
+            <table width="100%" border="0" cellpadding="2" cellspacing="0">
+            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><b>Books</b></font></td></tr>
+            <tr><td style="padding-left: 10px;"><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Bestsellers</a></font></td></tr>
+            <tr><td style="padding-left: 10px;"><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Computers</a></font></td></tr>
+            <tr><td style="padding-left: 10px;"><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Business</a></font></td></tr>
+            <tr><td height="5"></td></tr>
+            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><b>Music</b></font></td></tr>
+            <tr><td style="padding-left: 10px;"><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">New Releases</a></font></td></tr>
+            <tr><td style="padding-left: 10px;"><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Pop</a></font></td></tr>
+            <tr><td height="5"></td></tr>
+            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><b>Electronics</b></font></td></tr>
+            <tr><td style="padding-left: 10px;"><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Computers</a></font></td></tr>
+            <tr><td style="padding-left: 10px;"><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Audio</a></font></td></tr>
+            </table>
+            <br>
+            <font size="1" face="Arial, Helvetica, sans-serif"><b>COMMUNITY</b></font>
+            <table width="100%" border="0" cellpadding="2" cellspacing="0">
+            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Purchase Circles</a></font></td></tr>
+            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Gift Certificates</a></font></td></tr>
+            </table>
+        </td>
+
+        <!-- Main Content -->
+        <td style="padding: 0 15px;">
+            <!-- Welcome Banner -->
+            <table width="100%" border="0" cellpadding="12" cellspacing="0" style="border-bottom: 1px solid #CCCCCC; margin-bottom: 12px;">
+            <tr>
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td valign="middle" style="padding-right: 10px;"><font size="4">📦</font></td>
+                        <td valign="middle">
+                            <font size="1" face="Arial, Helvetica, sans-serif">WELCOME TO</font><br>
+                            <font size="5" face="Arial, Helvetica, sans-serif" color="#FF9900"><b>webshop.com</b></font>
+                        </td>
+                    </tr>
+                    </table>
+                    <br>
+                    <font size="1" face="Arial, Helvetica, sans-serif">
+                    Hello! Shopping at WebShop.com is 100% secure--guaranteed.<br>
+                    Already a customer? <a href="#">Sign in</a>.
+                    </font>
+                </td>
+            </tr>
+            </table>
+
+            <!-- Featured Content -->
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr valign="top">
+                <td width="33%" style="padding-right: 10px;">
+                    <table width="100%" border="0" cellpadding="12" cellspacing="0" style="border: 1px solid #CCCCCC; margin-bottom: 12px;">
+                    <tr>
+                        <td>
+                            <font size="1" face="Arial, Helvetica, sans-serif"><b>In Electronics</b></font><br>
+                            <font size="2" face="Arial, Helvetica, sans-serif" color="#0066CC"><b>Featured Electronics</b></font><br>
+                            <font size="1" face="Arial, Helvetica, sans-serif">Discover the latest in technology and innovation.</font><br>
+                            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                                <input type="hidden" name="search_query" value="electronics">
+                                <button type="submit" style="background: none; border: none; color: #0066CC; text-decoration: underline; cursor: pointer; font-size: 10px; padding: 0;">Go to Electronics</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </table>
+                </td>
+                <td width="33%" style="padding: 0 5px;">
+                    <table width="100%" border="0" cellpadding="12" cellspacing="0" style="border: 1px solid #CCCCCC; margin-bottom: 12px;">
+                    <tr>
+                        <td>
+                            <font size="1" face="Arial, Helvetica, sans-serif"><b>In Books</b></font><br>
+                            <font size="2" face="Arial, Helvetica, sans-serif" color="#0066CC"><b>Featured Books</b></font><br>
+                            <font size="1" face="Arial, Helvetica, sans-serif">Find your next great read from thousands of titles.</font><br>
+                            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                                <input type="hidden" name="search_query" value="books">
+                                <button type="submit" style="background: none; border: none; color: #0066CC; text-decoration: underline; cursor: pointer; font-size: 10px; padding: 0;">Go to Books</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </table>
+                </td>
+                <td width="33%" style="padding-left: 10px;">
+                    <table width="100%" border="0" cellpadding="12" cellspacing="0" style="border: 1px solid #CCCCCC; margin-bottom: 12px;">
+                    <tr>
+                        <td>
+                            <font size="1" face="Arial, Helvetica, sans-serif"><b>In Music</b></font><br>
+                            <font size="2" face="Arial, Helvetica, sans-serif" color="#0066CC"><b>Featured Music</b></font><br>
+                            <font size="1" face="Arial, Helvetica, sans-serif">Browse our extensive collection of music.</font><br>
+                            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                                <input type="hidden" name="search_query" value="music">
+                                <button type="submit" style="background: none; border: none; color: #0066CC; text-decoration: underline; cursor: pointer; font-size: 10px; padding: 0;">Go to Music</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </table>
+                </td>
+            </tr>
+            </table>
+        </td>
+
+        <!-- Right Sidebar -->
+        <td width="200" style="padding-left: 15px;">
+            <table width="100%" border="0" cellpadding="10" cellspacing="0" style="border: 1px solid #CCCCCC; margin-bottom: 15px;">
+            <tr>
+                <td>
+                    <font size="2" face="Arial, Helvetica, sans-serif"><b>Quick Clothing Picks</b></font>
+                    <table width="100%" border="0" cellpadding="2" cellspacing="0">
+                    <tr><td>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="clothing shirts">
+                            <button type="submit" style="background: none; border: none; color: #0066CC; text-decoration: underline; cursor: pointer; font-size: 10px; padding: 0;">Men's Shirts</button>
+                        </form>
+                    </td></tr>
+                    <tr><td>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="clothing dresses">
+                            <button type="submit" style="background: none; border: none; color: #0066CC; text-decoration: underline; cursor: pointer; font-size: 10px; padding: 0;">Women's Dresses</button>
+                        </form>
+                    </td></tr>
+                    <tr><td>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="clothing shoes">
+                            <button type="submit" style="background: none; border: none; color: #0066CC; text-decoration: underline; cursor: pointer; font-size: 10px; padding: 0;">Shoes</button>
+                        </form>
+                    </td></tr>
+                    </table>
+                </td>
+            </tr>
+            </table>
+
+            <table width="100%" border="0" cellpadding="10" cellspacing="0" style="border: 1px solid #CCCCCC; margin-bottom: 15px;">
+            <tr>
+                <td>
+                    <font size="2" face="Arial, Helvetica, sans-serif"><b>Quick Electronics Picks</b></font>
+                    <table width="100%" border="0" cellpadding="2" cellspacing="0">
+                    <tr><td>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="laptop">
+                            <button type="submit" style="background: none; border: none; color: #0066CC; text-decoration: underline; cursor: pointer; font-size: 10px; padding: 0;">Laptops</button>
+                        </form>
+                    </td></tr>
+                    <tr><td>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="camera">
+                            <button type="submit" style="background: none; border: none; color: #0066CC; text-decoration: underline; cursor: pointer; font-size: 10px; padding: 0;">Cameras</button>
+                        </form>
+                    </td></tr>
+                    <tr><td>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="headphones">
+                            <button type="submit" style="background: none; border: none; color: #0066CC; text-decoration: underline; cursor: pointer; font-size: 10px; padding: 0;">Headphones</button>
+                        </form>
+                    </td></tr>
+                    </table>
+                </td>
+            </tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Footer -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F0F0F0" style="border-top: 2px solid #000080; margin-top: 25px;">
+    <tr>
+        <td style="padding: 12px 10px;">
+            <table width="980" border="0" cellpadding="0" cellspacing="0" align="center">
+            <tr>
+                <td>
+                    <font size="1" face="Arial, Helvetica, sans-serif" color="#666666">
+                    <a href="#" style="color: #0066CC;">Text Only</a>
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-top: 1px solid #CCCCCC; padding-top: 10px; margin-top: 10px;">
+                    <font size="1" face="Arial, Helvetica, sans-serif">
+                    <a href="#">1-Click Settings</a> | <a href="#">Shopping Cart</a> | <a href="#">Your Account</a> | <a href="#">Help</a>
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top: 10px;">
+                    <font size="2" face="Arial, Helvetica, sans-serif">
+                    <a href="#" style="color: #0066CC;">About WebShop.com</a> | 
+                    <a href="#" style="color: #0066CC;">Join Our Staff</a>
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top: 10px;">
+                    <font size="1" face="Arial, Helvetica, sans-serif" color="#666666">
+                    Copyright and disclaimer © 1996-1999, WebShop.com, Inc.
+                    </font>
+                </td>
+            </tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+
+    <script>
+        // Set current date
+        var date = new Date();
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        document.getElementById('current-date').innerHTML = 
+            days[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+    </script>
+</body>
+</html>

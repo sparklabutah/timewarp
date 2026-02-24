@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Reviews - WebShop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <div class="announcement-bar"><marquee>🎉 SPECIAL OFFER! Free Shipping on Orders Over $50 | New Products Daily 🎉</marquee></div>
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div id="logo"><h1>🛒 WebShop</h1><span class="tagline">Your Ultimate Shopping Destination</span></div>
+            </div>
+        </div>
+        <nav class="main-nav"><div class="container"><ul class="nav-menu"><li><a href="#">🏠 Home</a></li><li><a href="#">🔥 Deals</a></li><li><a href="#">👕 Fashion</a></li><li><a href="#">💻 Electronics</a></li></ul></div></nav>
+    </header>
+    <div class="container" style="padding: 30px 0;">
+        <div id="instruction-text" class="text-center"><h4>🎯 {{ instruction_text }}</h4></div>
+        <div class="row top-buffer">
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline-block;"><button type="submit" class="btn btn-success">← Search</button></form>
+            <form method="post" action="{{url_for('item_page', session_id=session_id, asin=asin, keywords=keywords, page=page, options=options)}}" style="display: inline-block;"><button type="submit" class="btn btn-primary">← Product</button></form>
+        </div>
+        <div class="row top-buffer"><div class="col-md-12"><div class="card"><h3 style="color: #667eea; margin-bottom: 20px;"><i class="glyphicon glyphicon-comment"></i> Customer Reviews</h3><div style="display: flex; flex-direction: column; gap: 20px;">{% for review in product_info.Reviews %}<div style="background: #f9f9f9; border-radius: 10px; padding: 20px; border-left: 4px solid #667eea;"><h4 style="color: #333; font-size: 18px; font-weight: 600; margin: 0 0 10px 0;">"{{review.title}}"</h4><div style="margin: 10px 0;"><span style="font-weight: 600; color: #667eea;">{{review.score}}</span>{% for i in range(review.score | int) %}<span class="fa fa-star" style="color: #ffc107;"></span>{% endfor %}{% for i in range(5 - review.score | int) %}<span class="fa fa-star" style="color: #e0e0e0;"></span>{% endfor %}</div><p style="color: #555; line-height: 1.6; margin: 10px 0 0 0;">{{review.body}}</p></div>{% endfor %}</div></div></div></div>
+    </div>
+    <footer class="main-footer"><div class="container"><div class="footer-bottom"><p class="copyright">© 2024 WebShop. All Rights Reserved.</p></div></div></footer>
+    <div class="floating-buttons"><button class="fab" title="Back to Top">⬆️</button></div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{% block title %}News - The Free News Source{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" />
+</head>
+<body>
+    <!-- Top grey utility bar -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #E6E6E6;">
+    <tr>
+        <td valign="middle" style="padding: 3px 8px;">
+            <span style="font-size: 10px; font-family: Arial, Helvetica, sans-serif; color: #000000;">
+            <a href="#" style="color: #000000; text-decoration: none;">Low Graphics</a> | 
+            <a href="#" style="color: #000000; text-decoration: none;">Accessibility help</a>
+            </span>
+        </td>
+    </tr>
+    </table>
+
+    <!-- White bar with News logo and search -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF;">
+    <tr>
+        <td valign="middle" style="padding: 8px 15px;">
+            <a href="/" style="text-decoration: none;">
+                <table border="0" cellpadding="0" cellspacing="0" style="background-color: #000000;">
+                <tr>
+                    <td style="padding: 5px 10px;">
+                        <span style="font-size: 18px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #FFFFFF;">NEWS</span>
+                    </td>
+                </tr>
+                </table>
+            </a>
+        </td>
+        <td valign="middle" align="right" style="padding: 8px 15px;">
+            <form action="/search" method="get" style="display: inline; margin: 0;">
+                <input type="text" name="q" size="40" style="font-size: 12px; padding: 6px 10px; border: 1px solid #CCCCCC; width: 350px;" />
+                <input type="submit" value="Search" style="font-size: 12px; padding: 6px 12px; background-color: #333333; color: #FFFFFF; border: 1px solid #333333; cursor: pointer;" />
+            </form>
+            <a href="/browse" style="background-color: #FF6600; color: #FFFFFF; padding: 6px 12px; text-decoration: none; font-size: 12px; font-weight: bold; margin-left: 10px; font-family: Arial, Helvetica, sans-serif;">Explore News</a>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Red banner with Watch ONE-MINUTE WORLD NEWS -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #BB1919;">
+    <tr>
+        <td valign="middle" style="padding: 8px 15px;">
+            <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #FFFFFF;">
+            &#9658; Watch <strong>ONE-MINUTE WORLD NEWS</strong>
+            </span>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Main three-column layout using table -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top">
+        <!-- Left Navigation Column -->
+        <td width="170" style="background-color: #ffffff; padding: 0; border-right: 1px solid #E0E0E0;">
+            <table width="100%" border="0" cellpadding="5" cellspacing="0">
+            <tr><td style="padding: 8px 10px;">
+                <span style="font-size: 14px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #000000;">News Front Page</span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Africa" class="nav-link">Africa</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Americas" class="nav-link">Americas</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Asia-Pacific" class="nav-link">Asia-Pacific</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Europe" class="nav-link">Europe</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Middle East" class="nav-link">Middle East</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=South Asia" class="nav-link">South Asia</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=UK" class="nav-link">UK</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Business" class="nav-link">Business</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Health" class="nav-link">Health</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Science Nature" class="nav-link">Science/Nature</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Technology" class="nav-link">Technology</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Entertainment" class="nav-link">Entertainment</a></span>
+            </td></tr>
+            <tr><td height="10"><hr style="border: 0; border-top: 1px solid #E0E0E0; margin: 5px 0;" /></td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Video Audio" class="nav-link">Video and Audio</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Have Your Say" class="nav-link">Have Your Say</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=In Pictures" class="nav-link">In Pictures</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Country Profiles" class="nav-link">Country Profiles</a></span>
+            </td></tr>
+            <tr><td height="10"><hr style="border: 0; border-top: 1px solid #E0E0E0; margin: 5px 0;" /></td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 11px; font-weight: bold; font-family: Arial, Helvetica, sans-serif;">Related sites</span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Sport" class="nav-link">Sport</a></span>
+            </td></tr>
+            <tr><td style="padding: 3px 10px;">
+                <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;"><a href="/search?q=Weather" class="nav-link">Weather</a></span>
+            </td></tr>
+            </table>
+        </td>
+
+        <!-- Center Content Column -->
+        <td style="padding: 0 15px;">
+            {% block content %}{% endblock %}
+        </td>
+
+        <!-- Right Sidebar -->
+        <td width="200" style="background-color: #ffffff; padding: 0 10px; border-left: 1px solid #E0E0E0;">
+            {% block sidebar %}{% endblock %}
+        </td>
+    </tr>
+    </table>
+
+    <!-- Footer -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF;">
+    <tr>
+        <td colspan="3" style="padding: 15px; border-top: 1px solid #E0E0E0;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="right" style="padding-bottom: 10px;">
+                    <span style="font-size: 10px;"><a href="#" style="color: #0066CC; text-decoration: none;">SKIP TO TOP</a></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-bottom: 15px;">
+                    <span style="font-size: 12px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #000000;">PRODUCTS &amp; SERVICES</span><br /><br />
+                    <span style="font-size: 12px; font-family: Arial, Helvetica, sans-serif;">
+                    <a href="#" style="color: #000000; text-decoration: none;">E-mail news</a> | 
+                    <a href="#" style="color: #000000; text-decoration: none;">Mobiles</a> | 
+                    <a href="#" style="color: #000000; text-decoration: none;">Alerts</a> | 
+                    <a href="#" style="color: #000000; text-decoration: none;">News feeds</a> | 
+                    <a href="#" style="color: #000000; text-decoration: none;">Podcasts</a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top: 15px; border-top: 1px solid #E0E0E0;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            <span style="font-size: 14px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #000000;">NEWS © MMVIII</span><br /><br />
+                            <span style="font-size: 10px; font-family: Arial, Helvetica, sans-serif; color: #000000;">
+                            News is not responsible for the content of external internet sites.
+                            </span>
+                        </td>
+                        <td align="right">
+                            <span style="font-size: 10px; font-family: Arial, Helvetica, sans-serif; color: #999999;">
+                            <a href="#" style="color: #999999; text-decoration: none;">News Sources</a> | 
+                            <a href="#" style="color: #999999; text-decoration: none;">About News</a> | 
+                            <a href="#" style="color: #999999; text-decoration: none;">News Help</a> | 
+                            <a href="#" style="color: #999999; text-decoration: none;">Contact Us</a> | 
+                            <a href="#" style="color: #999999; text-decoration: none;">Terms of Use</a>
+                            </span>
+                        </td>
+                    </tr>
+                    </table>
+                </td>
+            </tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+
+    <script src="{{ url_for('static', filename='script.js') }}" type="text/javascript"></script>
+</body>
+</html>

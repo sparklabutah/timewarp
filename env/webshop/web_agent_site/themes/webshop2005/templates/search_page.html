@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>WebShop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="icon" href="data:,">
+</head>
+<body bgcolor="#FFFFFF">
+    <!-- Top Bar -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#C8E6F5" style="border-bottom: 1px solid #CCCCCC;">
+    <tr>
+        <td style="padding: 4px 10px;">
+            <font size="1" face="Arial, Helvetica, sans-serif">
+            <span style="color: #0066CC; font-weight: bold;">webshop.com</span>
+            <a href="#" style="margin-left: 8px;">Your Store</a>
+            <a href="#" style="margin-left: 8px;">See All Product Categories</a>
+            <a href="#" style="margin-left: 8px;">Your Account</a>
+            <a href="#" style="margin-left: 8px;">Cart</a>
+            <a href="#" style="margin-left: 8px;">Wish List</a>
+            <a href="#" style="margin-left: 8px;">Help</a>
+            </font>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Header -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#B8D6F5" style="border-bottom: 1px solid #CCCCCC;">
+    <tr>
+        <td style="padding: 12px 15px;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="200" valign="middle">
+                    <font size="6" face="Arial, Helvetica, sans-serif" color="#000000"><b>WebShop</b></font>
+                </td>
+                <td align="right" valign="middle">
+                    <button class="btn" style="padding: 4px 8px; font-size: 11px;">VIEW CART</button>
+                    <button class="btn" style="padding: 4px 8px; font-size: 11px;">WISH LIST</button>
+                    <button class="btn" style="padding: 4px 8px; font-size: 11px;">YOUR ACCOUNT</button>
+                    <button class="btn" style="padding: 4px 8px; font-size: 11px;">HELP</button>
+                </td>
+            </tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Hello Bar -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFF9E6" style="border-bottom: 1px solid #CCCCCC;">
+    <tr>
+        <td style="padding: 6px 15px;">
+            <font size="2" face="Arial, Helvetica, sans-serif" color="#000000">
+            Hello. Sign in to get personalized recommendations. <a href="#" style="color: #0066CC;">New customer? Start here.</a>
+            </font>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Navigation Bar -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#336699">
+    <tr>
+        <td align="center" style="padding: 0;">
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 10px 12px; font-size: 12px; font-weight: bold; text-transform: uppercase; font-family: Arial, sans-serif;">WELCOME</button>
+            </form>
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <input type="hidden" name="search_query" value="deals">
+                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 10px 12px; font-size: 12px; font-weight: bold; text-transform: uppercase; font-family: Arial, sans-serif;">TODAY'S DEALS</button>
+            </form>
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <input type="hidden" name="search_query" value="electronics">
+                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 10px 12px; font-size: 12px; font-weight: bold; text-transform: uppercase; font-family: Arial, sans-serif;">ELECTRONICS</button>
+            </form>
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <input type="hidden" name="search_query" value="fashion">
+                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 10px 12px; font-size: 12px; font-weight: bold; text-transform: uppercase; font-family: Arial, sans-serif;">APPAREL</button>
+            </form>
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <input type="hidden" name="search_query" value="books">
+                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 10px 12px; font-size: 12px; font-weight: bold; text-transform: uppercase; font-family: Arial, sans-serif;">BOOKS</button>
+            </form>
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <input type="hidden" name="search_query" value="home">
+                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 10px 12px; font-size: 12px; font-weight: bold; text-transform: uppercase; font-family: Arial, sans-serif;">HOME &amp; GARDEN</button>
+            </form>
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                <input type="hidden" name="search_query" value="sports">
+                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 10px 12px; font-size: 12px; font-weight: bold; text-transform: uppercase; font-family: Arial, sans-serif;">SPORTS</button>
+            </form>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Main Content -->
+    <table width="980" border="0" cellpadding="0" cellspacing="0" align="center" style="margin-top: 15px;">
+    <tr valign="top">
+        <!-- Left Sidebar - BROWSE -->
+        <td width="200" style="padding-right: 15px;">
+            <!-- Search Bar in Sidebar -->
+            <table width="100%" border="0" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" style="border: 1px solid #CCCCCC; margin-bottom: 15px;">
+            <tr>
+                <td>
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}">
+                        <input type="text" name="search_query" placeholder="Search WebShop" style="width: 100%; padding: 6px 8px; border: 1px solid #999999; font-size: 12px; margin-bottom: 5px;">
+                        <br>
+                        <button type="submit" style="padding: 6px 12px; background: #FF9900; color: #FFFFFF; border: 1px solid #CC6600; cursor: pointer; font-size: 12px;">GO</button>
+                    </form>
+                </td>
+            </tr>
+            </table>
+            
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F7F7F7" style="border-right: 1px solid #E0E0E0;">
+            <tr>
+                <td bgcolor="#336699" style="padding: 6px 8px;">
+                    <font size="1" color="#FFFFFF" face="Arial, Helvetica, sans-serif"><b>BROWSE</b></font>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">
+                    <font size="2" face="Arial, Helvetica, sans-serif"><b>Featured Stores</b></font>
+                    <table width="100%" border="0" cellpadding="2" cellspacing="0">
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Apparel &amp; Accessories</a></font></td></tr>
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Beauty</a></font></td></tr>
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Electronics</a></font></td></tr>
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Shoes</a></font></td></tr>
+                    </table>
+                    <hr size="1" color="#E0E0E0">
+                    <font size="2" face="Arial, Helvetica, sans-serif"><b>Books, Music, DVD</b></font>
+                    <table width="100%" border="0" cellpadding="2" cellspacing="0">
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Books</a></font></td></tr>
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Music</a></font></td></tr>
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">DVD &amp; Video</a></font></td></tr>
+                    </table>
+                    <hr size="1" color="#E0E0E0">
+                    <font size="2" face="Arial, Helvetica, sans-serif"><b>Electronics &amp; Office</b></font>
+                    <table width="100%" border="0" cellpadding="2" cellspacing="0">
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Electronics</a></font></td></tr>
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Computers</a></font></td></tr>
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Office Products</a></font></td></tr>
+                    </table>
+                    <hr size="1" color="#E0E0E0">
+                    <font size="2" face="Arial, Helvetica, sans-serif"><b>Home &amp; Garden</b></font>
+                    <table width="100%" border="0" cellpadding="2" cellspacing="0">
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Home Improvement</a></font></td></tr>
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Kitchen</a></font></td></tr>
+                    <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Garden</a></font></td></tr>
+                    </table>
+                </td>
+            </tr>
+            </table>
+        </td>
+
+        <!-- Main Content Area -->
+        <td style="padding: 0 15px;">
+
+            <!-- Blue Promotional Block -->
+            <table width="100%" border="0" cellpadding="15" cellspacing="0" bgcolor="#4A90E2" style="border: 1px solid #2E5C8A; margin-bottom: 15px;">
+            <tr>
+                <td>
+                    <font size="4" face="Arial, Helvetica, sans-serif" color="#FFFFFF"><b>Special Holiday Offers</b></font>
+                    <br>
+                    <font size="2" face="Arial, Helvetica, sans-serif" color="#FFFFFF">
+                    Shop now and save up to 65% on selected items. Free shipping on orders over $25. Limited time offer!
+                    </font>
+                </td>
+            </tr>
+            </table>
+
+            <!-- Discount Badges -->
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 15px;">
+            <tr>
+                <td align="center">
+                    <span style="display: inline; background: #8E44AD; color: #FFFFFF; padding: 12px 18px; font-size: 16px; font-weight: bold; margin: 8px;">78% OFF</span>
+                    <span style="display: inline; background: #FF6B6B; color: #FFFFFF; padding: 8px 12px; font-size: 13px; font-weight: bold; margin: 5px;">Save Up to 65%</span>
+                    <span style="display: inline; background: #FFA500; color: #FFFFFF; padding: 10px; font-size: 12px; font-weight: bold; margin: 5px;">15% OFF</span>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="padding-top: 10px;">
+                    <span style="display: inline; background: #FF6B6B; color: #FFFFFF; padding: 8px 12px; font-size: 13px; font-weight: bold; margin: 5px;">Everything on Sale</span>
+                    <span style="display: inline; background: #FF6B6B; color: #FFFFFF; padding: 8px 12px; font-size: 13px; font-weight: bold; margin: 5px;">Free Shipping</span>
+                    <span style="display: inline; background: #FF6B6B; color: #FFFFFF; padding: 8px 12px; font-size: 13px; font-weight: bold; margin: 5px;">Limited Time</span>
+                </td>
+            </tr>
+            </table>
+
+            <!-- Shop by Category -->
+            <table width="100%" border="0" cellpadding="20" cellspacing="0" bgcolor="#FFFFFF" style="border: 1px solid #E0E0E0; margin-bottom: 20px;">
+            <tr>
+                <td>
+                    <font size="4" face="Arial, Helvetica, sans-serif"><b>Shop by Category</b></font>
+                    <br><br>
+                    <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                    <tr>
+                        <td width="33%">
+                            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                                <input type="hidden" name="search_query" value="electronics">
+                                <button type="submit" style="background: none; border: none; cursor: pointer; padding: 0;"><a href="#" onclick="this.closest('form').submit(); return false;" style="color: #0066CC; font-size: 13px;">Electronics</a></button>
+                            </form>
+                        </td>
+                        <td width="33%">
+                            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                                <input type="hidden" name="search_query" value="fashion">
+                                <button type="submit" style="background: none; border: none; cursor: pointer; padding: 0;"><a href="#" onclick="this.closest('form').submit(); return false;" style="color: #0066CC; font-size: 13px;">Fashion &amp; Apparel</a></button>
+                            </form>
+                        </td>
+                        <td width="33%">
+                            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                                <input type="hidden" name="search_query" value="home">
+                                <button type="submit" style="background: none; border: none; cursor: pointer; padding: 0;"><a href="#" onclick="this.closest('form').submit(); return false;" style="color: #0066CC; font-size: 13px;">Home &amp; Garden</a></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                                <input type="hidden" name="search_query" value="books">
+                                <button type="submit" style="background: none; border: none; cursor: pointer; padding: 0;"><a href="#" onclick="this.closest('form').submit(); return false;" style="color: #0066CC; font-size: 13px;">Books</a></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                                <input type="hidden" name="search_query" value="sports">
+                                <button type="submit" style="background: none; border: none; cursor: pointer; padding: 0;"><a href="#" onclick="this.closest('form').submit(); return false;" style="color: #0066CC; font-size: 13px;">Sports &amp; Outdoors</a></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                                <input type="hidden" name="search_query" value="beauty">
+                                <button type="submit" style="background: none; border: none; cursor: pointer; padding: 0;"><a href="#" onclick="this.closest('form').submit(); return false;" style="color: #0066CC; font-size: 13px;">Beauty &amp; Personal Care</a></button>
+                            </form>
+                        </td>
+                    </tr>
+                    </table>
+                </td>
+            </tr>
+            </table>
+
+            <font size="2" face="Arial, Helvetica, sans-serif" color="#666666">► <a href="#">More special offers...</a></font>
+        </td>
+
+        <!-- Right Sidebar -->
+        <td width="220" style="padding-left: 15px;">
+            <table width="100%" border="0" cellpadding="12" cellspacing="0" style="border: 1px solid #E0E0E0; margin-bottom: 15px;">
+            <tr>
+                <td>
+                    <font size="2" face="Arial, Helvetica, sans-serif"><b>Today's Deals</b></font>
+                    <br><br>
+                    <img src="{{url_for('static', filename='images/no-image-available.png')}}" alt="Deal" style="max-width: 100%; margin-bottom: 8px;">
+                    <br>
+                    <span style="display: inline; background: #FF6B6B; color: #FFFFFF; padding: 6px 10px; font-size: 11px; font-weight: bold;">Save 45%</span>
+                    <br><br>
+                    <font size="1" face="Arial, Helvetica, sans-serif">Shop our featured products and save big on select items.</font>
+                    <br>
+                    <a href="#" style="font-size: 11px;">Shop Now</a>
+                </td>
+            </tr>
+            </table>
+
+            <table width="100%" border="0" cellpadding="15" cellspacing="0" bgcolor="#E8F5E9" style="border: 2px solid #4CAF50; margin-bottom: 15px;">
+            <tr>
+                <td>
+                    <font size="2" face="Arial, Helvetica, sans-serif"><b>Holiday Shopping Meter</b></font>
+                    <br>
+                    <font size="5" face="Arial, Helvetica, sans-serif"><b>46,242,823</b></font>
+                    <br>
+                    <font size="1" face="Arial, Helvetica, sans-serif">Items purchased today</font>
+                    <br>
+                    <a href="#" style="color: #0066CC; font-size: 11px;">Learn more</a>
+                </td>
+            </tr>
+            </table>
+
+            <table width="100%" border="0" cellpadding="12" cellspacing="0" style="border: 1px solid #E0E0E0; margin-bottom: 15px;">
+            <tr>
+                <td>
+                    <font size="2" face="Arial, Helvetica, sans-serif"><b>New Arrivals</b></font>
+                    <br><br>
+                    <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="60" valign="top">
+                            <img src="{{url_for('static', filename='images/no-image-available.png')}}" alt="New" style="max-width: 50px; max-height: 50px;">
+                        </td>
+                        <td valign="top">
+                            <font size="1" face="Arial, Helvetica, sans-serif"><b>New Product</b></font><br>
+                            <span style="display: inline; background: #FF6B6B; color: #FFFFFF; padding: 3px 6px; font-size: 9px; font-weight: bold;">Hot</span>
+                        </td>
+                    </tr>
+                    </table>
+                    <br>
+                    <font size="1" face="Arial, Helvetica, sans-serif">Check out our latest products and hottest deals.</font>
+                    <br>
+                    <a href="#" style="font-size: 11px;">View All</a>
+                </td>
+            </tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+
+    <!-- Footer -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F7F7F7" style="border-top: 1px solid #E0E0E0; margin-top: 30px;">
+    <tr>
+        <td style="padding: 20px 0;">
+            <table width="980" border="0" cellpadding="0" cellspacing="0" align="center">
+            <!-- Footer Search Bar -->
+            <tr>
+                <td align="center" style="padding-bottom: 15px; border-bottom: 1px solid #E0E0E0;">
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}">
+                        <input type="text" name="search_query" placeholder="Search WebShop" style="padding: 6px 8px; border: 1px solid #999999; font-size: 12px; width: 300px;">
+                        <button type="submit" style="padding: 6px 12px; background: #FF9900; color: #FFFFFF; border: 1px solid #CC6600; cursor: pointer; font-size: 12px;">GO</button>
+                    </form>
+                </td>
+            </tr>
+            <!-- Footer Links -->
+            <tr>
+                <td style="padding: 20px 0;">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr valign="top">
+                        <td width="25%">
+                            <font size="2" face="Arial, Helvetica, sans-serif"><b>Get to Know Us</b></font>
+                            <table width="100%" border="0" cellpadding="2" cellspacing="0" style="margin-top: 10px;">
+                            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">About Us</a></font></td></tr>
+                            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Careers</a></font></td></tr>
+                            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Press Releases</a></font></td></tr>
+                            </table>
+                        </td>
+                        <td width="25%">
+                            <font size="2" face="Arial, Helvetica, sans-serif"><b>Make Money with Us</b></font>
+                            <table width="100%" border="0" cellpadding="2" cellspacing="0" style="margin-top: 10px;">
+                            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Sell products on WebShop</a></font></td></tr>
+                            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Become an Affiliate</a></font></td></tr>
+                            </table>
+                        </td>
+                        <td width="25%">
+                            <font size="2" face="Arial, Helvetica, sans-serif"><b>Let Us Help You</b></font>
+                            <table width="100%" border="0" cellpadding="2" cellspacing="0" style="margin-top: 10px;">
+                            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Your Account</a></font></td></tr>
+                            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Returns Center</a></font></td></tr>
+                            <tr><td><font size="1" face="Arial, Helvetica, sans-serif"><a href="#">Help</a></font></td></tr>
+                            </table>
+                        </td>
+                        <td width="25%">&nbsp;</td>
+                    </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- Footer Bottom Links -->
+            <tr>
+                <td align="center" style="padding: 10px 0; border-top: 1px solid #E0E0E0;">
+                    <font size="1" face="Arial, Helvetica, sans-serif">
+                    <a href="#">United States</a> | 
+                    <a href="#">United Kingdom</a> | 
+                    <a href="#">Canada</a> | 
+                    <a href="#">Germany</a> | 
+                    <a href="#">Japan</a>
+                    <br>
+                    <a href="#">Conditions of Use</a> | 
+                    <a href="#">Privacy Notice</a> | 
+                    <a href="#">Interest-Based Ads</a>
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="padding-top: 15px;">
+                    <font size="1" face="Arial, Helvetica, sans-serif" color="#666666">
+                    © 2005 WebShop.com, Inc. or its affiliates
+                    </font>
+                </td>
+            </tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+</body>
+</html>

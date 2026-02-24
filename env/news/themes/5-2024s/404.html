@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Article Not Found - News{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <div class="error-content">
+        <div class="error-icon">📰</div>
+        <h1 class="error-title">Article Not Found</h1>
+        <p class="error-message">
+            The article "{{ title }}" could not be found in our news archive.
+        </p>
+        <div class="error-actions">
+            <a href="/" class="btn-primary">Go to home</a>
+            <a href="/browse" class="btn-secondary">Browse articles</a>
+        </div>
+        <div class="error-search">
+            <p>Try searching for what you're looking for:</p>
+            <input type="text" id="errorSearch" placeholder="Search news..." autocomplete="off">
+            <div id="errorSearchResults" class="search-results"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Search functionality
+const errorSearch = document.getElementById('errorSearch');
+const errorSearchResults = document.getElementById('errorSearchResults');
+let searchTimeout;
+
+if (errorSearch) {
+    errorSearch.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        const query = this.value.trim();
+        
+        if (query.length < 2) {
+            errorSearchResults.style.display = 'none';
+            return;
+        }
+        
+        searchTimeout = setTimeout(() => {
+            fetch(`/search?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(results => {
+                    if (results.length > 0) {
+                        errorSearchResults.innerHTML = results.map(result => `
+                            <a href="/news/${encodeURIComponent(result.title)}" class="search-result-item">
+                                <div class="result-title">${escapeHtml(result.title)}</div>
+                                ${result.date ? `<div class="result-date">${escapeHtml(result.date)}</div>` : ''}
+                            </a>
+                        `).join('');
+                        errorSearchResults.style.display = 'block';
+                    } else {
+                        errorSearchResults.innerHTML = '<div class="no-results">No results found</div>';
+                        errorSearchResults.style.display = 'block';
+                    }
+                });
+        }, 300);
+    });
+
+    // Close results when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!errorSearch.contains(e.target) && !errorSearchResults.contains(e.target)) {
+            errorSearchResults.style.display = 'none';
+        }
+    });
+}
+
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, m => map[m]);
+}
+</script>
+{% endblock %}
+
+
+
+

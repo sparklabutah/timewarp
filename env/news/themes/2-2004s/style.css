@@ -1,0 +1,192 @@
+/* News 2004 Style - BBC News Mid-2000s */
+/* Period-appropriate CSS */
+
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #000000;
+    background: #F5F1E8;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    font-size: 11px;
+}
+
+td {
+    vertical-align: top;
+}
+
+a {
+    color: #0066CC;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #CC0000;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #0066CC;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #999999;
+    margin: 5px 0;
+}
+
+b, strong {
+    font-weight: bold;
+}
+
+/* Form elements */
+input[type="text"] {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    border: 1px solid #999999;
+    padding: 3px;
+}
+
+input[type="submit"] {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    padding: 3px 8px;
+    background: #CCCCCC;
+    border: 1px solid #666666;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #AAAAAA;
+}
+
+/* Search results */
+.search-results {
+    position: absolute;
+    background: #ffffff;
+    border: 1px solid #000000;
+    z-index: 1000;
+    display: none;
+}
+
+.search-result-item {
+    display: block;
+    padding: 5px;
+    border-bottom: 1px solid #CCCCCC;
+    text-decoration: none;
+    color: #0066CC;
+    font-size: 10px;
+}
+
+.search-result-item:hover {
+    background: #FFFFCC;
+}
+
+/* Article styling */
+.article-title-main {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    margin: 5px 0;
+}
+
+.article-meta {
+    font-size: 10px;
+    color: #666666;
+    margin: 5px 0;
+}
+
+.article-content {
+    font-size: 11px;
+    line-height: 1.5;
+    color: #000000;
+}
+
+.article-content h2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 12px 0 6px 0;
+}
+
+.article-content h3 {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 10px 0 4px 0;
+}
+
+.article-content p {
+    margin-bottom: 10px;
+}
+
+/* Browse page */
+.browse-header h1 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.browse-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #D4D0C4;
+}
+
+.browse-title {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 3px 0;
+}
+
+.browse-meta {
+    font-size: 10px;
+    color: #666666;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #D4D0C4;
+}
+
+.btn-page {
+    padding: 3px 10px;
+    background: #CCCCCC;
+    color: #000000;
+    text-decoration: none;
+    font-size: 11px;
+    margin: 0 3px;
+    border: 1px solid #666666;
+}
+
+.btn-page:hover {
+    background: #AAAAAA;
+}
+
+/* Error page */
+.error-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+/* Sidebar */
+.sidebar-box {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #D4D0C4;
+}
+
+.sidebar-box h3 {
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}

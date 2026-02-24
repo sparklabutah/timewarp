@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Attributes - WebShop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <div class="announcement-bar"><marquee>🎉 SPECIAL OFFER! Free Shipping on Orders Over $50 | New Products Daily 🎉</marquee></div>
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div id="logo"><h1>🛒 WebShop</h1><span class="tagline">Your Ultimate Shopping Destination</span></div>
+            </div>
+        </div>
+        <nav class="main-nav"><div class="container"><ul class="nav-menu"><li><a href="#">🏠 Home</a></li><li><a href="#">🔥 Deals</a></li><li><a href="#">👕 Fashion</a></li><li><a href="#">💻 Electronics</a></li></ul></div></nav>
+    </header>
+    <div class="container" style="padding: 30px 0;">
+        <div id="instruction-text" class="text-center"><h4>🎯 {{ instruction_text }}</h4></div>
+        <div class="row top-buffer">
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline-block;"><button type="submit" class="btn btn-success">← Search</button></form>
+            <form method="post" action="{{url_for('item_page', session_id=session_id, asin=asin, keywords=keywords, page=page, options=options)}}" style="display: inline-block;"><button type="submit" class="btn btn-primary">← Product</button></form>
+        </div>
+        <div class="row top-buffer"><div class="col-md-12"><div class="card"><h3 style="color: #667eea; margin-bottom: 20px;"><i class="glyphicon glyphicon-tags"></i> Product Attributes</h3><div class="row"><div class="col-md-6"><ul style="list-style: none; padding: 0;">{% for attribute in product_info.Attributes %}<li style="padding: 10px 0; border-bottom: 1px solid #f0f0f0; line-height: 1.6;"><i class="glyphicon glyphicon-tag" style="color: #667eea; margin-right: 8px;"></i><span style="font-size: 14px; color: #555;">{{attribute}}</span></li>{% endfor %}</ul></div><div class="col-md-6"><div style="background: #f9f9f9; border-radius: 10px; padding: 20px;"><h4 style="color: #667eea; font-size: 16px; margin-bottom: 15px;"><i class="glyphicon glyphicon-info-sign"></i> Product Info</h4><div style="margin-bottom: 10px;"><strong style="color: #333;">Category:</strong> <span style="color: #555;">{{product_info.category}}</span></div><div style="margin-bottom: 10px;"><strong style="color: #333;">Query:</strong> <span style="color: #555;">{{product_info.query}}</span></div><div style="margin-bottom: 10px;"><strong style="color: #333;">Product Category:</strong> <span style="color: #555;">{{product_info.product_category}}</span></div></div></div></div></div></div></div>
+    </div>
+    <footer class="main-footer"><div class="container"><div class="footer-bottom"><p class="copyright">© 2024 WebShop. All Rights Reserved.</p></div></div></footer>
+    <div class="floating-buttons"><button class="fab" title="Back to Top">⬆️</button></div>
+</body>
+</html>

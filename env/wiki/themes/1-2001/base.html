@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>{% block title %}HomePage{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B">
+<h1><a href="/">{% block page_title %}HomePage{% endblock %}</a></h1>
+[<a href="/">Home</a>]
+<p>
+<a href="/">HomePage</a> | 
+<a href="#">RecentChanges</a> | 
+<a href="#">Preferences</a>
+</p>
+<p>
+<em>You</em> can <a href="#">edit this page right now!</a> It's a free, community project.
+</p>
+<hr>
+{% block content %}{% endblock %}
+<hr>
+<p>
+Today is {{ now().strftime('%A, %B %d, %Y') if now else 'Wednesday, August 8, 2001' }}.
+</p>
+<p><a href="/Talk">/Talk</a></p>
+<hr>
+<p>
+<a href="/">HomePage</a> | 
+<a href="#">RecentChanges</a> | 
+<a href="#">Preferences</a>
+</p>
+<p>
+<em>You</em> can <a href="#">edit this page right now!</a> It's a free, community project.
+</p>
+<p>
+<a href="#">Edit text of this page</a> | <a href="#">View other revisions</a><br>
+Last edited {% if timestamp %}{{ timestamp.split('T')[0] }}{% else %}August 8, 2001{% endif %} (diff)
+</p>
+<form action="/wiki/" method="get" onsubmit="window.location.href='/wiki/' + encodeURIComponent(this.elements['q'].value); return false;">
+Search: <input type="text" name="q" size="30">
+</form>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

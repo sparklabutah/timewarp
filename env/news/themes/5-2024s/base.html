@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}News - The Free News Source{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="header-top-content">
+                <div class="header-left">
+                    <button class="menu-icon" aria-label="Menu">☰</button>
+                    <button class="search-icon" aria-label="Search">🔍</button>
+                    <a href="/" class="watch-live">
+                        <span class="live-indicator"></span>
+                        Watch Live
+                    </a>
+                </div>
+                <div class="header-logo">
+                    <a href="/">NEWS</a>
+                </div>
+                <div class="header-right">
+                    <a href="#" class="subscribe-btn">Subscribe</a>
+                    <a href="#" class="sign-in">Sign In</a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="nav-content">
+                <a href="/" class="nav-link active">Home</a>
+                <a href="/browse" class="nav-link">News</a>
+                <a href="/browse" class="nav-link">Sport</a>
+                <a href="/browse" class="nav-link">Business</a>
+                <a href="/browse" class="nav-link">Innovation</a>
+                <a href="/browse" class="nav-link">Culture</a>
+                <a href="/browse" class="nav-link">Arts</a>
+                <a href="/browse" class="nav-link">Travel</a>
+                <a href="/browse" class="nav-link">Earth</a>
+                <a href="/browse" class="nav-link">Audio</a>
+                <a href="/browse" class="nav-link">Video</a>
+                <a href="/browse" class="nav-link">Live</a>
+                <a href="/browse" class="nav-link">Documentaries</a>
+            </div>
+        </nav>
+        <div class="search-container" id="searchContainer" style="display: none;">
+            <input type="text" id="searchInput" placeholder="Search news..." autocomplete="off">
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-logo">
+                <a href="/">NEWS</a>
+            </div>
+            <nav class="footer-nav">
+                <a href="/" class="footer-link">Home</a>
+                <a href="/browse" class="footer-link">News</a>
+                <a href="/browse" class="footer-link">Sport</a>
+                <a href="/browse" class="footer-link">Business</a>
+                <a href="/browse" class="footer-link">Innovation</a>
+                <a href="/browse" class="footer-link">Culture</a>
+                <a href="/browse" class="footer-link">Arts</a>
+                <a href="/browse" class="footer-link">Travel</a>
+                <a href="/browse" class="footer-link">Earth</a>
+                <a href="/browse" class="footer-link">Audio</a>
+                <a href="/browse" class="footer-link">Video</a>
+                <a href="/browse" class="footer-link">Live</a>
+                <a href="/browse" class="footer-link">Documentaries</a>
+                <a href="/browse" class="footer-link">Weather</a>
+                <a href="/browse" class="footer-link">NEWS Shop</a>
+                <a href="/browse" class="footer-link">BritBox</a>
+            </nav>
+        </div>
+        
+        <div class="footer-languages">
+            <button class="language-selector">NEWS in other languages ▼</button>
+        </div>
+        
+        <div class="footer-social">
+            <span class="social-label">Follow NEWS on:</span>
+            <div class="social-icons">
+                <a href="#" class="social-icon" aria-label="Twitter">𝕏</a>
+                <a href="#" class="social-icon" aria-label="Facebook">f</a>
+                <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+                <a href="#" class="social-icon" aria-label="TikTok">♪</a>
+                <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+                <a href="#" class="social-icon" aria-label="YouTube">▶</a>
+            </div>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#" class="footer-small-link">Terms of Use</a>
+            <a href="#" class="footer-small-link">Subscription Terms</a>
+            <a href="#" class="footer-small-link">About the NEWS</a>
+            <a href="#" class="footer-small-link">Privacy Policy</a>
+            <a href="#" class="footer-small-link">Cookies</a>
+            <a href="#" class="footer-small-link">Accessibility Help</a>
+            <a href="#" class="footer-small-link">Contact the NEWS</a>
+            <a href="#" class="footer-small-link">Advertise with us</a>
+            <a href="#" class="footer-small-link">Do not share or sell my info</a>
+            <a href="#" class="footer-small-link">NEWS.com Help & FAQs</a>
+            <a href="#" class="footer-small-link">Content Index</a>
+        </div>
+        
+        <div class="footer-copyright">
+            <p>Copyright 2025 NEWS. All rights reserved. The NEWS is not responsible for the content of external sites. <a href="#">Read about our approach to external linking.</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

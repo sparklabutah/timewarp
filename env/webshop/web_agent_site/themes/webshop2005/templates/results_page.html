@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results - WebShop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span style="color: #0066CC; font-weight: bold;">webshop.com</span>
+            <a href="#">Your Store</a>
+            <a href="#">See All Product Categories</a>
+            <a href="#">Your Account</a>
+            <a href="#">Cart</a>
+            <a href="#">Wish List</a>
+            <a href="#">Help</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container" style="display: flex; justify-content: center;">
+                <div id="logo">
+                    <h1>WebShop</h1>
+                </div>
+            </div>
+        </div>
+        <div style="background: #E4E4E4; padding: 5px 0; border-bottom: 1px solid #CCCCCC;">
+            <div class="container">
+                <span style="font-size: 12px; color: #000000;">Hello. Sign in to get personalized recommendations. <a href="#" style="color: #0066CC;">New customer? Start here.</a></span>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 15px; font-size: 13px; font-family: Arial, sans-serif;">Home</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="deals">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 15px; font-size: 13px; font-family: Arial, sans-serif;">Gift Ideas</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="electronics">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 15px; font-size: 13px; font-family: Arial, sans-serif;">Electronics</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="fashion">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 15px; font-size: 13px; font-family: Arial, sans-serif;">Fashion</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container" style="padding: 15px;">
+        <div style="display: flex; gap: 15px;">
+            <!-- Left Sidebar -->
+            <div class="sidebar-browse">
+                <div class="browse-header">BROWSE</div>
+                <div class="sidebar-section">
+                    <form method="post" action="{{ url_for('index', session_id=session_id) }}">
+                        <button type="submit" class="btn btn-success" style="width: 100%; margin: 0 0 10px 0; font-size: 12px;">Back to Search</button>
+                    </form>
+                </div>
+                <div class="sidebar-section">
+                    <h4>Refine Your Search</h4>
+                    <ul>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Home & Garden</a></li>
+                        <li><a href="#">Sports</a></li>
+                        <li><a href="#">Books</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div style="flex: 1;">
+                <div style="background: white; padding: 10px; border: 1px solid #E0E0E0; margin-bottom: 15px;">
+                    <h3 style="margin: 0; font-size: 16px; font-weight: bold; font-family: Arial, sans-serif;">Page {{page}} (Total results: {{total}})</h3>
+                </div>
+
+                <div>
+                    {% set keywords_str = keywords|join('+') if keywords else '' %}
+                    {% for item in products %}
+                    {% set item_page_url = url_for('item_page', session_id=session_id, asin=item.asin, keywords=keywords_str, page=page, options=dict() ) %}
+                    <div class="list-group-item">
+                        <div>
+                            <a href="{{ item_page_url }}">
+                                <img src="{{item.MainImage}}" class="result-img" alt="{{item.Title}}">
+                            </a>
+                        </div>
+                        <div style="flex: 1;">
+                            <h4 class="product-asin"><a class="product-link" href="{{ item_page_url }}">{{item.asin}}</a></h4>
+                            <h4 class="product-title"><a class="product-link" href="{{ item_page_url }}">{{item.Title}}</a></h4>
+                            <div>
+                                <h5 class="product-price">{{item.Price}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Pagination -->
+                <div style="margin-top: 20px; padding: 10px 0; border-top: 1px solid #E0E0E0;">
+                    {% if page > 1 %}
+                    <form method="post" action="{{url_for('search_results', session_id=session_id, keywords=keywords_str, page=page - 1)}}" style="display: inline;">
+                        <button type="submit" class="btn btn-primary">&lt; Prev</button>
+                    </form>
+                    {% endif %}
+                    <span style="margin: 0 15px; font-size: 13px;">Page {{page}}</span>
+                    <form method="post" action="{{url_for('search_results', session_id=session_id, keywords=keywords_str, page=page + 1)}}" style="display: inline;">
+                        <button type="submit" class="btn btn-primary">Next &gt;</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="copyright">© 2005 WebShop.com, Inc. or its affiliates</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Enable sidebar links to trigger searches via POST
+        document.addEventListener('DOMContentLoaded', function() {
+            var links = document.querySelectorAll('.sidebar-browse ul li a');
+            var postUrl = "{{ url_for('index', session_id=session_id) }}";
+            links.forEach(function(link) {
+                link.addEventListener('click', function(ev) {
+                    ev.preventDefault();
+                    var queryText = (this.getAttribute('data-query') || this.textContent || '').trim();
+                    if (!queryText) return;
+                    var form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = postUrl;
+                    var input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'search_query';
+                    input.value = queryText;
+                    form.appendChild(input);
+                    document.body.appendChild(form);
+                    form.submit();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

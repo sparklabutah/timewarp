@@ -1,0 +1,593 @@
+/**
+ * Wikipedia Vector Skin (2010-2020)
+ * Based on the MediaWiki Vector skin used from 2010-2020
+ * Period-appropriate CSS for the Vector era
+ */
+
+/* Reset and General Styles */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #f6f6f6;
+    font-size: 0.875em;
+    line-height: 1.6;
+    color: #252525;
+}
+
+a {
+    text-decoration: none;
+    color: #0645ad;
+}
+
+a:visited {
+    color: #0b0080;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    color: #faa700;
+}
+
+/* Page Base */
+#mw-page-base {
+    height: 5em;
+    background-color: #ffffff;
+    /* Gradient with fallback for older browsers */
+    background: #ffffff;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #ffffff), to(#f6f6f6));
+    background: -webkit-linear-gradient(top, #ffffff 50%, #f6f6f6 100%);
+    background: -moz-linear-gradient(top, #ffffff 50%, #f6f6f6 100%);
+    background: -o-linear-gradient(top, #ffffff 50%, #f6f6f6 100%);
+    background: linear-gradient(to bottom, #ffffff 50%, #f6f6f6 100%);
+}
+
+#mw-head-base {
+    margin-top: -5em;
+    margin-left: 10em;
+    height: 5em;
+}
+
+/* Navigation */
+#mw-navigation {
+    margin-left: 10em;
+}
+
+#mw-head {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+/* Personal Tools (Login/Create Account) */
+#p-personal {
+    position: absolute;
+    top: 0.33em;
+    right: 0.75em;
+    font-size: 0.75em;
+}
+
+#p-personal ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 10em;
+}
+
+#p-personal li {
+    float: left;
+    margin-left: 0.75em;
+    margin-top: 0.5em;
+    font-size: 1em;
+    white-space: nowrap;
+}
+
+#p-personal a {
+    color: #0645ad;
+}
+
+/* Left Navigation (Tabs) */
+#left-navigation {
+    position: absolute;
+    left: 10em;
+    top: 2.5em;
+}
+
+.vectorTabs {
+    float: left;
+    height: 2.5em;
+    padding-left: 1px;
+    margin-right: 1em;
+}
+
+.vectorTabs ul {
+    float: left;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.vectorTabs li {
+    float: left;
+    display: block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 1.125em;
+    background-color: #f3f3f3;
+    margin-right: 1px;
+    border: 1px solid #a7d7f9;
+    border-bottom-color: #a7d7f9;
+}
+
+.vectorTabs li.selected {
+    background-color: #ffffff;
+    border: 1px solid #a7d7f9;
+    border-bottom: 1px solid #ffffff;
+    padding-bottom: 0px;
+}
+
+.vectorTabs a {
+    display: inline-block;
+    height: 2.5em;
+    line-height: 2.5em;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    color: #0645ad;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.vectorTabs li.selected a,
+.vectorTabs li.selected a:visited {
+    color: #252525;
+    text-decoration: none;
+}
+
+.vectorTabs a:hover {
+    text-decoration: none;
+}
+
+#p-namespaces {
+    margin-right: 0.5em;
+}
+
+#p-views {
+    margin-right: 0.5em;
+}
+
+/* Right Navigation (Search) */
+#right-navigation {
+    float: right;
+    margin-top: 2.5em;
+}
+
+#p-search {
+    float: left;
+    margin-right: 0.5em;
+}
+
+#p-search h3 {
+    display: none;
+}
+
+#p-search form {
+    margin: 0.4em 0 0 0;
+    float: left;
+}
+
+#searchInput {
+    border: 1px solid #a2a9b1;
+    padding: 0.3em;
+    width: 14em;
+    font-size: 0.8em;
+}
+
+.searchButton {
+    padding: 0.3em 0.5em;
+    margin-left: 0.2em;
+    font-size: 0.8em;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    border: 1px solid #a2a9b1;
+}
+
+.searchButton:hover {
+    background-color: #ffffff;
+}
+
+/* Sidebar (Panel) */
+#mw-panel {
+    position: absolute;
+    top: 160px;
+    padding-top: 1em;
+    width: 10em;
+    left: 0;
+}
+
+#p-logo {
+    width: 10em;
+    height: 160px;
+    position: absolute;
+    top: -160px;
+    left: 0;
+    text-align: center;
+}
+
+#p-logo a {
+    display: block;
+    width: 10em;
+    height: 160px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#p-logo img {
+    width: 135px;
+    height: auto;
+    margin-top: 1em;
+}
+
+.portal {
+    margin: 0 0.6em 0 0.7em;
+    padding: 0.25em 0;
+    direction: ltr;
+    background-position: top left;
+    background-repeat: no-repeat;
+}
+
+.portal h3 {
+    font-size: 0.75em;
+    color: #4d4d4d;
+    font-weight: normal;
+    margin: 0.5em 0 0 0.66666667em;
+    padding: 0.25em 0;
+    cursor: default;
+    border: none;
+}
+
+.portal .body {
+    margin: 0 0 0 1.25em;
+    padding-top: 0;
+}
+
+.portal .body ul {
+    list-style: none;
+    list-style-image: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.portal .body li {
+    line-height: 1.125em;
+    margin: 0;
+    padding: 0.25em 0;
+    font-size: 0.75em;
+    word-wrap: break-word;
+}
+
+.portal .body li a {
+    color: #0645ad;
+}
+
+.portal .body li a:visited {
+    color: #0b0080;
+}
+
+/* Main Content */
+#content {
+    margin-left: 10em;
+    padding: 1.25em 1.5em 1.5em 1.5em;
+    background-color: #ffffff;
+    color: #252525;
+    direction: ltr;
+    border: 1px solid #a7d7f9;
+    border-right-width: 0;
+}
+
+#firstHeading {
+    font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+    line-height: 1.3;
+    margin-bottom: 0.25em;
+    padding: 0;
+    font-size: 1.8em;
+    font-weight: normal;
+    color: #000000;
+}
+
+#siteSub {
+    display: block;
+    font-size: 0.8em;
+    color: #54595d;
+    margin-top: -0.5em;
+    margin-bottom: 1em;
+}
+
+#contentSub {
+    font-size: 0.875em;
+    line-height: 1.2em;
+    margin: 0 0 1.4em 1em;
+    color: #54595d;
+}
+
+#bodyContent {
+    position: relative;
+    line-height: 1.6;
+    font-size: 0.875em;
+}
+
+#bodyContent p {
+    margin: 0.5em 0;
+}
+
+#bodyContent h2 {
+    font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+    line-height: 1.3;
+    margin-bottom: 0.25em;
+    padding: 0;
+    font-size: 1.5em;
+    font-weight: normal;
+    margin-top: 1em;
+    border-bottom: 1px solid #a2a9b1;
+}
+
+#bodyContent h3 {
+    font-size: 1.2em;
+    margin-top: 0.3em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-weight: bold;
+}
+
+#bodyContent h4 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 0.3em;
+}
+
+#bodyContent ul {
+    line-height: 1.5em;
+    list-style-type: square;
+    margin: 0.3em 0 0 1.6em;
+    padding: 0;
+}
+
+#bodyContent ol {
+    line-height: 1.5em;
+    margin: 0.3em 0 0 3.2em;
+    padding: 0;
+    list-style-image: none;
+}
+
+#bodyContent li {
+    margin-bottom: 0.1em;
+}
+
+/* Footer */
+#footer {
+    margin-left: 10em;
+    margin-top: 0;
+    padding: 1.25em;
+    direction: ltr;
+    background-color: #ffffff;
+    border: 1px solid #a7d7f9;
+    border-top: 0;
+    border-right: 0;
+}
+
+#footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#footer li {
+    color: #252525;
+    margin: 0;
+    padding: 0.5em 0;
+    font-size: 0.7em;
+}
+
+#footer-info li {
+    line-height: 1.4em;
+}
+
+#footer-places li {
+    float: left;
+    margin-right: 1em;
+    line-height: 2em;
+}
+
+#footer-icons {
+    float: right;
+}
+
+#footer-icons li {
+    float: left;
+    margin-left: 0.5em;
+    line-height: 2em;
+}
+
+#footer a {
+    color: #0645ad;
+}
+
+/* Visual Clear */
+.visualClear {
+    clear: both;
+}
+
+/* Main Page Specific Styles */
+#mp-topbanner {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+#mp-tfa, #mp-itn, #mp-otd {
+    margin-bottom: 1em;
+}
+
+/* Boxes styling */
+.mp-box {
+    border: 1px solid #a7d7f9;
+    background-color: #f5faff;
+    margin-bottom: 1em;
+}
+
+.mp-box-header {
+    padding: 0.3em 0.5em;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.mp-box-content {
+    padding: 0.8em;
+}
+
+/* Article content images */
+img {
+    border: none;
+    vertical-align: middle;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+}
+
+/* Utility Classes */
+.floatright {
+    float: right;
+    clear: right;
+    margin: 0 0 1em 1em;
+}
+
+.floatleft {
+    float: left;
+    clear: left;
+    margin: 0 1em 1em 0;
+}
+
+.center {
+    text-align: center;
+}
+
+/* Code and Pre */
+code {
+    background-color: #f8f9fa;
+    border: 1px solid #eaecf0;
+    padding: 1px 4px;
+}
+
+pre {
+    background-color: #f8f9fa;
+    border: 1px solid #eaecf0;
+    padding: 1em;
+    overflow: auto;
+}
+
+/* Strong and Em */
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+/* Print Styles - kept simple */
+@media print {
+    #mw-navigation,
+    #footer,
+    #p-logo {
+        display: none;
+    }
+    
+    #content {
+        margin: 0;
+        border: 0;
+    }
+}
+
+/* Additional styling for compatibility */
+.mw-body {
+    position: relative;
+}
+
+.noprint {
+    /* Will be hidden in print */
+}
+
+.mediawiki {
+    /* Body class */
+}
+
+/* Links in specific areas */
+#bodyContent a.external {
+    background-position: center right;
+    background-repeat: no-repeat;
+    padding-right: 13px;
+}
+
+/* Table of contents */
+#toc {
+    border: 1px solid #a2a9b1;
+    background-color: #f5f5ff;
+    margin: 1em 0;
+    display: inline-block;
+    min-width: 20em;
+    max-width: 36em;
+    width: auto;
+}
+
+#toc .toc-title {
+    background-color: #e6e6fa;
+    border-bottom: 1px solid #a2a9b1;
+    padding: 0.4em 0.6em;
+    font-weight: bold;
+}
+
+#toc .toc-toggle {
+    float: right;
+}
+
+#toc .toc-toggle a {
+    display: inline-block;
+    padding: 0 6px;
+    border: 1px solid #a2a9b1;
+    background: #ffffff;
+    color: #0645ad;
+    text-decoration: none;
+}
+
+#toc .toc-list {
+    list-style: none;
+    padding: 0.5em 0.8em 0.7em 0.5em;
+}
+
+#toc .toc-level-1 { margin-left: 0; }
+#toc .toc-level-2 { margin-left: 0.6em; }
+#toc .toc-level-3 { margin-left: 1.2em; }
+
+/* Top banner links */
+#mp-topbanner a {
+    font-weight: inherit;
+}
+
+#mp-topbanner strong a {
+    font-weight: bold;
+}

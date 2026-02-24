@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Complete - WebShop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span style="color: #0066CC; font-weight: bold;">webshop.com</span>
+            <a href="#">Your Store</a>
+            <a href="#">See All Product Categories</a>
+            <a href="#">Your Account</a>
+            <a href="#">Cart</a>
+            <a href="#">Wish List</a>
+            <a href="#">Help</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div id="logo"><h1>WebShop</h1></div>
+            </div>
+        </div>
+    </header>
+    <div class="container" style="padding: 15px;">
+        <div style="margin-bottom: 15px;">
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline-block;">
+                <button type="submit" class="btn btn-success" style="font-size: 12px;">Back to Search</button>
+            </form>
+        </div>
+        <div style="text-align: center; padding: 40px 20px;">
+            <div id="thankyou">
+                <h1>Thank you for shopping with us!</h1>
+            </div>
+            <div id="stats" style="margin-top: 30px;">
+                <h3 style="font-weight: bold; font-family: Arial, sans-serif; font-size: 16px;">Your code: </h3>
+                <pre>{{ mturk_code }}</pre>
+                <div style="display:none">
+                    <h2>Purchased</h2>
+                    <h4>asin<pre>{{ asin }}</pre></h4>
+                    <h4>options<pre>{{ options | tojson }}</pre></h4>
+                    <h4>attrs<pre>{{ purchased_attrs }}</pre></h4>
+                    <h4>category<pre>{{ category }}</pre></h4>
+                    <h4>query<pre>{{ query }}</pre></h4>
+                    <h4>product_category<pre>{{ product_category }}</pre></h4>
+                    <h4>goal_attrs<pre>{{ goal_attrs }}</pre></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="copyright">© 2005 WebShop.com, Inc. or its affiliates</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

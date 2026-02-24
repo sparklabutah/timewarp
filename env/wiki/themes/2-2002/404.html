@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Article not found - Wikipedia{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Article not found</h1>
+<p class="page-subtitle">From Wikipedia, the free encyclopedia.</p>
+
+<div class="content-box error-box">
+    <p class="box-title"><strong>Error: Article "{{ title }}" not found</strong></p>
+    <p>
+        There is currently no text in this page. You can search for this page title in other articles 
+        or search the related logs, but you do not have permission to create this page.
+    </p>
+</div>
+
+<h2 class="section-title">Suggestions:</h2>
+<ul class="suggestion-list">
+    <li>Check the spelling of the article title you entered</li>
+    <li>Return to the <a href="/">Main Page</a></li>
+    <li>Try a <a href="#" id="random404">random page</a></li>
+</ul>
+
+<!-- Footer -->
+<hr>
+<p class="footer-text">
+    <a href="/">Main Page</a> | 
+    <a href="#" onclick="history.back()">Back</a> | 
+    <a href="#" id="randomFooter404">Random page</a>
+</p>
+<p class="access-info">
+    This page has been accessed 0 times. Error: Article not found.
+</p>
+
+<script>
+document.getElementById('random404').addEventListener('click', function(e) {
+    e.preventDefault();
+    fetch('/random')
+        .then(response => response.json())
+        .then(data => {
+            if (data.title) {
+                window.location.href = '/wiki/' + encodeURIComponent(data.title);
+            }
+        });
+});
+
+document.getElementById('randomFooter404').addEventListener('click', function(e) {
+    e.preventDefault();
+    fetch('/random')
+        .then(response => response.json())
+        .then(data => {
+            if (data.title) {
+                window.location.href = '/wiki/' + encodeURIComponent(data.title);
+            }
+        });
+});
+</script>
+{% endblock %}
+

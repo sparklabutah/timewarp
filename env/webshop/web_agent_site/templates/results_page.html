@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - MegaShop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="data:,">
+    <style>
+        .filters-sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .filters-sidebar h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        .filter-group-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .filter-group-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
+        }
+        .filter-group-item label {
+            display: block;
+            padding: 6px 0;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+        }
+        .filter-group-item label:hover {
+            color: #667eea;
+        }
+        .product-card-custom {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .product-card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .product-img-wrapper {
+            background: #f9f9f9;
+            height: 220px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .product-img-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <marquee>🎉 MEGA SALE! Up to 70% OFF on Selected Items | Free Shipping on Orders Over $50 | Flash Deals Every Hour 🎉</marquee>
+          </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div id="logo">
+                    <h1>🛒 MegaShop</h1>
+                    <span class="tagline">Your Ultimate Shopping Destination</span>
+        </div>
+                <div class="search-bar">
+                    <form method="post" action="{{ url_for('index', session_id=session_id) }}" style="display: flex; width: 100%;">
+                        <input type="text" name="search_query" placeholder="Search for products, brands, and more..." required/>
+                        <button type="submit" style="white-space: nowrap;">🔍 Search</button>
+        </form>
+      </div>
+                <div class="header-actions">
+                    <button class="header-btn">👤 Account</button>
+                    <button class="header-btn">❤️ Wishlist</button>
+                    <button class="header-btn">🛒 Cart</button>
+          </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🏠 Home</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="deals">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🔥 Hot Deals</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="fashion">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">👕 Fashion</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="electronics">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">💻 Electronics</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="home">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🏠 Home & Garden</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="sports">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">⚽ Sports</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="toys">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">🎮 Toys & Games</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="books">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">📚 Books</button>
+              </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="beauty">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 15px 20px; font-size: 14px; font-family: inherit;">💄 Beauty</button>
+              </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Task Info Bar -->
+    <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 0;">
+        <div class="container">
+            <p style="margin: 0; color: #856404; font-size: 14px;"><strong>🎯 Task:</strong> {{ instruction_text }}</p>
+        </div>
+      </div>
+
+    <!-- Main Content -->
+    <div class="container" style="padding: 30px 20px;">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="filters-sidebar">
+                    <h3>🔍 Filters</h3>
+                    
+                    <div class="filter-group-item">
+                        <form method="post" action="{{ url_for('index', session_id=session_id) }}">
+                            <button type="submit" class="btn btn-success" style="width: 100%; margin: 0;">← Back to Search</button>
+                        </form>
+          </div>
+                    
+                    <div class="filter-group-item">
+                        <h4>Category</h4>
+                        <label><input type="checkbox"> Electronics (1234)</label>
+                        <label><input type="checkbox"> Fashion (2345)</label>
+                        <label><input type="checkbox"> Home & Garden (987)</label>
+                        <label><input type="checkbox"> Sports (567)</label>
+                        <label><input type="checkbox"> Beauty (890)</label>
+                        <label><input type="checkbox"> Books (432)</label>
+                    </div>
+
+                    <div class="filter-group-item">
+                        <h4>Price Range</h4>
+                        <label><input type="checkbox"> Under $25</label>
+                        <label><input type="checkbox"> $25 - $50</label>
+                        <label><input type="checkbox"> $50 - $100</label>
+                        <label><input type="checkbox"> $100 - $200</label>
+                        <label><input type="checkbox"> Over $200</label>
+                    </div>
+
+                    <div class="filter-group-item">
+                        <h4>Customer Rating</h4>
+                        <label><input type="checkbox"> ⭐⭐⭐⭐⭐ & Up</label>
+                        <label><input type="checkbox"> ⭐⭐⭐⭐ & Up</label>
+                        <label><input type="checkbox"> ⭐⭐⭐ & Up</label>
+                    </div>
+
+                    <div class="filter-group-item" style="border-bottom: none;">
+                        <h4>Availability</h4>
+                        <label><input type="checkbox"> In Stock</label>
+                        <label><input type="checkbox"> On Sale</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div class="col-md-9">
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                        <div>
+                            <h2 style="margin: 0; font-size: 26px; font-weight: 700; color: #333;">Featured Products</h2>
+                            <p style="margin: 5px 0 0 0; color: #888; font-size: 14px;">Showing 1-48 of {{total}} results</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <label style="margin: 0; font-size: 14px;">Sort by:</label>
+                            <select style="padding: 8px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                                <option>Best Match</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Customer Rating</option>
+                            </select>
+                            <button class="view-toggle" style="padding: 8px 12px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">Grid</button>
+                            <button class="view-toggle" style="padding: 8px 12px; background: #f0f0f0; border: none; border-radius: 5px; cursor: pointer;">List</button>
+                        </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    {% for item in products %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="product-card-custom">
+                            <div class="product-badges">
+                                {% if loop.index % 3 == 0 %}
+                                <span class="badge-new" style="position: absolute; top: 10px; left: 10px; background: #00b894; color: white; padding: 5px 10px; border-radius: 15px; font-size: 11px; font-weight: 700; z-index: 10;">NEW</span>
+                                {% endif %}
+                                {% if loop.index % 5 == 0 %}
+                                <span class="badge-sale" style="position: absolute; top: 10px; right: 10px; background: #ff4757; color: white; padding: 5px 10px; border-radius: 15px; font-size: 11px; font-weight: 700; z-index: 10;">SALE</span>
+                                {% endif %}
+                            </div>
+                            <button class="wishlist-btn" style="position: absolute; top: 10px; right: 10px; background: white; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 10;">❤️</button>
+                            {% set item_page_url = url_for('item_page', session_id=session_id, asin=item.asin, keywords=keywords, page=page, options=dict() ) %}
+                            <a href="{{ item_page_url }}" style="text-decoration: none; color: inherit;">
+                                <div class="product-img-wrapper">
+                                    <img src="{{item.MainImage}}" alt="{{item.Title}}" onerror="this.parentElement.innerHTML='<div style=\'font-size: 48px;\'>📦</div>'">
+                                </div>
+                                <div style="padding: 5px 0;">
+                                    <span style="font-size: 11px; color: #667eea; font-weight: 700; text-transform: uppercase;">TECHPRO</span>
+                                    <h4 style="font-size: 14px; margin: 8px 0; font-weight: 600; line-height: 1.4; min-height: 40px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{item.Title}}</h4>
+                                    <div style="margin: 8px 0; color: #ffc107; font-size: 14px;">
+                                        ⭐⭐⭐⭐⭐ <span style="color: #888; font-size: 12px;">(1,234)</span>
+                                    </div>
+                                    <div style="margin: 10px 0;">
+                                        <span style="color: #ff4757; font-size: 22px; font-weight: 700;">{{item.Price}}</span>
+                                    </div>
+                                    <div style="font-size: 12px; color: #00b894; margin: 8px 0;">
+                                        <div>✓ Free Shipping</div>
+                                        <div>✓ In Stock</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{{ item_page_url }}" style="display: block; width: 100%; padding: 10px; background: #667eea; color: white; text-align: center; border-radius: 5px; text-decoration: none; font-weight: 600; margin-top: 10px;">Add to Cart</a>
+                            <button style="width: 100%; padding: 8px; background: white; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; margin-top: 5px; font-size: 13px;">Quick View</button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+                <!-- Pagination -->
+                <div class="pagination" style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 40px;">
+                    {% if page > 1 %}
+                    <form method="post" action="{{url_for('search_results', session_id=session_id, keywords=keywords, page=page - 1)}}" style="display: inline;">
+                        <button type="submit" class="page-btn">« Previous</button>
+                    </form>
+                    {% endif %}
+                    <button class="page-btn active">{{page}}</button>
+                    <form method="post" action="{{url_for('search_results', session_id=session_id, keywords=keywords, page=page + 1)}}" style="display: inline;">
+                        <button type="submit" class="page-btn">Next »</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="copyright">© 2024 MegaShop. All Rights Reserved. | Powered by AI</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <button class="fab" title="Help">💬</button>
+        <button class="fab" title="Back to Top">⬆️</button>
+    </div>
+  </body>
+</html>

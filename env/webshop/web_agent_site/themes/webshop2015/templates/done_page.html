@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Complete - WebShop.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <!-- Header -->
+    <header class="amazon-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-left">
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                        <button type="submit" class="logo" style="background: none; border: none; padding: 0; cursor: pointer;">webshop.com</button>
+                    </form>
+                    <div class="delivery-option">
+                        <span class="delivery-label">Deliver to</span>
+                        <span class="delivery-location">Select your address</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="header-link">Cart</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container" style="padding: 60px 20px;">
+        <div class="product-block" style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <div style="font-size: 64px; margin-bottom: 20px;">✓</div>
+            <h1 style="font-size: 32px; font-weight: 400; color: #0F1111; margin-bottom: 15px;">
+                Thank You for Your Purchase!
+            </h1>
+            <p style="font-size: 16px; color: #666; margin-bottom: 30px;">
+                Your order has been successfully completed.
+            </p>
+
+            <div style="background: #F8F9FA; border: 1px solid #DDD; padding: 30px; margin-top: 30px;">
+                <h3 style="font-size: 18px; font-weight: 400; color: #0F1111; margin-bottom: 20px;">
+                    Your Completion Code
+                </h3>
+                <div style="background: white; border: 2px solid #DDD; padding: 20px; font-family: 'Courier New', monospace; font-size: 18px; font-weight: bold; color: #0F1111; margin-bottom: 15px;">
+                    {{ mturk_code }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="amazon-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="footer-logo">webshop.com</div>
+                <div class="footer-copyright">© 1996-2015, WebShop.com, Inc.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

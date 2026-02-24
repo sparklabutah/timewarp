@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Reviews - WebShop.com</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <!-- Top Utility Links -->
+    <div class="top-utility">
+        <div class="container">
+            <div style="text-align: right;">
+                <a href="#">YOUR ACCOUNT</a> | <a href="#">HELP</a>
+                <span style="margin-left: 10px;">🛒</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Primary Navigation -->
+    <div class="nav-primary">
+        <div class="container">
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline;">
+                <button type="submit" class="nav-link-btn">WELCOME</button>
+            </form> |
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline;">
+                <input type="hidden" name="search_query" value="books">
+                <button type="submit" class="nav-link-btn">BOOKS</button>
+            </form> |
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline;">
+                <input type="hidden" name="search_query" value="electronics">
+                <button type="submit" class="nav-link-btn">ELECTRONICS</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Secondary Navigation -->
+    <div class="nav-secondary">
+        <div class="container">
+            <a href="#">HOW TO ORDER</a> | <a href="#">OUR GUARANTEE</a> | <a href="#">SITE GUIDE</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" style="padding: 15px 0;">
+        <!-- Navigation Buttons -->
+        <div style="margin-bottom: 15px;">
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline-block; margin-right: 5px;">
+                <button type="submit" class="btn">← Back to Search</button>
+            </form>
+            <form method="post" action="{{url_for('item_page', session_id=session_id, asin=asin, keywords=keywords, page=page, options=options)}}" style="display: inline-block;">
+                <button type="submit" class="btn">← Back to Product</button>
+            </form>
+        </div>
+
+        <!-- Reviews Content -->
+        <div class="product-details">
+            <h2 style="font-size: 14px; font-weight: bold; margin-bottom: 15px; color: #000000; border-bottom: 1px solid #CCCCCC; padding-bottom: 5px;">
+                Customer Reviews
+            </h2>
+            <div>
+                {% for review in product_info.Reviews %}
+                <div style="border-bottom: 1px solid #CCCCCC; padding: 12px 0; margin-bottom: 12px;">
+                    <div style="font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #000000;">
+                        "{{review.title}}"
+                    </div>
+                    <div style="font-size: 11px; color: #666; margin-bottom: 8px;">
+                        Rating: {{review.score}} / 5
+                    </div>
+                    <div style="font-size: 11px; line-height: 1.5; color: #000000;">
+                        {{review.body}}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div style="font-size: 10px; color: #666;">
+                Copyright and disclaimer © 1996-1999, WebShop.com, Inc.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

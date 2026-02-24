@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - Wikipedia{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block content %}
+{% if '<p>' in content %}
+    {{ content|replace('<p>', '<p>' ~ title ~ ' ', 1)|safe }}
+{% else %}
+    <p>{{ title }} {{ content|safe }}</p>
+{% endif %}
+<hr>
+<h2>Talk</h2>
+<p><em>No discussion yet. Be the first to comment!</em></p>
+{% endblock %}

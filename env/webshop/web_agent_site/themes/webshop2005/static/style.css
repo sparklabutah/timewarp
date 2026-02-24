@@ -1,0 +1,771 @@
+/* Amazon 2005 Style - Period-Appropriate CSS */
+/* No flexbox, no grid, no CSS3 gradients */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FFFFFF;
+    color: #000000;
+    line-height: 1.5;
+    min-height: 100%;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 980px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Top Bar - Light Blue */
+.top-bar {
+    background: #C8E6F5;
+    padding: 4px 0;
+    font-size: 11px;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.top-bar a {
+    color: #0066CC;
+    text-decoration: underline;
+    margin-right: 8px;
+}
+
+/* Header Styling */
+.main-header {
+    background: white;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.header-top {
+    background: #B8D6F5;
+    padding: 12px 0;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.header-utility-links {
+    float: right;
+}
+
+.header-utility-links a {
+    color: #FFFFFF;
+    text-decoration: underline;
+    font-size: 11px;
+    font-weight: normal;
+    margin-left: 12px;
+}
+
+.header-utility-links .btn {
+    padding: 4px 8px;
+    font-size: 11px;
+    margin: 0 2px;
+}
+
+.view-deal-btn {
+    background: #FFFFFF;
+    color: #000000;
+    border: 1px solid #CCCCCC;
+    text-decoration: none;
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.view-deal-btn:hover {
+    background: #F5F5F5;
+}
+
+#logo {
+    float: left;
+    color: #000000;
+    text-align: left;
+}
+
+#logo h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tagline {
+    font-size: 10px;
+    color: #666666;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Search Bar */
+.search-bar {
+    margin: 0 auto;
+    width: 450px;
+    text-align: center;
+}
+
+.search-bar input,
+#search_input {
+    padding: 6px 8px;
+    border: 1px solid #999999;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    width: 300px;
+}
+
+.search-bar form select {
+    padding: 6px 8px;
+    border: 1px solid #999999;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    background: white;
+}
+
+.sidebar-search {
+    background: #FFFFFF;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #CCCCCC;
+}
+
+.sidebar-search input {
+    padding: 6px 8px;
+    border: 1px solid #999999;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.sidebar-search button {
+    padding: 6px 12px;
+    background: #FF9900;
+    color: #FFFFFF;
+    border: 1px solid #CC6600;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+}
+
+.search-bar button,
+.btn {
+    padding: 6px 12px;
+    background: #FF9900;
+    color: #FFFFFF;
+    border: 1px solid #CC6600;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    text-decoration: none;
+}
+
+.search-bar button:hover,
+.btn:hover {
+    background: #FF8800;
+}
+
+.btn-primary {
+    background: #FF9900;
+    color: #FFFFFF;
+    border: 1px solid #CC6600;
+}
+
+.btn-primary:hover {
+    background: #FF8800;
+}
+
+.btn-success {
+    background: #FF9900;
+    color: #FFFFFF;
+    border: 1px solid #CC6600;
+}
+
+.btn-success:hover {
+    background: #FF8800;
+}
+
+/* Promotional Blocks */
+.promo-red-block {
+    background: #4A90E2;
+    color: #FFFFFF;
+    padding: 15px;
+    margin: 15px 0;
+    border: 1px solid #2E5C8A;
+}
+
+.promo-red-block h3 {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    font-family: Arial, sans-serif;
+}
+
+.promo-red-block p {
+    color: #FFFFFF;
+    font-size: 12px;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+/* Discount Badges */
+.discount-badge {
+    display: inline;
+    background: #FF6B6B;
+    color: #FFFFFF;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.discount-badge-circle {
+    display: inline;
+    background: #FFA500;
+    color: #FFFFFF;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    margin: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.discount-badge-large {
+    display: inline;
+    background: #8E44AD;
+    color: #FFFFFF;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 8px;
+    font-family: Arial, sans-serif;
+}
+
+/* Right Sidebar */
+.right-sidebar {
+    width: 220px;
+    background: #FFFFFF;
+    padding: 10px;
+}
+
+.right-sidebar-block {
+    border: 1px solid #E0E0E0;
+    padding: 12px;
+    margin-bottom: 15px;
+    background: #FFFFFF;
+}
+
+.right-sidebar-block h4 {
+    font-size: 12px;
+    font-weight: bold;
+    color: #000000;
+    margin: 0 0 8px 0;
+    font-family: Arial, sans-serif;
+}
+
+.right-sidebar-block p {
+    font-size: 11px;
+    color: #000000;
+    line-height: 1.4;
+    margin: 5px 0;
+}
+
+.right-sidebar-block a {
+    color: #0066CC;
+    text-decoration: underline;
+    font-size: 11px;
+}
+
+/* Special Green Block */
+.green-block {
+    background: #E8F5E9;
+    border: 2px solid #4CAF50;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.green-block h4 {
+    font-size: 13px;
+    font-weight: bold;
+    color: #000000;
+    margin: 0 0 10px 0;
+    font-family: Arial, sans-serif;
+}
+
+.green-block .large-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    margin: 10px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Arrow Links */
+.arrow-link {
+    color: #666666;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+
+.arrow-link a {
+    color: #0066CC;
+    text-decoration: underline;
+}
+
+.btn.purchase {
+    background: #FF9900;
+    color: #000000;
+    border: 1px solid #FF9900;
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+.btn.purchase:hover {
+    background: #FF8800;
+}
+
+/* Navigation Bar */
+.main-nav {
+    background: #336699;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.nav-menu li {
+    display: inline;
+    margin: 0;
+}
+
+.nav-menu li button,
+.nav-menu li a {
+    display: inline;
+    padding: 10px 12px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.nav-menu li button:hover,
+.nav-menu li a:hover {
+    text-decoration: underline;
+}
+
+/* Left Sidebar - BROWSE style */
+.sidebar-browse {
+    background: #F7F7F7;
+    padding: 8px;
+    border-right: 1px solid #E0E0E0;
+    width: 200px;
+    float: left;
+}
+
+.browse-header {
+    background: #336699;
+    color: #FFFFFF;
+    padding: 6px 8px;
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin: 0 0 8px 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar-browse ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-browse ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-browse ul li a {
+    color: #0066CC;
+    text-decoration: underline;
+    font-size: 11px;
+    display: block;
+    padding: 2px 4px;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar-browse ul li a:hover {
+    color: #003399;
+}
+
+.sidebar-section {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.sidebar-section h4 {
+    font-size: 11px;
+    font-weight: bold;
+    color: #000000;
+    margin: 8px 0 4px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Links */
+a {
+    color: #0066CC;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #003399;
+}
+
+/* Product Images */
+.result-img {
+    max-width: 150px;
+    max-height: 150px;
+    border: 1px solid #CCCCCC;
+    margin-right: 15px;
+}
+
+.item-page-img {
+    max-width: 300px;
+    max-height: 400px;
+    border: 1px solid #CCCCCC;
+}
+
+/* Product Info */
+.product-info {
+    font-size: 14px;
+    color: #000000;
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+}
+
+.product-title {
+    font-size: 13px;
+    font-weight: normal;
+    color: #0066CC;
+    text-decoration: underline;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.product-title:hover {
+    color: #003399;
+}
+
+.product-link {
+    color: #0066CC;
+    text-decoration: underline;
+    font-size: 13px;
+}
+
+.product-link:hover {
+    color: #003399;
+}
+
+.product-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    margin: 5px 0;
+}
+
+.product-asin {
+    font-size: 10px;
+    color: #666666;
+    margin-bottom: 3px;
+}
+
+/* Radio Toolbar */
+.radio-toolbar {
+    margin: 5px 0;
+}
+
+.radio-toolbar input[type="radio"] {
+    margin-right: 3px;
+}
+
+.radio-toolbar label {
+    display: inline;
+    background-color: #F5F5F5;
+    padding: 8px 12px;
+    font-size: 12px;
+    border: 1px solid #444444;
+    margin-right: 5px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+
+.radio-toolbar label:hover {
+    background-color: #FFF7D7;
+}
+
+/* Star Ratings */
+.star-active {
+    color: #FF9900;
+    margin: 0 2px;
+}
+
+.star-inactive {
+    color: #CCCCCC;
+    margin: 0 2px;
+}
+
+.blue-text {
+    color: #0066CC;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border: 1px solid #E0E0E0;
+    padding: 12px;
+    margin: 10px 0;
+}
+
+.card-body {
+    padding: 0;
+}
+
+/* List Items */
+.list-group-item {
+    background: white;
+    border: 1px solid #E0E0E0;
+    margin-bottom: 8px;
+    padding: 10px;
+}
+
+.list-group-item:hover {
+    border-color: #CCCCCC;
+    background: #FAFAFA;
+}
+
+/* Instruction Text */
+#instruction-text {
+    background: #FFFFFF;
+    border: 2px solid #797474;
+    padding: 8px 12px;
+    margin: 15px 0;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+}
+
+#instruction-text h4 {
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    color: #000000;
+}
+
+/* Top Buffer */
+.top-buffer {
+    margin-top: 10px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-gray {
+    color: #AAAAAA;
+}
+
+/* Thank You Page */
+#thankyou {
+    color: #000000;
+    width: 100%;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    padding-bottom: 15px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+#stats {
+    background: white;
+    padding: 15px;
+    border: 1px solid #E0E0E0;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#stats h3 {
+    color: #000000;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+#stats pre {
+    background: #F5F5F5;
+    padding: 12px;
+    border: 1px solid #CCCCCC;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000000;
+    margin: 8px 0;
+    font-family: Arial, monospace;
+    text-align: center;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.page-btn {
+    padding: 6px 12px;
+    background: white;
+    color: #0066CC;
+    border: 1px solid #CCCCCC;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: underline;
+    font-family: Arial, sans-serif;
+    margin: 0 3px;
+}
+
+.page-btn:hover {
+    color: #003399;
+}
+
+/* Announcement Bar */
+.announcement-bar {
+    background: #FFEB3B;
+    padding: 5px 0;
+    font-size: 11px;
+    border-bottom: 1px solid #FFC107;
+}
+
+.announcement-bar marquee {
+    color: #000000;
+}
+
+/* Task Bar */
+.task-bar {
+    background: #FFF3CD;
+    border-left: 4px solid #FFC107;
+    padding: 8px 15px;
+    margin: 10px 0;
+}
+
+.task-bar p {
+    margin: 0;
+    color: #856404;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+}
+
+/* Footer */
+.main-footer {
+    background: #F7F7F7;
+    border-top: 1px solid #E0E0E0;
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+.footer-search {
+    padding: 15px 0;
+    border-bottom: 1px solid #E0E0E0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.footer-links {
+    padding: 20px 0;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.footer-links-column {
+    float: left;
+    width: 25%;
+    padding: 0 15px;
+}
+
+.footer-links-column h4 {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000000;
+    font-family: Arial, sans-serif;
+}
+
+.footer-links-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links-column ul li {
+    margin: 5px 0;
+}
+
+.footer-links-column ul li a {
+    font-size: 11px;
+    color: #0066CC;
+    text-decoration: underline;
+}
+
+.footer-bottom-links {
+    padding: 10px 0;
+    border-top: 1px solid #E0E0E0;
+    text-align: center;
+    font-size: 11px;
+    clear: both;
+}
+
+.footer-bottom-links a {
+    color: #0066CC;
+    text-decoration: underline;
+    margin: 0 5px;
+}
+
+.footer-bottom-links .separator {
+    color: #CCCCCC;
+    margin: 0 3px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.copyright {
+    font-size: 11px;
+    color: #666666;
+    font-family: Arial, sans-serif;
+}
+
+/* Utility */
+pre {
+    white-space: pre-line;
+    font-family: Arial, monospace;
+    font-size: 12px;
+}
+
+/* Clear floats */
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}

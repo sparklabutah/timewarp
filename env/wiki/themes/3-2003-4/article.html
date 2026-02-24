@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - Wikipedia, the free encyclopedia{% endblock %}
+
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<p class="page-subtitle">From Wikipedia, the free encyclopedia.</p>
+
+<!-- Lead/overview paragraph -->
+<div class="content-box" id="lead-section">
+{% if first_paragraph_html %}
+{{ first_paragraph_html|replace('<p>', '<p><strong>' ~ title ~ '</strong> ', 1)|safe }}
+{% else %}
+<p><strong>{{ title }}</strong> {{ content|safe }}</p>
+{% endif %}
+</div>
+
+<!-- Table of contents (auto-built) -->
+<div id="toc" class="toc">
+  <div class="toc-title">Table of contents <span class="toc-toggle"><a href="#" id="tocToggle">[hide]</a></span></div>
+  <ol class="toc-list" id="tocList"></ol>
+  <hr>
+</div>
+
+<!-- Article body -->
+<div id="article-content" class="article-content">
+{% if remainder_html %}
+{{ remainder_html|safe }}
+{% else %}
+{{ content|safe }}
+{% endif %}
+</div>
+
+{% if timestamp %}
+<div class="printfooter">
+    Retrieved from "<a href="#">Article Source</a>"<br>
+    Last modified: {{ timestamp }}
+    </div>
+{% endif %}
+
+<script>
+(function(){
+  const article = document.getElementById('article-content');
+  if(!article) return;
+  const headings = Array.from(article.querySelectorAll('h2, h3, h4'));
+  if(headings.length === 0){
+    document.getElementById('toc').style.display = 'none';
+    return;
+  }
+  const list = document.getElementById('tocList');
+  let index = 0;
+  function slugify(text){
+    return text.toLowerCase().replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-').substring(0,64);
+  }
+  headings.forEach(h => {
+    const level = parseInt(h.tagName.substring(1), 10); // 2,3,4
+    const text = h.textContent.trim();
+    let id = h.id || slugify(text) || ('sec-'+(++index));
+    if(!h.id) h.id = id;
+    const li = document.createElement('li');
+    li.className = 'toc-level-' + (level-1);
+    const a = document.createElement('a');
+    a.href = '#'+id; a.textContent = text;
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+  // Toggle
+  const toggle = document.getElementById('tocToggle');
+  let hidden = false;
+  toggle.addEventListener('click', function(e){
+    e.preventDefault(); hidden = !hidden;
+    list.style.display = hidden ? 'none' : '';
+    toggle.textContent = hidden ? '[show]' : '[hide]';
+  });
+
+  // Place TOC right before the first section heading, or after the lead if none
+  const tocEl = document.getElementById('toc');
+  const firstH2 = article.querySelector('h2');
+  const lead = document.getElementById('lead-section');
+  if (firstH2 && tocEl) {
+    firstH2.insertAdjacentElement('beforebegin', tocEl);
+  } else if (lead && tocEl) {
+    lead.insertAdjacentElement('afterend', tocEl);
+  }
+})();
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - WebShop.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}?v={{ session_id }}">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <!-- Header -->
+    <header class="amazon-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-left">
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                        <button type="submit" class="logo" style="background: none; border: none; padding: 0; cursor: pointer;">webshop.com</button>
+                    </form>
+                    <div class="delivery-option">
+                        <span class="delivery-label">Deliver to</span>
+                        <span class="delivery-location">Select your address</span>
+                    </div>
+                </div>
+                <div class="header-search">
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}" class="search-form">
+                        <select class="search-category">
+                            <option>All</option>
+                            <option>Electronics</option>
+                            <option>Books</option>
+                        </select>
+                        <input type="text" name="search_query" class="search-input" value="{{ keywords|join(' ') if keywords else '' }}" placeholder="Search WebShop.com">
+                        <button type="submit" class="search-button">🔍</button>
+                    </form>
+                </div>
+                <div class="header-right">
+                    <div class="header-link">Returns & Orders</div>
+                    <div class="header-link">Cart</div>
+                </div>
+            </div>
+        </div>
+        <div class="header-nav">
+            <div class="container">
+                <a href="#" class="nav-link">All</a>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" class="form-inline">
+                    <input type="hidden" name="search_query" value="deals">
+                    <button type="submit" class="nav-link-btn">Today's Deals</button>
+                </form>
+                <a href="#" class="nav-link">Customer Service</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Results Container -->
+    <div class="container results-container">
+        <!-- Sidebar -->
+        <div class="results-sidebar">
+            <h3 class="filter-header">Filter by</h3>
+            <div class="filter-group">
+                <div class="filter-group-label">Price</div>
+                <a href="#" class="filter-link">Under $25</a>
+                <a href="#" class="filter-link">$25 to $50</a>
+                <a href="#" class="filter-link">$50 to $100</a>
+            </div>
+            <div class="filter-group">
+                <div class="filter-group-label">Customer Rating</div>
+                <a href="#" class="filter-link">⭐⭐⭐⭐⭐ & Up</a>
+                <a href="#" class="filter-link">⭐⭐⭐⭐ & Up</a>
+            </div>
+        </div>
+
+        <!-- Main Results -->
+        <div class="results-main">
+            <div class="results-header">
+                <div class="results-header-text">
+                    Results for: <strong>{{ keywords|join(' ') if keywords else 'All Products' }}</strong>
+                </div>
+                <div class="results-header-meta">
+                    Showing {{ (page - 1) * 12 + 1 }}-{{ page * 12 if page * 12 < total else total }} of {{ total }} results
+                </div>
+            </div>
+
+            <div class="results-grid">
+                {% for item in products %}
+                <div class="result-card">
+                    {% set item_page_url = url_for('item_page', session_id=session_id, asin=item.asin, keywords=keywords, page=page, options=dict()) %}
+                    {% set fallback_image = url_for('static', filename='images/no-image-available.png') %}
+                    <a href="{{ item_page_url }}">
+                        <img src="{{item.MainImage}}" alt="{{item.Title}}" class="result-card-img" onerror="this.src='{{ fallback_image }}'">
+                        <div class="result-card-title">{{item.Title}}</div>
+                    </a>
+                    <div class="result-card-price">{{item.Price}}</div>
+                    <div class="result-card-rating">
+                        Rating: {{item.Rating if item.Rating else 'N/A'}}
+                    </div>
+                    <a href="{{ item_page_url }}" class="result-card-button-link">
+                        <button class="buy-button full-width">View Product</button>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                {% if page > 1 %}
+                <form method="post" action="{{url_for('search_results', session_id=session_id, keywords=keywords, page=page - 1)}}" class="form-inline">
+                    <button type="submit" class="page-btn">« Previous</button>
+                </form>
+                {% endif %}
+                <span class="page-btn active">{{page}}</span>
+                {% if page * 12 < total %}
+                <form method="post" action="{{url_for('search_results', session_id=session_id, keywords=keywords, page=page + 1)}}" class="form-inline">
+                    <button type="submit" class="page-btn">Next »</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Right Sidebar - Featured Products -->
+        <div class="results-sidebar-right">
+            <h3 class="filter-header">Featured Products</h3>
+            {% if featured_sidebar_products %}
+                {% for fp in featured_sidebar_products %}
+                {% set item_page_url = url_for('item_page', session_id=session_id, asin=fp.asin, keywords=keywords, page=page, options=dict()) %}
+                {% set fallback_image = url_for('static', filename='images/no-image-available.png') %}
+                <div class="featured-sidebar-item">
+                    <a href="{{ item_page_url }}">
+                        <img src="{{ fp.MainImage }}" alt="{{ fp.Title }}" class="featured-sidebar-img" onerror="this.src='{{ fallback_image }}'">
+                    </a>
+                    <div class="featured-sidebar-title">
+                        <a href="{{ item_page_url }}">{{ fp.Title[:60] }}{% if fp.Title|length > 60 %}...{% endif %}</a>
+                    </div>
+                    <div class="featured-sidebar-price">{{ fp.Price }}</div>
+                    <div class="featured-sidebar-rating">
+                        Rating: {{ fp.Rating if fp.Rating else 'N/A' }}
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="featured-sidebar-item">
+                    <div class="featured-sidebar-title">No featured products available</div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="amazon-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Get to Know Us</h3>
+                    <ul>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Make Money with Us</h3>
+                    <ul>
+                        <li><a href="#">Sell products</a></li>
+                        <li><a href="#">Sell on WebShop</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Let Us Help You</h3>
+                    <ul>
+                        <li><a href="#">Your Account</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-logo">webshop.com</div>
+                <div class="footer-copyright">© 1996-2015, WebShop.com, Inc.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

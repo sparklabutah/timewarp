@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebShop.com - Shop Online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}?v={{ session_id }}">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <!-- Header -->
+    <header class="amazon-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-left">
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                        <button type="submit" class="logo" style="background: none; border: none; padding: 0; cursor: pointer;">webshop.com</button>
+                    </form>
+                    <div class="delivery-option">
+                        <span class="delivery-label">Deliver to</span>
+                        <span class="delivery-location">Select your address</span>
+                    </div>
+                </div>
+                <div class="header-search">
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}" class="search-form">
+                        <select class="search-category">
+                            <option>All</option>
+                            <option>Electronics</option>
+                            <option>Books</option>
+                            <option>Music</option>
+                        </select>
+                        <input type="text" name="search_query" class="search-input" placeholder="Search WebShop.com">
+                        <button type="submit" class="search-button">🔍</button>
+                    </form>
+                </div>
+                <div class="header-right">
+                    <div class="header-link">Returns & Orders</div>
+                    <div class="header-link">Cart</div>
+                </div>
+            </div>
+        </div>
+        <div class="header-nav">
+            <div class="container">
+                <a href="#" class="nav-link">All</a>
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline;">
+                    <input type="hidden" name="search_query" value="deals">
+                    <button type="submit" class="nav-link-btn">Today's Deals</button>
+                </form>
+                <a href="#" class="nav-link">Customer Service</a>
+                <a href="#" class="nav-link">Registry</a>
+                <a href="#" class="nav-link">Gift Cards</a>
+                <a href="#" class="nav-link">Sell</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="container main-content">
+        <div class="homepage-layout">
+            <div class="content-grid">
+                <!-- Featured Products Row 1 -->
+                <div class="product-block">
+                    <div class="block-header">
+                        <h2>Shop by Category</h2>
+                    </div>
+                    <div class="product-grid-4">
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                            <input type="hidden" name="search_query" value="electronics">
+                            <button type="submit" class="category-card has-bg bg-electronics" {% if electronics_image %}style="--electronics-bg: url('{{ electronics_image }}');"{% endif %}>
+                                <div class="category-icon">💻</div>
+                                <div class="category-name">Electronics</div>
+                            </button>
+                        </form>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                            <input type="hidden" name="search_query" value="books">
+                            <button type="submit" class="category-card has-bg bg-books">
+                                <div class="category-icon">📚</div>
+                                <div class="category-name">Books</div>
+                            </button>
+                        </form>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                            <input type="hidden" name="search_query" value="fashion">
+                            <button type="submit" class="category-card has-bg bg-fashion">
+                                <div class="category-icon">👕</div>
+                                <div class="category-name">Fashion</div>
+                            </button>
+                        </form>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                            <input type="hidden" name="search_query" value="home">
+                            <button type="submit" class="category-card has-bg bg-home">
+                                <div class="category-icon">🏠</div>
+                                <div class="category-name">Home & Kitchen</div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Best Sellers Section -->
+                <div class="product-block">
+                    <div class="block-header">
+                        <h2>Best Sellers</h2>
+                    </div>
+                    <div class="product-grid-4">
+                        {% if featured_products %}
+                            {% for fp in featured_products %}
+                            {% set item_page_url = url_for('item_page', session_id=session_id, asin=fp.asin, keywords='home', page=1, options=dict()) %}
+                            {% set fallback_image = url_for('static', filename='images/no-image-available.png') %}
+                            <div class="product-card-small">
+                                <a href="{{ item_page_url }}" style="text-decoration: none; color: inherit; display: block;">
+                                    <img src="{{ fp.MainImage }}" alt="{{ fp.Title }}" class="result-card-img" onerror="this.src='{{ fallback_image }}'">
+                                    <div class="product-title-small">{{ fp.Title }}</div>
+                                </a>
+                                <div class="product-price-small">{{ fp.Price }}</div>
+                                <a href="{{ item_page_url }}" class="result-card-button-link">
+                                    <button class="buy-button full-width">View Product</button>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="product-card-small">
+                                <div class="product-placeholder">Product Image</div>
+                                <div class="product-title-small">Featured Product 1</div>
+                                <div class="product-price-small">$29.99</div>
+                            </div>
+                            <div class="product-card-small">
+                                <div class="product-placeholder">Product Image</div>
+                                <div class="product-title-small">Featured Product 2</div>
+                                <div class="product-price-small">$39.99</div>
+                            </div>
+                            <div class="product-card-small">
+                                <div class="product-placeholder">Product Image</div>
+                                <div class="product-title-small">Featured Product 3</div>
+                                <div class="product-price-small">$49.99</div>
+                            </div>
+                            <div class="product-card-small">
+                                <div class="product-placeholder">Product Image</div>
+                                <div class="product-title-small">Featured Product 4</div>
+                                <div class="product-price-small">$59.99</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar - Featured Products -->
+            <div class="results-sidebar-right">
+                <h3 class="filter-header">Featured Products</h3>
+                {% if featured_sidebar_products %}
+                    {% for fp in featured_sidebar_products %}
+                    {% set item_page_url = url_for('item_page', session_id=session_id, asin=fp.asin, keywords='home', page=1, options=dict()) %}
+                    {% set fallback_image = url_for('static', filename='images/no-image-available.png') %}
+                    <div class="featured-sidebar-item">
+                        <a href="{{ item_page_url }}">
+                            <img src="{{ fp.MainImage }}" alt="{{ fp.Title }}" class="featured-sidebar-img" onerror="this.src='{{ fallback_image }}'">
+                        </a>
+                        <div class="featured-sidebar-title">
+                            <a href="{{ item_page_url }}">{{ fp.Title[:60] }}{% if fp.Title|length > 60 %}...{% endif %}</a>
+                        </div>
+                        <div class="featured-sidebar-price">{{ fp.Price }}</div>
+                        <div class="featured-sidebar-rating">
+                            Rating: {{ fp.Rating if fp.Rating else 'N/A' }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="featured-sidebar-item">
+                        <div class="featured-sidebar-title">No featured products available</div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="amazon-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Get to Know Us</h3>
+                    <ul>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Make Money with Us</h3>
+                    <ul>
+                        <li><a href="#">Sell products</a></li>
+                        <li><a href="#">Sell on WebShop</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Let Us Help You</h3>
+                    <ul>
+                        <li><a href="#">Your Account</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Shipping Rates</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-logo">webshop.com</div>
+                <div class="footer-copyright">© 1996-2015, WebShop.com, Inc.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

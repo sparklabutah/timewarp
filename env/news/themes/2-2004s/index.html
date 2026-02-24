@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+
+{% block title %}News - The Free News Source{% endblock %}
+
+{% block datetime %}
+<font size="1" color="#000000" face="Arial, Helvetica, sans-serif">
+<b>LATEST:</b> {% if recent_articles and recent_articles|length > 0 %}{{ recent_articles[0].title[:40] }}...{% endif %}
+<br>
+Last Updated: {% if recent_articles and recent_articles|length > 0 and recent_articles[0].date %}{{ recent_articles[0].date.strftime('%A, %d %B, %Y') }}, 16:36 GMT 17:36 UK{% else %}Today{% endif %}
+</font>
+{% endblock %}
+
+{% block content %}
+<!-- Main featured article with image placeholder -->
+{% if recent_articles and recent_articles|length > 0 %}
+{% set main_article = recent_articles[0] %}
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFEF9" style="border: 2px solid #C8C4B8; box-shadow: 0 2px 4px rgba(0,0,0,0.12);">
+<tr valign="top">
+<td width="200" style="padding-right: 12px; padding-top: 12px; padding-bottom: 12px; padding-left: 12px;">
+<img src="/assets/detroit.PNG" alt="Article image" style="max-width: 200px; height: 150px; object-fit: cover; border: 2px solid #B8B4A8;">
+</td>
+<td style="padding: 12px;">
+<font size="4" face="Arial, Helvetica, sans-serif"><b><a {% if main_article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ main_article.title|article_url }}" style="color: #0066CC; text-decoration: none;">{{ main_article.title }}</a></b></font>
+<br><br>
+<font size="2" face="Arial, Helvetica, sans-serif" color="#000000">
+{% if main_article.title|length > 200 %}{{ main_article.title[:200] }}...{% else %}{{ main_article.title }}{% endif %}
+</font>
+{% if main_article.categories and main_article.categories|length > 0 %}
+<br><br>
+<font size="2" face="Arial, Helvetica, sans-serif">
+<a href="/search?q={{ main_article.categories[0]|urlencode }}" style="color: #0066CC;">{{ main_article.categories[0] }}</a> | 
+<a {% if main_article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ main_article.title|article_url }}" style="color: #0066CC;">Full story</a>
+</font>
+{% endif %}
+</td>
+</tr>
+</table>
+<br><br>
+{% endif %}
+
+<!-- Secondary featured articles -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr valign="top">
+{% if recent_articles|length > 1 %}
+<td width="48%" style="padding-right: 10px;">
+<table width="100%" border="0" cellpadding="10" cellspacing="0" bgcolor="#FFFEF9" style="border: 1px solid #C8C4B8; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+<tr><td>
+<img src="/assets/highCourtArticle.png" alt="Article image" style="width: 80px; height: 80px; object-fit: cover; border: 1px solid #CCCCCC; margin-right: 8px; margin-bottom: 5px; float: left;">
+{% if recent_articles[1] %}
+<font size="3" face="Arial, Helvetica, sans-serif"><b><a {% if recent_articles[1].title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ recent_articles[1].title|article_url }}" style="color: #0066CC; text-decoration: none;">{{ recent_articles[1].title }}</a></b></font>
+<br><br>
+<font size="2" face="Arial, Helvetica, sans-serif" color="#000000">
+{% if recent_articles[1].title|length > 100 %}{{ recent_articles[1].title[:100] }}...{% else %}{{ recent_articles[1].title }}{% endif %}
+</font>
+<br><br>
+<font size="2" face="Arial, Helvetica, sans-serif">
+<a {% if recent_articles[1].title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ recent_articles[1].title|article_url }}" style="color: #0066CC;">Full story</a>
+</font>
+{% endif %}
+</td></tr>
+</table>
+</td>
+{% endif %}
+{% if recent_articles|length > 2 %}
+<td width="48%" style="padding-left: 10px;">
+<table width="100%" border="0" cellpadding="10" cellspacing="0" bgcolor="#FFFEF9" style="border: 1px solid #C8C4B8; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+<tr><td>
+<img src="/assets/dogArticle.png" alt="Article image" style="width: 80px; height: 80px; object-fit: cover; border: 1px solid #CCCCCC; margin-right: 8px; margin-bottom: 5px; float: left;">
+<font size="3" face="Arial, Helvetica, sans-serif"><b><a {% if recent_articles[2].title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ recent_articles[2].title|article_url }}" style="color: #0066CC; text-decoration: none;">{{ recent_articles[2].title }}</a></b></font>
+<br><br>
+<font size="2" face="Arial, Helvetica, sans-serif" color="#000000">
+{% if recent_articles[2].title|length > 100 %}{{ recent_articles[2].title[:100] }}...{% else %}{{ recent_articles[2].title }}{% endif %}
+</font>
+<br><br>
+<font size="2" face="Arial, Helvetica, sans-serif">
+<a {% if recent_articles[2].title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ recent_articles[2].title|article_url }}" style="color: #0066CC;">Full story</a>
+</font>
+</td></tr>
+</table>
+</td>
+{% endif %}
+</tr>
+</table>
+
+<br><br>
+
+<!-- Red divider -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td bgcolor="#CC0000" height="1"></td></tr>
+</table>
+<br>
+
+<!-- Around the World Now -->
+<table width="100%" border="0" cellpadding="12" cellspacing="0" bgcolor="#FFFEF9" style="border: 2px solid #C8C4B8; margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.12);">
+<tr><td>
+<font size="3" face="Arial, Helvetica, sans-serif"><b>AROUND THE WORLD NOW</b></font>
+<br><br>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr valign="top">
+<td width="33%">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>AFRICA</b></font><br>
+{% for article in recent_articles[3:5] if recent_articles|length > 3 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+<td width="33%">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>AMERICAS</b></font><br>
+{% for article in recent_articles[5:7] if recent_articles|length > 5 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+<td width="33%">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>ASIA-PACIFIC</b></font><br>
+{% for article in recent_articles[7:9] if recent_articles|length > 7 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+</tr>
+<tr valign="top">
+<td width="33%" style="padding-top: 10px;">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>EUROPE</b></font><br>
+{% for article in recent_articles[9:11] if recent_articles|length > 9 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+<td width="33%" style="padding-top: 10px;">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>MIDDLE EAST</b></font><br>
+{% for article in recent_articles[11:13] if recent_articles|length > 11 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+<td width="33%" style="padding-top: 10px;">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>SOUTH ASIA</b></font><br>
+{% for article in recent_articles[13:15] if recent_articles|length > 13 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+</tr>
+</table>
+</td></tr>
+</table>
+
+<br><br>
+
+<!-- Red divider -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td bgcolor="#CC0000" height="1"></td></tr>
+</table>
+<br>
+
+<!-- More from News Online -->
+<table width="100%" border="0" cellpadding="10" cellspacing="0" bgcolor="#F8F8F3" style="border: 1px solid #E5E5E0;">
+<tr><td>
+<font size="3" face="Arial, Helvetica, sans-serif"><b>MORE FROM NEWS ONLINE</b></font>
+<br><br>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr valign="top">
+<td width="33%">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>UK</b></font><br>
+{% for article in recent_articles[15:17] if recent_articles|length > 15 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+<td width="33%">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>BUSINESS</b></font><br>
+{% for article in recent_articles[17:19] if recent_articles|length > 17 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+<td width="33%">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>HEALTH</b></font><br>
+{% for article in recent_articles[19:21] if recent_articles|length > 19 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+</tr>
+<tr valign="top">
+<td width="33%" style="padding-top: 10px;">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>SCIENCE/NATURE</b></font><br>
+{% for article in recent_articles[21:23] if recent_articles|length > 21 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+<td width="33%" style="padding-top: 10px;">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>TECHNOLOGY</b></font><br>
+{% for article in recent_articles[23:25] if recent_articles|length > 23 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+<td width="33%" style="padding-top: 10px;">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>ENTERTAINMENT</b></font><br>
+{% for article in recent_articles[25:27] if recent_articles|length > 25 %}
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font><br>
+{% endfor %}
+</td>
+    </tr>
+</table>
+</td></tr>
+</table>
+{% endblock %}
+
+{% block sidebar %}
+<!-- Other Top Stories -->
+<table width="100%" border="0" cellpadding="10" cellspacing="0" bgcolor="#FFFEF9" style="border: 1px solid #C8C4B8; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+<tr><td style="padding-bottom: 5px;">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>OTHER TOP STORIES</b></font>
+</td></tr>
+{% for article in recent_articles[3:9] if recent_articles|length > 3 %}
+<tr><td style="padding-bottom: 8px;">
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:60] }}...</a></font>
+</td></tr>
+{% endfor %}
+</table>
+
+<br>
+
+<!-- Red divider -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td bgcolor="#CC0000" height="1"></td></tr>
+</table>
+<br>
+
+<!-- Also in the News -->
+<table width="100%" border="0" cellpadding="10" cellspacing="0" bgcolor="#FFFEF9" style="border: 1px solid #C8C4B8; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+<tr><td style="padding-bottom: 5px;">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>ALSO IN THE NEWS</b></font>
+</td></tr>
+{% for article in recent_articles[9:12] if recent_articles|length > 9 %}
+<tr><td style="padding-bottom: 8px;">
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:50] }}...</a></font>
+</td></tr>
+{% endfor %}
+</table>
+
+<br>
+
+<!-- Red divider -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td bgcolor="#CC0000" height="1"></td></tr>
+</table>
+<br>
+
+<!-- NEWS SPORT -->
+<table width="100%" border="0" cellpadding="10" cellspacing="0" bgcolor="#FFFEF9" style="border: 1px solid #C8C4B8; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+<tr><td style="padding-bottom: 5px;">
+<font size="2" face="Arial, Helvetica, sans-serif"><b>NEWS SPORT</b></font>
+</td></tr>
+{% for article in recent_articles[12:14] if recent_articles|length > 12 %}
+<tr><td style="padding-bottom: 5px;">
+<font size="2"><a {% if article.title|is_external_link %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ article.title|article_url }}" style="color: #0066CC;">{{ article.title[:55] }}...</a></font>
+</td></tr>
+{% endfor %}
+</table>
+{% endblock %}
+

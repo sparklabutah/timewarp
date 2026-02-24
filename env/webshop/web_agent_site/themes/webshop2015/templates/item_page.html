@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{product_info.Title}} - WebShop.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}?v={{ session_id }}">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <!-- Header -->
+    <header class="amazon-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-left">
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}" style="margin: 0;">
+                        <button type="submit" class="logo" style="background: none; border: none; padding: 0; cursor: pointer;">webshop.com</button>
+                    </form>
+                    <div class="delivery-option">
+                        <span class="delivery-label">Deliver to</span>
+                        <span class="delivery-location">Select your address</span>
+                    </div>
+                </div>
+                <div class="header-search">
+                    <form method="post" action="{{url_for('index', session_id=session_id)}}" class="search-form">
+                        <select class="search-category">
+                            <option>All</option>
+                            <option>Electronics</option>
+                            <option>Books</option>
+                        </select>
+                        <input type="text" name="search_query" class="search-input" placeholder="Search WebShop.com">
+                        <button type="submit" class="search-button">🔍</button>
+                    </form>
+                </div>
+                <div class="header-right">
+                    <div class="header-link">Returns & Orders</div>
+                    <div class="header-link">Cart</div>
+                </div>
+            </div>
+        </div>
+        <div class="header-nav">
+            <div class="container">
+                <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline;">
+                    <button type="submit" class="nav-link-btn">All</button>
+                </form>
+                <form method="post" action="{{url_for('search_results', session_id=session_id, keywords=keywords, page=page)}}" style="display: inline;">
+                    <button type="submit" class="nav-link-btn">← Back to Results</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Item Container -->
+    <div class="container item-container">
+        {% set fallback_image = url_for('static', filename='images/no-image-available.png') %}
+        <div class="item-image-section">
+            <img id="product-image" src="{{product_info.MainImage}}" alt="{{product_info.Title}}" class="item-image" onerror="this.src='{{ fallback_image }}'">
+        </div>
+        <div class="item-info-section">
+            <h1 class="item-title">{{product_info.Title}}</h1>
+            <div style="font-size: 14px; color: #007185; margin-bottom: 10px;">
+                ASIN: {{product_info.asin}}
+            </div>
+            <div class="item-price">{{product_info.Price}}</div>
+            <div class="item-rating">
+                Rating: {{product_info.Rating if product_info.Rating else 'N/A'}}
+            </div>
+
+            <!-- Product Options -->
+            {% if product_info.options %}
+            {% for option_name, option_contents in product_info.options.items() %}
+            <div class="item-options">
+                <div class="option-group">
+                    <label class="option-label">{{ option_name }}:</label>
+                    <div class="option-buttons">
+                        {% for option_content in option_contents %}
+                        {% set current_options = options.copy() %}
+                        {% set _ = current_options.update({option_name: option_content}) %}
+                        {% set url = url_for('item_page', session_id=session_id, asin=asin, keywords=keywords, page=page, options=current_options) %}
+                        <input type="radio" name="{{ option_name }}" id="opt_{{ option_name }}{{ loop.index0 }}" value="{{ option_content }}" data-url="{{ url }}" 
+                               {% if options.get(option_name) == option_content %}checked{% endif %}>
+                        <label for="opt_{{ option_name }}{{ loop.index0 }}" class="option-button {% if options.get(option_name) == option_content %}selected{% endif %}">
+                            {{ option_content }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <!-- Buy Button -->
+            <div style="margin-top: 30px;">
+                <form method="post" action="{{url_for('done', session_id=session_id, asin=asin, options=options)}}">
+                    <button type="submit" class="buy-button">Buy Now</button>
+                </form>
+                <div style="font-size: 12px; color: #666; margin-top: 10px;">
+                    100% Secure Checkout - Guaranteed
+                </div>
+            </div>
+
+            <!-- Product Information Tabs -->
+            <div style="margin-top: 30px; border-top: 1px solid #DDD; padding-top: 20px;">
+                <div style="font-size: 14px; font-weight: bold; margin-bottom: 15px;">Product Information:</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <button type="button" class="info-tab-btn active" data-tab="description">Description</button>
+                    <button type="button" class="info-tab-btn" data-tab="features">Features</button>
+                    <button type="button" class="info-tab-btn" data-tab="reviews">Reviews</button>
+                    {% if show_attrs %}
+                    <button type="button" class="info-tab-btn" data-tab="attributes">Attributes</button>
+                    {% endif %}
+                </div>
+
+                <!-- Description Tab Content -->
+                <div id="description-tab" class="info-tab-content active" style="display: block;">
+                    <div style="font-size: 14px; line-height: 1.8; color: #0F1111;">
+                        {{product_info.Description}}
+                    </div>
+                </div>
+
+                <!-- Features Tab Content -->
+                <div id="features-tab" class="info-tab-content" style="display: none;">
+                    <ul style="list-style: none; padding: 0;">
+                        {% for bulletpoint in product_info.BulletPoints %}
+                        <li style="padding: 12px 0; border-bottom: 1px solid #E0E0E0; font-size: 14px; line-height: 1.6;">
+                            • {{bulletpoint | safe}}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Reviews Tab Content -->
+                <div id="reviews-tab" class="info-tab-content" style="display: none;">
+                    {% if product_info.Reviews %}
+                        {% for review in product_info.Reviews %}
+                        <div style="border-bottom: 1px solid #E0E0E0; padding: 20px 0; margin-bottom: 20px;">
+                            <div style="font-size: 16px; font-weight: bold; margin-bottom: 8px; color: #0F1111;">
+                                "{{review.title}}"
+                            </div>
+                            <div style="font-size: 13px; color: #666; margin-bottom: 10px;">
+                                Rating: {{review.score}} / 5
+                            </div>
+                            <div style="font-size: 14px; line-height: 1.6; color: #0F1111;">
+                                {{review.body}}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div style="font-size: 14px; color: #666;">No reviews available.</div>
+                    {% endif %}
+                </div>
+
+                <!-- Attributes Tab Content -->
+                {% if show_attrs %}
+                <div id="attributes-tab" class="info-tab-content" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <div>
+                            <ul style="list-style: none; padding: 0;">
+                                {% for attribute in product_info.Attributes %}
+                                <li style="padding: 12px 0; border-bottom: 1px solid #E0E0E0; font-size: 14px; line-height: 1.6;">
+                                    • {{attribute}}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div style="background: #F8F9FA; border: 1px solid #DDD; padding: 20px; border-radius: 4px;">
+                            <h4 style="font-size: 16px; font-weight: 400; color: #0F1111; margin-bottom: 15px;">Product Info</h4>
+                            <div style="margin-bottom: 12px; font-size: 14px;">
+                                <strong style="color: #0F1111;">Category:</strong> <span style="color: #666;">{{product_info.category}}</span>
+                            </div>
+                            <div style="margin-bottom: 12px; font-size: 14px;">
+                                <strong style="color: #0F1111;">Query:</strong> <span style="color: #666;">{{product_info.query}}</span>
+                            </div>
+                            <div style="margin-bottom: 12px; font-size: 14px;">
+                                <strong style="color: #0F1111;">Product Category:</strong> <span style="color: #666;">{{product_info.product_category}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="amazon-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Get to Know Us</h3>
+                    <ul>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Let Us Help You</h3>
+                    <ul>
+                        <li><a href="#">Your Account</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-logo">webshop.com</div>
+                <div class="footer-copyright">© 1996-2015, WebShop.com, Inc.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Handle option selection
+        document.addEventListener('DOMContentLoaded', function() {
+            const radios = document.querySelectorAll('input[type="radio"]');
+            const options = JSON.parse('{{ options | tojson | safe }}');
+            const optionToImage = JSON.parse('{{ product_info.option_to_image | tojson | safe }}');
+            
+            // Initialize: Set image based on currently selected options on page load
+            radios.forEach(function(radio) {
+                if (radio.checked) {
+                    const imageUrl = optionToImage[radio.value];
+                    if (imageUrl) {
+                        document.getElementById('product-image').src = imageUrl;
+                    }
+                }
+            });
+            
+            radios.forEach(function(radio) {
+                // Handle click
+                radio.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Update labels
+                        document.querySelectorAll('.option-button').forEach(btn => btn.classList.remove('selected'));
+                        this.nextElementSibling.classList.add('selected');
+                        
+                        // Update image if available
+                        const imageUrl = optionToImage[this.value];
+                        if (imageUrl) {
+                            document.getElementById('product-image').src = imageUrl;
+                        }
+                        
+                        // Navigate to new URL
+                        window.location.href = this.dataset.url;
+                    }
+                });
+            });
+
+            // Handle tab switching
+            const tabButtons = document.querySelectorAll('.info-tab-btn');
+            const tabContents = document.querySelectorAll('.info-tab-content');
+            
+            tabButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        content.style.display = 'none';
+                    });
+                    
+                    // Add active class to clicked button and show corresponding content
+                    this.classList.add('active');
+                    const targetContent = document.getElementById(targetTab + '-tab');
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                        targetContent.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

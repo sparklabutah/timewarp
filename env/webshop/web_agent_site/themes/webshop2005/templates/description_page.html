@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Product Description - WebShop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span style="color: #0066CC; font-weight: bold;">webshop.com</span>
+            <a href="#">Your Store</a>
+            <a href="#">See All Product Categories</a>
+            <a href="#">Your Account</a>
+            <a href="#">Cart</a>
+            <a href="#">Wish List</a>
+            <a href="#">Help</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div id="logo"><h1>WebShop</h1></div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 15px; font-size: 13px; font-family: Arial, sans-serif;">Home</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="electronics">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 15px; font-size: 13px; font-family: Arial, sans-serif;">Electronics</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline; margin: 0;">
+                            <input type="hidden" name="search_query" value="fashion">
+                            <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 12px 15px; font-size: 13px; font-family: Arial, sans-serif;">Fashion</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container" style="padding: 15px;">
+        <div style="margin-bottom: 10px;">
+            <form method="post" action="{{url_for('index', session_id=session_id)}}" style="display: inline-block;"><button type="submit" class="btn btn-success" style="font-size: 12px;">Back to Search</button></form>
+            <form method="post" action="{{url_for('item_page', session_id=session_id, asin=asin, keywords=keywords, page=page, options=options)}}" style="display: inline-block;"><button type="submit" class="btn btn-primary" style="font-size: 12px;">&lt; Prev</button></form>
+        </div>
+        <div class="card">
+            <h4 style="color: #000000; margin-bottom: 15px; font-weight: bold; font-family: Arial, sans-serif; font-size: 14px;">Description</h4>
+            <div class="product-info" style="font-size: 13px; line-height: 1.6; color: #000000;">{{product_info.Description}}</div>
+        </div>
+    </div>
+    <footer class="main-footer"><div class="container"><div class="footer-bottom"><p class="copyright">© 2005 WebShop.com, Inc. or its affiliates</p></div></div></footer>
+</body>
+</html>
