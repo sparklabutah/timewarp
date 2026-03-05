@@ -491,19 +491,6 @@ def load_or_create_index():
     
     return article_index
 
-
-# NOTE: These functions are no longer needed because we pre-parse during indexing!
-# Keeping them commented out for reference:
-#
-# def get_article_from_xml(title):
-#     """DEPRECATED - Articles are now pre-parsed in the index"""
-#     pass
-#
-# def wikitext_to_html(wikitext):
-#     """DEPRECATED - Now using parse_and_clean_wikitext() during indexing"""
-#     pass
-
-
 @app.route('/')
 def index():
     """Main page with search"""
