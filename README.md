@@ -1,5 +1,5 @@
 <h1 align="center">
-  ⏱️&nbsp;TimeWarp
+  ⏳&nbsp;TimeWarp
 </h1>
 
 <p align="center">
@@ -171,3 +171,4 @@ python env/example_env_usage.py
 ```
 
 This should print the URLs defined in your `.env` file.
+
