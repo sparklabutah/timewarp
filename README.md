@@ -7,8 +7,8 @@
 [![project](https://img.shields.io/badge/Project%20Page-4285F4?style=flat&logo=homeassistant&logoColor=white&color=006A4E&labelColor=gray)](https://timewarp-web.github.io)
 [![arXiv](https://img.shields.io/badge/arXiv-2603.04949-b31b1b.svg?logo=arxiv&labelColor=FFFFFF&logoColor=b31b1b)](https://arxiv.org/abs/2603.04949)
 [![code](https://img.shields.io/badge/GitHub-sparklabutah/timewarp-blue?logo=GitHub&labelColor=black)](https://github.com/sparklabutah/timewarp)
-[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20_Dataset-aplycaebous/BanTH-ffc107?color=ffc107&logoColor=white)](https://huggingface.co/datasets/aplycaebous/BanTH)
-[![license](https://img.shields.io/badge/License-MIT-purple.svg)](https://github.com/Starscream-11813/Frugal-ICL/blob/main/LICENSE)
+[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20_Dataset-sparklabutah/timewarp-ffc107?color=ffc107&logoColor=white)](https://huggingface.co/datasets/sparklabutah/timewarp)
+[![license](https://img.shields.io/badge/License-MIT-purple.svg)]()
 
 </div>
 
@@ -179,5 +179,6 @@ python env/example_env_usage.py
 ```
 
 This should print the URLs defined in your `.env` file.
+
 
 
