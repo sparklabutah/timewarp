@@ -1,0 +1,19 @@
+### Note: DO NOT use quantized model or quantization_bit when merging lora adapters
+
+### model
+model_name_or_path: Qwen/Qwen3-4B-Instruct-2507
+adapter_name_or_path: /scratch/general/nfs1/u1592009/LLaMA-Factory/saves/qwen3-4b-64k-lora-epoch7-adapter16/checkpoint-2681
+template: qwen3_nothink
+trust_remote_code: true
+
+### export
+export_dir: saves/lora_merged/qwen3_sft_merged_adapter16_epoch7
+export_size: 5
+export_device: auto  # choices: [cpu, auto]
+export_legacy_format: false
+
+
+# /scratch/general/nfs1/u1592009/LLaMA-Factory/saves/qwen3-4b-64k-lora-epoch7-adapter16/checkpoint-383
+# /scratch/general/nfs1/u1592009/LLaMA-Factory/saves/qwen3-4b-64k-lora-epoch7-adapter16/checkpoint-1149
+# /scratch/general/nfs1/u1592009/LLaMA-Factory/saves/qwen3-4b-64k-lora-epoch7-adapter16/checkpoint-1915
+# /scratch/general/nfs1/u1592009/LLaMA-Factory/saves/qwen3-4b-64k-lora-epoch7-adapter16/checkpoint-2681
