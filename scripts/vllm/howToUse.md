@@ -1,1 +1,0 @@
-bash vlm/startVLMmodel.sh --port 8001 --model /path/to/your/model

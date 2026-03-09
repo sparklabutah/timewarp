@@ -6,10 +6,10 @@
 
 # Array of model paths
 MODELS=(
-    # "/scratch/general/nfs1/u1592009/LLaMA-Factory/saves/qwen3-vl-8b-SS/qwenSS-TW-checkpoint-864"
-    # "/scratch/general/nfs1/u1592009/LLaMA-Factory/saves/qwen3-vl-8b-Thinking-SoM"
-    "/scratch/general/nfs1/u1592009/LLaMA-Factory/saves/qwen3-vl-8b-SoM/Qwen3-SoM-TW-ep1-checkpoint-288"
-
+    # put your models here
+    "path/to/model/name/of/your/model1"
+    "path/to/model/name/of/your/model2"
+    "path/to/model/name/of/your/model3"
 )
 # Server timeout (seconds to wait between models)
 SERVER_TIMEOUT=60

@@ -13,7 +13,7 @@ conda create -n timewarpTraining python=3.10
 conda activate timewarpTraining
 ```
 
-2. Clone the official LlamaFactory repo from [here](https://github.com/hiyouga/LlamaFactory) and install the required dependencies.
+2. Clone the official LlamaFactory repo from [here](https://github.com/hiyouga/LlamaFactory) and install the required dependencies. The commands are given here:
 ```sh
 git clone --depth 1 https://github.com/hiyouga/LlamaFactory.git
 cd LlamaFactory
