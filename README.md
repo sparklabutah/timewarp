@@ -1,5 +1,5 @@
 <h1 align="center">
-  ⏳&nbsp;TimeWarp: Evaluating Web Agents by Rivisiting the Past
+  ⏳&nbsp;TimeWarp: Evaluating Web Agents by Revisiting the Past
 </h1>
 
 <div align="center">
@@ -19,78 +19,51 @@ tldr. TimeWarp is a benchmark for evaluating the robustness of agents to tempora
 ## Table of Contents
 
 - [Installation](#-installation)
-  - [Conda Environment](#conda-environment)
-  - [Environment Variables](#environment-variables)
 - [Running Environments](#-running-environments)
-  - [Start All](#start-all)
-  - [Stop All](#stop-all)
-- [Environment URLs](#-environment-urls)
-- [Usage in Python](#-usage-in-python)
-- [Verification](#-verification)
+  - [Single Environment](#single-environment)
+  - [Multiple Environments](#multiple-environments)
+- [Create your Own Theme!](#-create-your-own-theme)
+- [Running your Web Agent](#-running-your-web-agent)
+- [Training your Web Agent](#️-training-your-web-agent)
+- [Citation](#citation)
 
 ---
+
+
 
 ## 📦 Installation
 
-### Conda Environment
+Note: Ensure `conda` is installed on your system. If you don't have `conda` installed then please follow these instructions from [here](https://www.anaconda.com/docs/getting-started/anaconda/install).
 
-Create and activate the conda environment:
 
-```sh
-conda env create -f environment.yml
-conda activate timewarp
-```
-
-### Environment Variables
-
-TimeWarp uses a `.env` file to configure service URLs. Create a `.env` file in the project root:
+Simply run [`setup.sh`](setup.sh) which will create a conda environment called `timewarp` and install the required dependencies:
 
 ```sh
-# Wiki URLs
-WIKI1=http://localhost:5001
-WIKI2=http://localhost:5002
-WIKI3=http://localhost:5003
-WIKI4=http://localhost:5004
-WIKI5=http://localhost:5005
-WIKI6=http://localhost:5006
-
-# News URLs
-NEWS1=http://localhost:5007
-NEWS2=http://localhost:5008
-
-# Webshop URLs
-WEBSHOP1=http://localhost:5009
-WEBSHOP2=http://localhost:5010
-```
-
-**Format rules:**
-
-- `KEY=VALUE` — no spaces around `=`
-- No quotes needed (unless the value itself contains spaces)
-- One variable per line
-- Comments start with `#`
-
-Install `python-dotenv` if not already present:
-
-```sh
-pip install python-dotenv
-```
-
-Or install from the individual requirements files:
-
-```sh
-pip install -r env/wiki/requirements.txt
-pip install -r env/news/requirements.txt
-pip install -r env/webshop/requirements.txt
+bash setup.sh
 ```
 
 ---
 
-## 🚀 Running Environments
+## 🌐 Running Environments
 
-### Start All
+### Single Environment
 
-Launch all environments (Wiki, News, Webshop) with a single script. A version number (1–6) selects the theme:
+Run the following commands to start a single or multiple versions of the environment by passing the version number `[1-6]` or `all` argument:
+
+```sh
+bash env/wiki/start_wiki.sh [-1|-2|-3|-4|-5|-6|-all] # Wiki
+bash env/news/start_news.sh [-1|-2|-3|-4|-5|-6|-all] # News
+bash env/webshop/start_webshop.sh [-1|-2|-3|-4|-5|-6|-all] # Shop
+```
+
+Example Usage:
+```sh
+bash env/webshop/start_webshop.sh -1
+```
+
+### Multiple Environments
+
+Helper scripts for running multiple environments are provided in [`scripts/environment`](scripts/environment/), with [additional instructions](scripts/README.md). Sample usage is given below:
 
 ```sh
 # Start all environments with theme version 1 (default)
@@ -101,6 +74,9 @@ Launch all environments (Wiki, News, Webshop) with a single script. A version nu
 
 # Start and block the terminal (useful for foreground monitoring)
 ./run_all_env.sh 1 --wait
+
+# Stop all tunnels and servers (default)
+./stop_all_ports.sh
 ```
 
 Ports are assigned automatically starting from 5000. On startup, the following environment variables are exported:
@@ -111,74 +87,144 @@ Ports are assigned automatically starting from 5000. On startup, the following e
 | `TW_NEWS` | `http://localhost:<port>` | News environment URL |
 | `TW_WEBSHOP` | `http://localhost:<port>/abc` | Webshop environment URL |
 
-### Stop All
+---
+
+## 🎨 Create your Own Theme!
+
+Each environment loads its UI from a theme folder. To add a new theme, create a folder under the appropriate path:
+
+| Environment | Theme directory |
+|-------------|----------------|
+| Wiki | `env/wiki/themes/<your-theme>/` |
+| News | `env/news/themes/<your-theme>/` |
+| Shop | `env/webshop/web_agent_site/themes/<your-theme>/` |
+
+**Wiki & News** themes are flat directories. Drop in HTML templates and a stylesheet:
+
+```
+<your-theme>/
+├── base.html
+├── index.html
+├── article.html
+├── 404.html
+├── style.css
+└── script.js
+```
+News also expects `browse.html` and `search.html`. If you prefer, you can use `templates/` and `static/` subdirectories instead of the flat layout — the apps detect either structure automatically (Wiki only; News expects a flat layout).
+
+**Shop** themes use a two-subfolder layout:
+
+```
+<your-theme>/
+├── templates/   # search_page.html, results_page.html, item_page.html,
+│                # description_page.html, features_page.html, attributes_page.html,
+│                # review_page.html, done_page.html
+└── static/      # style.css (and any images)
+```
+
+Once the folder is ready, register it by adding an entry to `num_to_theme` (and optionally `name_aliases`) inside `_parse_args` in the corresponding app file:
+
+| Environment | App file |
+|-------------|----------|
+| Wiki | `env/wiki/wiki_app.py` |
+| News | `env/news/news_app.py` |
+| Shop | `env/webshop/web_agent_site/app.py` |
+
+Then launch the environment with your theme name or its assigned number:
 
 ```sh
-# Stop all tunnels and servers (default)
-./stop_all_ports.sh
-
-# Stop only the servers
-./stop_all_ports.sh --servers
-
-# Stop only tunnels (keep servers running)
-./stop_all_ports.sh --tunnels-only
+bash env/wiki/start_wiki.sh -<number>
+# or
+python env/wiki/wiki_app.py --<your-theme-name>
 ```
 
 ---
 
-## 🌐 Environment URLs
+## 🤖 Running your Web Agent
 
-Each environment supports 6 themes (versions 1–6), started via the `-N` flag:
+To benchmark a model on TimeWarp you need three things running: a model, the environments, and a benchmark script.
 
-| Environment | App | Port Range |
-|-------------|-----|------------|
-| Wiki | `env/wiki/wiki_app.py` | 5000:5005 |
-| News | `env/news/news_app.py` | 5006:5011 |
-| Webshop | `env/webshop/web_agent_site/app.py` | 5012:5017 |
-
----
-
-## 🐍 Usage in Python
-
-Load `.env` variables in any Python file:
-
-```python
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-# Access a variable (with optional default)
-wiki_url = os.getenv('WIKI1', 'http://localhost:5001')
-print(wiki_url)  # http://localhost:5001
-```
-
-Example — connect to a theme-specific environment:
-
-```python
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-wiki1 = os.getenv('WIKI1')
-if wiki1:
-    print(f"Connecting to {wiki1}")
-else:
-    print("WIKI1 not found in .env file")
-```
-
----
-
-## ✅ Verification
-
-After creating your `.env` file, verify it loads correctly:
+**1. Host a model.** Use an API key (e.g. `OPENAI_API_KEY`) or serve a local model with `vllm`. The [`startVLMmodel.sh`](scripts/startVLMmodel.sh) script handles both LLMs and VLMs:
 
 ```sh
-python env/example_env_usage.py
+bash scripts/startVLMmodel.sh --port <port> --model <name_or_path>
 ```
 
-This should print the URLs defined in your `.env` file.
+**2. Start the environments.** Run all three environments at once with a single version flag:
 
+```sh
+bash scripts/environment/run_all_env.sh <version_number>   # e.g. 3
+```
 
+Stop everything when done:
 
+```sh
+bash scripts/environment/stop_all_ports.sh
+```
+
+**3. Run a benchmark.** The recommended way is [AgentLab](https://github.com/ServiceNow/AgentLab). After installing it and adding the [required TimeWarp lines](scripts/README.md), run a single benchmark script:
+
+```sh
+python scripts/singleBenchmark/benchmarkGeneralWiki.py \
+  --port 9000 \
+  --version v1 \
+  --model <model_name_or_path>
+```
+
+To sweep across multiple models and environment versions automatically, use the multi-benchmark entry point:
+
+```sh
+bash scripts/multiBenchmark/_run_multi.sh \
+  --models  "path/to/model1,path/to/model2" \
+  --scripts "singleBenchmark/benchmarkGeneralWiki.py,..." \
+  --versions "1,2,3"
+```
+
+See [`scripts/README.md`](scripts/README.md) for the full setup and AgentLab configuration details.
+
+---
+
+## 🏋️‍♂️ Training your Web Agent
+
+TimeWarp agents are fine-tuned on teacher trajectories using [LlamaFactory](https://github.com/hiyouga/LlamaFactory). Multi-GPU training with DeepSpeed ZeRO-3 is recommended.
+
+**1. Set up LlamaFactory.**
+
+```sh
+git clone --depth 1 https://github.com/hiyouga/LlamaFactory.git
+cd LlamaFactory && pip install -e .
+```
+
+**2. Get training data.** Generate teacher trajectories or download our GPT-5 traces directly:
+
+```sh
+git clone https://huggingface.co/datasets/sparklabutah/TimeWarp-GPT5-Traces
+```
+
+Convert them to ShareGPT format using [`convert2sgptArgs.py`](llamafactory/helperScripts/convert2sgptArgs.py), then place the output JSON in `LlamaFactory/data/` and register it in `dataset_info.json`.
+
+**3. Train.**
+
+```sh
+llamafactory-cli train examples/train_full/your_training_config.yaml
+```
+
+Example `.yaml` configs for both full fine-tuning and LoRA are provided in [`llamafactory/train_full`](llamafactory/train_full) and [`llamafactory/train_lora`](llamafactory/train_lora). See [`llamafactory/README.md`](llamafactory/readme.md) for the complete walkthrough.
+
+---
+
+## Citation
+
+If you enjoyed using this repo, please consider citing our work:
+
+```bibtex
+@misc{timewarp2026,
+      title={TimeWarp: Evaluating Web Agents by Revisiting the Past}, 
+      author={Md Farhan Ishmam and Kenneth Marino},
+      year={2026},
+      eprint={2603.04949},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2603.04949}, 
+  }
+```

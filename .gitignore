@@ -6,7 +6,6 @@ trajectories/
 output_json.csv
 output.csv
 
-
 *.xml
 *.pkl
 *.bz2
