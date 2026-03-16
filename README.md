@@ -45,38 +45,6 @@ bash setup.sh
 
 ⚠️ You might encounter issues when setting up [`env/webshop`](env/webshop/), *e.g.,* Google Drive rate limits getting exceeded, which would require you to download the files manually. You can also check the original webshop [repo](https://github.com/princeton-nlp/WebShop). ⚠️
 
-### BrowserGym Integration
-
-TimeWarp is available as a [BrowserGym](https://github.com/ServiceNow/BrowserGym) environment. Install the package and its dependencies:
-
-```sh
-pip install browsergym-timewarp
-playwright install
-```
-
-Then you can use it directly with BrowserGym or [AgentLab](https://github.com/ServiceNow/AgentLab):
-
-```python
-import gymnasium as gym
-import browsergym.timewarp
-
-env = gym.make("browsergym/timewarp.1")
-obs, info = env.reset()
-# Run your agent
-env.close()
-```
-
-Make sure the TimeWarp environments are running (see [Running Environments](#-running-environments)) and the following environment variables are set:
-
-```sh
-export TW_WIKI="http://localhost:5000"
-export TW_WEBSHOP="http://localhost:5001"
-export TW_NEWS="http://localhost:5002"
-export OPENAI_API_KEY="your-key"  # For fuzzy evaluation
-```
-
----
-
 ## 🌐 Running Environments
 
 ### Single Environment
@@ -172,6 +140,32 @@ python env/wiki/wiki_app.py --<your-theme-name>
 ```
 
 ---
+## 📝 Running Tasks on Environment
+
+You can use TimeWarp directly with BrowserGym or [AgentLab](https://github.com/ServiceNow/AgentLab):
+
+```python
+import gymnasium as gym
+import browsergym.timewarp
+
+env = gym.make("browsergym/timewarp.1")
+obs, info = env.reset()
+# Run your agent
+env.close()
+```
+
+Make sure the TimeWarp environments are running (see [Running Environments](#-running-environments)) and the following environment variables are set:
+
+```sh
+export TW_WIKI="http://localhost:5000"
+export TW_WEBSHOP="http://localhost:5001"
+export TW_NEWS="http://localhost:5002"
+export OPENAI_API_KEY="your-key"  # For fuzzy evaluation
+```
+
+---
+
+
 
 ## 🤖 Running your Web Agent
 

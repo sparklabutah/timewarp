@@ -175,6 +175,8 @@ dependencies:
       - yarl==1.22.0
       - zipp==3.23.0
       - zope-interface==8.0.1
+      - browsergym-timewarp
+      - playwright
       - env==0.1.0
       - gdown
       - gradio

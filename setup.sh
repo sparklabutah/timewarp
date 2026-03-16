@@ -7,6 +7,10 @@ conda env create -f environment.yml || echo "Environment already exists, skippin
 source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate timewarp
 
+# ── Playwright browser install ──────────────────────────────────────────────
+echo "Installing Playwright browsers..."
+playwright install
+
 # ── Webshop setup ──────────────────────────────────────────────────────────────
 echo "Running webshop setup..."
 cd env/webshop

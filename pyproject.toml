@@ -33,3 +33,11 @@ files = ["requirements.txt"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/browsergym"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/browsergym/",
+    "requirements.txt",
+    "pyproject.toml",
+    "README.md",
+]
