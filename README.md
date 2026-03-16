@@ -34,7 +34,7 @@ tldr. TimeWarp is a benchmark for evaluating the robustness of agents to tempora
 
 ## 📦 Installation
 
-Note: Ensure `conda` is installed on your system. If you don't have `conda` installed then please follow these instructions from [here](https://www.anaconda.com/docs/getting-started/anaconda/install).
+⚠️ Ensure `conda` is installed on your system. If you don't have `conda` installed then please follow these instructions from [here](https://www.anaconda.com/docs/getting-started/anaconda/install). ⚠️
 
 
 Simply run [`setup.sh`](setup.sh) which will create a conda environment called `timewarp` and install the required dependencies:
@@ -42,6 +42,8 @@ Simply run [`setup.sh`](setup.sh) which will create a conda environment called `
 ```sh
 bash setup.sh
 ```
+
+⚠️ You might encounter issues when setting up [`env/webshop`](env/webshop/), *e.g.,* Google Drive rate limits getting exceeded, which would require you to download the files manually. You can also check the original webshop [repo](https://github.com/princeton-nlp/WebShop). ⚠️
 
 ### BrowserGym Integration
 
@@ -246,20 +248,7 @@ Example `.yaml` configs for both full fine-tuning and LoRA are provided in [`lla
 
 ## Citation
 
-If you enjoyed using this repo, please consider citing our work and the repos that have helped us:
-
-### TimeWarp
-```bibtex
-@misc{timewarp2026,
-      title={TimeWarp: Evaluating Web Agents by Revisiting the Past}, 
-      author={Md Farhan Ishmam and Kenneth Marino},
-      year={2026},
-      eprint={2603.04949},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2603.04949}, 
-  }
-```
+Don't forget to cite all the repos that have helped us!
 
 ### Browsergym and AgentLab
 ```bibtex
@@ -277,12 +266,27 @@ If you enjoyed using this repo, please consider citing our work and the repos th
 
 ### WebShop
 ```bibtex
-@article{yao2022webshop,
-  title={Webshop: Towards scalable real-world web interaction with grounded language agents},
-  author={Yao, Shunyu and Chen, Howard and Yang, John and Narasimhan, Karthik},
-  journal={Advances in Neural Information Processing Systems},
-  volume={35},
-  pages={20744--20757},
-  year={2022}
+@inproceedings{yao2022webshop,
+  bibtex_show = {true},
+  title = {WebShop: Towards Scalable Real-World Web Interaction with Grounded Language Agents},
+  author = {Yao, Shunyu and Chen, Howard and Yang, John and Narasimhan, Karthik},
+  booktitle = {ArXiv},
+  year = {preprint},
+  html = {https://arxiv.org/abs/2207.01206},
+  tag = {NLP}
 }
+```
+If you enjoyed using this repo, also consider citing us 😊 !
+
+### TimeWarp
+```bibtex
+@misc{timewarp2026,
+      title={TimeWarp: Evaluating Web Agents by Revisiting the Past}, 
+      author={Md Farhan Ishmam and Kenneth Marino},
+      year={2026},
+      eprint={2603.04949},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2603.04949}, 
+  }
 ```
