@@ -38,7 +38,7 @@ env.close()
 
 ## Adding Tasks
 
-1. Add to `browsergym/timewarp/src/browsergym/timewarp/data/test.raw.json`
+1. Add to `src/browsergym/timewarp/data/test.raw.json`
 2. Update `TASK_IDS` in `config.py`
 3. Add to `metadata/timewarp.csv`
 

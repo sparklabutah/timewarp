@@ -19,6 +19,7 @@ tldr. TimeWarp is a benchmark for evaluating the robustness of agents to tempora
 ## Table of Contents
 
 - [Installation](#-installation)
+  - [BrowserGym Integration](#browsergym-integration)
 - [Running Environments](#-running-environments)
   - [Single Environment](#single-environment)
   - [Multiple Environments](#multiple-environments)
@@ -40,6 +41,36 @@ Simply run [`setup.sh`](setup.sh) which will create a conda environment called `
 
 ```sh
 bash setup.sh
+```
+
+### BrowserGym Integration
+
+TimeWarp is available as a [BrowserGym](https://github.com/ServiceNow/BrowserGym) environment. Install the package and its dependencies:
+
+```sh
+pip install browsergym-timewarp
+playwright install
+```
+
+Then you can use it directly with BrowserGym or [AgentLab](https://github.com/ServiceNow/AgentLab):
+
+```python
+import gymnasium as gym
+import browsergym.timewarp
+
+env = gym.make("browsergym/timewarp.1")
+obs, info = env.reset()
+# Run your agent
+env.close()
+```
+
+Make sure the TimeWarp environments are running (see [Running Environments](#-running-environments)) and the following environment variables are set:
+
+```sh
+export TW_WIKI="http://localhost:5000"
+export TW_WEBSHOP="http://localhost:5001"
+export TW_NEWS="http://localhost:5002"
+export OPENAI_API_KEY="your-key"  # For fuzzy evaluation
 ```
 
 ---
@@ -215,8 +246,9 @@ Example `.yaml` configs for both full fine-tuning and LoRA are provided in [`lla
 
 ## Citation
 
-If you enjoyed using this repo, please consider citing our work:
+If you enjoyed using this repo, please consider citing our work and the repos that have helped us:
 
+### TimeWarp
 ```bibtex
 @misc{timewarp2026,
       title={TimeWarp: Evaluating Web Agents by Revisiting the Past}, 
@@ -227,4 +259,30 @@ If you enjoyed using this repo, please consider citing our work:
       primaryClass={cs.AI},
       url={https://arxiv.org/abs/2603.04949}, 
   }
+```
+
+### Browsergym and AgentLab
+```bibtex
+@article{
+    chezelles2025browsergym,
+    title={The BrowserGym Ecosystem for Web Agent Research},
+    author={Thibault Le Sellier de Chezelles and Maxime Gasse and Alexandre Lacoste and Massimo Caccia and Alexandre Drouin and L{\'e}o Boisvert and Megh Thakkar and Tom Marty and Rim Assouel and Sahar Omidi Shayegan and Lawrence Keunho Jang and Xing Han L{\`u} and Ori Yoran and Dehan Kong and Frank F. Xu and Siva Reddy and Graham Neubig and Quentin Cappart and Russ Salakhutdinov and Nicolas Chapados},
+    journal={Transactions on Machine Learning Research},
+    issn={2835-8856},
+    year={2025},
+    url={https://openreview.net/forum?id=5298fKGmv3},
+    note={Expert Certification}
+}
+```
+
+### WebShop
+```bibtex
+@article{yao2022webshop,
+  title={Webshop: Towards scalable real-world web interaction with grounded language agents},
+  author={Yao, Shunyu and Chen, Howard and Yang, John and Narasimhan, Karthik},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={20744--20757},
+  year={2022}
+}
 ```

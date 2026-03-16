@@ -1,3 +1,5 @@
+__version__ = "0.1.0"
+
 import nltk
 
 from browsergym.core.registration import register_task
