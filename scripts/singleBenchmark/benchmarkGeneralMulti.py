@@ -10,7 +10,7 @@ from browsergym.experiments.benchmark.configs import DEFAULT_BENCHMARKS
 
 from agentlab.agents.generic_agent import AGENT_LLAMA3_70B
 from agentlab.agents.generic_agent.generic_agent import GenericAgentArgs
-from agentlab.agents.generic_agent.generic_agent_with_training import GenericAgentWithTrainingArgs
+from agentlab.agents.generic_agent.generic_agent_with_training import GenericAgent
 from agentlab.llm.chat_api import SelfHostedModelArgs
 
 # Parse command-line arguments
@@ -71,7 +71,7 @@ CRITICAL: Output the <action> tag ONLY ONCE, at the end of your response, OUTSID
 Do NOT include <action> tags inside your reasoning section.
 """
 
-generic_agent_args = GenericAgentWithTrainingArgs(
+generic_agent_args = GenericAgent(
     chat_model_args=qwen_thinking_vllm,
     flags=flags_70b_custom,
 )
