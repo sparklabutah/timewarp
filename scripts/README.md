@@ -41,7 +41,7 @@ bash environment/stop_all_ports.sh
 
 ## C. Standard Benchmark (using BrowserGym and AgentLab)
 
-Your models are hosted, environments are running. Time to run a benchmark. The easiest way to run a web agent is by using [AgentLab](https://github.com/ServiceNow/AgentLab). At the time of writing this, AgentLab doesn't recognize TimeWarp as a valid benchmarking environment :( and you may need to add a few extra lines.
+Your models are hosted, environments are running. Time to run a benchmark. The easiest way to run a web agent is by using [AgentLab](https://github.com/ServiceNow/AgentLab).
 
 1. Create a new conda environment and install AgentLab in editable mode:
 
@@ -66,7 +66,7 @@ export OPENAI_API_KEY=<your openai api key> # if openai models are used
 ```python
 study.run(n_jobs=8, parallel_backend="joblib")
 ```
-We like to use -2 here, which tells it to use all available cores minus 1.
+We like to use `-2` here, which tells it to use all available cores minus 1.
 
 5. Now run the benchmark script. Here's a sample command:
 
@@ -81,7 +81,7 @@ python singleBenchmark/benchmarkGeneralWiki.py \
 
 The [`multiBenchmark`](multiBenchmark) scripts can run benchmark scripts on multiple models across multiple versions of the environment. It automatically hosts the web environment and models.
 
-Note: You still need to install and set the conda environments for AgentLab, Browsergym, Vllm, and TimeWarp. If you install the conda environments using a different name, then you need to change the names inside the benchmark scripts. The default conda environment names are `browsergym`, `agentlab`, `vllm`, and `timewarp`.
+⚠️ You still need to install and set the conda environments for AgentLab, Browsergym, Vllm, and TimeWarp. If you install the conda environments using a different name, then you need to change the names inside the benchmark scripts. The default conda environment names are `browsergym`, `agentlab`, `vllm`, and `timewarp`. ⚠️
 
 ### Quick Start
 
@@ -113,7 +113,7 @@ bash multiBenchmark/_run_multi.sh \
 
 ## Citation
 
-Don't forget to cite [`BrowserGym`](https://github.com/ServiceNow/BrowserGym), [`AgentLab`](https://github.com/ServiceNow/AgentLab), and [`vLLM`](https://github.com/vllm-project/vllm) for providing their amazing repos.
+Don't forget to cite [BrowserGym](https://github.com/ServiceNow/BrowserGym), [AgentLab](https://github.com/ServiceNow/AgentLab), and [vLLM](https://github.com/vllm-project/vllm) for providing their amazing repos.
 
 ### BrowserGym and AgentLab
 
@@ -127,20 +127,6 @@ Don't forget to cite [`BrowserGym`](https://github.com/ServiceNow/BrowserGym), [
     year={2025},
     url={https://openreview.net/forum?id=5298fKGmv3},
     note={Expert Certification}
-}
-
-@inproceedings{workarena2024,
-    title = {{W}ork{A}rena: How Capable are Web Agents at Solving Common Knowledge Work Tasks?},
-    author = {Drouin, Alexandre and Gasse, Maxime and Caccia, Massimo and Laradji, Issam H. and Del Verme, Manuel and Marty, Tom and Vazquez, David and Chapados, Nicolas and Lacoste, Alexandre},
-    booktitle = {Proceedings of the 41st International Conference on Machine Learning},
-    pages = {11642--11662},
-    year = {2024},
-    editor = {Salakhutdinov, Ruslan and Kolter, Zico and Heller, Katherine and Weller, Adrian and Oliver, Nuria and Scarlett, Jonathan and Berkenkamp, Felix},
-    volume = {235},
-    series = {Proceedings of Machine Learning Research},
-    month = {21--27 Jul},
-    publisher = {PMLR},
-    url = {https://proceedings.mlr.press/v235/drouin24a.html},
 }
 ```
 
