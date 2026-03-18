@@ -19,7 +19,6 @@ tldr. TimeWarp is a benchmark for evaluating the robustness of agents to tempora
 ## Table of Contents
 
 - [Installation](#-installation)
-  - [BrowserGym Integration](#browsergym-integration)
 - [Running Environments](#-running-environments)
   - [Single Environment](#single-environment)
   - [Multiple Environments](#multiple-environments)
@@ -29,8 +28,6 @@ tldr. TimeWarp is a benchmark for evaluating the robustness of agents to tempora
 - [Citation](#citation)
 
 ---
-
-
 
 ## 📦 Installation
 
@@ -209,7 +206,7 @@ See [`scripts/README.md`](scripts/README.md) for the full setup and AgentLab con
 
 ---
 
-## 🏋️‍♂️ Training your Web Agent
+## 🏋️ Training your Web Agent
 
 TimeWarp agents are fine-tuned on teacher trajectories using [LlamaFactory](https://github.com/hiyouga/LlamaFactory). Multi-GPU training with DeepSpeed ZeRO-3 is recommended.
 
@@ -268,7 +265,7 @@ Don't forget to cite all the repos that have helped us!
   tag = {NLP}
 }
 ```
-If you enjoyed using this repo, also consider citing us 😊 !
+If you enjoyed using this repo, also consider citing us! 😊
 
 ### TimeWarp
 ```bibtex
