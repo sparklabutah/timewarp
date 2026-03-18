@@ -1,26 +1,18 @@
-# TimeWarp Benchmark for BrowserGym
+# TimeWarp for BrowserGym
 
-TimeWarp benchmark with 4 environments: WIKI, WEBSHOP, NEWS, HOME.
+Hello, researcher! We provide instructions to set TimeWarp with [BrowserGym](https://github.com/ServiceNow/BrowserGym). 
 
-## Environment Setup
+## Setup
 
-To set the environment, please follow the instructions in our [Github repo](https://github.com/sparklabutah/timewarp).
-
-## Browsergym Setup
+Run the following command to install `browsergym-timewarp`:
 
 ```sh
 pip install browsergym-timewarp
 python -c "import nltk; nltk.download('punkt_tab')"
 ```
-
-## Environment Variables
+Set the OpenAI API Key:
 
 ```sh
-export TW_WIKI="http://localhost:5000"
-export TW_WEBSHOP="http://localhost:5001"
-export TW_NEWS="http://localhost:5002"
-export TW_USERNAME="admin"  # Optional
-export TW_PASSWORD="admin"  # Optional
 export OPENAI_API_KEY="your-key"  # For fuzzy evaluation
 ```
 
@@ -32,7 +24,9 @@ import browsergym.timewarp
 
 env = gym.make("browsergym/timewarp.1")
 obs, info = env.reset()
+
 # Run your agent
+
 env.close()
 ```
 
@@ -44,3 +38,20 @@ env.close()
 
 Sites: `["wiki"]`, `["webshop"]`, `["news"]`
 Placeholders: `__WIKI__`, `__WEBSHOP__`, `__NEWS__`
+
+## Citation
+
+Don't forget to cite [BrowserGym](https://github.com/ServiceNow/BrowserGym):
+
+```bibtex
+@article{
+    chezelles2025browsergym,
+    title={The BrowserGym Ecosystem for Web Agent Research},
+    author={Thibault Le Sellier de Chezelles and Maxime Gasse and Alexandre Lacoste and Massimo Caccia and Alexandre Drouin and L{\'e}o Boisvert and Megh Thakkar and Tom Marty and Rim Assouel and Sahar Omidi Shayegan and Lawrence Keunho Jang and Xing Han L{\`u} and Ori Yoran and Dehan Kong and Frank F. Xu and Siva Reddy and Graham Neubig and Quentin Cappart and Russ Salakhutdinov and Nicolas Chapados},
+    journal={Transactions on Machine Learning Research},
+    issn={2835-8856},
+    year={2025},
+    url={https://openreview.net/forum?id=5298fKGmv3},
+    note={Expert Certification}
+}
+```
