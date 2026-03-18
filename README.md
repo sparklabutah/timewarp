@@ -142,7 +142,7 @@ python env/wiki/wiki_app.py --<your-theme-name>
 ---
 ## 📝 Running Tasks on Environment
 
-You can use TimeWarp directly with BrowserGym or [AgentLab](https://github.com/ServiceNow/AgentLab):
+You can use TimeWarp directly with [BrowserGym](https://github.com/ServiceNow/BrowserGym):
 
 ```python
 import gymnasium as gym
@@ -160,12 +160,10 @@ Make sure the TimeWarp environments are running (see [Running Environments](#-ru
 export TW_WIKI="http://localhost:5000"
 export TW_WEBSHOP="http://localhost:5001"
 export TW_NEWS="http://localhost:5002"
-export OPENAI_API_KEY="your-key"  # For fuzzy evaluation
+export OPENAI_API_KEY="your-key"  # For judge evaluation
 ```
 
 ---
-
-
 
 ## 🤖 Running your Web Agent
 

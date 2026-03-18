@@ -30,7 +30,7 @@ pip install -r requirements/deepspeed.txt
 
 TimeWarp models are trained on the trajectories of a teacher web agent. The generated trajectory is converted to the `ShareGPT` format for training.
 
-1. Generate teacher trajectories following the instructions in [browsergym/timewarp](https://github.com/ServiceNow/BrowserGym/tree/main/browsergym/timewarp). Optionally, use the teacher trajectories that we generated from the GPT agent by downloading them from [huggingface/sparklabutah/TimeWarp-GPT5-Traces](https://huggingface.co/datasets/sparklabutah/TimeWarp-GPT5-Traces).
+1. Collect teacher trajectories following the instructions in [`collectTeacherTraj/README.MD`](../collectTeacherTraj/README.MD). Optionally, use the teacher trajectories that we generated from the GPT agent by downloading them from [`huggingface/sparklabutah/TimeWarp-GPT5-Traces`](https://huggingface.co/datasets/sparklabutah/TimeWarp-GPT5-Traces).
 
 ```sh
 git clone https://huggingface.co/datasets/sparklabutah/TimeWarp-GPT5-Traces
