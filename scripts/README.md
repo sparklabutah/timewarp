@@ -59,7 +59,7 @@ export AGENTLAB_EXP_ROOT=<root directory of experiment results>  # defaults to $
 export OPENAI_API_KEY=<your openai api key> # if openai models are used
 ```
 
-3. You can now run a benchmark script for a particular task category. The benchmark makes 3 runs over the whole test split of that category. The scripts are provided in [`singleBenchmark`](singleBenchmark/). Before running the script, set your own flags in `src/agentlab/agents/generic_agent/agent_configs.py` and use that name in the benchmark script that you will run. The TimeWarp agents use thinking, memory, and plan.
+3. You can now run a benchmark script for a particular task category. The benchmark makes 3 runs over the whole test split of that category. The scripts are provided in [`singleBenchmark`](singleBenchmark/). Before running the script, set your own flags in [`src/agentlab/agents/generic_agent/agent_configs.py`](https://github.com/ServiceNow/AgentLab/blob/main/src/agentlab/agents/generic_agent/agent_configs.py) and use that name in the benchmark script that you will run. The TimeWarp agents use thinking, memory, and plan.
 
 4. Set the number of parallel jobs in the benchmark script. For instance, if you have 8 threads use:
 
@@ -100,8 +100,7 @@ bash multiBenchmark/_run_multi.sh \
     --versions "1,2,..."
 ```
 
-
-### Script Architecture
+### Script Usage
 
 | Script | Role |
 |---|---|
