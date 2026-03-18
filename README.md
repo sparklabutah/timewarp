@@ -184,7 +184,7 @@ Stop everything when done:
 bash scripts/environment/stop_all_ports.sh
 ```
 
-**3. Run a benchmark.** The recommended way is [AgentLab](https://github.com/ServiceNow/AgentLab). After installing it and adding the [required TimeWarp lines](scripts/README.md), run a single benchmark script:
+**3. Run a benchmark.** The recommended way is [AgentLab](https://github.com/ServiceNow/AgentLab). After installing it, run a single benchmark script:
 
 ```sh
 python scripts/singleBenchmark/benchmarkGeneralWiki.py \

@@ -57,7 +57,7 @@ Great job, your agent is now being trained! You will most likely encounter tons 
 
 ## Citation
 
-Don't forget to cite [`LlamaFactory`](https://github.com/hiyouga/LlamaFactory) for providing their amazing repo.
+Don't forget to cite [LlamaFactory](https://github.com/hiyouga/LlamaFactory) for providing their amazing repo.
 
 ```bibtex
 @inproceedings{zheng2024llamafactory,
