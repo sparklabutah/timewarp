@@ -32,9 +32,11 @@ env.close()
 
 ## Adding Tasks
 
-1. Add to `src/browsergym/timewarp/data/test.raw.json`
-2. Update `TASK_IDS` in `config.py`
-3. Add to `metadata/timewarp.csv`
+⚠️ To add tasks, install both `browsergym` and `browsergym-timewarp` in editable mode using `pip install -e .` ⚠️
+
+1. Add to [`src/browsergym/timewarp/data/test.raw.json`](timewarp/data/test.raw.json)
+2. Update `TASK_IDS` in [`timewarp/config.py`](timewarp/config.py)
+3. Add to [`browsergym/experiments/src/browsergym/experiments/benchmark/metadata/timewarp.csv`](https://github.com/ServiceNow/BrowserGym/blob/main/browsergym/experiments/src/browsergym/experiments/benchmark/metadata/timewarp.csv) in the original BrowserGym repo.
 
 Sites: `["wiki"]`, `["webshop"]`, `["news"]`
 Placeholders: `__WIKI__`, `__WEBSHOP__`, `__NEWS__`
