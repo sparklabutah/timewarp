@@ -3,12 +3,15 @@ TimeWarp Evaluators
 """
 
 import json
+import logging
 import os
 import re
 from pathlib import Path
 from typing import Union, Any
 
 from playwright.sync_api import Page
+
+logger = logging.getLogger(__name__)
 
 
 class Evaluator:
@@ -172,57 +175,44 @@ Do not include any additional text, explanation, or formatting. Only respond wit
         {"role": "user", "content": message},
     ]
 
-    try:
-        response = client.chat.completions.create(
-            model=model,
-            messages=messages,
-            temperature=0,
-            max_completion_tokens=768,
+    # API errors (rate limits, auth, network) must propagate — scoring them as
+    # 0.0 would silently mark the episode as a failed task.
+    response = client.chat.completions.create(
+        model=model,
+        messages=messages,
+        temperature=0,
+        max_completion_tokens=768,
+    )
+    response_text = _normalize_openai_response_text(response).strip()
+    raw_response = response_text  # Keep original for debugging
+
+    logger.debug(f"LLM judge raw response: '{raw_response}'")
+    # Also print in test mode (when called from test script)
+    if os.environ.get("LLM_JUDGE_DEBUG", "").lower() in ("1", "true", "yes"):
+        print(f"LLM Raw Response: '{raw_response}'")
+
+    response_clean = response_text.lower().strip()
+
+    # Check for exact matches first (most strict)
+    if response_clean == "correct":
+        return 1.0
+    elif response_clean == "partially correct" or response_clean == "incorrect":
+        return 0.0
+    # Fallback to substring matching for robustness (in case LLM adds extra text).
+    # Negative verdicts must be checked first: "incorrect" and "partially correct"
+    # both contain "correct" as a substring.
+    elif "incorrect" in response_clean or "partially correct" in response_clean:
+        return 0.0
+    elif "correct" in response_clean:
+        logger.warning(
+            f"LLM judge returned non-exact response: '{response_clean}'. Using fallback matching."
         )
-        response_text = _normalize_openai_response_text(response).strip()
-        raw_response = response_text  # Keep original for debugging
-
-        # Print raw response for debugging (can be controlled via logging level)
-        import logging
-
-        logger = logging.getLogger(__name__)
-        if logger.isEnabledFor(logging.DEBUG):
-            logger.debug(f"LLM judge raw response: '{raw_response}'")
-        # Also print in test mode (when called from test script)
-        if os.environ.get("LLM_JUDGE_DEBUG", "").lower() in ("1", "true", "yes"):
-            print(f"LLM Raw Response: '{raw_response}'")
-
-        response_text = response_text.lower()
-        response_clean = response_text.strip()
-
-        # Check for exact matches first (most strict)
-        if response_clean == "correct":
-            return 1.0
-        elif response_clean == "partially correct" or response_clean == "incorrect":
-            return 0.0
-        # Fallback to substring matching for robustness (in case LLM adds extra text)
-        elif "correct" in response_clean and "partially" not in response_clean:
-            # Log a warning if we're using fallback matching
-            import logging
-
-            logger = logging.getLogger(__name__)
-            logger.warning(
-                f"LLM judge returned non-exact response: '{response_text}'. Using fallback matching."
-            )
-            return 1.0
-        elif "partially correct" in response_clean or "incorrect" in response_clean:
-            return 0.0
-        else:
-            # If response doesn't contain expected keywords, default to 0
-            import logging
-
-            logger = logging.getLogger(__name__)
-            logger.warning(
-                f"LLM judge returned unexpected response: '{response_text}'. Defaulting to 0.0."
-            )
-            return 0.0
-    except Exception as e:
-        print(f"Error in LLM judge evaluation: {e}")
+        return 1.0
+    else:
+        # If response doesn't contain expected keywords, default to 0
+        logger.warning(
+            f"LLM judge returned unexpected response: '{response_clean}'. Defaulting to 0.0."
+        )
         return 0.0
 
 

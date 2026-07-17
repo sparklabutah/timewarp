@@ -183,16 +183,15 @@ class GenericTimeWarpTask(AbstractBrowserTask):
         # Only evaluate if there's an actual answer (sent via send_msg_to_user) to avoid unnecessary API calls
         answer = last_action.get("answer", "").strip()
         if answer:
-            try:
-                score = self.evaluator(
-                    trajectory=trajectory,
-                    config_file=self.config_file,
-                    page=page,
-                    client=None,
-                )
-            except Exception as e:
-                logger.error(f"Evaluation error: {e}")
-                score = 0.0
+            # Evaluator failures (e.g. LLM judge API errors) must propagate so the
+            # harness records the episode as errored — a silent score of 0 is
+            # indistinguishable from a genuinely failed task.
+            score = self.evaluator(
+                trajectory=trajectory,
+                config_file=self.config_file,
+                page=page,
+                client=None,
+            )
         else:
             score = 0.0
 
