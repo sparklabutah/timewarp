@@ -155,9 +155,9 @@ fi
 echo "Using VLM server port: $VLM_PORT"
 echo ""
 
-echo "Activating conda environment: vlm"
-if ! conda activate vlm; then
-    echo "Error: Failed to activate conda environment 'vlm'"
+echo "Activating conda environment: vllm"
+if ! conda activate vllm; then
+    echo "Error: Failed to activate conda environment 'vllm'"
     exit 1
 fi
 

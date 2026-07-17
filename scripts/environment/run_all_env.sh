@@ -9,6 +9,7 @@
 # Example: ./run_all_env.sh 1 --wait  # Blocks until Ctrl+C
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+REPO_ROOT="$( cd "$SCRIPT_DIR/../.." && pwd )"
 
 # Function to check if a port is free
 is_port_free() {
@@ -71,7 +72,7 @@ echo ""
 
 # Start Wiki (uses -1, -2, etc. format)
 echo "Starting Wiki environment (theme -$VERSION) on port $WIKI_PORT..."
-cd "$SCRIPT_DIR/env/wiki"
+cd "$REPO_ROOT/env/wiki"
 python3 wiki_app.py -$VERSION --port=$WIKI_PORT &
 WIKI_PID=$!
 echo "Wiki started (PID: $WIKI_PID) on http://localhost:$WIKI_PORT"
@@ -79,7 +80,7 @@ echo ""
 
 # Start News (uses -1, -2, etc. format, supports 1-6)
 echo "Starting News environment (theme -$VERSION) on port $NEWS_PORT..."
-cd "$SCRIPT_DIR/env/news"
+cd "$REPO_ROOT/env/news"
 python3 news_app.py -$VERSION --port=$NEWS_PORT &
 NEWS_PID=$!
 echo "News started (PID: $NEWS_PID) on http://localhost:$NEWS_PORT"
@@ -87,7 +88,7 @@ echo ""
 
 # Start Webshop (uses 1, 2, etc. format)
 echo "Starting Webshop environment (theme $VERSION) on port $WEBSHOP_PORT..."
-cd "$SCRIPT_DIR/env/webshop"
+cd "$REPO_ROOT/env/webshop"
 python -m web_agent_site.app $VERSION --port=$WEBSHOP_PORT --log --attrs &
 WEBSHOP_PID=$!
 echo "Webshop started (PID: $WEBSHOP_PID) on http://localhost:$WEBSHOP_PORT"
