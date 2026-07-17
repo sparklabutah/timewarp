@@ -40,7 +40,7 @@ Simply run [`setup.sh`](setup.sh) which will create a conda environment called `
 bash setup.sh
 ```
 
-⚠️ You might encounter issues when setting up [`env/webshop`](env/webshop/), *e.g.,* Google Drive rate limits getting exceeded, which would require you to download the files manually. You can also check the original webshop [repo](https://github.com/princeton-nlp/WebShop). ⚠️
+All environment data (including the [`env/webshop`](env/webshop/) product data, which the original webshop [repo](https://github.com/princeton-nlp/WebShop) hosted on Google Drive) is downloaded from the [timewarp-env-data](https://huggingface.co/datasets/sparklabutah/timewarp-env-data) Hugging Face dataset, so no Google Drive access or `gdown` is required.
 
 ## 🌐 Running Environments
 
