@@ -1,0 +1,109 @@
+﻿Set,Goal,Answer,Plan,Visual_Information
+Wiki,"Is biophysics mentioned as a related page or branch in the Biology article, the Physics article, both, or neither of them?",Biology,,Irrelevant
+Wiki,What is the population difference between the two special administrative regions of China?,Around 7 million,,Irrelevant
+Wiki,List all specific animal names found in the 'Natural History' section of the New Zealand page and the 'Indigenous life' section of the Australia page.,"Koalas, kangaroos, wombats, numbats, platypus, bats, seals, dolphins, whales, kiwi, kakapo, tuatara, Moa, rats, dogs, cats, possums, lizards
+(It's fine if 1/2 animals are missing from the list)",,Irrelevant
+Wiki,"Go to Black Sabbath's article and click the second hyperlink in the article's content. I need the population of the country that the link leads to. If it's not a country, just go to the first country mentioned on that visited page and give me that country's population.",Over 57.7 million,,Helpful
+Wiki,How many total Pro Football Hall of Famers are there in the articles about the American football teams mentioned in Eminem’s article?,Thirteen,,Irrelevant
+Wiki,"Trace this path: start at the ""Territory"" page → the first country mentioned → a country that shares its southern border → the largest city of that country. What is the first word of the second section on that final page (the introductory paragraphs count as one section)?",Mexico,,Irrelevant
+Wiki,"Navigate to the article corresponding to the last word in the second paragraph of the 'Hip-hop' article. In the visited page, follow the first hyperlink and tell me the first line from the article's content.","State In politics, a is the government of a country which has control over a geographic area or territory.",,Helpful
+Wiki,"Recursively follow the first link in the main content of each page, starting from the article on Research. What is the title of the final article whose page does not exist?",Real,,Helpful
+Wiki,"Recursively follow the third hyperlink in the main content of each article, starting from the article ""Periodic table."" Keep traversing until there is no third hyperlink or you encounter a “page does not exist” article. List the titles of all the valid pages in the order that you visited.","Periodic table, Atomic number, nucleus, proton, neutron, atom, solid",,Helpful
+Wiki,Visit the article about the earliest known statistics mentioned in the Statistics article. Then visit the article about the last country mentioned in its main content. What is the name of the first animal mentioned on that country’s page?,Kiwi,,Helpful
+Wiki,"Who is the current mayor of New York City, according to the article on NYC?",Eric Adams,,Irrelevant
+Wiki,Navigate to the article on Canada and find who the head of the military is. Tell me the name of that person.,Name has not been mentioned,,Irrelevant
+Wiki,"Visit the article on the date of the latest event from the article on the year 1971. Then tell me the year of the first event from the 1900s, as listed in that article.",1903,,Irrelevant
+Wiki,What is the total number of floral and faunal emblems mentioned in the articles for all six Australian states?,Four,,Irrelevant
+Wiki,Find out which U.S. state uses the word borough instead of counties based on the Borough Wiki article.,Alaska,,Irrelevant
+Wiki,"How many times did you encounter the word Hell in these articles: ""Peru"", ""Pusha T"", and ""Doom (2016 video game)""?",Ten,,Irrelevant
+Wiki,Which specialized tools were mentioned in the approaches section of the Physics article?,"Particle Accelerators, Lasers",,Irrelevant
+Wiki,"How many times is the word “Ishmael” mentioned on the page ""Abraham""?",Five,,Irrelevant
+Wiki,"Trace this path in the exact order: France → Emblem → Democracy → Name → Custom. While visiting these articles, which word appears immediately before either “Suzuki Ichiro” or “Suffrage”?",Suffrage,,Irrelevant
+Wiki,Which Brazilian president is mentioned in the article on Conservatism?,Jair Bolsonaro,,Irrelevant
+Wiki,Go to the page of the first notable Nobel laureate mentioned in the Nobel Prize article. Then visit the last hyperlink in the second section (the introductory paragraph counts as a section). How many countries are mentioned on the final visited page?,One,,Helpful
+Wiki,"I heard that possession of illegal drugs is considered a victimless crime. Can you find a reference article to this statement? If yes, then tell me the name of the article.",Victimless Crime,,Irrelevant
+Wiki,"Which one of these does not have a valid page: Burger King, Wendy's, McDonald's?","None, all of them have valid pages",,Irrelevant
+Wiki,"Start at the Computer Science article and serially visit the hyperlinks in that article. Stop when you find a hyperlink where the hyperlink text doesn't match the title of the page it leads to, and tell me the text of that hyperlink.",Encoding,,Helpful
+Wiki,"Does the article on Sociology discuss its relationship with Mathematics? If so, please provide the title of the section.","No, it does not.",,Irrelevant
+Wiki,"I’ve been wanting to learn more about civil wars for a long time. It’s fascinating how conflicts can arise between two groups within the same country. Since it’s a common topic, there should be plenty of articles on it. I’m especially interested in civil wars where one group wants to separate from, or secede from, the country. Could you search for an article on this and let me know the title?",Secession,,Irrelevant
+Wiki,"Start at the Computer Science article and serially visit the hyperlinks in that article. Stop when you find a hyperlink where the hyperlink text doesn't match the title of the page it leads to, and tell me the names of all the hyperlinks that you have visited.","Science, Information, Encoding",,Helpful
+Wiki,"Start from the article on the color blue. Sequentially visit the hyperlinks in that article. Stop when you visit a hyperlink that doesn’t have a valid page, and tell me the text of that hyperlink.",People,,Helpful
+Wiki,"Start at the article ""World"" and serially visit the first five hyperlinks in the article's content. Tell me the names of all the articles that don't have a valid page.",All the articles have valid pages.,,Helpful
+Wiki,I have always wanted to know more about the history of the famous tech company Apple. I think the official name of the company is Apple Inc. Can you find a Wiki article for me?,Apple Inc.,,Irrelevant
+Wiki,How many searches does DuckDuckGo receive every day?,"100,000,000 (100 million)",,Irrelevant
+News,"Which of these two plane crashes appears to be deadlier, based on the number of casualties: (1) ""Airliner crashes in China, 42 killed"" and (2) ""Ethiopian airliner crashes into Mediterranean Sea""? Mention the title of the article related to the deadlier incident.",(2) Ethiopian airliner crashes into Mediterranean Sea,,Irrelevant
+News,"List the names of the countries mentioned in both of these news articles: ""Turbolinux adopted by China's largest bank"" and ""United States Homeland Security network monitors suspicious activity"".",United States,,Irrelevant
+News,"When you search for ""UFC"", which of the search results are actually related to UFC? Share the titles of those news articles. If none of the results are relevant, please state 'None found'.",None found,,Irrelevant
+News,How many articles did you find on Richard Stallman (articles that consist only of redirect pages should be excluded)?,Two,,Irrelevant
+News,Is there any news article regarding Salt Lake City that was published in 2024?,Yes,,Irrelevant
+News,Someone told me about an article where Tom Cruise spoke out against antidepressant drugs. Can you please find that article and tell me the title?,Tom Cruise debates psychiatry on NBC's Today show,,Irrelevant
+News,There is an article on Tom Cruise debating psychiatry. Do you think the publication year of the article is consistent with the year that the event occurred?,No,,Irrelevant
+News,How many articles on Morocco were published in 2009?,One,,Irrelevant
+News,"Were these two articles published on the same day: Bayern beating Dortmund 5-4 on penalties in the German Super Cup, and Dortmund signing Ousmane Dembele?",Yes,,Irrelevant
+News,"Follow this navigation path: Search Boston, visit the fifth result from the first page, identify the second state in the body/content of the article, and search the state. Visit the third link from the search result and tell me the name of the first state in the content/body of the final article. If you encounter a redirect link at any point, then visit that link. If any of the articles are not found, then report the task as incomplete.",Colorado,,Helpful
+News,"Navigate to the 11th article when you search ""murder case"". Then take the first two words from the main content of the visited article and search them. Report the name of the last article in the search results.",Wikinews interviews former Salt Lake City mayor and 2012 presidential candidate Rocky Anderson,,Helpful
+News,Could you list all the news articles on the most recent diesel emission scandal at Volkswagen?,"Volkswagen engulfed by diesel emissions scandal, 
+Volkswagen emissions scandal may affect thousands more cars, 
+Volkswagen CEO resigns after emissions scandal",,Irrelevant
+News,"List the names of all the animals mentioned in these articles: ""England: Fire at London Zoo kills aardvark, meerkats believed dead"", ""Three-car crash in New Hampshire on Frederick E. Everett Turnpike kills one"", and ""Wikinews interviews Ritchie Lai of NBA Asia about the gaming industry"".","aardvark, meerkat, dog",,Irrelevant
+News,Tell me the names of the articles where NASA scientists found some form of life in one of Neptune's satellites.,No such article exists,,Irrelevant
+News,How many articles did you find about the former prime minister of Bangladesh being sentenced to death?,No article found,,Irrelevant
+News,"Does any article on Richard Dawkins appear in the search results when you search ""Richard Stallman""?",Yes,,Irrelevant
+News,When was the article about the Texas woman who murdered her entire family published?,"2024-12-19 (December 19, 2024)",,Irrelevant
+News,"Did the 2024 news on Mauritanian refugees returning from Senegal come before the news of six soldiers being killed in a Senegal ambush? If one or none of the articles can be found, then simply answer no.",Yes,,Irrelevant
+News,"Did you find any news article about a robbery on the front page (if there are multiple such articles, pick the one with the biggest headline)? If so, where did the crime take place?","Yes, Louvre Museum in Paris",,Helpful
+News,Was there any news on English people reporting crime using Facebook?,No,,Irrelevant
+News,"Perform the following steps: Search ""Pokémon"", visit the first search result, search the name of the first city in the visited article, visit the thirteenth search result, and tell me the name of the first city in that visited article.",Toronto,,Helpful
+News,"Does the first search result for ""David Suzuki"" appear among the search results for ""Toronto""?",Yes,,Irrelevant
+Shop,What is the maximum available length for each of the following items: the Lindy DisplayPort to HDMI cable and the Kodak HDMI Mini Cable? Answer in metres.,5 metre and 1.8 metre,,Irrelevant
+Shop,Which cable is longer: the white Type-C to HDMI Cable or the Type-C USB Charger Cable?,White Type-C to HDMI Cable,,Helpful
+Shop,"What is the total cost if I buy all the 100% polyester skirts available in the shop? If there are multiple variants (sizes, colors) of the same item, include only one.",$9.99 ,,Irrelevant
+Shop,What would be the minimum cost to buy almonds and rice crackers?,$105.46 ,,Irrelevant
+Shop,List all the different color options available for the Nautica and GRADO SR325x headphones.,"black black, navy navy, navy red, navy yellow, white nude, white off white",,Irrelevant
+Shop,"What is the total price of all the rackets and tennis balls available in the shop? If there are multiple variants of the same item, pick one only.","Zero, none of the products are available in the shop",,Irrelevant
+Shop,Is there any skirt that costs less than purchasing at least one pair of jeans?,Yes,,Irrelevant
+Shop,What's the replacement guarantee or warranty period of the 20x50 binoculars?,Three years,,Irrelevant
+Shop,Is the Wii U Microphone compatible with the Wii system?,No,,Irrelevant
+Shop,"How many mattresses are available in the shop? (Include similar products like mattress sofas and toppers, but not related products like bed frames.)",12,,Irrelevant
+Shop,How many sound bars are available under 150 USD?,Two,,Irrelevant
+Shop,How many telescopes are available for purchase?,One,,Irrelevant
+Shop,How many Crumbl Cookies are available in the shop?,Zero,,Irrelevant
+Shop,"How many leggings products appear when you search for the word ""leggings""?",Three,,Irrelevant
+Shop,"I am looking for a music player to play mini vinyl records. It must be small, portable, and in black. If you find this product, could you place the order and share the confirmation code? If there is no such product or if any of the criteria are not satisfied, then please let me know.",59EC38CAE8,,Helpful
+Shop,"Could you please order the following products and share the confirmation codes with me: Hauklie Men's Polo Shirt (1 grey, size X-Large, and 1 black, size Large) and a GXP Side Table?","CFD21014E0, 4813D26CD2, DD78FB6DE6",,Irrelevant
+Shop,"Place an order for a pair of jeans that are made of at least 60% cotton. If there are multiple options, pick any. The size must be M. Once you complete the order, share the completion code.",C97A8FE47F,,Irrelevant
+Shop,"Place an order for a blue superhero T-shirt with a Flash logo on it. The size should be M. Once you complete the order, share the completion code.",50C1CE874E,,Helpful
+Shop,What color is most prominent on the exterior body of the navy and yellow Nautica headphones?,Navy,,Required
+Shop,What is the color of the TASYL USB lightning camera adapter?,White,,Required
+Shop,"Search for the word ""camera."" Among the search results, which of the following colors is most common in the product pictures: white, blue, black, red, cyan, or green?",Black,,Required
+Shop,Is there a remote in the product picture of the 4-Channel Wireless Bluetooth Power Amplifier?,Yes,,Required
+Shop,"Which of the following items are available in the shop: Ice-cream, Dog food, Mushroom, Superglue?",Mushroom,,Irrelevant
+Shop,"I am looking for a tooth powder that contains fluoride, as I heard it is good for dental health. It would be great if the product is also herbal and vegan. Please tell me the product name of the best match you find.",2 Pcs Eva Smokers with Fluorine Natural Herbal Halal Islamic Toothpowder Powder 40gm,,Irrelevant
+Shop,Does the Salt & Sugar Bundle Kit reduce the appearance of acne scars?,Yes,,Irrelevant
+Shop,"How many times does the phrase ""baking soda"" appear on the Arm & Hammer Toothpaste product page (including Description, Features, Reviews)?",Eight times,,Irrelevant
+Shop,"Is there any pink USB-C charging cable available in the shop? If so, please place the order for one and share the confirmation code with me.",No pink USB-C charging cable is available,,Helpful
+Multi,"Find the most recent sports event mentioned in Brazil’s Wikipedia article. Can you find a news article about that event? If so, please tell me the title of the news article.",Rio de Janeiro to host 2016 Olympics,,Irrelevant
+Multi,"I need you to cross-reference something. Go to the Paris Agreement article on Wiki and find the last article in the 'Related Pages' or 'See also' section. Search the title of that article on News, visit the top result, and check if the news article contains the word 'Russia'.",Yes,,Irrelevant
+Multi,Find the country of origin of the rice used in the Crunchmaster Rice Crackers. Visit the Wikipedia article on that country and tell me the last word of the first paragraph.,people,,Irrelevant
+Multi,"Verify if the BioCorneum Advanced Scar Treatment Gel from Shop is FDA-cleared. If so, then search ""Food and Drug Administration"" on Wiki and tell me when the agency was formed. Otherwise, search ""Food & Drug Administration"" on News and tell me the title of the first search result.",1906,,Irrelevant
+Multi,"Are there any news articles about the Monopoly board game? If there are none, place an order for the Monopoly board game at the shop. Otherwise, order any other board game. In either case, share the order’s confirmation code at the end.",The Monopoly board game is not available in the shop.,,Irrelevant
+Multi,What is the title of the 11th search result when you search for the name of the first notable school shooting mentioned in the school shooting Wiki article?,High school football coach shot dead at school gym in Iowa,,Irrelevant
+Multi,"Is there a Wiki article on the video game associated with the Nintendo Switch travel case found in the shop? If so, identify the main character featured on that game’s cover and tell me when that character first appeared.",1981,,Helpful
+Multi,"Order 24 packets of Savannah's Candy Box. Before placing the order, verify that there is no negative news about the product. If there is, then don't place the order and let me know. Otherwise, share the confirmation code of the order.",07602B13BE,,Irrelevant
+Multi,Look up Organic Diced Pear in the Shop and check the product description. Identify the vitamin mentioned in the description and visit its article on Wiki. Does the fruit pear appear in that article?,No,,Irrelevant
+Multi,"Search for ""Vitamin K"" on Wiki and identify all the vegetables listed there as sources of vitamin K. How many of those vegetables are available in the shop?",None of them,,Irrelevant
+Multi,"Search News for ""video game"" and visit the sixth search result. Is that news event described in the wiki page for ""Video game""?",No,,Irrelevant
+Multi,"Do the following tasks: Search ""crocodile"" on News, visit the first news article, identify the country where that crocodile lives, search that country on Wiki, and tell me the population of that country. If you encounter a redirect link at any point, then please visit that link.",27 million people,,Irrelevant
+Multi,Search Canada on Wiki and find the name of the current prime minister. Look up his name on News and click on the first article. When was that article published?,28-Apr-25,,Irrelevant
+Multi,"Which ones of the following sites: Wiki, News, and Shop, have an article or product page on a screwdriver?","Wiki, News",,Irrelevant
+Multi,"Which ones of the following sites: Wiki, News, and Shop, have an article or product page on High-Definition Multimedia Interface (HDMI)?","Wiki, News, Shop",,Irrelevant
+Multi,"I heard some bad news about biscuits. Can you check and share the title of such a news article with me? If there are none, please place an order for the top search result on ""biscuits"" and share the confirmation code with me.",83A1B2E714,,Irrelevant
+Multi,Can you place an order for the cheapest nuts available and share the confirmation code with me?,54F0DC47B1,,Irrelevant
+Multi,Which scholars are mentioned in the article on Rayleigh scattering?,"Rayleigh, Raman, Krishnan",,Irrelevant
+Multi,"Is it true that Mattel had to recall its products due to safety concerns? If so, please visit the Wiki page for Mattel and find the first product mentioned in that article. Tell me the name of that product and whether it is available in the Shop.",Barbie dolls; not available in the shop.,,Irrelevant
+Multi,"I am a huge fan of the Donkey Kong series. Please find related Wiki articles, news, and products from the Shop. If there are multiple entries, pick the most relevant ones. If you cannot find any product or article, mention that in your answer. Share the titles of these items with me using the following format: <site name>: <article/news/product title>.","Wiki: Donkey Kong
+News: No relevant news found
+Shop: Nintendo Switch Game Traveler Donkey Kong Country Tropical Freeze Deluxe Travel Case - Donkey Kong Surfer",,Irrelevant
+Multi,"Visit the Wiki article on probability and find the second hyperlink on that page. Search the hyperlink text in the Shop, visit the second search result, and search its brand name on Wiki. If a Wiki article exists, then tell me the name of that article; otherwise, tell me the name of the brand.",Rusticware,,Helpful
+Multi,"Please complete the following steps: (1) Search News for ""Japan"", (2) visit the second search result, (3) visit the Wiki page for the second word found in the news article’s body, (4) identify the first country mentioned in that Wiki article, and (5) search that country on News and tell me the title of the first search result.",Generic Tamiflu in India,,Helpful
+Multi,How many people were included in the sample for the latest trial of the Australian bird flu vaccine?,400,,Irrelevant

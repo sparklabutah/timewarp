@@ -1,0 +1,622 @@
+﻿Set,Goal,Answer,Plan,Visual_Information
+Wiki,List all articles from the 'Related Pages' sections of the Biophysics and Biochemistry pages.,"List of biochemistry topics, Biophysics, Chromatography, Organic chemistry, Bionics, Computational biology, Database of Molecular Motions, Nanotechnology","1. Type Biophysics in the search box and press Enter.
+2. Scroll to the ""Related Pages"" section and remember the listed pages: ""Bionics, Computational biology, Database of Molecular Motions, Nanotechnology"".
+3. Type Biochemistry in the search box and press Enter.
+4. Scroll to the ""Related Pages"" section and remember the listed pages: ""List of biochemistry topics, Biophysics, Chromatography, Organic chemistry"".
+5. Combine the lists from both pages into a single list. Send a message to the user: ""Bionics, Computational biology, Database of Molecular Motions, Nanotechnology, List of biochemistry topics, Biophysics, Chromatography, Organic chemistry"".",Irrelevant
+Wiki,"Did the Physics article's 'Approaches in Physics' section mention the names of more scientists than the Chemistry article's ""Atoms"" section?",No,"1. Type Physics in the search box and press Enter.
+2. Locate the ""Approaches in Physics"" section and count the number of unique scientists mentioned, which is one. Remember the count.
+3. Type Chemistry in the search box and press Enter.
+4. Locate the ""Atoms"" section and count the number of unique scientists mentioned, which is ten. But no need to count as soon as you find more than one. 
+5. Compare the two counts to see if the Physics count is higher than the Chemistry count. As the count in Physics was not higher, send a message to the user: ""No"".",Irrelevant
+Wiki,Find the largest city listed on the Wiki pages for Canada and Australia. Then tell me the population difference between those two cities.,Around 2.5 Million,"1. Type Canada in the search box and press Enter.
+2. Identify the largest city mentioned in the article (likely Toronto), find its population figure (around 3 million), and remember it.
+3. Type Australia in the search box and press Enter.
+4. Identify the largest city mentioned in the article (likely Sydney), find its population figure (around 5.5 million), and remember it.
+5. Calculate the absolute difference between the two population figures.
+6. Send a message to the user: ""Around 2.5 Million"".",Irrelevant
+Wiki,Visit the pages of the birthplaces of Albert Einstein's first and second sons. Then calculate the population difference between those places.,Around 288000,"1. Type Albert Einstein in the search box and press Enter.
+2. Find the names of his first and second sons (Hans Albert Einstein and Eduard Tete Einstein) and identify their birthplaces (Bern and Zurich). 
+3. Visit the hyperlink of the first birthplace, Bern, and record its population, which is 127,000.
+4. Go back and visit the hyperlink of the second birthplace, Zurich, and record its population, which is 415,000.
+5. Calculate the absolute difference between the population of Zurich and Bern. Send the absolute difference as a message to the user: ""Around 288000"".",Irrelevant
+Wiki,"Visit the articles for Physics, Chemistry, and Biology to identify which one(s) contain a section that explicitly discusses the discipline's relationship with mathematics.",Physics,"1. Type Physics in the search box and press Enter.
+2. Scan the table of contents or headers for a section discussing a relationship with mathematics. Note that such a section exists, and remember this.
+3. Type Chemistry in the search box and press Enter.
+4. Scan the table of contents or headers for a similar section regarding mathematics. Note that no such section exists, and remember this.
+5. Type Biology in the search box and press Enter.
+6. Scan the table of contents or headers for a similar section regarding mathematics. Note that no such section exists, and remember this.
+7. Conclude that only the Physics article contained the specific section. Send a message to the user: ""Physics"".",Irrelevant
+Wiki,"In the article on Language, visit the first hyperlink in the ""Types of Languages"" section. Then check the ""Related Pages"" section of the visited article. Is there any article that appears in both this section and the ""Related Pages"" section of the Language article? If so, list the common pages; otherwise, answer ""None"".",None found.,"1. Type Language in the search box and press Enter.
+2. Record the list of articles in the ""Related Pages"" section of the Language article: ""Alphabet, Basic English, Sign language, English as a foreign language, English language, Historical linguistics, Language education, Language families and languages, Linguistics, List of languages, Orthography, Phonology, Second language, Semantics, Speech therapy.""
+3. Navigate to the ""Types of Languages"" section and click the first hyperlink, ""Mathematics"".
+4. On the new page, locate the ""Related Pages"" section and record the articles listed there: ""Timeline of women in mathematics, American Mathematical Society, Society for Industrial and Applied Mathematics, EASIAM, International Congress on Industrial and Applied Mathematics, International Congress of Mathematicians, International Mathematical Olympiad, Mathematics Genealogy Project, Mathematics Subject Classification.""
+5. Compare the two lists of related pages to find any common articles. As no common articles were found, send a message to the user: ""None found"".",Helpful
+Wiki,"Visit the first article listed in the ""Related Pages"" sections of the Time and War articles. Then list all the related pages mentioned in each of those visited articles.","Annals, Calendar, Anti-war movement, Ceasefire, Pacifism, Peace makers, Peace treaty, World peace","1. Type Time in the search box and press Enter.
+2. Go to the ""Related Pages"" section and click the first article link, ""Chronology"".
+3. On this new page, record all items listed in its ""Related Pages"" section, which are ""Annals, Calendar"".
+4. Type War in the search box and press Enter.
+5. Go to the ""Related Pages"" section and click the first article link, ""Peace"".
+6. On this new page, record all items listed in its ""Related Pages"" section, which are ""Anti-war movement, Ceasefire, Pacifism, Peace makers, Peace treaty, World peace"".
+7. Combine the lists recorded from both visited articles. Send a message to the user: ""Annals, Calendar, Anti-war movement, Ceasefire, Pacifism, Peace makers, Peace treaty, World peace"".",Irrelevant
+Wiki,"Visit the pages of the people who were murdered in the ""Unnatural causes of death"" section of the ""Death"" article. How many of these visited articles have a ""Legacy"" section?",Three,"1. Type Death in the search box and press Enter.
+2. Navigate to the ""Unnatural causes of death"" section and identify the people mentioned as murdered.
+3. The first person is Abraham Lincoln. Click on his hyperlink.
+4. On Abraham Lincoln's page, there is a ""Legacy"" section. Remeber the Count = 1.
+5. Go back to the previous page on Death and click on the hyperlink of the second person, ""Martin Luther King Jr.""
+6. On Martin Luther King Jr's page, there is a ""Legacy"" section. Remember the Count = 2.
+7. Go back to the previous page on Death and click on the hyperlink of the third person, ""John F. Kennedy"".
+8. On John F. Kennedy's page, there is a ""Legacy"" section. Remember the Count = 3.
+9. Go back to the previous page on Death, and verify if there is any person left.
+10. As there are no other people left and you found three legacy sections, send a message to the user: ""Three"".",Irrelevant
+Wiki,"Visit the pages of the hyperlinked geographic regions mentioned in the ""Trees"" section of the Australia page. Among the visited pages, list the titles of the pages that do not have a section on languages.",Southeast Asia,"1. Type Australia in the search box and press Enter.
+2. Navigate to the ""Trees"" section and identify any hyperlinked geographic regions mentioned. There will be two: ""Southeast Asia"" and ""Oceania"".
+3. Click on the hyperlink of the first entry: Southeast Asia.
+4. Check the visited article for a section on Languages. As there isn't, remember this fact.
+5. Then go back and click on the hyperlink of Oceania.
+6. Check the visited article for a section on Languages. As there is such a section, remember this fact.
+7. Only Southeast Asia doesn't have a section on languages. Send a message to the user, ""Southeast Asia"".",Irrelevant
+Wiki,Visit the article on the first rapper mentioned on Kid Cudi’s page (excluding Kid Cudi himself). How many studio albums has that rapper released (excluding collaborative albums)?,Ten,"1. Type Kid Cudi in the search box and press Enter.
+2. Scan the text to find the first mention of a rapper other than Kid Cudi, which is Kanye West.
+3. Click on the hyperlink of ""Kanye West"".
+4. Navigate to the Studio Albums subsection in his article, which says he has 10 studio albums.Send this as a message to the user: ""Ten"".",Irrelevant
+Wiki,What is the last word of the first section of the article on Metallica's drummer?,Marshall,"1. Type Metallica in the search box and press Enter.
+2. Identify the drummer (Lars Ulrich) and click the hyperlink to his article.
+3. Read the first section of the article (the introduction/summary before the first section header) and identify the very last word of that section, which is ""Marshall"". Send a message to the user: ""Marshall"".",Irrelevant
+Wiki,"Visit the article on the first country mentioned in the article on Southeast Asia. If that article has a politics section, go to the article on the first politician mentioned in that section. Otherwise, go to the article on the first island mentioned on that country’s page. What are the last three words of the main content of the final visited article (excluding references and ""Related Pages"")?",chain of islands,"1. Type Southeast Asia in the search box and press Enter.
+2. Find the first country mentioned in the text, which is ""East Timor"" and click the link to visit its page.
+3. Check if this country's page has a ""Politics"" section.
+4. Since it doesn't, click on the hyperlink of the first island mentioned in East Timor's article, which is ""Timor"".
+5. Identify the last three words of the text, ""chain of islands"". Send a message to the user: ""chain of islands"".",Helpful
+Wiki,"Trace this path: start at the ""Territory"" page → the first country mentioned → a country that shares its southern border. What is the last word of the first section (the introduction counts as a section) on that final visited page?",world,"1. Type Territory in the search box and press Enter.
+2. Scan the text to find the first country mentioned (United States) and click its link.
+3. On the country's page, find the information regarding its borders and identify the country to the south (Mexico). Click on the hyperlink for Mexico.
+4. Read the first section (the introduction) of this final page and identify the very last word, which is ""world"". Send a message to user: ""world"".",Irrelevant
+Wiki,Visit the pages of all the countries in the United Kingdom. Which of these countries have a dedicated section on their culture?,"England, Scotland","1. Type United Kingdom in the search box and press Enter.
+2. Identify the countries that make up the UK, listed in the article (England, Wales, Scotland, Ireland).
+3. Click on the hyperlink for England. As there is a dedicated section on that country's culture, remember this fact.
+4. Go back to the United Kingdom page, and click on the second hyperlink ""Wales"".
+5. As there is no section on that country's culture, go back to the United Kingdom page.
+6. Click on the third hyperlink, ""Scotland"". As there is a section on that country's culture, remember this fact.
+7. Go back to the United Kingdom page, and click on the last hyperlink, ""Ireland"".
+8. As there is no section on that country's culture, tell the users the countries that you remembered, i.e., send a message to the user, ""England, Scotland"".",Irrelevant
+Wiki,Visit the article about the earliest known statistics mentioned in the Statistics article. List all the countries mentioned on that page.,"United States, United Kingdom, Australia, Canada, Japan, New Zealand","1. Type Statistics in the search box and press Enter.
+2. Locate the mention of the ""first known statistics"", which is ""Census"". Click on the hyperlink on ""Census"".
+3. Scan the content of the visited page for the names of countries and send those names as a message to the user: ""United States, United Kingdom, Australia, Canada, Japan, New Zealand"".",Irrelevant
+Wiki,Navigate to the article on the first specialized tool mentioned in the Physics article. Then navigate to the last hyperlink in the main content of that page (excluding references and related pages). How many related pages does the final visited article have?,Two,"1. Type Physics in the search box and press Enter.
+2. Scan the text to find the first specialized tool mentioned (you will find it in the Approaches in Physics section) and click its link, which is ""Particle Accelerator"".
+3. Click the very last hyperlink found in the text, which is ""Technology"".
+4. On this final page, locate the ""Related Pages"" section and count the number of articles listed in that section, which is two. Send a message to the user: ""Two"".",Helpful
+Wiki,"Recursively follow the first link in the main content of each page, starting from the ""Technology"" page. What is the title of the final article you reach before a “page does not exist” message appears?",Fact,"1. Type Technology in the search box and press Enter.
+2. Keep clicking the first hyperlink found in the main body text of the visited page. While clicking the hyperlinks, the order of the pages will be Skill, Experience, Learning, Knowledge, Fact, and Real.
+3. As the page on ""Real"" doesn't exist, report the previous page ""Fact"". Send a message to the user: ""Fact"".",Helpful
+Wiki,"Recursively follow the first link in the main content of each page, starting from the ""Technology"" page, until you reach an article that does not exist. List the titles of all the valid pages in the order that you visited.","Technology, Skill, Experience, Learning, Knowledge, Fact.","1. Type Technology in the search box and press Enter.
+2. Keep clicking the first hyperlink found in the main body text of the visited page. While clicking the hyperlinks, the order of the pages will be Skill, Experience, Learning, Knowledge, Fact, and Real. Remember the names of every page that you have visited.
+3. As the page on ""Real"" doesn't exist, report all the previous pages that you visited based on your memory. Send a message to the user: ""Technology, Skill, Experience, Learning, Knowledge, Fact"".",Helpful
+Wiki,What is the name of the TV character whose singing is compared to death metal?,Cookie Monster,"1. Type ""Death Metal"" and press Enter.
+2. According to the article, the TV character whose singing is compared to Death metal is the Cookie Monster.
+3. Send a message to the user: ""Cookie Monster"".",Irrelevant
+Wiki,What type of material is used to make ceramic glass?,There is no article on ceramic glass,"1. Type Ceramic glass in the search box and press Enter.
+2. As a valid page doesn't exist, send a message to the user: ""There is no article on ceramic glass"".",Irrelevant
+Wiki,"What is the total area of El Salvador, according to its article?",The total area of El Salvador has not been mentioned in the article.,"1. Type El Salvador in the search box and press Enter.
+2. Scan the infobox and the main text for the area of the country.
+3. As the area has not been mentioned, send a message to the user: ""The total area of El Salvador has not been mentioned in the article.""",Irrelevant
+Wiki,"What is Thom Yorke's first solo album, according to his article?",The first solo album of Thom Yorke has not been mentioned in his article.,"1. Type Thom Yorke in the search box and press Enter.
+2.Scan the article for the name of his first solo album. As it hasn't been mentioned, send a message to the user: ""The first solo album of Thom Yorke has not been mentioned in his article.""",Irrelevant
+Wiki,"What is the name of the latest album by Clipse, according to their article?",There is no article on Clipse,"1. Type Clipse in the search box and press Enter.
+2. As a valid page doesn't exist, send a message to the user: ""There is no article on Clipse"".",Irrelevant
+Wiki,Navigate to the page about the highest point in El Salvador and tell me its height.,No article on the highest point of El Salvador,"1. Type El Salvador in the search box and press Enter.
+2. Scan the article page and infobox to find the name of the highest point (Cerro El Pital).
+3. Click on the hyperlink of Cerro El Pital.
+4. As the article does not exist and the height of the highest point hasn't been mentioned elsewhere, send a message to the user: ""No article on the highest point of El Salvador"".",Irrelevant
+Wiki,Find the birth date of the first person mentioned in the scientific method example in the Science article.,28 December 1882,"1. Search Science and press Enter. 
+2. In the ""Scientific Method"" section's ""An Example"" subsection (as the article is very long, don't scroll, instead click using the element ID), you will find that the first person is Arthur Eddington. Click on his hyperlink and find his birth date. 
+3. Then send a message to user, the birth date, ""28 December, 1882"".",Irrelevant
+Wiki,"According to their respective articles, did Rio de Janeiro host the Summer Olympic Games before Beijing?",No,"1. Type Rio de Janeiro in the search box and press Enter.
+2. Find the year it hosted the Summer Olympics, which is 2016, and remember this fact.
+3. Type Beijing in the search box and press Enter.
+4. Find the year it hosted the Summer Olympics, which is 2008, and remember this fact.
+5. Compare the years (2016 is not before 2008). Send a message to the user: ""No"".",Irrelevant
+Wiki,"Based on the relevant articles, which Australian state uses the Cooktown Orchid as its emblem?",Queensland,"1. Search ""Australia"" and press Enter. 
+2. Click on the hyperlinks of each Australian state one by one.
+3. On each page, scan the ""Symbols"" or ""Emblems"" section (or the infobox) for ""Cooktown Orchid"".
+4. Once you are done visiting a state, go back to the Australia page, and click on the next hyperlink.
+5. Identify that the ""Cooktown Orchid"" is mentioned on the Queensland page as its emblem. Send a message to the user: ""Queensland"".",Irrelevant
+Wiki,"How many times in total do you encounter the word ""pigeon"" in these articles: ""Peru"", ""Pusha T"", and ""Doom (2016 video game)""?",Zero,"1. Type Peru in the search box, press Enter.
+2. Count the occurrences of the word ""pigeon"" in the visited article and remember the count. 
+3. Type Pusha T in the search box, press Enter.
+4. Similarly, count the occurrences of the word ""pigeon"" in the visited article, remember the count, and add it to the previous count. 
+5. Type Doom (2016 video game) in the search box, press Enter. If you cannot find the article, then first search for Doom, and click on the hyperlink of the Doom (2016 video game).
+6. Similarly, count the occurrences of the word ""pigeon"" in the visited article, remember the count, and add it to the previous count. 
+7. As the total count you found is zero for this task, send a message to the user: ""Zero"".",Irrelevant
+Wiki,Which three biogeochemical cycles were mentioned in the article on Biology?,"nitrogen, carbon, and water","1. Type Biology in the search box and press Enter.
+2. Navigate to the section discussing ecosystems or energy/cycles, which is ""Biosphere"".
+3. Identify the specific biogeochemical cycles listed in the text. Send a message to the user: ""nitrogen, carbon, and water"".",Irrelevant
+Wiki,How many sections are there in the article on the general theory of relativity (including the introduction section but excluding the Related Pages and See Also sections)?,Three,"1. Type General theory of relativity in the search box and press Enter.
+2. Count the Introduction (1) plus the main numbered headers. Ensure ""Related Pages,"" ""See Also,"" and ""References"" are excluded.
+3. The number of sections is three. Send a message to the user: ""Three"".",Irrelevant
+Wiki,"Visit the first hyperlink in the article ""CryEngine"". What is the name of the country mentioned in the first section of the visited page?",No country mentioned,"1. Type CryEngine in the search box and press Enter.
+2. Click the very first hyperlink in the main text, which is ""Game engine"".
+3. Read the first section (introduction) for any country names. As none are found, send a message to the user: ""No country mentioned"".",Helpful
+Wiki,Which fast food restaurants were mentioned in the article on hamburgers?,"Burger King, Wendy's, McDonald's","1. Type Hamburger in the search box and press Enter.
+2. Scan the entire article for names of major fast food chains.
+3. List the fast food chains found in the text. Send a message to the user: ""Burger King, Wendy's, McDonald's"".",Irrelevant
+Wiki,"How many of the hyperlinks from the ""History and geography"" section of the Rio de Janeiro page refer to places (excluding pages that don't exist)?",One,"1. Type Rio de Janeiro in the search box and press Enter.
+2. Navigate to the ""History and geography"" section.
+3. Visit each hyperlink in this section to see if it refers to a geographical place. Do this by clicking on the hyperlink, checking it, then going back, and clicking on the next hyperlink.
+4. For each visited page, remember if it's a geographic place.
+5. Count the number of geographic places that you have remembered. There should be only one such place, which is Nova Iguaçu. Send a message to the user: ""One"".",Irrelevant
+Wiki,"Visit the article on the last grandmaster mentioned in Magnus Carlsen’s article, and tell me the birthplace of that grandmaster.","Baku, Azerbaijan","1. Type ""Magnus Carlsen"" in the search box and press Enter.
+2. Identify the last Grandmaster mentioned in the text, which is Garry Kasparov, and click on his hyperlink. 
+3. Identify the place of birth of the grandmaster from his article, which is Baku, Azerbaijan. Send a message to the user ""Baku, Azerbaijan"".",Irrelevant
+Wiki,"List all the countries mentioned in the 'Antonio de Cabezón' article, and tell me their names in alphabetical order.","Germany, Italy, Luxembourg, Netherlands, Spain","1. Type ""Antonio de Cabezón"" in the search box and press Enter.
+2. Identify names of the countries found: Italy, Spain, Germany, Luxembourg, and Netherlands. Sort these names into alphabetical order.
+3. Send a message to the user ""Germany, Italy, Luxembourg, Netherlands, Spain"".",Irrelevant
+Wiki,"Start at the ""Valve Corporation"" article and sequentially visit the hyperlinks in that article. Stop when you find a hyperlink where the hyperlink text doesn't match the title of the page it leads to, and tell me the text of that hyperlink.",distributor,"1. Type ""Valve Corporation"" in the search box and press Enter.
+2. Click the first hyperlink ""video game developer"" and verify whether the page title matches the hyperlink text.
+3. As the texts match, go back and click the second hyperlink ""digital"" and verify whether the page title matches the hyperlink text.
+4. As the texts match, go back and click the third hyperlink ""distributor"".
+5. Observe that the page title (""distribution"") does not match the hyperlink text (""distributor""). Send a message to the user ""distributor"".",Helpful
+Wiki,"Start at the ""Valve Corporation"" article and sequentially visit the hyperlinks in that article. Stop when you find a hyperlink where the hyperlink text doesn't match the title of the page it leads to, and tell me the names of all the hyperlinks that you have visited.","video game developer, digital, distributor","1. Type ""Valve Corporation"" in the search box and press Enter.
+2. Visit the first hyperlink ""video game developer"", confirm the article title matches the hyperlink text, and record the name.
+3. Visit the second hyperlink ""digital"", confirm the article title matches the hyperlink text, and record the name.
+4. Visit the third hyperlink ""distributor"" and observe that the page title does not match the text. Record ""distributor"" and stop the process.
+5. Send a message to the user, the names of the pages that you recorded as visited, ""video game developer, digital, distributor"".",Helpful
+Wiki,"Start from the article on the country ""Angola"". Sequentially visit the hyperlinks in that article. Stop when you visit a hyperlink that doesn’t have a valid page, and tell me the text of that hyperlink.",coastline,"1. Type ""Angola"" in the search box and press Enter.
+2. Begin clicking hyperlinks in the article sequentially to check for page validity. Do this by clicking on a hyperlink, checking, then going back. Remember the pages that you have visited so that you don't revisit them.
+3. Continue until you click the hyperlink with the text ""coastline"".
+4. Identify that this link leads to an invalid page or a ""red link"" (page does not exist).
+5. Send a message to the user ""coastline"".",Helpful
+Wiki,"Start at the article ""Crayon"" and serially visit the first five hyperlinks in the article's content. Tell me the titles of the articles that don't have a valid page.",All the articles have valid pages.,"1. Type ""Crayon"" in the search box and press Enter.
+2. Identify the first five hyperlinks in the article content.
+3. Click on the first hyperlink and identify that it is a valid page. Remember this fact.
+4. Go back and click on the second hyperlink in the ""Crayon"" page and identify that it is a valid page. Remember this fact.
+5. Go back and click on the third hyperlink in the ""Crayon"" page and identify that it is a valid page. Remember this fact.
+6. Go back and click on the fourth hyperlink in the ""Crayon"" page and identify that it is a valid page. Remember this fact.
+7. Go back and click on the fifth hyperlink in the ""Crayon"" page and identify that it is a valid page. Remember this fact.
+8. Confirm that all five pages load correctly and contain content. Send a message to the user: ""All the articles have valid pages"".",Helpful
+News,"Which seems to be the deadlier accident (based on the number of casualties) from these two articles: (1) Serb pilots defend colleague in Air India Express disaster, and (2) Molten steel kills 32 workers in Liaoning, China? Mention the name of the article related to the deadlier accident.","(1) Serb pilots defend colleague in Air India Express disaster,","1. Type ""Serb pilots defend colleague in Air India Express disaster"" in the search box and press Enter.
+2. Scan the search results to identify the casualty count mentioned for this disaster, which is 158. Remember the count.
+3. Type ""Molten steel kills 32 workers in Liaoning, China"" in the search box and press Enter.
+4. Scan the search results to confirm the casualty count for this accident, which is 32. Remember the count.
+5. Compare the two casualty counts to determine which is higher. Since the first one is higher, send a message to the user: ""(1) Serb pilots defend colleague in Air India Express disaster"".",Irrelevant
+News,"Which cities are mentioned in any one of these two articles: (1) Australia, NATO enhance ties, and (2) Two pieces of suspected plane debris from Maldives taken to Malaysia for analysis?",Brussels,"1. Type ""Australia, NATO enhance ties"" in the search box and press Enter.
+2. Read the article to identify the city mentioned, which is Brussels, and remember it.
+3. Type ""Two pieces of suspected plane debris from Maldives taken to Malaysia for analysis"" in the search box and press Enter.
+4. Read the article to identify any cities mentioned. You will find that no cities are mentioned in this article, so you don't need to remember anything from here.
+5. Send a message to the user with the city you remembered: ""Brussels"".",Irrelevant
+News,"Which countries are mentioned in both of these articles: (1) Kenya deports Somali businessman, and (2) Rwandan genocide suspect arrested in Uganda?",None of the countries.,"1. Type ""Kenya deports Somali businessman"" in the search box and press Enter.
+2. Read the article to identify the countries mentioned: Kenya and Somalia. Remember the names of these countries.
+3. Type ""Rwandan genocide suspect arrested in Uganda"" in the search box and press Enter.
+4. Read the article or snippets to identify the countries mentioned: Uganda, Rwanda, Tanzania, Democratic Republic of the Congo, and the United States. Remember the names of these countries.
+5. Compare the lists of countries from both articles. As there are no countries that appear in both articles, send a message to the user: ""None of the countries"".",Irrelevant
+News,Compare the first two articles that appear when you search for articles on Morocco. Are these two articles related to the same event?,No,"1. Type ""Morocco"" in the search box and press Enter.
+2. Open the first article in the search results, ""Meteorites in Morocco found to be from Mars"", and analyze the main event described. Remember your analysis.
+3. Open the second article in the search results, ""Morocco raises terror threat level to 'maximum'"", and analyze the main event described. Remember your analysis.
+4. Compare the events to determine whether they refer to the exact same incident. Since they don't, send a message to the user: ""No"".",Irrelevant
+News,Is there any news article regarding San Diego that was published in 2024?,Yes,"1. Type ""San Diego"" in the search box and press Enter. 
+2. Scan the search results for articles whose publication date contains ""2024"". 
+3. As the first search result is from 2024, send a message to the user: ""Yes"".",Irrelevant
+News,"Were these two articles published on the same day: (a) Former guitarist of pioneering death metal band Possessed dies in shootout with San Francisco police, and (b) Seven civilians killed in Iraq?",Yes,"1. Type ""Former guitarist of pioneering death metal band Possessed dies in shootout with San Francisco police"" in the search box and press Enter. 
+2. Locate the publication date of the article, which is September 25, 2025, and remember this date. 
+3. Type ""Seven civilians killed in Iraq"" in the search box and press Enter. 
+4. Locate the publication date of the article, which is also September 25, 2025. Since this date matches the date you remembered, send a message to the user: ""Yes"".",Irrelevant
+News,"Navigate to the 23rd article in the search results for ""crime patrol"". Then take the first two words of the title of the visited article, search those two words, and report the title of the last article in the search results.","Americans are getting fatter, not-for-profit's report finds","1. Type ""crime patrol"" in the search box and press Enter.
+2. Scroll down, click on the third page icon, and find the third result on the third page: ""Federal judge rejects hate crime plea in Arbery killing"".
+3. Identify the first two words of the title, ""Federal judge"".
+4. Type those two words into the search box and press Enter.
+5. Scroll down and click on the last page of the search results, which is page 100.
+6. Identify the last search result on that page and send its title to the user: ""Americans are getting fatter, not-for-profit's report finds"".",Helpful
+News,"Follow this navigation path: Search ""Utah"", visit the fourth search result, identify the name of the first city in the body/content of the article, and search its name. Visit the fourth search result and tell me the name of the last state mentioned in the visited article. If you encounter a redirect link at any point, then visit that link. If any of the articles are not found, then report the task as incomplete.",Texas,"1. Type ""Utah"" in the search box and press Enter. 
+2. Navigate to and click on the fourth search result, which is ""U.S. state of Utah begins to accept evacuees from Hurricane Katrina"". 
+3. Read the content of the article to identify the first city mentioned, which is New Orleans. 
+4. Type the name of that city into the search box and press Enter. 
+5. Navigate to and click on the fourth search result in this new list, ""Total evacuation of New Orleans planned"". 
+6. Scan the article to find the last state mentioned in the text, which is Texas. 
+7. Send a message to the user: ""Texas"".",Helpful
+News,How many articles did you find on India winning the 2025 Champions Trophy?,One,"1. Type ""India winning the 2025 Champions Trophy"" in the search box and press Enter. 
+2. Count the number of relevant articles in the search results. Then send the number as a message to the user: ""One"".",Irrelevant
+News,How many suspects have been arrested so far in connection with Pheobe Bishop's murder?,Three,"1. Type ""Pheobe Bishop murder suspects arrested"" in the search box and press Enter. 
+2. Read the search results or top articles to find the current number of arrested suspects. You will find an article at the top, ""Third person charged in relation to Pheobe Bishop's alleged murder"", which means three people have been arrested so far. Check the other search results to confirm that no higher number is reported. 
+3. Send a message to the user: ""Three"".",Irrelevant
+News,I heard workers died in an accident involving molten steel in China. Can you tell me when the last similar major incident happened in China?,1949,"1. Type ""China molten steel accident workers died"" in the search box and press Enter. 
+2. Click on the first search result, ""Molten steel kills 32 workers in Liaoning, China"". 
+3. Identify the year of the last similar major incident mentioned, which is 1949. Send a message to the user: ""1949"".",Irrelevant
+News,I heard Utah refused radioactive waste from a Maine plant. When did that plant stop producing electricity?,1997,"1. Type ""Utah refuses radioactive waste Maine plant"" in the search box and press Enter.
+2. Click on the first search result, ""Radioactive soil from Maine reactor refused at landfill in Utah"".
+3. Verify whether the visited article mentions when the plant stopped producing electricity. Since this information is present, send a message to the user: ""1997"".",Irrelevant
+News,I heard Greta Thunberg was named Time magazine’s Person of the Year. What is the first article about this?,18-Dec-24,"1. Type ""Greta Thunberg Time magazine Person of the Year"" in the search box and press Enter.
+2. Click on the first search result, ""Greta Thunberg named 2019 Time Person of the Year"".
+3. Identify the publication date of the visited article. Send a message to the user: ""December 18, 2024"".",Irrelevant
+News,How many articles did you find on Ken Lay (articles that consist only of redirect pages should be excluded)?,One,"1. Type ""Ken Lay"" in the search box and press Enter. 
+2. Based on the titles of the search results, you will find the first four search results to be relevant. 
+3. Visit the first search result, ""Ken Lay dies in Aspen"". As this is a redirect link, go back. 
+4. Visit the second search result, ""Ken Lay dies of heart attack"". As this is a redirect link, go back. 
+5. Visit the third search result, ""Enron founder Ken Lay dies in Aspen, Colorado"". This is a valid search result; remember the title of the article. 
+6. Go back and visit the fourth search result, ""Former Enron CEO Kenneth Lay dies"". As this is also a redirect link, count the number of valid articles you have remembered, which is one. Send a message to the user: ""One"".",Irrelevant
+News,Can you tell me the name of the article on the Indian prime minister testing positive for COVID-19?,No such article exists,"1. Type ""Indian prime minister testing positive for COVID-19"" in the search box and press Enter. 
+2. Review the search results to see whether any credible articles report this as a fact. 
+3. As no legitimate reports are found, conclude that no such article exists. Send a message to the user: ""No such article exists"".",Irrelevant
+News,"Follow this navigation path: search for ""England,"" visit the second article in the results, then take the first three words of its main content and search them. Visit the fifth search result. What is the first sentence of that article’s main content? If you encounter a redirect link at any point, follow the redirect. If any of the articles are not found, report the task as incomplete.",A convicted serial killer has been sentenced to death in the African country of Swaziland; his death will be the first execution in the country since 1983.,"1. Type ""England"" in the search box and press Enter.
+2. Navigate to and click on the second article in the results, ""England remembers Bobby Robson"".
+3. Identify the first three words of the article's main content, ""Since his death"".
+4. Type those three words, ""Since his death"", into the search box and press Enter.
+5. Navigate to and click on the fifth search result, ""Serial killer sentenced to death in Swaziland"".
+6. Read the first sentence of the main content and send it as a message to the user: ""A convicted serial killer has been sentenced to death in the African country of Swaziland; his death will be the first execution in the country since 1983.""",Helpful
+News,"How many external links are provided in the article ""World Health Organization declares COVID-19 pandemic""?",Six,"1. Type ""World Health Organization declares COVID-19 pandemic"" in the search box and press Enter. 
+2. Open the specific article matching this title. 
+3. Count the number of external hyperlinks embedded in the article body. Then send it as a message to the user: ""Six"".",Irrelevant
+News,"Does Stephen Hawking appear in the search results when you search ""Stephen Curry""?",Yes,"1. Type ""Stephen Curry"" in the search box and press Enter. 
+2. Scan the search result titles for the name ""Stephen Hawking"". The name should appear in the first search result. Send a message to the user: ""Yes"".",Irrelevant
+News,"There is an article called ""2007 European football friendly match: England vs. Germany"". Do you think the publication year of the article is consistent with the year when the match took place?",No,"1. Type ""2007 European football friendly match: England vs. Germany"" in the search box and press Enter. 
+2. Open the article and identify the publication date (for example, by looking for the timestamp). It should be December 18, 2024. 
+3. Based on the title of the article, we can conclude that the actual date of the event is 2007. As the actual date is inconsistent with the publication date, send a message to the user: ""No"".",Irrelevant
+News,"Did the 2024 article, ""Indian flooding displaces thousands"", get published before the 2024 article ""Satellite radio approved in Canada""?",No,"1. Type ""Indian flooding displaces thousands 2024"" in the search box and press Enter. 
+2. Remember the specific publication date of the article, December 18, 2024. 
+3. Type ""Satellite radio approved in Canada 2024"" in the search box and press Enter. 
+4. Remember the specific publication date of that article, December 17, 2024. 
+5. Compare the two dates that you remembered to see if the flooding article was published earlier. Send a message to the user: ""No"".",Irrelevant
+News,"Based on the article, ""Allahabad High Court grants bail to accused linked to Umesh Pal murder case"", when was Umesh Pal shot?",24-Feb-23,"1. Type ""Allahabad High Court grants bail to accused linked to Umesh Pal murder case"" in the search box and press Enter. 
+2. Visit the first search result, which should be the specific article you just searched for. 
+3. Read the text to find the date mentioned for when Umesh Pal was shot. Then send it as a message to the user: ""February 24, 2023"".",Irrelevant
+News,"Navigate to the article ""Hurricane Emily is second strike for Jamaica"", find the name of the last country mentioned, search for the name of that country, and tell me the title of the last search result.",Wikinews 2020: An 'Original reporting' year in review,"1. Type ""Hurricane Emily is second strike for Jamaica"" in the search box and press Enter. 
+2. Open the article and scan the text for the very last country name mentioned, which is Grenada. 
+3. Type ""Grenada"" in the search box and press Enter. 
+4. Click on the last page (if there are multiple pages in the search results). 
+5. Scroll to the last result on the last page. Send the title as a message to the user: ""Wikinews 2020: An 'Original reporting' year in review"".",Helpful
+News,"Based on these two articles: (1) “At least eight dead after drone strikes in Pakistan” and (2) “Tornado touches down in Joplin, Missouri”, which appears to describe the deadlier incident?","(2) Tornado touches down in Joplin, Missouri","1. Type ""At least eight dead after drone strikes in Pakistan"" in the search box and press Enter. 
+2. Identify the casualty count mentioned in the article, which is eight. Remember the count. 
+3. Type ""Tornado touches down in Joplin, Missouri"" in the search box and press Enter. 
+4. Identify the casualty count mentioned in the article, which is at least 89. Remember the count. 
+5. Compare the two casualty counts that you have remembered to determine the deadlier event. Send a message to the user: ""(2) Tornado touches down in Joplin, Missouri"".",Irrelevant
+News,How many people were killed in the 2024 Joplin tornado?,At least 89 people,"1. Type ""2024 Joplin tornado"" in the search box and press Enter. 
+2. Click on the first search result, ""Tornado touches down in Joplin, Missouri"". 
+3. Read the visited article to find the death toll and send a message to the user: ""At least 89 people"".",Irrelevant
+News,"Based on the article, ""Pilots spot 'UFOs' near the Channel Islands"", is it true that the UFOs are said to have come from Neptune?",No,"1. Type ""Pilots spot 'UFOs' near the Channel Islands"" in the search box and press Enter. 
+2. Open the article and read the details regarding the origin of the UFOs. 
+3. Check if there is any claim that they came from Neptune. As there are no such claims, send a message to the user: ""No"".",Irrelevant
+Shop,What unique sizes are available for all the men's and women's jeans?,"small, medium, large, x-large, xx-large","1. Type ""jeans"" in the search box and press Enter.
+2. Based on the titles, open each product page for men's and women's jeans. You should find two such products: ""Wrangler Men's Retro Slim Fit Straight Leg Jean, Black, 42W x 32L"" and ""myhehthw Women's High Waisted Jeans for Women Distressed Ripped Jeans Slim Fit Butt Lifting Skinny Stretch Jeans Trousers"".
+3. Click on ""Wrangler Men's Retro Slim Fit Straight Leg Jean, Black, 42W x 32L"" and check the available sizes. There should be no sizes available.
+4. Go back and click on ""myhehthw Women's High Waisted Jeans for Women Distressed Ripped Jeans Slim Fit Butt Lifting Skinny Stretch Jeans Trousers"" and check the available sizes. Then send the available sizes as a message to the user: ""small, medium, large, x-large, xx-large"".",Irrelevant
+Shop,What colors are available for the Men's Running Tennis shoes?,"black, grey, khaki","1. Type ""Men's Running Tennis shoes"" in the search box and press Enter. 
+2. As there is one such running shoe available, click on the product titled ""Mens Running Tennis Blade Shoes Lightweight Casual Walking Sneakers Mesh Breathable Sport Sneakers Sheet Shoes"". 
+3. There are three colors available on the product page. Send the colors as a message to the user: ""black, grey, khaki"".",Irrelevant
+Shop,"Are the FIN86 Men's Elastic High Waisted Shorts made of the same material as the Yinimo Men's Gym Shorts? If not, how do they differ?","No, the FIN86 is made of Spandex but the Yinimo is made of Polyester and Cotton.","1. Type ""FIN86 Men's Elastic High Waisted Shorts"" in the search box and press Enter. 
+2. Click on the product ""FIN86 Men's Elastic High Waisted Shorts"" from the search results. 
+3. Note the material listed in the description, which is Spandex. Remember this fact. 
+4. Type ""Yinimo Men's Gym Shorts"" in the search box and press Enter. 
+5. Click on the product ""Yinimo Men's Gym Shorts"" from the search results. 
+6. Note the material listed in the description, which is Polyester and Cotton. Remember this fact. 
+7. Based on the materials of the products that you remembered, send a message to the user: ""No, the FIN86 is made of Spandex, but the Yinimo is made of Polyester and Cotton.""",Irrelevant
+Shop,Does the longest variant of the Lindy DisplayPort to HDMI cable exceed the length of the longest variant of the Kodak HDMI Mini Cable?,Yes,"1. Type ""Lindy DisplayPort to HDMI cable"" in the search box and press Enter. 
+2. Click on the product ""LINDY 36920 0.5m DisplayPort to HDMI 10.2G Cable, Black"" from the search results. 
+3. Identify the longest length variant available, which is 5 m. Remember this fact. 
+4. Type ""Kodak HDMI Mini Cable"" in the search box and press Enter. 
+5. Click on the product ""Kodak Playsport Zx3 HDMI Mini (Type C) Cable - HDMI Mini (Type C)"" from the search results. 
+6. Identify the length based on the feature description on the product page, which is 1.8 m. Remember this fact. 
+7. Compare the two lengths to see if the Lindy cable is longer, based on the information that you have remembered. Since it is, send a message to the user: ""Yes"".",Irrelevant
+Shop,What is the total price of all the toy cars available in the shop?,Zero (no toy cars are available in the shop),"1. Type ""toy cars"" in the search box and press Enter. 
+2. Based on the search results, you will find that no toy car is available in the shop. 
+3. Hence, the sum of prices will be zero, as no toy cars are available in the shop. Send a message to the user: ""Zero (no toy cars are available in the shop)"".",Irrelevant
+Shop,How many grams of protein are in a standard serving of Schoolyard cheese puffs?,14 grams,"1. Type ""Schoolyard cheese puffs"" in the search box and press Enter.
+2. Click on the product page ""Schoolyard Snacks Low Carb Keto Cheese Puffs - Cheddar Cheese - High Protein - All Natural - Gluten & Grain-Free - Healthy Chips - Low Calorie Food - 12 Pack Single Serve Bags - 100 Calories"" from the search results and find the nutritional information. In the features, you should find the amount per serving, which is 14 grams.
+3. Send a message to the user: ""14 grams"".",Irrelevant
+Shop,Is it recommended to dry clean the Burband Women's High Waist Bike Shorts?,No,"1. Type ""Burband Women's High Waist Bike Shorts"" in the search box and press Enter. 
+2. Click on the first search result, ""Burband Womens High Waist Bike Shorts Tummy Control Workout Yoga Pants Running Exercise Running Shorts with Side Pockets"". 
+3. Read the ""Care Instructions"" in the product description and features. 
+4. Based on the instructions, you will find that it is not mentioned that dry cleaning is recommended. Send a message to the user: ""No"". 
+",Irrelevant
+Shop,Does the description of the XXBR Summer T-shirts mention the material type?,Yes,"1. Type ""XXBR Summer T-shirts"" in the search box and press Enter. 
+2. Click on the product ""XXBR Summer T-shirts for Mens, Soldier Short Sleeve 3D Street Vintage Printed Shirt Slim Fit Muscle Casual Tee Tops"" from the search results. 
+3. Check whether the material type is explicitly mentioned in the product description or features. 
+4. Since it is mentioned, send a message to the user: ""Yes"". 
+",Irrelevant
+Shop,What is the price of the most expensive bookshelf?,$596.71 ,"1. Type ""bookshelf"" in the search box and press Enter. 
+2. Check the prices of the bookshelves in the search results. If there are multiple pages, visit the other pages as well. 
+3. Based on the search results, you will find that the bookshelf ""BOWERY HILL Traditional 84"" Tall 12-Shelf Double Wide Wood Bookcase in Espresso"" has the highest price, $596.71. 
+4. Send this price as a message to the user: ""$596.71"". 
+",Irrelevant
+Shop,What's the warranty period of the Samsung remote for the UN85S9VF model?,30 days,"1. Type ""Samsung remote UN85S9VF"" in the search box and press Enter. 
+2. Open the product page ""Replaced Remote Control Compatible for Samsung UN85S9VF UN46F6300AF UN40F6300AF UN85S9VFXZA UN32F6300AF UN46F5500AF TV"" from the search results. 
+3. Check the warranty period in the product description and features. 
+4. In both places, you will find a 30-day quality warranty. Send a message to the user: ""30 days"". 
+",Irrelevant
+Shop,Does the Samsung remote for the UN85S9VFXZA model contain batteries?,No,"1. Type ""Samsung remote UN85S9VF"" in the search box and press Enter. 
+2. Open the product page ""Replaced Remote Control Compatible for Samsung UN85S9VF UN46F6300AF UN40F6300AF UN85S9VFXZA UN32F6300AF UN46F5500AF TV"" from the search results. 
+3. Check whether the product includes batteries by reading the product description and features. 
+4. You will find in the product description: ""Batteries and Manual are not included."" Send a message to the user: ""No"". 
+",Irrelevant
+Shop,What's the material of the Yinimo Men's Gym Shorts?,Polyester and Cotton,"1. Type ""Yinimo Men's Gym Shorts"" in the search box and press Enter. 
+2. From the search results, click on the product ""Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts"". 
+3. In the features, you will find the material composition. Send it as a message to the user: ""Polyester and Cotton"". 
+",Irrelevant
+Shop,Is the Goya Foods wafer marketed as a Latino snack?,Yes,"1. Type ""Goya Foods wafer"" in the search box and press Enter. 
+2. Click on the product ""Goya Foods Chocolate & Vanilla Wafers, 4.9 Ounce (Pack of 24)"" from the search results. 
+3. Read the product description. You will find that the product has been described as a ""Latino snack"". Send a message to the user: ""Yes"". 
+",Irrelevant
+Shop,I'm looking to buy a jute pouf. Can you please search the shop and let me know how many such products are available?,One,"1. Type ""jute pouf"" in the search box and press Enter. 
+2. Based on the titles of the search results, determine which search results are valid jute pouf products. Visit the other pages if there are multiple pages of search results. You should find only one valid search result: ""Signature Design by Ashley Herringbone Jute Pouf, 20 x 20 In, Brown & Black"". 
+3. Send a message to the user: ""One"". 
+",Helpful
+Shop,How many socks are available in the shop?,Five,"1. Type ""socks"" in the search box and press Enter. 
+2. Check the product titles in the search results to determine whether each product is actually socks. Visit the other pages too, if it is a multi-page search result. 
+3. You will find five sock products. Send a message to the user: ""Five"". 
+",Helpful
+Shop,"How many search results appear when you search the word ""cat"" in the shop?",Four,"1. Type ""cat"" in the search box and press Enter. 
+2. Check the number of search results displayed. It should say four. Send a message to the user: ""Four"". 
+",Irrelevant
+Shop,"Is there any red HDMI cable in the shop? If yes, order a single unit and tell me the confirmation code. Otherwise, say that none are available.",60BD1183D8,"1. Type ""red HDMI cable"" in the search box and press Enter. 
+2. Based on the product image, identify a red HDMI cable and click on the product ""4K HDMI Cables, Short Cord, 1ft [3 Pack] Braided Cord & Gold Connectors, 1ft High-Speed HDMI 2.0 with Ethernet, for Playstation PS5, PS4, PS3, Xbox, Roku, Apple TV, HDTV, Blu-ray, Laptop, PC, Monitor"". 
+3. Select the color option ""red-braided"" and the ""single pack"" option. 
+4. Click ""Buy Now"", and share the confirmation code by sending a message to the user: ""60BD1183D8"". 
+",Helpful
+Shop,How many rugs are available to buy?,Two,"1. Type ""rugs"" in the search box and press Enter. 
+2. Based on the product titles, verify which items are actually rugs. There should be two such products. Send a message to the user: ""Two"". 
+",Helpful
+Shop,Is there any bikini with a wrap skirt available in the shop?,Yes,"1. Type ""bikini wrap skirt"" in the search box and press Enter. 
+2. In the search results, check whether there are bikini wrap skirts available based on the product titles. You should find at least one such product. Then send a message to the user: ""Yes"". 
+",Helpful
+Shop,Can I purchase the Dota 2 video game from this shop?,No,"1. Type ""Dota 2"" in the search box and press Enter. 
+2. Check the search results to see whether there is a Dota 2 video game available in the shop. As there isn't, send a message to the user: ""No"". 
+",Irrelevant
+Shop,How many electric scooters are available in the shop?,Zero,"1. Type ""electric scooter"" in the search box and press Enter. 
+2. Check the search results to see whether there are any valid electric scooter products available in the shop. As there aren't, send a message to the user: ""Zero"". 
+",Helpful
+Shop,Can you find any Nintendo Switch console in the shop?,No,"1. Type ""Nintendo Switch"" in the search box and press Enter. 
+2. Check the search results to see whether a Nintendo Switch console is available in the shop. As there isn't, send a message to the user: ""No"". 
+",Helpful
+Shop,"I'm looking for a pair of jeans for less than $30. The size should be XL. Once you complete the order, share the completion code.",D56D67298E,"1. Type ""jeans"" in the search box and press Enter. 
+2. Check the product titles for a valid jeans product and confirm that its price is less than $30. You will find one such product, ""myhehthw Women's High Waisted Jeans for Women Distressed Ripped Jeans Slim Fit Butt Lifting Skinny Stretch Jeans Trousers"", that meets the criteria. Click on this product. 
+3. Choose size ""x-large"". 
+4. Click ""Buy Now"" to place the order. 
+5. Share the confirmation code by sending it as a message to the user: ""D56D67298E"". 
+",Helpful
+Shop,I'm looking for a box of cookies under $5. Can you please place the order and share the completion code with me?,C3E75E329A,"1. Type ""cookies"" in the search box and press Enter. 
+2. Check the product titles for a valid cookie product, and check that its price is less than $5. You will find one such product, ""Lillys Baking Company, Cookies Blue And Whites, 10 Ounce"". Click on the product page. 
+3. Click ""Buy Now"" to place the order. 
+4. Share the confirmation code by sending it as a message to the user: ""C3E75E329A"". 
+",Helpful
+Shop,"Order these products and share the confirmation codes: Welch's Orange Pineapple Juice, Stirrings Simple Classic Cocktail Mix Mojito, and Italian Basil Pesto.","B644DDC66C, 1069AE6414, 1A2ED223B7","1. Type ""Welch's Orange Pineapple Juice"" in the search box and press Enter. 
+2. Click on the first search result, ""Welchs Orange Pineapple Juice Drink Blend, 16 Fluid Ounce -- 12 per case."" 
+3. Click ""Buy Now"" to place the order, and remember the confirmation code after placing the order: ""B644DDC66C"". 
+4. Type ""Stirrings Simple Classic Cocktail Mix Mojito"" in the search box and press Enter. 
+5. Click on the first search result, ""2 Pack - Stirrings Simple Classic Cocktail Mix Mojito -- 25.4 fl oz"". 
+6. Click ""Buy Now"" to place the order, and remember the confirmation code after placing the order: ""1069AE6414"". 
+7. Type ""Italian Basil Pesto"" in the search box and press Enter. 
+8. Click on the first search result, ""Delicious & Sons - Organic - Non-GMO - Gluten-free - Italian Basil Pesto Genovese Sauce with Parmigiano Reggiano PDO Cheese (6.70 oz.)"". 
+9. Click ""Buy Now"" to place the order, and remember the confirmation code after placing the order: ""1A2ED223B7"". 
+10. Share all the confirmation codes that you have remembered by sending a message to the user: ""B644DDC66C, 1069AE6414, 1A2ED223B7"". 
+",Irrelevant
+Shop,"Can you place an order for a Romwe wrap skirt and share the confirmation code with me? If there are size options, then please pick the medium size.",3105FF1662,"1. Type ""Romwe wrap skirt"" in the search box and press Enter. 
+2. Click on the first search result, ""Romwe Women's Ruffle Hem Beach Cover Up Chiffon Swimsuit Wrap Skirts"". 
+3. On the product page, choose the ""Medium"" size by clicking on it. 
+4. Click ""Buy Now"" to place the order. 
+5. Share the confirmation code by sending a message to the user: ""3105FF1662"". 
+",Irrelevant
+Shop,Order every variant of the Cravings by Zoe Valentine’s Day chocolates and share the confirmation codes.,"0FA416F314, 68A92442CA, 5AB56CB7A1","1. Type ""Cravings by Zoe Valentine’s Day chocolates"" in the search box and press Enter. 
+2. Click on the first search result, ""CRAVINGS BY ZOE Valentine’s Day Chocolate Truffles | Assorted Chocolate Gift Box Red | Gourmet Chocolate | Delicious Milk Chocolate, Dark Chocolate and White Chocolate Flavors with 16 Assorted Toppings - 7.5 oz, 16 Count"". 
+3. Click on the first variant, ""happy birthday truffle chocolate"". Then click ""Buy Now"" and get the code ""0FA416F314"". Remember this code. 
+4. Go back and click on the second variant, ""holiday truffle chocolate"". Then click ""Buy Now"" and get the code ""68A92442CA"". Remember this code. 
+5. Go back and click on the third variant, ""truffle collection chocolate"". Then click ""Buy Now"" and get the code ""5AB56CB7A1"". Remember this code. 
+6. Send all the codes that you have remembered as a message to the user: ""0FA416F314, 68A92442CA, 5AB56CB7A1"". 
+",Irrelevant
+Shop,"Order all the skirts available in the shop and share the confirmation codes. If there are multiple options, then always pick the small size.","73A46F8F3F, EFBFB6B826","1. Type ""skirts"" in the search box and press Enter. 
+2. Click on the first skirt product, ""Romwe Women's Ruffle Hem Beach Cover Up Chiffon Swimsuit Wrap Skirts"". 
+3. Click on the size ""Small"". 
+4. Click ""Buy Now"" and get the code ""73A46F8F3F"". Remember this code. 
+5. Search for ""skirts"" again and click on the second skirt product, ""Merry Christmas Snowflake Pattern Women Chiffon Short Scarf Lightweight and Compact, Easy to Carry. Beach Sarong Cover Wrap Skirt Bikini Swimwear Cover Ups Black"". 
+6. Click on the size ""Small"". 
+7. Click ""Buy Now"" and get the code ""EFBFB6B826"". Remember this code. 
+8. Send a message to the user with the confirmation codes that you have remembered: ""73A46F8F3F, EFBFB6B826"". 
+",Helpful
+Shop,What is the focal length range in millimeters of the stock lens on the Canon PowerShot S3 camera product picture?,6.0 - 72.0,"1. Type ""Canon PowerShot S3"" in the search box and press Enter. 
+2. Click on the product ""Canon PowerShot Pro Series S3 IS 6MP with 12x Image Stabilized Zoom (Discontinued by Manufacturer)"" from the search results. 
+3. Check the product image. You will see ""6.0 - 72.0 mm"" written on the stock lens. 
+4. Send a message to the user: ""6.0 - 72.0"". 
+",Required
+Shop,How many of the color options for the Nautica headphones have two distinct visible colors?,Four,"1. Type ""Nautica headphones"" in the search box and press Enter. 
+2. Click on the product ""NAUTICA H120 Bluetooth Headphones, On-Ear Wireless Headphones with Built-in Microphone Bluetooth v5.0 Wireless and Wired Stereo Headset with Deep Bass, Foldable Over-Ear Headphones (White Nude)"" from the search results. 
+3. In the color options, you will see that the last four are two-color combinations: ""navy red"", ""navy yellow"", ""white nude"", and ""white off white"". 
+4. Send a message to the user: ""Four"". 
+",Required
+Shop,What's the color of the Rifle Scope Mount Camera Adapter in the product picture?,Black,"1. Type ""Rifle Scope Mount Camera Adapter"" in the search box and press Enter. 
+2. Click on the product ""starboosa Rifle Scope Mount Camera Adapter - Smartphone Camera Adapter for Hunting Teaching"" from the search results. 
+3. Look at the product picture to identify the color of the product, which is black. Send a message to the user: ""Black"". 
+",Required
+Shop,"Place an order for the first pink socks that appear when you search for ""socks."" Then share the confirmation code here. If you need to pick a size, please choose medium.",202AA9AA1D,"1. Type ""socks"" in the search box and press Enter. 
+2. The first pink socks that appear are ""Gloaiidjonh Women Cotton Crew Socks Cute Cartoon Anime Dinosaur Embroidery Mid Tube Hosiery"". Click on the product page. 
+3. Select the first pair of pink socks visible. 
+4. Select the color option ""pk"". 
+5. Click ""Buy Now"". 
+6. Check the confirmation code and send it as a message to the user: ""202AA9AA1D"". 
+",Helpful
+Shop,"What's written on the body of the 20x50 Binoculars? If there are multiple 20x50 Binoculars, pick the first one from the search results.",UncleHu,"1. Type ""20x50 Binoculars"" in the search box and press Enter. 
+2. Click on the first search result, ""20x50 High Power Binoculars for Adults with Low Light Night Vision, Compact Waterproof Binoculars for Bird Watching Hunting Travel Football Games Stargazing with Carrying Case and Strap"". 
+3. Inspect the product image to see the text written on the body. You should find the text written in white: ""UncleHu"". Send a message to the user: ""UncleHu"". 
+",Required
+Shop,"Place an order for a Spider-Man superhero T-shirt with a white spider. The size should be Large. Once you complete the order, share the completion code.",7778F2A319,"1. Type ""Spider-Man superhero T-shirt white spider"" in the search box and press Enter. 
+2. Click on the product page ""Long Sleeve Superhero T Shirt Tank Top Mens Compression Shirt Men Workout Fitness Gym Shirt"". 
+3. Click on ""brown"". You will see that the product image has a white spider. Select the correct shirt and choose size ""Large"". 
+4. Click ""Buy Now"" to place the order. 
+5. Check the confirmation code and send it as a message to the user: ""7778F2A319"". 
+",Helpful
+Shop,Could you please order the most expensive cracker available in the Shop and send me the confirmation code?,79E27147B0,"1. Type ""cracker"" in the search box and press Enter. 
+2. You will find five search results. The first search result, ""Crunchmaster Gourmet Toasted Sesame Rice Cracker, 3.5-Ounce (Pack of 12)"", will be the most expensive one and is a valid cracker product. Click on the product page. 
+3. Click ""Buy Now"" and retrieve the confirmation code. 
+4. Send the confirmation code as a message to the user: ""79E27147B0"". 
+",Irrelevant
+Shop,"Which of the following items are available in the shop: Crayon, Candle, Face Lotion, and Electric Chair?","Candle, Face Lotion","1. Search for ""Crayon"" and check the search results. None of the results should be valid crayon products. Remember this fact. 
+2. Search for ""Candle"" and check the search results. You should find at least one valid candle product. Remember this fact. 
+3. Search for ""Face Lotion"" and check the search results. You should find at least one valid face lotion product. Remember this fact. 
+4. Search for ""Electric Chair"" and check the search results. None of the results should be valid electric chair products. Remember this fact. 
+5. Based on the search results that you remembered, send a message to the user: ""Candle, Face Lotion"". 
+",Irrelevant
+Shop,"How many times does the word ""Cotton"" appear on the product page (including Description, Features, Reviews) for ""Custom Polo Shirts for Men""?",Four times,"1. Type ""Custom Polo Shirts for Men"" in the search box and press Enter. 
+2. Click on the first search result, ""Custom Polo Shirts for Men Design Your Own Personalized Logo Text Photo Polo Shirt Customize Classic Polo Shirt"". 
+3. In the product description, count the occurrences of the word ""Cotton"" in the text. You should find three such occurrences. Remember this count. 
+4. In the features section, count the occurrences of the word ""Cotton"" in the text. You should find a single occurrence. Remember this count. 
+5. Add the counts together, which should be four, and send a message to the user: ""Four times"". 
+",Irrelevant
+Multi,"Visit the Wiki article on the first country mentioned in the latest News article about TikTok. Based on that Wiki article, tell me the population of that country.",340.1 million,"1. Search ""TikTok"" on News and check the most recent article in the search results.
+2. The article ""Trump team urges US Supreme Court to halt looming TikTok ban"" is the most recent article. Click on this article.
+3. Find the first country mentioned in the body of the article, which is the United States.
+4. Go to Wiki by typing the address of wiki as mentioned in the prompt.
+5. Search ""United States"" on Wiki.
+6. Find the population of the United States from Wiki, which is 340.1 million.
+7. Send a message to the user: ""340.1 million"".
+",Irrelevant
+Multi,"I need you to run a quick check. Go to the “Quantum mechanics” article on Wiki and find the first article listed in the “Related pages” section. Search for the second word of that article’s title on News, visit the second search result, and tell me whether that news article contains the word “ship”.",yes,"1. Type ""Quantum mechanics"" in the Wiki search box and press Enter.
+2. Scroll to the ""Related pages"" section and note the title of the first article listed, ""Electromagnetic wave"".
+3. Identify the second word of that article's title, which is ""wave"". Remember this word.
+4. Go to News by typing News in the search box and pressing Enter.
+5. Type the word ""wave"" that you remembered in the search box and press Enter.
+6. Open the second search result, ""Wave kills two on Mediterranean cruise"".
+7. Check whether the word ""ship"" appears in the article. Since it does, send a message to the user: ""yes"".
+",Irrelevant
+Multi,"First, verify whether “Brisling Sardines in BBQ Sauce” is kosher. If it is, look up “sardine” on Wikipedia and find the word from which its name is derived. If it is not, search for “Fish” on News and tell me the 20th search result.",The fishes are named after the Island of Sardinia.,"1. Go to Shop and search ""Brisling Sardines in BBQ Sauce"".
+2. Go to the product page of ""Brisling Sardines in BBQ Sauce"" from the search results.
+3. Verify from the product description that the product is Kosher.
+4. Since it is confirmed Kosher, switch to Wiki search and type ""sardine"".
+5. Read the Wiki article to find the origin of the name (for example, named after an island). Send a message to the user: ""The fishes are named after the Island of Sardinia.""
+",Irrelevant
+Multi,"Visit the first article of the News search for the toy maker Mattel. Find the name of the first toy product mentioned in that article. Is that product available in the Shop? If so, how many such products are available?","No, the product is not available in the Shop.","1. Type ""Mattel"" in the News search box and press Enter. 
+2. Open the first article, ""Toy maker Mattel recalls more products"", and identify the name of the first toy product mentioned, which is ""Barbie"". Remember the name. 
+3. Switch to the Shop search. 
+4. Type the name of that toy from your memory, ""Barbie"", in the search box and press Enter. 
+5. Check whether any valid product with that name is available. As there are none, send a message to the user: ""No, the product is not available in the Shop."" 
+",Irrelevant
+Multi,"Please find the fifth unique country mentioned on the “Anime” Wiki page, then search for that country’s name on News, and report the title of the thirteenth article in the search results.",France recalls Íngrid Betancourt mission,"1. Type ""Anime"" in the Wiki search box and press Enter. 
+2. Scan the text to find the fifth unique country mentioned, which is ""France"". 
+3. Switch to the News search. 
+4. Type that country's name, ""France"", in the search box and press Enter. 
+5. Visit the thirteenth article. Do so by going to page two and then clicking on the third article in the search results. 
+6. Send the title of the visited article as a message to the user: ""France recalls Íngrid Betancourt mission"". 
+",Irrelevant
+Multi,"Does the Canon EOS Rebel T7i found in the Shop have a Wiki page? If yes, tell me the title of that Wiki page. Otherwise, find the most relevant page and tell me its title. If you find none of the pages to be relevant, just say ""Article not found"".",Canon EOS,"1. Type ""Canon EOS Rebel T7i"" in the Shop search box to confirm it exists there.
+2. Switch to Wiki search and type ""Canon EOS Rebel T7i"".
+3. You will find that no such article exists. You may need to search a subword instead.
+4. Type ""Canon EOS"", press Enter, and you will find a relevant page with that as the title. Send a message to the user: ""Canon EOS"".
+",Irrelevant
+Multi,"Search for ""Apple"" on News. Is the first search result negative news about the tech company Apple? If yes, say ""Found negative news"". If not, order an “iPad Case Fit for iPad 9.7” and send me the confirmation code.",Found negative news.,"1. Type ""Apple"" in the News search box and press Enter. 
+2. Click on the first search result and read the article to determine whether the news is negative regarding the company. 
+3. Since it is negative, send a message to the user: ""Found negative news."" 
+",Irrelevant
+Multi,"Does the “Once Upon A Time Queen Born In 1982 T-Shirts” product from the Shop contain polyester? If so, go to the Polyester article on Wiki and tell me the names of the clothing brands mentioned there. Otherwise, just tell me, ""T-shirt is polyester-free!!!""",No clothing brands are mentioned in the Polyester article.,"1. Type “Once Upon A Time Queen Born In 1982 T-Shirts” in the Shop search box and press Enter.
+2. Click on the first search result.
+3. Check the material composition by reading the product description and other tabs.
+4. Verify whether polyester is listed by checking all the tabs on the product page. You will find polyester mentioned on the Attributes tab.
+5. Go to Wikipedia, type “Polyester” in the search box, and press Enter.
+6. You will find no clothing brands mentioned in the Wikipedia article. Send a message to the user: “No clothing brands have been mentioned in the Polyester article.”",Irrelevant
+Multi,"Could you check whether the “Tattoo” article on Wiki talks about mummification? If so, tell me how many tattoo machines are available in the Shop. Only consider electronic tattoo machines, not manual ones.",Two,"1. Type ""Tattoo"" in the Wiki search box and press Enter.
+2. Read the article to see whether the concept of mummification has been discussed. You will find it mentioned in the History section.
+3. Switch to the Shop search.
+4. Type ""tattoo machine"" in the search box and press Enter.
+5. Count the number of electronic tattoo machines available (excluding manuals) in the search results by visiting the first two pages. Don't go beyond that, as most of the results will not be relevant. You will find two such machines. Send a message to the user: ""Two"".
+",Irrelevant
+Multi,"Search for ""Iran"" on News and visit the first search result. Was that news incident reported in Iran’s Wiki article?",No,"1. Type ""Iran"" in the News search box and press Enter. 
+2. Open the first article, ""Albania blames Iran for cyberattacks"", and identify the main incident reported. Remember the gist of this incident. 
+3. Switch to Wiki search and type ""Iran"". 
+4. Check the ""History"" or ""Current events"" section for the specific incident that you remembered. 
+5. As the incident has not been mentioned, send a message to the user: ""No"". 
+",Irrelevant
+Multi,"Search for ""Driving Accident"" on News. Visit the first News article and identify the U.S. state where that accident occurred. Then search for that state on Wiki and tell me its population.",Over 29 million.,"1. Type ""Driving Accident"" in the News search box and press Enter. 
+2. Open the first article, ""Car accident was an act of God, says driver"", and identify the U.S. state where the accident happened, which is Texas. 
+3. Switch to Wiki search and type the name of that state, ""Texas"". 
+4. Find the population based on the Wiki article, and send a message to the user: ""Over 29 million."" 
+",Irrelevant
+Multi,"Visit the Wiki article on ""Espadrille"" and find the first country mentioned in that article. Which of the following sites: Wiki, News, or Shop, have an article about that country or a product from that country?","Wiki, News","1. Type ""Espadrille"" in the Wiki search box and press Enter. 
+2. Find the first country mentioned in the article, which is Bangladesh. 
+3. Go to Wiki and search that country's name, ""Bangladesh"". You will find a valid article. Remember this fact. 
+4. Go to News and search that country's name, ""Bangladesh"". You will find a valid article. Remember this fact. 
+5. Go to Shop and search that country's name, ""Bangladesh"". You will not find a valid product. Remember this fact. 
+6. Based on your memory, you found valid entries in Wiki and News only. Send a message to the user: ""Wiki, News"". 
+",Irrelevant
+Multi,Order the most expensive bed and send me the confirmation code.,61A1FDDAD1,"1. Type ""bed"" in the Shop search box and press Enter.
+2. Go over all the products on page 1. You will find that the product ""iDealBed Luxe Series iQ5 Hybrid Luxury Plush Mattress 4i Custom Adjustable Bed Set, Wireless, Massage, Nightlight, Zero-Gravity, Anti-Snore, Memory Pre-Sets (Queen)"" has the highest price. Remember this fact. Warning: You might encounter something like a bed kit. This is not a bed, but this is a bed kit and shouldn't be considered.
+3. Visit pages 2, 3, and 4 of the search results to verify that no bed product exists with a higher price. Don't visit more pages, as you won't find better results.
+4. Since you cannot find any other product with a higher price, search ""iDealBed Luxe Series iQ5 Hybrid Luxury Plush Mattress 4i Custom Adjustable Bed Set, Wireless, Massage, Nightlight, Zero-Gravity, Anti-Snore, Memory Pre-Sets (Queen)"" and click on the product page.
+5. Click ""Buy Now"" and retrieve the confirmation code. Send it as a message to the user: ""61A1FDDAD1"".
+",Irrelevant
+Multi,"Search ""dog"" on News. If the first search result says something positive about dogs, then place an order for a dog toy in the Shop and share the confirmation code. Otherwise, tell me the title of the news article.",Dog owner to face felony charge,"1. Type ""dog"" in the News search box and press Enter.
+2. Click on the first article in the search results.
+3. As it is a negative article on dogs, send the title of the news article message to the user: ""Dog owner to face felony charge.""",Irrelevant
+Multi,Who are the first three female referees to be appointed to the men's 2022 FIFA World Cup?,"Stéphanie Frappart,Salima Mukansanga,Yoshimi Yamashita","1. Go to Wiki and type ""2022 FIFA World Cup"" in the search box, then press Enter. 
+2. Identify the names of the first three female referees and send their names as a message to the user: ""Stéphanie Frappart, Salima Mukansanga, Yoshimi Yamashita"". 
+",Irrelevant
+Multi,"Verify whether Sony’s net profit fell significantly in 2024 or 2025. If so, visit the Sony's Wiki article and identify the first product mentioned on that page. Can you find that exact product in the Shop? If so, place the order and share the confirmation code with me. If any of the above conditions cannot be satisfied, state that explicitly.",The product is not available in the shop.,"1. Go to News and search ""Sony's net profit fell significantly"".
+2. You will find an article ""Sony net profit falls by 95%"". Click on the article and you will see that the publication date is from 2024. Hence it is a valid article. Remember this fact.
+3. Go to Wiki search and type ""Sony"".
+4. Identify the first product mentioned on the page, which is ""PlayStation"".
+5. Go to Shop.
+6. Search ""PlayStation"" and press Enter.
+7. You will not find any PlayStation console in the shop. Send the confirmation code as a message to the user: ""The product is not available in the shop.""
+",Irrelevant
+Multi,"I love the Matrix movie series. Please find related Wiki articles, news, and products from the Shop. If there are multiple entries on each site, pick the one you think is the most relevant. If you cannot find any product or article, mention that in your answer. Share the titles of these items in the following format: <site name>: <article/news/product title>.","Wiki: The Matrix
+News: No relevant news found.
+Shop: No relevant product found.","1. Go to Wiki, type ""The Matrix"", and press Enter.
+2. You will find a Wiki article on the Matrix movie series. Remember this fact.
+3. Go to News, type ""The Matrix"", and press Enter.
+4. You will find no news article on the Matrix movie series. Only look at the first page, don't go to more pages. Remember this fact.
+5. Go to Shop, type ""The Matrix"", and press Enter.
+6. You will find no shop products in the Matrix movie series. Only look at the first page, don't go to more pages. Remember this fact.
+7. Based on the facts that you have remembered, send a message to the user:
+""Wiki: The Matrix
+News: No relevant news found.
+Shop: No relevant product found.""
+",Irrelevant
+Multi,"Visit the Wiki article on Gabon and search for the last word of the first section in the Shop (introduction counts as a section). If there are search results, click on the first one and tell me the title of the product. Otherwise, tell me ""No product found"".",Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt,"1. Type ""Gabon"" in the Wiki search box and press Enter. 
+2. Locate the last word of the first section of the article (introduction section), which is ""country"". Remember this word. 
+3. Go to the Shop website. 
+4. Type that word, ""country"", into the search box and press Enter. 
+5. The first search result is ""Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt"". Send a message to the user: ""Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt"". 
+",Irrelevant
+Multi,How many patients participated in the pollen tablet trial for hay fever?,634,"1. Based on the type of query, you should first search for it on News. Go to News. 
+2. Type ""pollen tablet trial for hay fever number of patients"" in the News search box and press Enter. 
+3. Click on the first search result, ""Clinical study supports pollen tablets as hay fever treatment"". 
+4. Based on the article, find the number of patients in the trial, which is 634. Send a message to the user: ""634"". 
+",Irrelevant
+Multi,"Visit the Wiki article on ""Brazil"" and find the most recent sporting event mentioned in the Sports section. Search for that event (don't include the year in the search) on News, and tell me the name of the third news article in the search results.",Three cities submit bids for 2020 Summer Olympics,"1. Search ""Brazil"" on Wiki and press Enter. 
+2. Go to the Sports section and find the latest sports event, which is the ""Summer Olympics"". Remember this event. 
+3. Go to News and search ""Summer Olympics"". 
+4. Report the title of the third news article from the search results as a message to the user: ""Three cities submit bids for 2020 Summer Olympics"". 
+",Irrelevant
+Multi,"Search ""Cranberry"" on News and visit the first news article in the search results. Then search, on Wiki, for the name of the first country mentioned in that article’s content. Tell me the first line of the final visited article.",England is a country on the island of Great Britain.,"1. Type ""Cranberry"" in the News search box and press Enter.
+2. Open the first article and read the text to identify the first country mentioned, England. Remember the name of the country.
+3. Go to Wiki.
+4. Type the name of that country (""England"") in the Wiki search box and press Enter.
+5. Read the first line of the article's main content and send it as a message to the user: ""England is a country on the island of Great Britain.""
+",Helpful
+Multi,"Search ""Ruffles Ridged Potato Chips"" on Shop and find the country of origin. Search for the name of that country on News and visit the second news article in the search results. What is the last word in the visited article?",Outrage,"1. Type ""Ruffles Ridged Potato Chips"" in the Shop search box and press Enter.
+2. Open the product page and each tab individually. Click on the features tab, identify the country of origin listed, which is the United States. Remember this fact.
+3. Go to the News website.
+4. Type the name of that country, ""United States"", in the News search box and press Enter.
+5. Navigate to and open the second news article.
+6. Identify the very last word of the article and send it as a message to the user: ""Outrage"".
+",Helpful
+Multi,"Search ""chips"" on News. If the first article is about snack chips, then go to Shop, search ""chips"", and place an order for the first chips product you find in the search results. Otherwise, let me know that the first article is not about snack chips.","First article is not about the snacks, chips.","1. Type ""chips"" in the News search box and press Enter. 
+2. Read the first article to determine whether it is about snack chips. 
+3. As the first article is about processor chips, send a message to the user: ""First article is not about snack chips."" 
+",Helpful
+Multi,"Find the fastest-growing city in Utah, based on its Wiki article. Then search that city's name on News and tell me the publication date of the second search result.",18-Dec-24,"1. Type ""Utah"" in the Wiki search box and press Enter. 
+2. Identify the county described as the fastest growing, which is Summit. Remember the name of the county. 
+3. Switch to News search. 
+4. Type the name of that county, ""Summit"", in the News search box and press Enter. 
+5. Identify the publication date of the second search result and send it as a message to the user: ""December 18, 2024"". 
+",Irrelevant
+Multi,"Place an order for an Oval Mosaic Wall Mirror if you can find a news article on Johan Cruyff. If you place the order, share the confirmation code with me. Otherwise, let me know that you didn’t place the order.",4AA17FD340,"1. Type ""Johan Cruyff"" in the News search box and press Enter. 
+2. Check whether any relevant news articles are found. You will find at least one relevant article. 
+3. Switch to Shop search. 
+4. Type ""Oval Mosaic Wall Mirror"" in the search box and press Enter. 
+5. Visit the product page of the first search result. 
+6. Click ""Buy Now"" and retrieve the confirmation code. Send it as a message to the user: ""4AA17FD340"". 
+",Irrelevant
+Multi,"Search ""El Paso, Texas"" on Wiki and find the last sentence in the article’s content. Has the event mentioned in the last sentence been covered by any news article?",Yes,"1. Type ""El Paso, Texas"" in the Wiki search box and press Enter. 
+2. Scroll to the bottom of the content and identify the last sentence. Identify the specific event or topic mentioned in that sentence. Remember this fact. 
+3. Switch to News search. 
+4. Search for that specific event to see if it has coverage. You can start by searching ""El Paso, Texas"" and see whether the first few articles cover that fact from Wiki. 
+5. As the fact has been covered, send a message to the user: ""Yes"". 
+",Helpful
+Multi,"What happened at the end of the book ""The Neptune Secret""?",No such book exists,"1. Based on the query, searching Wiki is the most appropriate first step. Go to Wiki.
+2. In the Wiki search bar, type ""The Neptune Secret"" and press Enter.
+3. When no relevant results for a book titled The Neptune Secret are found, reply to the user with: ""No such book exists.""",Irrelevant

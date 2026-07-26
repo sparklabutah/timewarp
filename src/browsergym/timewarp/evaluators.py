@@ -11,7 +11,23 @@ from typing import Union, Any
 
 from playwright.sync_api import Page
 
+from .normalization import (
+    as_entry_list,
+    contains_entry,
+    equals_entry,
+    extract_numbers,
+    find_entry,
+    numbers_match,
+    scope_text,
+    to_decimal,
+)
+
 logger = logging.getLogger(__name__)
+
+
+def _load_config(config_file: Union[Path, str]) -> dict:
+    with open(config_file, "r") as f:
+        return json.load(f)
 
 
 class Evaluator:
@@ -84,6 +100,216 @@ class ExactMatchEvaluator(Evaluator):
             return float(pred == ref)
 
         return 0.0
+
+
+class DeterministicEvaluator(Evaluator):
+    """Base class for verifiers that score a free-text answer without an LLM.
+
+    Subclasses read their configuration from ``config["eval"]["reference_answers"]``
+    and must raise :class:`ValueError` on a malformed spec rather than returning
+    0.0 -- a silent zero is indistinguishable from a genuinely failed episode.
+    """
+
+    #: Key inside ``reference_answers`` holding this verifier's spec, if nested.
+    spec_key: str = ""
+
+    def _answer(self, trajectory: list, scope: str) -> str:
+        raw = self.get_last_action(trajectory).get("answer", "")
+        return scope_text(raw, scope)
+
+    def _references(self, config_file: Union[Path, str]) -> dict:
+        configs = _load_config(config_file)
+        references = configs.get("eval", {}).get("reference_answers")
+        if not isinstance(references, dict):
+            raise ValueError(
+                f"{type(self).__name__} requires an 'eval.reference_answers' object "
+                f"(task_id={configs.get('task_id')})"
+            )
+        return references
+
+
+class StringMatchEvaluator(DeterministicEvaluator):
+    """Match a free-text answer against string references.
+
+    Supported keys inside ``reference_answers``:
+
+    ``exact_match``
+        String or list of strings; the normalized answer must equal *any* of
+        them. Use only when the answer is expected to be a bare value.
+    ``must_include``
+        List of entries that must *all* appear in the answer, matched on word
+        boundaries. Each entry may offer ``" |OR| "`` alternatives.
+    ``must_exclude``
+        List of entries that must *not* appear. Reserved for tokens that cannot
+        occur in any correct answer (e.g. the wrong option of a multiple choice).
+    ``scope``
+        ``"full"`` (default) or ``"first_sentence"``.
+
+    Entries written as ``^...$`` are treated as regexes over the normalized text.
+    """
+
+    def __call__(
+        self,
+        trajectory: list,
+        config_file: Path | str,
+        page: Page | None = None,
+        client=None,
+    ) -> float:
+        references = self._references(config_file)
+        scope = references.get("scope", "full")
+        answer = self._answer(trajectory, scope)
+
+        exact = as_entry_list(references.get("exact_match"), "exact_match")
+        includes = as_entry_list(references.get("must_include"), "must_include")
+        excludes = as_entry_list(references.get("must_exclude"), "must_exclude")
+
+        if not (exact or includes or excludes):
+            raise ValueError(
+                "string_match requires at least one of 'exact_match', "
+                "'must_include' or 'must_exclude' in reference_answers"
+            )
+
+        if exact and not any(equals_entry(answer, entry) for entry in exact):
+            logger.debug("string_match: no exact_match alternative matched %r", answer)
+            return 0.0
+
+        for entry in includes:
+            if not contains_entry(answer, entry):
+                logger.debug("string_match: missing required %r in %r", entry, answer)
+                return 0.0
+
+        for entry in excludes:
+            if contains_entry(answer, entry):
+                logger.debug("string_match: forbidden %r present in %r", entry, answer)
+                return 0.0
+
+        return 1.0
+
+
+class NumberMatchEvaluator(DeterministicEvaluator):
+    """Match numeric answers regardless of formatting.
+
+    Spec lives at ``reference_answers.number_match``::
+
+        {"value": 7000000, "rel_tolerance": 0.1}
+        {"values": [5, 1.8], "abs_tolerance": 0.01}
+
+    Every required value must be found among the numbers parsed out of the
+    answer. Comparison is exact unless a tolerance is given; ``values`` entries
+    may be bare numbers or objects carrying their own tolerances.
+    """
+
+    spec_key = "number_match"
+
+    def __call__(
+        self,
+        trajectory: list,
+        config_file: Path | str,
+        page: Page | None = None,
+        client=None,
+    ) -> float:
+        references = self._references(config_file)
+        spec = references.get(self.spec_key)
+        if not isinstance(spec, dict):
+            raise ValueError("number_match requires a 'number_match' object in reference_answers")
+
+        answer = self._answer(trajectory, spec.get("scope", "full"))
+        default_rel = spec.get("rel_tolerance")
+        default_abs = spec.get("abs_tolerance")
+
+        if "values" in spec:
+            raw_requirements = spec["values"]
+            if not isinstance(raw_requirements, list) or not raw_requirements:
+                raise ValueError("number_match 'values' must be a non-empty list")
+        elif "value" in spec:
+            raw_requirements = [spec["value"]]
+        else:
+            raise ValueError("number_match requires a 'value' or 'values' key")
+
+        candidates = extract_numbers(answer)
+        if not candidates:
+            logger.debug("number_match: no numbers found in %r", answer)
+            return 0.0
+
+        for requirement in raw_requirements:
+            if isinstance(requirement, dict):
+                expected = to_decimal(requirement["value"])
+                rel = requirement.get("rel_tolerance", default_rel)
+                abs_ = requirement.get("abs_tolerance", default_abs)
+            else:
+                expected = to_decimal(requirement)
+                rel, abs_ = default_rel, default_abs
+
+            if not any(numbers_match(c, expected, rel, abs_) for c in candidates):
+                logger.debug("number_match: %s not found among %s", expected, candidates)
+                return 0.0
+
+        return 1.0
+
+
+class ListMatchEvaluator(DeterministicEvaluator):
+    """Check that an answer enumerates every element of a reference list.
+
+    Spec lives at ``reference_answers.list_match``::
+
+        {"items": [["koalas"], ["kangaroos |OR| kangaroo"]],
+         "ordered": false,
+         "forbidden": []}
+
+    Each item is a list of interchangeable spellings (a bare string is accepted
+    as a one-element list); every item must appear in the answer. With
+    ``ordered: true`` the items' first occurrences must appear in the given
+    order, which is how sequence answers (navigation paths, rankings) are
+    checked. ``forbidden`` entries must not appear at all.
+    """
+
+    spec_key = "list_match"
+
+    def __call__(
+        self,
+        trajectory: list,
+        config_file: Path | str,
+        page: Page | None = None,
+        client=None,
+    ) -> float:
+        references = self._references(config_file)
+        spec = references.get(self.spec_key)
+        if not isinstance(spec, dict):
+            raise ValueError("list_match requires a 'list_match' object in reference_answers")
+
+        items = spec.get("items")
+        if not isinstance(items, list) or not items:
+            raise ValueError("list_match requires a non-empty 'items' list")
+
+        answer = self._answer(trajectory, spec.get("scope", "full"))
+        ordered = bool(spec.get("ordered", False))
+
+        offsets = []
+        for item in items:
+            alternatives = as_entry_list(item, "list_match.items entry")
+            if not alternatives:
+                raise ValueError("list_match items must not be empty")
+            matches = [
+                offset
+                for alternative in alternatives
+                for offset in (find_entry(answer, alternative),)
+                if offset is not None
+            ]
+            if not matches:
+                logger.debug("list_match: missing item %r in %r", alternatives, answer)
+                return 0.0
+            offsets.append(min(matches))
+
+        if ordered and any(a >= b for a, b in zip(offsets, offsets[1:])):
+            logger.debug("list_match: items out of order (offsets=%s)", offsets)
+            return 0.0
+
+        for entry in as_entry_list(spec.get("forbidden"), "list_match.forbidden"):
+            if contains_entry(answer, entry):
+                logger.debug("list_match: forbidden %r present in %r", entry, answer)
+                return 0.0
+
+        return 1.0
 
 
 def _normalize_openai_response_text(response: Any) -> str:
@@ -280,6 +506,19 @@ class EvaluatorComb:
         return score
 
 
+#: Evaluator identifiers accepted in a task's ``eval.eval_types``. Everything
+#: except ``llm_judge`` is deterministic.
+SUPPORTED_EVAL_TYPES = (
+    "string_match",
+    "number_match",
+    "list_match",
+    "exact_match",
+    "llm_judge",
+)
+
+DETERMINISTIC_EVAL_TYPES = tuple(t for t in SUPPORTED_EVAL_TYPES if t != "llm_judge")
+
+
 def evaluator_router(config_file: Path | str) -> EvaluatorComb:
     """Route to appropriate evaluator based on config"""
     with open(config_file, "r") as f:
@@ -292,13 +531,23 @@ def evaluator_router(config_file: Path | str) -> EvaluatorComb:
         match eval_type:
             case "exact_match":
                 evaluators.append(ExactMatchEvaluator())
+            case "string_match":
+                evaluators.append(StringMatchEvaluator())
+            case "number_match":
+                evaluators.append(NumberMatchEvaluator())
+            case "list_match":
+                evaluators.append(ListMatchEvaluator())
             case "llm_judge":
                 # Get model from config if specified, otherwise use default
                 model = configs["eval"].get("llm_model", "gpt-5.1-2025-11-13")
                 evaluators.append(LLMJudgeEvaluator(model=model))
             case _:
                 raise ValueError(
-                    f"eval_type {eval_type} is not supported. Supported types: 'exact_match', 'llm_judge'"
+                    f"eval_type {eval_type} is not supported. Supported types: "
+                    f"{', '.join(SUPPORTED_EVAL_TYPES)}"
                 )
+
+    if not evaluators:
+        raise ValueError("eval_types must list at least one evaluator")
 
     return EvaluatorComb(evaluators)

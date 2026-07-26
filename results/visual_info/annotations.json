@@ -1,0 +1,3929 @@
+[
+ {
+  "id": "train-000",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "List all articles from the 'Related Pages' sections of the Biophysics and Biochemistry pages.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Pure text retrieval of link lists from named sections; no visual or positional reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Listing link names from named 'Related Pages' sections is pure text retrieval; accessibility tree contains all of it."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-001",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Did the Physics article's 'Approaches in Physics' section mention the names of more scientists than the Chemistry article's \"Atoms\" section?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting scientist names in named sections' text and comparing; pixels add nothing over text."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting scientist names in two named sections is text reading and comparison; pixels add nothing."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-002",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Find the largest city listed on the Wiki pages for Canada and Australia. Then tell me the population difference between those two cities.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Text facts (largest city, populations) plus arithmetic; no visual or layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Facts (largest city, populations) and arithmetic from page text; fully solvable text-only."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-003",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Visit the pages of the birthplaces of Albert Einstein's first and second sons. Then calculate the population difference between those places.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Biographical facts and populations from article text plus arithmetic; 'first/second sons' is birth order, not page layout."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Navigation via link text plus population facts and subtraction; all textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-004",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Visit the articles for Physics, Chemistry, and Biology to identify which one(s) contain a section that explicitly discusses the discipline's relationship with mathematics.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Checking section headings/text for mathematics discussion; document structure is in the text observation."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Checking section headings/content for a mathematics-relationship discussion is text reasoning only."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-005",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "In the article on Language, visit the first hyperlink in the \"Types of Languages\" section. Then check the \"Related Pages\" section of the visited article. Is there any article that appears in both this section and the \"Related Pages\" section of the Language article? If so, list the common pages; otherwise, answer \"None\".",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "References link position ('first hyperlink in section'); order is in DOM, but rendering aids reliability, matching rubric's positional link-ordinal pattern."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Solvable via DOM link order, but 'first hyperlink in the section' is easier to confirm visually, like the calibration link-order example."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-006",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Visit the first article listed in the \"Related Pages\" sections of the Time and War articles. Then list all the related pages mentioned in each of those visited articles.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "'First article listed' is positional selection of a link element; rendering materially aids reliability per rubric's link-ordinal example."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "'Related Pages' is an explicit list; first item and subsequent listings are unambiguous in the text tree."
+  },
+  "final": "Irrelevant",
+  "decision": "adjudicated",
+  "adjudication_rationale": "'First listed' operates inside an explicitly named 'Related Pages' section; ordinals in named-section lists are unambiguous in the text tree, matching the rubric's named-section Irrelevant calibration."
+ },
+ {
+  "id": "train-007",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Visit the pages of the people who were murdered in the \"Unnatural causes of death\" section of the \"Death\" article. How many of these visited articles have a \"Legacy\" section?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Reading named section text and checking visited pages for 'Legacy' sections; headings are text."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Named-section reading, link following, and checking for a 'Legacy' heading are all textual operations."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-008",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Visit the pages of the hyperlinked geographic regions mentioned in the \"Trees\" section of the Australia page. Among the visited pages, list the titles of the pages that do not have a section on languages.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Hyperlink status and section presence are in DOM/text; exhaustive, no positional or visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Hyperlink status and section presence are in the accessibility tree; pure text navigation and filtering."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-009",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Visit the article on the first rapper mentioned on Kid Cudi’s page (excluding Kid Cudi himself). How many studio albums has that rapper released (excluding collaborative albums)?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "'First rapper mentioned' is prose mention order plus semantic identification; album counts are text facts."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "'First rapper mentioned' follows text reading order; counting studio albums is textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-010",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "What is the last word of the first section of the article on Metallica's drummer?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Extracting last word of first section; sections and words are fully text-observable."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "First section is heading-delimited in text; extracting its last word needs no pixels."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-011",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Visit the article on the first country mentioned in the article on Southeast Asia. If that article has a politics section, go to the article on the first politician mentioned in that section. Otherwise, go to the article on the first island mentioned on that country’s page. What are the last three words of the main content of the final visited article (excluding references and \"Related Pages\")?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Mention-order and word extraction with exclusions explicitly named; all text semantics, no element-position or layout reference."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Text-solvable, but judging where 'main content' ends versus references/related-pages chrome is materially easier with the rendered page."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Answer hinges on where 'main content' ends versus references/Related-Pages/footer chrome; the rubric's calibration treats this content-vs-chrome boundary judgment as Helpful despite being text-solvable."
+ },
+ {
+  "id": "train-012",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Trace this path: start at the \"Territory\" page → the first country mentioned → a country that shares its southern border. What is the last word of the first section (the introduction counts as a section) on that final visited page?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Semantic navigation via mentions and geographic borders, then word extraction from sections; entirely text-based."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "First-mention order, border facts, and first-section text are all available and unambiguous in the text tree."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-013",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Visit the pages of all the countries in the United Kingdom. Which of these countries have a dedicated section on their culture?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Checking for dedicated culture sections via headings; section structure is text."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Checking for culture section headings across UK country pages is pure text inspection."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-014",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Visit the article about the earliest known statistics mentioned in the Statistics article. List all the countries mentioned on that page.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Text comprehension to find earliest statistics, then listing countries mentioned; pure text retrieval."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Following a textual mention and listing countries named on a page is text retrieval only."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-015",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Navigate to the article on the first specialized tool mentioned in the Physics article. Then navigate to the last hyperlink in the main content of that page (excluding references and related pages). How many related pages does the final visited article have?",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "References \"last hyperlink in the main content\"; link order is in DOM, but separating main content from references/related pages is easier visually."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Link order is in DOM, but judging main-content boundaries versus references/related-pages chrome is easier with rendered layout."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-016",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Recursively follow the first link in the main content of each page, starting from the \"Technology\" page. What is the title of the final article you reach before a “page does not exist” message appears?",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "\"First link in the main content\" is a positional reference; DOM gives link order, but visual rendering clarifies main-content boundaries."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Recursive 'first link in main content' is DOM-solvable, but visually separating main content from chrome improves reliability each hop."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-017",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Recursively follow the first link in the main content of each page, starting from the \"Technology\" page, until you reach an article that does not exist. List the titles of all the valid pages in the order that you visited.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Same recursive \"first link in the main content\" traversal; text suffices, but visually judging content region improves reliability."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Same first-link-in-main-content traversal; text suffices, but layout view helps identify content area reliably across many pages."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-018",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "What is the name of the TV character whose singing is compared to death metal?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Pure text retrieval of a fact stated in article prose; no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Finding a character whose singing is compared to death metal is pure article-text search and reading."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-019",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "What type of material is used to make ceramic glass?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Factual material question answered from article text; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Material used for ceramic glass is a text fact in the article; pixels add nothing."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-020",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "What is the total area of El Salvador, according to its article?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Numeric fact (area) read directly from article text."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Total area of El Salvador is a stated text fact; pure retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-021",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "What is Thom Yorke's first solo album, according to his article?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Album name is a textual fact in the article; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "First solo album is text in Thom Yorke's article; no visual content needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-022",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "What is the name of the latest album by Clipse, according to their article?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Latest album name is stated in article text; pure text retrieval."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Latest Clipse album name is plain article text; pure retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-023",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Navigate to the page about the highest point in El Salvador and tell me its height.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Navigate by link text and read a numeric height; all textual, no layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Navigate via text links to the highest point's page and read its height; all textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-024",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Find the birth date of the first person mentioned in the scientific method example in the Science article.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "\"First person mentioned\" is text order, preserved in DOM text; birth date is textual fact."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "First person mentioned in an example follows text order, available in the accessibility tree; birth date is text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-025",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "According to their respective articles, did Rio de Janeiro host the Summer Olympic Games before Beijing?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Date comparison across two articles; pure text facts and reasoning."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Comparing Olympic hosting years from two articles is text fact comparison."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-026",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Based on the relevant articles, which Australian state uses the Cooktown Orchid as its emblem?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Emblem-to-state fact stated in article text; no visual identification needed."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Which state uses the Cooktown Orchid emblem is stated in article text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-027",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "How many times in total do you encounter the word \"pigeon\" in these articles: \"Peru\", \"Pusha T\", and \"Doom (2016 video game)\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting word occurrences across article text; entirely textual."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting word occurrences across three articles is done on page text; text-only is ideal."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-028",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Which three biogeochemical cycles were mentioned in the article on Biology?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Listing named cycles from article text; pure text retrieval."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Listing three biogeochemical cycles named in the Biology article is pure text extraction."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-029",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "How many sections are there in the article on the general theory of relativity (including the introduction section but excluding the Related Pages and See Also sections)?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Section count derives from headings and document structure, which the text observation contains; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Section headings are explicit structure in the accessibility tree; counting them needs no pixels."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-030",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Visit the first hyperlink in the article \"CryEngine\". What is the name of the country mentioned in the first section of the visited page?",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Matches calibration: hyperlink order is in DOM, but judging article content versus surrounding chrome is easier visually."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Link order is in the DOM, but visually judging what counts as article content versus surrounding chrome improves picking the true first hyperlink."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-031",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Which fast food restaurants were mentioned in the article on hamburgers?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Pure text retrieval: restaurant names mentioned in article text; no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Pure text retrieval: restaurant names appear in article text; pixels add nothing."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-032",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "How many of the hyperlinks from the \"History and geography\" section of the Rio de Janeiro page refer to places (excluding pages that don't exist)?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Named-section hyperlinks, link names, and page existence are all in text/DOM; section boundaries are structural headings."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Section-scoped link enumeration via headings, semantic place classification, and existence checks by visiting pages are all text operations."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-033",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Visit the article on the last grandmaster mentioned in Magnus Carlsen’s article, and tell me the birthplace of that grandmaster.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Mention order and birthplace are plain page text; no visual or layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Mention order and birthplace are plain article text; no visual content involved."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-034",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "List all the countries mentioned in the 'Antonio de Cabezón' article, and tell me their names in alphabetical order.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Text retrieval of country names plus alphabetical sorting; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Listing and alphabetizing country names from article text is pure text reasoning."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-035",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Start at the \"Valve Corporation\" article and sequentially visit the hyperlinks in that article. Stop when you find a hyperlink where the hyperlink text doesn't match the title of the page it leads to, and tell me the text of that hyperlink.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Sequential hyperlink traversal within the article: order is in DOM, but article-content versus chrome judgment is easier visually (calibration)."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Text-solvable via DOM link order and page titles, but seeing which links are article content versus chrome aids correct sequential traversal."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-036",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Start at the \"Valve Corporation\" article and sequentially visit the hyperlinks in that article. Stop when you find a hyperlink where the hyperlink text doesn't match the title of the page it leads to, and tell me the names of all the hyperlinks that you have visited.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Same sequential in-article hyperlink traversal; DOM gives order, visual view aids content-versus-chrome boundary per calibration."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Same traversal: DOM gives link order, yet visual layout helps separate article-content hyperlinks from navigation chrome for correct sequencing."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-037",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Start from the article on the country \"Angola\". Sequentially visit the hyperlinks in that article. Stop when you visit a hyperlink that doesn’t have a valid page, and tell me the text of that hyperlink.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Sequential traversal of hyperlinks in the article; order is textual but content-boundary judgment is easier visually (calibration analogy)."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Sequential link traversal works in text; visuals help delimit article-content links (and possibly styled broken links), improving order reliability."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-038",
+  "split": "train",
+  "set": "Wiki",
+  "goal": "Start at the article \"Crayon\" and serially visit the first five hyperlinks in the article's content. Tell me the titles of the articles that don't have a valid page.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "\"First five hyperlinks in the article's content\" mirrors calibration Helpful example; DOM has order, visuals ease content-boundary judgment."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "\"First five hyperlinks in the article's content\" — order is in DOM, but content-versus-chrome boundaries are easier judged visually."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-039",
+  "split": "train",
+  "set": "News",
+  "goal": "Which seems to be the deadlier accident (based on the number of casualties) from these two articles: (1) Serb pilots defend colleague in Air India Express disaster, and (2) Molten steel kills 32 workers in Liaoning, China? Mention the name of the article related to the deadlier accident.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Comparing casualty numbers stated in article text; pure text reasoning."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Comparing casualty numbers stated in article text; no pixel-only information needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-040",
+  "split": "train",
+  "set": "News",
+  "goal": "Which cities are mentioned in any one of these two articles: (1) Australia, NATO enhance ties, and (2) Two pieces of suspected plane debris from Maldives taken to Malaysia for analysis?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "City names appear in article text; pure text retrieval."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "City names are extracted from article text of two named articles; purely textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-041",
+  "split": "train",
+  "set": "News",
+  "goal": "Which countries are mentioned in both of these articles: (1) Kenya deports Somali businessman, and (2) Rwandan genocide suspect arrested in Uganda?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Country names in both articles are text; set intersection is text reasoning."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Country intersection across two articles' text; pure text reasoning."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-042",
+  "split": "train",
+  "set": "News",
+  "goal": "Compare the first two articles that appear when you search for articles on Morocco. Are these two articles related to the same event?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Search-result order is unambiguous list order in DOM; comparing events is text reasoning; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Search result order is a simple DOM list; comparing two articles' events is textual reasoning."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-043",
+  "split": "train",
+  "set": "News",
+  "goal": "Is there any news article regarding San Diego that was published in 2024?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Search plus publication-date check; dates are text; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Search plus reading publication dates, which are text on the page."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-044",
+  "split": "train",
+  "set": "News",
+  "goal": "Were these two articles published on the same day: (a) Former guitarist of pioneering death metal band Possessed dies in shootout with San Francisco police, and (b) Seven civilians killed in Iraq?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Publication dates are page text; simple textual comparison."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Publication dates of two named articles are page text; comparison needs no visuals."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-045",
+  "split": "train",
+  "set": "News",
+  "goal": "Navigate to the 23rd article in the search results for \"crime patrol\". Then take the first two words of the title of the visited article, search those two words, and report the title of the last article in the search results.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Ordinal references ('23rd', 'last' in search results) are DOM-ordered text, but layout/pagination view aids reliable counting; target titles are textual."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Ordinals (23rd, last) exist in DOM order, but visually delimiting the search-result list from surrounding chrome aids reliable counting."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-046",
+  "split": "train",
+  "set": "News",
+  "goal": "Follow this navigation path: Search \"Utah\", visit the fourth search result, identify the name of the first city in the body/content of the article, and search its name. Visit the fourth search result and tell me the name of the last state mentioned in the visited article. If you encounter a redirect link at any point, then visit that link. If any of the articles are not found, then report the task as incomplete.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Text-solvable, but 'first city in body/content' needs scoping article content versus chrome, easier visually; ordinal result navigation similar."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Text solves it, but judging 'body/content' boundaries and fourth-result positions is easier with rendered layout."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-047",
+  "split": "train",
+  "set": "News",
+  "goal": "How many articles did you find on India winning the 2025 Champions Trophy?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting matching articles via search; titles and topics are text. No visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Search and count matching articles by title text; pixels add nothing."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-048",
+  "split": "train",
+  "set": "News",
+  "goal": "How many suspects have been arrested so far in connection with Pheobe Bishop's murder?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Numeric fact retrieved from article text; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Numeric fact retrieved from article text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-049",
+  "split": "train",
+  "set": "News",
+  "goal": "I heard workers died in an accident involving molten steel in China. Can you tell me when the last similar major incident happened in China?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Date/fact retrieval from article text; 'last similar incident' is chronological reasoning over text, not layout."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Date fact retrieved from article text about a prior incident."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-050",
+  "split": "train",
+  "set": "News",
+  "goal": "I heard Utah refused radioactive waste from a Maine plant. When did that plant stop producing electricity?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Date fact from article text; pure text retrieval, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Date fact from article text; pure text retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-051",
+  "split": "train",
+  "set": "News",
+  "goal": "I heard Greta Thunberg was named Time magazine’s Person of the Year. What is the first article about this?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "'First article' resolves via publication dates or DOM result order, both textual; no layout or image content involved."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Search and report the first matching article title; result order is trivially available in text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-052",
+  "split": "train",
+  "set": "News",
+  "goal": "How many articles did you find on Ken Lay (articles that consist only of redirect pages should be excluded)?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting search results and excluding redirect pages uses page text only; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Count search results and check redirect-page text; all textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-053",
+  "split": "train",
+  "set": "News",
+  "goal": "Can you tell me the name of the article on the Indian prime minister testing positive for COVID-19?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Title retrieval via search; article names are text."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Search and report an article title; pure text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-054",
+  "split": "train",
+  "set": "News",
+  "goal": "Follow this navigation path: search for \"England,\" visit the second article in the results, then take the first three words of its main content and search them. Visit the fifth search result. What is the first sentence of that article’s main content? If you encounter a redirect link at any point, follow the redirect. If any of the articles are not found, report the task as incomplete.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "'First three words of main content' and 'first sentence' require content-versus-chrome scoping, easier visually; otherwise text-solvable."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Solvable in text, but identifying 'main content' start (first words/sentence) versus bylines/chrome is easier visually."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-055",
+  "split": "train",
+  "set": "News",
+  "goal": "How many external links are provided in the article \"World Health Organization declares COVID-19 pandemic\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting external links; link names and URLs exist in DOM/text representation. No visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting links listed under an external-links/sources section; links are text in the DOM."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-056",
+  "split": "train",
+  "set": "News",
+  "goal": "Does Stephen Hawking appear in the search results when you search \"Stephen Curry\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Scanning search result titles for a name; pure text check."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Scan search-result titles for a name; pure text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-057",
+  "split": "train",
+  "set": "News",
+  "goal": "There is an article called \"2007 European football friendly match: England vs. Germany\". Do you think the publication year of the article is consistent with the year when the match took place?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Comparing publication year with event year; dates and titles are text."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Compare textual publication date with year in title/content; no pixels needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-058",
+  "split": "train",
+  "set": "News",
+  "goal": "Did the 2024 article, \"Indian flooding displaces thousands\", get published before the 2024 article \"Satellite radio approved in Canada\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Comparing publication dates of two named articles; dates are text."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Compare two textual publication dates."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-059",
+  "split": "train",
+  "set": "News",
+  "goal": "Based on the article, \"Allahabad High Court grants bail to accused linked to Umesh Pal murder case\", when was Umesh Pal shot?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Date fact from a named article's text; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Date fact retrieved from named article's text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-060",
+  "split": "train",
+  "set": "News",
+  "goal": "Navigate to the article \"Hurricane Emily is second strike for Jamaica\", find the name of the last country mentioned, search for the name of that country, and tell me the title of the last search result.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Positional references ('last country mentioned', 'last search result') match the calibration's Helpful pattern; content-vs-chrome boundaries are easier judged visually, though DOM order suffices."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Ordinal cues ('last country mentioned', 'last search result') exist in DOM order, but layout view helps delimit article content and list boundaries."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-061",
+  "split": "train",
+  "set": "News",
+  "goal": "Based on these two articles: (1) “At least eight dead after drone strikes in Pakistan” and (2) “Tornado touches down in Joplin, Missouri”, which appears to describe the deadlier incident?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Comparing casualty counts stated in two named articles' text; pure text reasoning, no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Comparing casualty numbers stated in the text of two named articles; pure text reasoning."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-062",
+  "split": "train",
+  "set": "News",
+  "goal": "How many people were killed in the 2024 Joplin tornado?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Numeric fact retrieval from article text; no visual or spatial reference in the goal."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Death toll is a fact stated in the article's text; no pixels needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-063",
+  "split": "train",
+  "set": "News",
+  "goal": "Based on the article, \"Pilots spot 'UFOs' near the Channel Islands\", is it true that the UFOs are said to have come from Neptune?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Verifying a claim against a named article's text content; pure text reading, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Fact-check of a claim appearing in the named article's prose; text retrieval only."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-064",
+  "split": "train",
+  "set": "Shop",
+  "goal": "What unique sizes are available for all the men's and women's jeans?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Sizes appear as attribute/option text on product pages; enumerating them is text retrieval, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Sizes are option text, but photos help confirm which listings are actually jeans when enumerating all men's and women's jeans."
+  },
+  "final": "Irrelevant",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Jeans are identified by title text and sizes are option text; enumeration plus listing is pure text retrieval. Goal names no visual attribute, so photos add nothing material."
+ },
+ {
+  "id": "train-065",
+  "split": "train",
+  "set": "Shop",
+  "goal": "What colors are available for the Men's Running Tennis shoes?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Available colors of a named product are listed as option text, not only in photos; pure text enumeration, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Color options are listed as text on the named product's page; text observation contains them."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-066",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Are the FIN86 Men's Elastic High Waisted Shorts made of the same material as the Yinimo Men's Gym Shorts? If not, how do they differ?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Material composition comes from description/attribute text of two named products; text comparison, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Material composition appears in the description/attribute text of both named products; textual comparison."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-067",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Does the longest variant of the Lindy DisplayPort to HDMI cable exceed the length of the longest variant of the Kodak HDMI Mini Cable?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Cable length variants are attribute/option text; numeric comparison over text, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Length variants are option text on two named products; numeric comparison over text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-068",
+  "split": "train",
+  "set": "Shop",
+  "goal": "What is the total price of all the toy cars available in the shop?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Prices and product identification via titles/descriptions are text; summation is text reasoning, no visual reference in goal."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Prices are text, but photos materially help verify which listings are toy cars when enumerating the whole category."
+  },
+  "final": "Irrelevant",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Toy cars are identifiable from titles/descriptions; ambiguous cases are semantic, not perceptual. Prices and summation are exactly the rubric's Irrelevant 'prices, calculations' clause."
+ },
+ {
+  "id": "train-069",
+  "split": "train",
+  "set": "Shop",
+  "goal": "How many grams of protein are in a standard serving of Schoolyard cheese puffs?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Nutrition figure retrieved from product description/attribute text in this environment; goal contains no image or layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Protein per serving is description/attribute text on a named product; pure text lookup."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-070",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Is it recommended to dry clean the Burband Women's High Waist Bike Shorts?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Care instructions are description text of a named product; pure text lookup, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Care instructions (dry clean) are description text on the named product's page."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-071",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Does the description of the XXBR Summer T-shirts mention the material type?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Goal explicitly asks about the description text mentioning material; purely textual check, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Question is explicitly about the description text mentioning material; reading text suffices."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-072",
+  "split": "train",
+  "set": "Shop",
+  "goal": "What is the price of the most expensive bookshelf?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Prices are text; finding the maximum across bookshelf listings is text comparison, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Prices are text, but photos aid confirming which listings are bookshelves when finding the most expensive one."
+  },
+  "final": "Irrelevant",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Bookshelves are identified by title text; finding the maximum price is text comparison, which the rubric explicitly lists as Irrelevant. Photos give no material gain."
+ },
+ {
+  "id": "train-073",
+  "split": "train",
+  "set": "Shop",
+  "goal": "What's the warranty period of the Samsung remote for the UN85S9VF model?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Warranty period is stated in product description/attribute text; pure text retrieval, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Warranty period is stated in the named product's description text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-074",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Does the Samsung remote for the UN85S9VFXZA model contain batteries?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Battery inclusion is an attribute/description text fact of a named product; no visual reference in goal."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Batteries-included is a standard text attribute on the named product's page."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-075",
+  "split": "train",
+  "set": "Shop",
+  "goal": "What's the material of the Yinimo Men's Gym Shorts?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Material is stated in product attribute/description text; pure text retrieval with no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Material is stated in the named product's description/attribute text; pure text retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-076",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Is the Goya Foods wafer marketed as a Latino snack?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Marketing claim appears in description text; no visual, image, or layout reference in the goal."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Marketing claim appears in the product's description text; no image content needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-077",
+  "split": "train",
+  "set": "Shop",
+  "goal": "I'm looking to buy a jute pouf. Can you please search the shop and let me know how many such products are available?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Search and count products identified by title/attribute text; no visual or spatial reference in goal."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Titles identify jute poufs, but photos materially aid judging membership across listings when counting."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Counting requires a membership judgment per listing; titles suffice, but photos disambiguate poufs from covers/similar items, materially improving reliability — rubric's photo-disambiguation case."
+ },
+ {
+  "id": "train-078",
+  "split": "train",
+  "set": "Shop",
+  "goal": "How many socks are available in the shop?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting products identifiable from listing text; pixels add nothing over text representation."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Sock listings are identifiable from titles, but photos improve reliability of deciding which results are actually socks."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Text-only solvable, but photos materially improve deciding which results are actually socks across many listings — matches Helpful's product-photo disambiguation clause."
+ },
+ {
+  "id": "train-079",
+  "split": "train",
+  "set": "Shop",
+  "goal": "How many search results appear when you search the word \"cat\" in the shop?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting search results is pure text/DOM information; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Search-result count is plain text/DOM on the results page; pixels add nothing."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-080",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Is there any red HDMI cable in the shop? If yes, order a single unit and tell me the confirmation code. Otherwise, say that none are available.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Color 'red' appears in option/listing text so text-only suffices, but photos aid color confirmation, per red-shirt calibration."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Red appears as option/title text so text suffices; photos confirm the color, like the red-shirt calibration case."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-081",
+  "split": "train",
+  "set": "Shop",
+  "goal": "How many rugs are available to buy?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting rugs via titles and search text; no visual or layout reference."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Rug titles suffice, but photos help distinguish rugs from runners/mats while counting."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Rug versus runner/mat membership is textually ambiguous across listings; photos materially aid the count. Not pure text retrieval."
+ },
+ {
+  "id": "train-082",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Is there any bikini with a wrap skirt available in the shop?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "'Wrap skirt' is a product-type descriptor findable in title/description text; goal has no explicit visual reference."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Wrap-skirt feature is usually in title/description text; a photo materially confirms the set includes it."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "'Wrap skirt' appears in listing text, so text-only suffices; photos materially confirm the set includes it — parallels the red-shirt calibration, Helpful not Required."
+ },
+ {
+  "id": "train-083",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Can I purchase the Dota 2 video game from this shop?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Availability check by searching a named product; pure text retrieval."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Availability decided by searching the name and reading listing titles/descriptions; no visual attribute involved."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-084",
+  "split": "train",
+  "set": "Shop",
+  "goal": "How many electric scooters are available in the shop?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting products identified by listing text; no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Titles state 'electric scooter', but photos help separate electric from kick scooters across listings."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Titles usually say electric or kick, but photos materially improve separating them across listings when counting — Helpful per the disambiguation clause."
+ },
+ {
+  "id": "train-085",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Can you find any Nintendo Switch console in the shop?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Named-product availability check; titles/descriptions distinguish console textually; no visual reference in goal."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Many accessory listings contain 'Nintendo Switch'; titles decide, but photos speed spotting an actual console."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Many accessory listings contain 'Nintendo Switch'; verifying console versus accessory across results is materially faster and more reliable with photos, though titles decide."
+ },
+ {
+  "id": "train-086",
+  "split": "train",
+  "set": "Shop",
+  "goal": "I'm looking for a pair of jeans for less than $30. The size should be XL. Once you complete the order, share the completion code.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Price, size, and ordering flow are all text/DOM; no color or visual reference in goal."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Price and size are text options, but photos aid selecting genuine jeans among similar apparel listings."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Mirrors calibration 'find shirt under $20 and buy it' (Helpful): price/size are text, but photos aid selecting genuine jeans among similar apparel listings."
+ },
+ {
+  "id": "train-087",
+  "split": "train",
+  "set": "Shop",
+  "goal": "I'm looking for a box of cookies under $5. Can you please place the order and share the completion code with me?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Product type and price constraint are text; ordering is DOM interaction; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Price and titles suffice, but photos help confirm a cookie box among similar snack listings."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Category purchase under a price cap, like the calibration shirt example; photos materially help confirm a cookie box among similar snack listings."
+ },
+ {
+  "id": "train-088",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Order these products and share the confirmation codes: Welch's Orange Pineapple Juice, Stirrings Simple Classic Cocktail Mix Mojito, and Italian Basil Pesto.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Ordering exactly named products; identification and checkout are fully textual."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Three exactly named products; searching, title matching, and checkout are fully text-based."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-089",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Can you place an order for a Romwe wrap skirt and share the confirmation code with me? If there are size options, then please pick the medium size.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Named product and size option are text; ordering flow textual; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Brand, style, and size options are text, but photos confirm the wrap-skirt style before ordering."
+  },
+  "final": "Irrelevant",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Brand-plus-type name makes title matching decisive; size option and ordering are DOM text. Photos add nothing material — analogous to ordering fully named products."
+ },
+ {
+  "id": "train-090",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Order every variant of the Cravings by Zoe Valentine’s Day chocolates and share the confirmation codes.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Variants and ordering are option text and buttons in the DOM; goal contains no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Product is named exactly; variants are option text on the product page. Ordering flow is fully text-driven."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-091",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Order all the skirts available in the shop and share the confirmation codes. If there are multiple options, then always pick the small size.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Skirt identification and size selection come from titles and option text; no visual or layout reference in the goal."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Titles/descriptions identify skirts textually, but photos materially help confirm which listings are actually skirts versus skirted or similar items."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Titles make text-only solvable, but exhaustively judging which listings are truly skirts (vs skirted swimsuits, skorts) is the rubric's photo-disambiguation clause; mirrors the red-shirt calibration, so not Irrelevant."
+ },
+ {
+  "id": "train-092",
+  "split": "train",
+  "set": "Shop",
+  "goal": "What is the focal length range in millimeters of the stock lens on the Canon PowerShot S3 camera product picture?",
+  "annotator_a": {
+   "label": "Required",
+   "rationale": "Goal targets the product picture itself; focal length markings on the pictured lens exist only in pixels."
+  },
+  "annotator_b": {
+   "label": "Required",
+   "rationale": "Asks what is printed on the lens in the product picture; that information exists only in the image pixels."
+  },
+  "final": "Required",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-093",
+  "split": "train",
+  "set": "Shop",
+  "goal": "How many of the color options for the Nautica headphones have two distinct visible colors?",
+  "annotator_a": {
+   "label": "Required",
+   "rationale": "Asks about 'visible' colors per option; visible appearance may differ from option names, so target information exists only in images."
+  },
+  "annotator_b": {
+   "label": "Required",
+   "rationale": "Counting visible colors per option is an image property; option name text is not a reliable equivalent of what's visible."
+  },
+  "final": "Required",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-094",
+  "split": "train",
+  "set": "Shop",
+  "goal": "What's the color of the Rifle Scope Mount Camera Adapter in the product picture?",
+  "annotator_a": {
+   "label": "Required",
+   "rationale": "Explicitly asks for the color shown in the product picture; that information exists only in pixels."
+  },
+  "annotator_b": {
+   "label": "Required",
+   "rationale": "Explicitly asks the color shown in the product picture; color exists only in pixels."
+  },
+  "final": "Required",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-095",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Place an order for the first pink socks that appear when you search for \"socks.\" Then share the confirmation code here. If you need to pick a size, please choose medium.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Pink typically appears in listing/option text so text-only suffices; photos aid picking the first pink listing, per red-shirt calibration."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Pink likely appears in title/option text, so text-only works, but thumbnails materially speed finding the first pink result."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-096",
+  "split": "train",
+  "set": "Shop",
+  "goal": "What's written on the body of the 20x50 Binoculars? If there are multiple 20x50 Binoculars, pick the first one from the search results.",
+  "annotator_a": {
+   "label": "Required",
+   "rationale": "Text written on the physical product body is readable only from the product photo, not the DOM."
+  },
+  "annotator_b": {
+   "label": "Required",
+   "rationale": "Text written on the physical binocular body is visible only in the product photo, not in page text."
+  },
+  "final": "Required",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-097",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Place an order for a Spider-Man superhero T-shirt with a white spider. The size should be Large. Once you complete the order, share the completion code.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "White-spider design detail is plausibly named in title/description, so text can suffice; photo confirmation materially improves disambiguation."
+  },
+  "annotator_b": {
+   "label": "Required",
+   "rationale": "The white spider is a property of the shirt's printed graphic, identifiable only from the product image, not listing text."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Like the red-shirt calibration, 'white spider' plausibly appears in title/description text; goal never cites the photo, so pixel-only isn't established — Required fails, photo confirmation materially aids disambiguation."
+ },
+ {
+  "id": "train-098",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Could you please order the most expensive cracker available in the Shop and send me the confirmation code?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Finding crackers and comparing prices uses listing text and prices; no visual reference in the goal."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Identify crackers by title text and compare prices; pure text retrieval and comparison."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-099",
+  "split": "train",
+  "set": "Shop",
+  "goal": "Which of the following items are available in the shop: Crayon, Candle, Face Lotion, and Electric Chair?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Availability checks via text search over product titles; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Availability check via search results and title text; no pixel information needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-100",
+  "split": "train",
+  "set": "Shop",
+  "goal": "How many times does the word \"Cotton\" appear on the product page (including Description, Features, Reviews) for \"Custom Polo Shirts for Men\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting word occurrences in page text sections; pure text reasoning."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting word occurrences in page text sections; entirely text-based."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-101",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Visit the Wiki article on the first country mentioned in the latest News article about TikTok. Based on that Wiki article, tell me the population of that country.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Latest article dates, first-country mention order, and population are all in text; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Latest article dates, first-mentioned country, and population are all text; DOM order gives mention order."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-102",
+  "split": "train",
+  "set": "Multi",
+  "goal": "I need you to run a quick check. Go to the “Quantum mechanics” article on Wiki and find the first article listed in the “Related pages” section. Search for the second word of that article’s title on News, visit the second search result, and tell me whether that news article contains the word “ship”.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Section listings, title words, search-result order, and word containment are all textual."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Named section lists, search result order, and word presence are all available in text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-103",
+  "split": "train",
+  "set": "Multi",
+  "goal": "First, verify whether “Brisling Sardines in BBQ Sauce” is kosher. If it is, look up “sardine” on Wikipedia and find the word from which its name is derived. If it is not, search for “Fish” on News and tell me the 20th search result.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Kosher status is attribute/description text; etymology and search-result order are textual; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Kosher status is a textual product attribute/description detail; remaining steps are text lookups and result ordering."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-104",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Visit the first article of the News search for the toy maker Mattel. Find the name of the first toy product mentioned in that article. Is that product available in the Shop? If so, how many such products are available?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Search-result order, first toy name in article text, and shop availability counts are all textual."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Article text, first toy mention, shop search, and result counting are all text-based reasoning."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-105",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Please find the fifth unique country mentioned on the “Anime” Wiki page, then search for that country’s name on News, and report the title of the thirteenth article in the search results.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Country mentions and search-result order are fully present in DOM text; no image, color, or layout-geometry reference in the goal."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Country mentions and search-result order are plain text in DOM order; counting to the fifth country or thirteenth result needs no pixels."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-106",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Does the Canon EOS Rebel T7i found in the Shop have a Wiki page? If yes, tell me the title of that Wiki page. Otherwise, find the most relevant page and tell me its title. If you find none of the pages to be relevant, just say \"Article not found\".",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Product-name lookup and Wiki title relevance are judged entirely from text; no visual content referenced."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Product lookup and Wiki title/relevance judgment rely entirely on searchable text; no image or layout information is involved."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-107",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Search for \"Apple\" on News. Is the first search result negative news about the tech company Apple? If yes, say \"Found negative news\". If not, order an “iPad Case Fit for iPad 9.7” and send me the confirmation code.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Headline sentiment, first-result order, and ordering by product title are all text; nothing exists only in pixels."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "First result is DOM order; sentiment judged from headline/article text; the product is named exactly, so text search and ordering suffice."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-108",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Does the “Once Upon A Time Queen Born In 1982 T-Shirts” product from the Shop contain polyester? If so, go to the Polyester article on Wiki and tell me the names of the clothing brands mentioned there. Otherwise, just tell me, \"T-shirt is polyester-free!!!\"",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Polyester content is attribute/description text; brand names are article text; no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Material composition is in product attribute/description text; brand names are article text. Pure text retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-109",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Could you check whether the “Tattoo” article on Wiki talks about mummification? If so, tell me how many tattoo machines are available in the Shop. Only consider electronic tattoo machines, not manual ones.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Mummification mention is article text; electronic-vs-manual is a textual product attribute, not an appearance-based distinction."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Article check is textual, but classifying machines as electronic vs manual benefits from product photos when titles/descriptions are ambiguous."
+  },
+  "final": "Irrelevant",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Mummification check is article text; electronic-vs-manual is a textual functional attribute, and photos cannot reliably distinguish electric rotary pens from manual poke pens. Pixels add nothing material."
+ },
+ {
+  "id": "train-110",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Search for \"Iran\" on News and visit the first search result. Was that news incident reported in Iran’s Wiki article?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Cross-referencing a news article's text against Wiki article text; pure text comparison, no visual cue."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Comparing a news article's content against Wiki article text is pure text reasoning; nothing exists only in pixels."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-111",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Search for \"Driving Accident\" on News. Visit the first News article and identify the U.S. state where that accident occurred. Then search for that state on Wiki and tell me its population.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Accident state and population are plain article text; pure text retrieval and search."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "State name and population are article text; search-result ordering is in the DOM. No visual cues needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-112",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Visit the Wiki article on \"Espadrille\" and find the first country mentioned in that article. Which of the following sites: Wiki, News, or Shop, have an article about that country or a product from that country?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "First-mentioned country follows document-order text; site coverage checks are text searches; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "First-country mention, site searches, and country-of-origin fields are all text; cross-site availability check needs no imagery."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-113",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Order the most expensive bed and send me the confirmation code.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Prices and bed identification come from listing text; goal names no visual attribute or layout position."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Prices are text, but photos help disambiguate actual beds from frames, bedding, sofa/dog beds when enumerating candidates."
+  },
+  "final": "Irrelevant",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Bed identification and prices are listing text; goal names no visual attribute. Ambiguous candidates (frame vs bed, sofa bed) are definitional questions photos do not resolve."
+ },
+ {
+  "id": "train-114",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Search \"dog\" on News. If the first search result says something positive about dogs, then place an order for a dog toy in the Shop and share the confirmation code. Otherwise, tell me the title of the news article.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Headline sentiment and dog-toy selection rely on text; first-result order is in the DOM; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Sentiment is textual, but product photos help confirm an item is genuinely a dog toy among similar dog products."
+  },
+  "final": "Irrelevant",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Headline sentiment is text; first-result order is in the DOM; 'dog toy' appears verbatim in titles and any toy qualifies, so photos add nothing material."
+ },
+ {
+  "id": "train-115",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Who are the first three female referees to be appointed to the men's 2022 FIFA World Cup?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Pure fact retrieval of referee names from article text."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Referee names are stated in article text; simple retrieval with no visual component."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-116",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Verify whether Sony’s net profit fell significantly in 2024 or 2025. If so, visit the Sony's Wiki article and identify the first product mentioned on that page. Can you find that exact product in the Shop? If so, place the order and share the confirmation code with me. If any of the above conditions cannot be satisfied, state that explicitly.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Profit facts, first-mentioned product, and Shop availability are all textual; no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Profit news, first-product mention, and exact-name product matching are all text; ordering flow needs no pixels."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-117",
+  "split": "train",
+  "set": "Multi",
+  "goal": "I love the Matrix movie series. Please find related Wiki articles, news, and products from the Shop. If there are multiple entries on each site, pick the one you think is the most relevant. If you cannot find any product or article, mention that in your answer. Share the titles of these items in the following format: <site name>: <article/news/product title>.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Relevance selection over titles and descriptions across sites; text search suffices; no visual attribute named."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Relevance to the Matrix is judged from titles/descriptions; search is text-based, so pixels add nothing material."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-118",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Visit the Wiki article on Gabon and search for the last word of the first section in the Shop (introduction counts as a section). If there are search results, click on the first one and tell me the title of the product. Otherwise, tell me \"No product found\".",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Section boundaries are heading structure in the DOM; last-word extraction and search results are text; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Section boundaries are heading structure in the accessibility tree; last word and first search result are plain text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-119",
+  "split": "train",
+  "set": "Multi",
+  "goal": "How many patients participated in the pollen tablet trial for hay fever?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Pure numeric fact retrieval from article text; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Participant count is a number stated in article text; pure retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-120",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Visit the Wiki article on \"Brazil\" and find the most recent sporting event mentioned in the Sports section. Search for that event (don't include the year in the search) on News, and tell me the name of the third news article in the search results.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Sports-section text and search-result order are DOM-accessible text; goal has no visual or spatial/layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Sports-section text, News search, and third-result ordering are all in the accessibility tree; pixels add nothing."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-121",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Search \"Cranberry\" on News and visit the first news article in the search results. Then search, on Wiki, for the name of the first country mentioned in that article’s content. Tell me the first line of the final visited article.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "\"First country mentioned in article's content\" and \"first line\" are positional/rendering references; vision eases content-vs-chrome judgment, but text suffices."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Text-solvable, but judging the article's content boundary for 'first country mentioned' and 'first line' is easier with rendered layout."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-122",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Search \"Ruffles Ridged Potato Chips\" on Shop and find the country of origin. Search for the name of that country on News and visit the second news article in the search results. What is the last word in the visited article?",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Origin attribute and result order are text; \"last word in the visited article\" needs article-end vs chrome boundary judgment, easier visually."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Origin attribute and result order are textual; finding the article's last word versus trailing chrome is easier visually."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-123",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Search \"chips\" on News. If the first article is about snack chips, then go to Shop, search \"chips\", and place an order for the first chips product you find in the search results. Otherwise, let me know that the first article is not about snack chips.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Topicality and first-result selection come from titles and listing text; ordering flow is text; no visual or layout reference."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Titles suffice to identify chips products, but photos materially aid confirming which Shop results are actually snack chips."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Text-only solves it: topicality and titles are text. But selecting the first genuine chips product among noisy 'chips' results matches the rubric's photo-disambiguation Helpful case."
+ },
+ {
+  "id": "train-124",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Find the fastest-growing city in Utah, based on its Wiki article. Then search that city's name on News and tell me the publication date of the second search result.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Article fact, search-result order, and publication date are all text; no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Wiki facts, search-result order, and publication dates are plain text; screenshots add nothing material."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-125",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Place an order for an Oval Mosaic Wall Mirror if you can find a news article on Johan Cruyff. If you place the order, share the confirmation code with me. Otherwise, let me know that you didn’t place the order.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Exact-named product order and news-existence check are pure text retrieval; no visual or layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Product identified by exact name; news existence check and ordering flow are fully textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-126",
+  "split": "train",
+  "set": "Multi",
+  "goal": "Search \"El Paso, Texas\" on Wiki and find the last sentence in the article’s content. Has the event mentioned in the last sentence been covered by any news article?",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "\"Last sentence in the article's content\" is positional within content; render aids content-boundary judgment; news check is text."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Doable from text, but locating the content's last sentence versus related-pages/footer chrome is easier visually."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "train-127",
+  "split": "train",
+  "set": "Multi",
+  "goal": "What happened at the end of the book \"The Neptune Secret\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Pure fact retrieval about a book's ending from page text; no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Plot detail is plain text wherever it appears; no pixel-only information involved."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-000",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Is biophysics mentioned as a related page or branch in the Biology article, the Physics article, both, or neither of them?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Checking whether a term appears in two articles is textual mention-lookup; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Checking mentions in named sections of two articles is pure text retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-001",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "What is the population difference between the two special administrative regions of China?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Population figures and subtraction from article text; no visual or layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Region names and populations are article text; only arithmetic needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-002",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "List all specific animal names found in the 'Natural History' section of the New Zealand page and the 'Indigenous life' section of the Australia page.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Named-section animal-name extraction; matches the calibration Irrelevant example for section text."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Listing animals from named sections matches the pure-text calibration example."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-003",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Go to Black Sabbath's article and click the second hyperlink in the article's content. I need the population of the country that the link leads to. If it's not a country, just go to the first country mentioned on that visited page and give me that country's population.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Near-verbatim calibration Helpful case: link order is in DOM, but judging article content vs surrounding chrome is easier visually."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Link order is in the DOM, but distinguishing article content from surrounding chrome when counting hyperlinks is easier visually."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-004",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "How many total Pro Football Hall of Famers are there in the articles about the American football teams mentioned in Eminem’s article?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Finding teams and counting Hall of Famers uses article text only; no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Finding teams and counting Hall of Famers uses article text only."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-005",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Trace this path: start at the \"Territory\" page → the first country mentioned → a country that shares its southern border → the largest city of that country. What is the first word of the second section on that final page (the introductory paragraphs count as one section)?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Navigation via textual mentions and borders; sections are heading-delimited DOM structure with stated convention; no layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Borders and largest city come from text/world knowledge; DOM headings plus the explicit intro rule make section counting reliable."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-006",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Navigate to the article corresponding to the last word in the second paragraph of the 'Hip-hop' article. In the visited page, follow the first hyperlink and tell me the first line from the article's content.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Following \"the first hyperlink\" and reporting the \"first line from the article's content\" are position/layout references; vision aids content-vs-chrome judgment."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Paragraph text is in the tree, but choosing the 'first hyperlink' within article content versus nav chrome benefits from visual layout."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-007",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Recursively follow the first link in the main content of each page, starting from the article on Research. What is the title of the final article whose page does not exist?",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Link order is in DOM, but judging \"main content\" versus surrounding chrome is easier visually, per calibration; not pixel-only information."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Link order is in DOM, but distinguishing main content from surrounding chrome on each page is easier with rendered layout."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-008",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Recursively follow the third hyperlink in the main content of each article, starting from the article \"Periodic table.\" Keep traversing until there is no third hyperlink or you encounter a “page does not exist” article. List the titles of all the valid pages in the order that you visited.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "\"Third hyperlink in the main content\" is DOM-available, but delimiting main content from chrome benefits from visual layout; matches Helpful calibration."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Third-hyperlink ordering exists in DOM; repeatedly judging main-content boundaries versus chrome benefits from seeing the rendered page."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-009",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Visit the article about the earliest known statistics mentioned in the Statistics article. Then visit the article about the last country mentioned in its main content. What is the name of the first animal mentioned on that country’s page?",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Countries and animals are text, but \"last mentioned in its main content\" requires content-vs-chrome judgment that rendering makes easier."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Mention order is text order, but scoping 'main content' versus chrome is more reliable visually."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-010",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Who is the current mayor of New York City, according to the article on NYC?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Pure fact retrieval from article text; no visual or layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Pure fact retrieval from article text; pixels add nothing."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-011",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Navigate to the article on Canada and find who the head of the military is. Tell me the name of that person.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Named-fact lookup in article text; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Factual lookup in the Canada article's text; no visual content involved."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-012",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Visit the article on the date of the latest event from the article on the year 1971. Then tell me the year of the first event from the 1900s, as listed in that article.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Dates and listed event order are textual; no visual or spatial reference in the goal."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Date reasoning and event-list order are fully present in text; no visual cues needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-013",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "What is the total number of floral and faunal emblems mentioned in the articles for all six Australian states?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting emblems mentioned in article text across pages; purely textual retrieval and arithmetic."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting emblem mentions across article text; purely textual reasoning."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-014",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Find out which U.S. state uses the word borough instead of counties based on the Borough Wiki article.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Fact retrieval from the Borough article's text; no visual content involved."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Text retrieval from the named Borough article; no visual information required."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-015",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "How many times did you encounter the word Hell in these articles: \"Peru\", \"Pusha T\", and \"Doom (2016 video game)\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Word-frequency counting over page text; text observation fully suffices."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Word-frequency counting over article text; text-only observation suffices."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-016",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Which specialized tools were mentioned in the approaches section of the Physics article?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Listing items from a named section's text; calibration treats section-text extraction as Irrelevant."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Extracting mentions from a named section's text; entirely textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-017",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "How many times is the word “Ishmael” mentioned on the page \"Abraham\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting a word's occurrences in page text; no pixel-only information."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Word count over page text; no pixels needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-018",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Trace this path in the exact order: France → Emblem → Democracy → Name → Custom. While visiting these articles, which word appears immediately before either “Suzuki Ichiro” or “Suffrage”?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Navigation by article names and word adjacency in text; word order exists in the DOM, no layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Navigation by article names plus word adjacency; reading order is available in the accessibility tree."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-019",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Which Brazilian president is mentioned in the article on Conservatism?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Single fact retrieval from article text; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Simple mention retrieval from article text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-020",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Go to the page of the first notable Nobel laureate mentioned in the Nobel Prize article. Then visit the last hyperlink in the second section (the introductory paragraph counts as a section). How many countries are mentioned on the final visited page?",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "\"Last hyperlink in the second section\" is a structural/positional reference; DOM contains it, but section boundaries are easier judged visually."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Hyperlink order is in DOM, but judging section boundaries (intro counted as a section) is easier with rendered layout."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-021",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "I heard that possession of illegal drugs is considered a victimless crime. Can you find a reference article to this statement? If yes, then tell me the name of the article.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Search and text verification of a statement; answer is an article title from text."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Search and matching a statement in article text; purely textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-022",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Which one of these does not have a valid page: Burger King, Wendy's, McDonald's?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Page validity is a textual 'page does not exist' check; no visual or spatial reference in the goal."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Navigating to three named articles and spotting a 'page does not exist' message is pure text; no pixels needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-023",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Start at the Computer Science article and serially visit the hyperlinks in that article. Stop when you find a hyperlink where the hyperlink text doesn't match the title of the page it leads to, and tell me the text of that hyperlink.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Serial in-article link traversal: order is in DOM, but separating article content from chrome is easier visually, per calibration."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Link order and text are in the DOM, but visually judging which links belong to article content versus chrome improves reliability."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-024",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Does the article on Sociology discuss its relationship with Mathematics? If so, please provide the title of the section.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Section titles and discussion content are plain text; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Checking section titles and content for a mathematics discussion is pure text retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-025",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "I’ve been wanting to learn more about civil wars for a long time. It’s fascinating how conflicts can arise between two groups within the same country. Since it’s a common topic, there should be plenty of articles on it. I’m especially interested in civil wars where one group wants to separate from, or secede from, the country. Could you search for an article on this and let me know the title?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Search and report an article title; pure text retrieval with no visual or layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Searching for a secession-related civil war article and reporting its title uses only text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-026",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Start at the Computer Science article and serially visit the hyperlinks in that article. Stop when you find a hyperlink where the hyperlink text doesn't match the title of the page it leads to, and tell me the names of all the hyperlinks that you have visited.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Same serial in-article hyperlink traversal; content-vs-chrome scoping benefits from visual view, though all data is textual."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Same serial link traversal; DOM has order and titles, but distinguishing article-content links from surrounding chrome is easier visually."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-027",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Start from the article on the color blue. Sequentially visit the hyperlinks in that article. Stop when you visit a hyperlink that doesn’t have a valid page, and tell me the text of that hyperlink.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Sequential in-article link traversal; invalid-page check is textual, but article-content scoping is easier visually. Blue is the topic, not perceived."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Topic 'blue' is just the article name; sequential in-article link traversal benefits from visually separating content links from chrome."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-028",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "Start at the article \"World\" and serially visit the first five hyperlinks in the article's content. Tell me the names of all the articles that don't have a valid page.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "'First five hyperlinks in the article's content' matches calibration: DOM has order, visual view aids content scoping."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "First five hyperlinks in article content: order is in DOM, but content-vs-chrome judgment is easier with layout, per calibration."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-029",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "I have always wanted to know more about the history of the famous tech company Apple. I think the official name of the company is Apple Inc. Can you find a Wiki article for me?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Locate an article by name via search; text-only navigation, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Finding the Apple Inc. Wiki article via search is pure text navigation."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-030",
+  "split": "test",
+  "set": "Wiki",
+  "goal": "How many searches does DuckDuckGo receive every day?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Numeric fact retrieval from article text; no visual content involved."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Daily search count is a fact stated in article text; pixels add nothing."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-031",
+  "split": "test",
+  "set": "News",
+  "goal": "Which of these two plane crashes appears to be deadlier, based on the number of casualties: (1) \"Airliner crashes in China, 42 killed\" and (2) \"Ethiopian airliner crashes into Mediterranean Sea\"? Mention the title of the article related to the deadlier incident.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Compare casualty numbers stated in two named articles' text; pure reading and comparison."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Comparing casualty numbers from two named articles is textual number comparison."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-032",
+  "split": "test",
+  "set": "News",
+  "goal": "List the names of the countries mentioned in both of these news articles: \"Turbolinux adopted by China's largest bank\" and \"United States Homeland Security network monitors suspicious activity\".",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Country names appear in article text; intersection is text reasoning only."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Intersecting country names across two articles is pure text reasoning."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-033",
+  "split": "test",
+  "set": "News",
+  "goal": "When you search for \"UFC\", which of the search results are actually related to UFC? Share the titles of those news articles. If none of the results are relevant, please state 'None found'.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Judging search-result relevance uses titles and text; no visual or layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Relevance of search results is judged from titles and article text; no visual cues required."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-034",
+  "split": "test",
+  "set": "News",
+  "goal": "How many articles did you find on Richard Stallman (articles that consist only of redirect pages should be excluded)?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting search results and detecting redirect pages is textual; no pixels needed."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting search results and excluding redirect pages relies entirely on textual content."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-035",
+  "split": "test",
+  "set": "News",
+  "goal": "Is there any news article regarding Salt Lake City that was published in 2024?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Publication dates and topics are text metadata; pure retrieval."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Publication dates in search results or articles are text; simple lookup."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-036",
+  "split": "test",
+  "set": "News",
+  "goal": "Someone told me about an article where Tom Cruise spoke out against antidepressant drugs. Can you please find that article and tell me the title?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Find an article by topic and report its title; text search suffices, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Searching for the Tom Cruise antidepressant article and reporting its title is pure text retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-037",
+  "split": "test",
+  "set": "News",
+  "goal": "There is an article on Tom Cruise debating psychiatry. Do you think the publication year of the article is consistent with the year that the event occurred?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Publication year and event year are textual metadata/content; no visual or layout reference in the goal."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Publication year and event year both appear as page text; pure text comparison."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-038",
+  "split": "test",
+  "set": "News",
+  "goal": "How many articles on Morocco were published in 2009?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting articles by publication year uses text dates only; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting search results by publication date; dates are listed as text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-039",
+  "split": "test",
+  "set": "News",
+  "goal": "Were these two articles published on the same day: Bayern beating Dortmund 5-4 on penalties in the German Super Cup, and Dortmund signing Ousmane Dembele?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Comparing publication dates of two named articles is pure text metadata retrieval."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Comparing publication dates of two named articles; dates are textual metadata."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-040",
+  "split": "test",
+  "set": "News",
+  "goal": "Follow this navigation path: Search Boston, visit the fifth result from the first page, identify the second state in the body/content of the article, and search the state. Visit the third link from the search result and tell me the name of the first state in the content/body of the final article. If you encounter a redirect link at any point, then visit that link. If any of the articles are not found, then report the task as incomplete.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Ordinal navigation with 'body/content of the article' boundary judgments; DOM suffices, but rendering clarifies content versus chrome, per calibration."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Ordinals are in DOM, but judging article body/content boundaries versus page chrome is materially easier with a rendered view."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-041",
+  "split": "test",
+  "set": "News",
+  "goal": "Navigate to the 11th article when you search \"murder case\". Then take the first two words from the main content of the visited article and search them. Report the name of the last article in the search results.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "'11th article' and 'first two words of main content' are text-solvable, but main-content-versus-chrome judgment is easier visually."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Result order is textual, but locating 'main content' first words versus surrounding chrome benefits from seeing the layout."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-042",
+  "split": "test",
+  "set": "News",
+  "goal": "Could you list all the news articles on the most recent diesel emission scandal at Volkswagen?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Searching and listing article titles on a topic is pure text retrieval."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Search, compare dates, and list titles; all information is textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-043",
+  "split": "test",
+  "set": "News",
+  "goal": "List the names of all the animals mentioned in these articles: \"England: Fire at London Zoo kills aardvark, meerkats believed dead\", \"Three-car crash in New Hampshire on Frederick E. Everett Turnpike kills one\", and \"Wikinews interviews Ritchie Lai of NBA Asia about the gaming industry\".",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Extracting animal names from named articles' text; no visual content involved."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Extracting animal names from article text; no pixel information needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-044",
+  "split": "test",
+  "set": "News",
+  "goal": "Tell me the names of the articles where NASA scientists found some form of life in one of Neptune's satellites.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Finding article titles matching a described event is text search; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Search and match article titles/content by text; nothing visual involved."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-045",
+  "split": "test",
+  "set": "News",
+  "goal": "How many articles did you find about the former prime minister of Bangladesh being sentenced to death?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting matching search results is text-based; no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting matching search results; titles and content are text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-046",
+  "split": "test",
+  "set": "News",
+  "goal": "Does any article on Richard Dawkins appear in the search results when you search \"Richard Stallman\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Checking search-result titles for a name is pure text; no visual element."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Checking whether a name appears in textual search results; pure text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-047",
+  "split": "test",
+  "set": "News",
+  "goal": "When was the article about the Texas woman who murdered her entire family published?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Publication date is text metadata; locating the article is text search."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Finding an article and reading its publication date; textual retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-048",
+  "split": "test",
+  "set": "News",
+  "goal": "Did the 2024 news on Mauritanian refugees returning from Senegal come before the news of six soldiers being killed in a Senegal ambush? If one or none of the articles can be found, then simply answer no.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Ordering two articles by textual publication dates; no visual information needed."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Comparing publication dates of two articles; dates are text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-049",
+  "split": "test",
+  "set": "News",
+  "goal": "Did you find any news article about a robbery on the front page (if there are multiple such articles, pick the one with the biggest headline)? If so, where did the crime take place?",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "'Front page' and 'biggest headline' are layout/size cues; heading hierarchy offers a textual proxy, so text-only solvable but visuals materially help."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "'Biggest headline' is visual prominence; heading levels give a textual proxy, but a screenshot materially improves picking correctly."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-050",
+  "split": "test",
+  "set": "News",
+  "goal": "Was there any news on English people reporting crime using Facebook?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Existence check via text search of article content; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Yes/no search over article text; no visual content required."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-051",
+  "split": "test",
+  "set": "News",
+  "goal": "Perform the following steps: Search \"Pokémon\", visit the first search result, search the name of the first city in the visited article, visit the thirteenth search result, and tell me the name of the first city in that visited article.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Ordinal search-result hops are DOM-solvable; 'first city in the article' reading-order/content judgment benefits from the rendered view."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Result ordinals are in DOM, but finding the 'first city' within article content versus chrome is easier visually."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-052",
+  "split": "test",
+  "set": "News",
+  "goal": "Does the first search result for \"David Suzuki\" appear among the search results for \"Toronto\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Search result titles and their DOM order are text; comparing two result lists needs no pixels."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Comparing search result titles across two queries is pure text reading; no pixel information involved."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-053",
+  "split": "test",
+  "set": "Shop",
+  "goal": "What is the maximum available length for each of the following items: the Lindy DisplayPort to HDMI cable and the Kodak HDMI Mini Cable? Answer in metres.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Cable length variants are attribute/option text; pure text retrieval plus unit reporting."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Cable length variants appear as option/attribute text on product pages; purely textual retrieval and comparison."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-054",
+  "split": "test",
+  "set": "Shop",
+  "goal": "Which cable is longer: the white Type-C to HDMI Cable or the Type-C USB Charger Cable?",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Lengths are option text, but 'white' identification benefits from photo disambiguation of similar cables; text-only still suffices."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Lengths are option text, but identifying the specific white cable among similar listings is easier with product photos."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-055",
+  "split": "test",
+  "set": "Shop",
+  "goal": "What is the total cost if I buy all the 100% polyester skirts available in the shop? If there are multiple variants (sizes, colors) of the same item, include only one.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Material composition and prices are text; summation and variant deduplication need no pixels."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Skirt identification, polyester material, and prices are all in titles, attribute text, and price text; summation is textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-056",
+  "split": "test",
+  "set": "Shop",
+  "goal": "What would be the minimum cost to buy almonds and rice crackers?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Prices and product titles are text; minimum-cost arithmetic over text content."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Finding cheapest almonds and rice crackers uses search result titles and prices, all textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-057",
+  "split": "test",
+  "set": "Shop",
+  "goal": "List all the different color options available for the Nautica and GRADO SR325x headphones.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Color options are attribute/option text on product pages; enumerating those labels is pure text retrieval."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Available color options are listed as attribute/option text on product pages; no need to inspect photos."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-058",
+  "split": "test",
+  "set": "Shop",
+  "goal": "What is the total price of all the rackets and tennis balls available in the shop? If there are multiple variants of the same item, pick one only.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Product identification via titles and prices are text; totaling needs no pixels."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Identifying rackets and tennis balls via titles and summing prices is entirely text-based."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-059",
+  "split": "test",
+  "set": "Shop",
+  "goal": "Is there any skirt that costs less than purchasing at least one pair of jeans?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Price comparison across text listings; no visual reference in goal."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Comparing skirt and jeans prices from listing text; pure textual retrieval and arithmetic."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-060",
+  "split": "test",
+  "set": "Shop",
+  "goal": "What's the replacement guarantee or warranty period of the 20x50 binoculars?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Warranty details live in description/attribute text; pure text retrieval."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Warranty or replacement guarantee is stated in description/features text, not in imagery."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-061",
+  "split": "test",
+  "set": "Shop",
+  "goal": "Is the Wii U Microphone compatible with the Wii system?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Compatibility is stated in description/attribute text; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Compatibility information lives in the product description text; no visual content needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-062",
+  "split": "test",
+  "set": "Shop",
+  "goal": "How many mattresses are available in the shop? (Include similar products like mattress sofas and toppers, but not related products like bed frames.)",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Category counting from titles and description text; inclusion rules are textual, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Category membership (mattress, topper, frame) is stated in product titles/descriptions; counting is text-based semantic filtering."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-063",
+  "split": "test",
+  "set": "Shop",
+  "goal": "How many sound bars are available under 150 USD?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting products by title and price text; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting sound bars under a price threshold uses titles and price text only."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-064",
+  "split": "test",
+  "set": "Shop",
+  "goal": "How many telescopes are available for purchase?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting products identified by title text; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting telescope products from search result titles is pure text retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-065",
+  "split": "test",
+  "set": "Shop",
+  "goal": "How many Crumbl Cookies are available in the shop?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting branded products via title text in search results; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting Crumbl Cookies products relies on search result titles; no pixel information needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-066",
+  "split": "test",
+  "set": "Shop",
+  "goal": "How many leggings products appear when you search for the word \"leggings\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting search results matching a text query; result list is text/DOM content."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting leggings products in search results uses result titles; entirely textual."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-067",
+  "split": "test",
+  "set": "Shop",
+  "goal": "I am looking for a music player to play mini vinyl records. It must be small, portable, and in black. If you find this product, could you place the order and share the confirmation code? If there is no such product or if any of the criteria are not satisfied, then please let me know.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Black color and portability criteria typically appear in listing/option text; photos aid verification per red-shirt calibration, so not Required."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Black color and portability likely appear in title/option text, so text-only works; photo materially helps verify appearance criteria before ordering."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-068",
+  "split": "test",
+  "set": "Shop",
+  "goal": "Could you please order the following products and share the confirmation codes with me: Hauklie Men's Polo Shirt (1 grey, size X-Large, and 1 black, size Large) and a GXP Side Table?",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Named products; grey/black variants are text option labels, but photos help confirm the correct color variant."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Exact product names given; grey/black and size variants are text options, so searching and ordering need no pixel information."
+  },
+  "final": "Irrelevant",
+  "decision": "adjudicated",
+  "adjudication_rationale": "Exact product names given; grey/black and sizes are text option labels in the DOM. No attribute-based search needs photo disambiguation, so pixels add nothing material."
+ },
+ {
+  "id": "test-069",
+  "split": "test",
+  "set": "Shop",
+  "goal": "Place an order for a pair of jeans that are made of at least 60% cotton. If there are multiple options, pick any. The size must be M. Once you complete the order, share the completion code.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Cotton percentage and size M are textual attributes and options; goal contains no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Cotton percentage and size M are description/option text; photos cannot reveal material composition."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-070",
+  "split": "test",
+  "set": "Shop",
+  "goal": "Place an order for a blue superhero T-shirt with a Flash logo on it. The size should be M. Once you complete the order, share the completion code.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Blue and Flash logo plausibly named in title/option text; image confirms the logo, but a textual equivalent likely exists, so not Required."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Flash branding and blue likely appear in title/options, but the photo materially confirms the logo is on the shirt."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-071",
+  "split": "test",
+  "set": "Shop",
+  "goal": "What color is most prominent on the exterior body of the navy and yellow Nautica headphones?",
+  "annotator_a": {
+   "label": "Required",
+   "rationale": "Which color is most prominent on the exterior exists only in the photo; option text names colors, not their prominence."
+  },
+  "annotator_b": {
+   "label": "Required",
+   "rationale": "Which color dominates the exterior is judged only from the product photo; prominence has no textual equivalent."
+  },
+  "final": "Required",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-072",
+  "split": "test",
+  "set": "Shop",
+  "goal": "What is the color of the TASYL USB lightning camera adapter?",
+  "annotator_a": {
+   "label": "Required",
+   "rationale": "Asks the product's color; name gives no color, so the answer exists only in the product image."
+  },
+  "annotator_b": {
+   "label": "Required",
+   "rationale": "Single-color adapter's color is shown in the product picture, not stated in text; appearance-only information."
+  },
+  "final": "Required",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-073",
+  "split": "test",
+  "set": "Shop",
+  "goal": "Search for the word \"camera.\" Among the search results, which of the following colors is most common in the product pictures: white, blue, black, red, cyan, or green?",
+  "annotator_a": {
+   "label": "Required",
+   "rationale": "Explicitly asks which color is most common in product pictures; pixel-only information."
+  },
+  "annotator_b": {
+   "label": "Required",
+   "rationale": "Explicitly asks which color is most common in product pictures; exists only in pixels."
+  },
+  "final": "Required",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-074",
+  "split": "test",
+  "set": "Shop",
+  "goal": "Is there a remote in the product picture of the 4-Channel Wireless Bluetooth Power Amplifier?",
+  "annotator_a": {
+   "label": "Required",
+   "rationale": "Whether a remote appears in the product picture is determinable only from the image."
+  },
+  "annotator_b": {
+   "label": "Required",
+   "rationale": "Whether a remote appears in the product picture is image content only."
+  },
+  "final": "Required",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-075",
+  "split": "test",
+  "set": "Shop",
+  "goal": "Which of the following items are available in the shop: Ice-cream, Dog food, Mushroom, Superglue?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Availability check via text search results; pure text retrieval, no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Availability check via search over product titles; pure text retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-076",
+  "split": "test",
+  "set": "Shop",
+  "goal": "I am looking for a tooth powder that contains fluoride, as I heard it is good for dental health. It would be great if the product is also herbal and vegan. Please tell me the product name of the best match you find.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Fluoride, herbal, and vegan are description-text attributes; no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Fluoride, herbal, and vegan attributes live in description text; best match chosen from text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-077",
+  "split": "test",
+  "set": "Shop",
+  "goal": "Does the Salt & Sugar Bundle Kit reduce the appearance of acne scars?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Claim is verifiable from product description text; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Acne-scar claim is read from the product description text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-078",
+  "split": "test",
+  "set": "Shop",
+  "goal": "How many times does the phrase \"baking soda\" appear on the Arm & Hammer Toothpaste product page (including Description, Features, Reviews)?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Counting a phrase across page text sections; purely textual task."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Counting a phrase across Description, Features, and Reviews is pure text work."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-079",
+  "split": "test",
+  "set": "Shop",
+  "goal": "Is there any pink USB-C charging cable available in the shop? If so, please place the order for one and share the confirmation code with me.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "Pink is a color criterion normally present in listing/option text; photos aid disambiguation per calibration, so Helpful not Required."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Pink likely appears in title or color-option text, so text-only suffices; photos aid verifying cable color among listings."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-080",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Find the most recent sports event mentioned in Brazil’s Wikipedia article. Can you find a news article about that event? If so, please tell me the title of the news article.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Text retrieval: Wiki section content and a News title search; no visual or layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Reading Brazil's sports section and matching a news title is pure text retrieval."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-081",
+  "split": "test",
+  "set": "Multi",
+  "goal": "I need you to cross-reference something. Go to the Paris Agreement article on Wiki and find the last article in the 'Related Pages' or 'See also' section. Search the title of that article on News, visit the top result, and check if the news article contains the word 'Russia'.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Named sections and result ordering are DOM information; 'top result' means first result; vision adds nothing material."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Last link in a named section and top search result follow DOM order; word check is text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-082",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Find the country of origin of the rice used in the Crunchmaster Rice Crackers. Visit the Wikipedia article on that country and tell me the last word of the first paragraph.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Rice origin and a paragraph's last word are page text; paragraph order is in the DOM; no visual content referenced."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Country of origin and a paragraph's last word are plain page text; paragraph boundaries exist in the accessibility tree."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-083",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Verify if the BioCorneum Advanced Scar Treatment Gel from Shop is FDA-cleared. If so, then search \"Food and Drug Administration\" on Wiki and tell me when the agency was formed. Otherwise, search \"Food & Drug Administration\" on News and tell me the title of the first search result.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "FDA-cleared status, agency formation date, and first result title are all textual content; pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "FDA-cleared status, agency formation date, and first search-result title are all textual product/article content."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-084",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Are there any news articles about the Monopoly board game? If there are none, place an order for the Monopoly board game at the shop. Otherwise, order any other board game. In either case, share the order’s confirmation code at the end.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Checking news existence and ordering a board game by title text are text-based; no visual or layout reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "News relevance, product titles, and ordering flow are textual; agent can freely pick a clearly named board game."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-085",
+  "split": "test",
+  "set": "Multi",
+  "goal": "What is the title of the 11th search result when you search for the name of the first notable school shooting mentioned in the school shooting Wiki article?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "First-mentioned shooting and 11th result are text/DOM order in unambiguous lists; no visual content targeted."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Wiki text retrieval plus counting to the 11th result; search-result order is unambiguous in the DOM."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-086",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Is there a Wiki article on the video game associated with the Nintendo Switch travel case found in the shop? If so, identify the main character featured on that game’s cover and tell me when that character first appeared.",
+  "annotator_a": {
+   "label": "Required",
+   "rationale": "Identifying the character featured on the game's cover is reading what an image depicts; that information exists only in pixels."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "Cover art is an image, but the article names the protagonist textually; seeing the cover materially confirms the identification."
+  },
+  "final": "Helpful",
+  "decision": "adjudicated",
+  "adjudication_rationale": "The game's Wiki article names the main character textually, and 'first appeared' is article text; the goal equates cover character with main character, so the cover image only confirms identification."
+ },
+ {
+  "id": "test-087",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Order 24 packets of Savannah's Candy Box. Before placing the order, verify that there is no negative news about the product. If there is, then don't place the order and let me know. Otherwise, share the confirmation code of the order.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Negative-news verification and quantity ordering rely entirely on text; no visual reference in the goal."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Named product, quantity selection, and news-sentiment judgment are all handled through text; no pixel information needed."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-088",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Look up Organic Diced Pear in the Shop and check the product description. Identify the vitamin mentioned in the description and visit its article on Wiki. Does the fruit pear appear in that article?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Vitamin named in description and pear's mention in the article are pure text retrieval."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Description text names the vitamin; checking whether 'pear' appears in the Wiki article is pure text."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-089",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Search for \"Vitamin K\" on Wiki and identify all the vegetables listed there as sources of vitamin K. How many of those vegetables are available in the shop?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Vegetables listed in article text and shop availability via search are textual; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Vegetable list comes from article text; shop availability is checked via listing titles and descriptions."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-090",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Search News for \"video game\" and visit the sixth search result. Is that news event described in the wiki page for \"Video game\"?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Sixth result is DOM list order; comparing the news event against wiki text is textual reasoning."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Sixth result follows DOM list order; comparing the news event against wiki text is textual reasoning."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-091",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Do the following tasks: Search \"crocodile\" on News, visit the first news article, identify the country where that crocodile lives, search that country on Wiki, and tell me the population of that country. If you encounter a redirect link at any point, then please visit that link.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Country identification, redirect links, and population figure are all in page text; no visual reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Country and population are stated in article text; redirect links appear as text links."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-092",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Search Canada on Wiki and find the name of the current prime minister. Look up his name on News and click on the first article. When was that article published?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Prime minister's name and publication date are text; first article is DOM result order."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Prime minister's name, first article, and publication date are all plain text content."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-093",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Which ones of the following sites: Wiki, News, and Shop, have an article or product page on a screwdriver?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Screwdriver availability across sites is determined from search results and titles, all textual."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Screwdriver availability is determined by text searches and reading titles/descriptions on each site."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-094",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Which ones of the following sites: Wiki, News, and Shop, have an article or product page on High-Definition Multimedia Interface (HDMI)?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "HDMI article/product existence is determined from titles and text; pixels add nothing material."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "HDMI coverage check is a text search across sites; titles and descriptions suffice."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-095",
+  "split": "test",
+  "set": "Multi",
+  "goal": "I heard some bad news about biscuits. Can you check and share the title of such a news article with me? If there are none, please place an order for the top search result on \"biscuits\" and share the confirmation code with me.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Bad-news check is textual; 'top search result' means first-ranked in the DOM list, not layout geometry."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Headline sentiment and the top (first) search result are textual; ordering flow needs no pixels."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-096",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Can you place an order for the cheapest nuts available and share the confirmation code with me?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Cheapest nuts found by comparing listed prices, which are text; ordering flow needs no pixels."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Nut products and the cheapest price are identified from listing titles and price text alone."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-097",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Which scholars are mentioned in the article on Rayleigh scattering?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Scholars' names exist in article text; pure text retrieval with no visual or spatial reference."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Scholar names appear in the article's text; pure text retrieval, pixels add nothing."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-098",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Is it true that Mattel had to recall its products due to safety concerns? If so, please visit the Wiki page for Mattel and find the first product mentioned in that article. Tell me the name of that product and whether it is available in the Shop.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Recall verification, first-mentioned product, and Shop availability are all textual; order-of-mention is sequential text, not layout geometry."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "News verification, first product mentioned in article prose, and Shop availability are all textual; reading order is preserved in the DOM."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-099",
+  "split": "test",
+  "set": "Multi",
+  "goal": "I am a huge fan of the Donkey Kong series. Please find related Wiki articles, news, and products from the Shop. If there are multiple entries, pick the most relevant ones. If you cannot find any product or article, mention that in your answer. Share the titles of these items with me using the following format: <site name>: <article/news/product title>.",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Searching and picking relevant titles is text-based; goal references no visual attribute, image, or layout position."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Cross-site search with title/description relevance judgment; text observation contains titles, so photos add no material benefit."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-100",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Visit the Wiki article on probability and find the second hyperlink on that page. Search the hyperlink text in the Shop, visit the second search result, and search its brand name on Wiki. If a Wiki article exists, then tell me the name of that article; otherwise, tell me the name of the brand.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "\"Second hyperlink on that page\" mirrors calibration Helpful example; distinguishing content links from chrome is easier visually, though DOM suffices."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "\"Second hyperlink on that page\" is DOM-ordered, but distinguishing article-content links from chrome is easier visually, per calibration."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-101",
+  "split": "test",
+  "set": "Multi",
+  "goal": "Please complete the following steps: (1) Search News for \"Japan\", (2) visit the second search result, (3) visit the Wiki page for the second word found in the news article’s body, (4) identify the first country mentioned in that Wiki article, and (5) search that country on News and tell me the title of the first search result.",
+  "annotator_a": {
+   "label": "Helpful",
+   "rationale": "\"Second word in the article's body\" requires judging body boundaries versus chrome, per calibration; text-only still solvable."
+  },
+  "annotator_b": {
+   "label": "Helpful",
+   "rationale": "\"Second word in the article's body\" is text, but judging where body starts versus headline/byline/chrome is easier with rendered layout."
+  },
+  "final": "Helpful",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ },
+ {
+  "id": "test-102",
+  "split": "test",
+  "set": "Multi",
+  "goal": "How many people were included in the sample for the latest trial of the Australian bird flu vaccine?",
+  "annotator_a": {
+   "label": "Irrelevant",
+   "rationale": "Sample-size number is stated in article text; pure factual retrieval, pixels add nothing."
+  },
+  "annotator_b": {
+   "label": "Irrelevant",
+   "rationale": "Trial sample size is a numeric fact stated in article text; no visual content involved."
+  },
+  "final": "Irrelevant",
+  "decision": "agreement",
+  "adjudication_rationale": null
+ }
+]

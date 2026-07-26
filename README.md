@@ -24,6 +24,7 @@ tldr. TimeWarp is a benchmark for evaluating the robustness of agents to tempora
   - [Multiple Environments](#multiple-environments)
 - [Create your Own Theme!](#-create-your-own-theme)
 - [Running your Web Agent](#-running-your-web-agent)
+- [How Tasks are Scored](#-how-tasks-are-scored)
 - [Training your Web Agent](#️-training-your-web-agent)
 - [Citation](#citation)
 
@@ -203,6 +204,45 @@ bash scripts/multiBenchmark/_run_multi.sh \
 ```
 
 See [`scripts/README.md`](scripts/README.md) for the full setup and AgentLab configuration details.
+
+---
+
+## 📏 How Tasks are Scored
+
+Tasks are scored by **deterministic verifiers** — no LLM in the loop, no API key,
+no sampling variance. An agent's free-text answer is normalized (case, unicode,
+markdown, punctuation, number formatting) and then checked against a per-task
+reference spec. The design follows
+[WebArena](https://github.com/web-arena-x/webarena) and
+[WebArena-Verified](https://github.com/ServiceNow/BrowserGym/tree/main/browsergym/webarena_verified).
+
+Each task declares its verifiers in `eval.eval_types`; several combine with AND.
+
+| Verifier | Checks | Typical task |
+|---|---|---|
+| `string_match` | `must_include` / `must_exclude` / `exact_match`, matched on word boundaries so `"10"` never matches `"100"` | named entities, titles, years, yes/no |
+| `number_match` | the expected number appears, whatever its formatting (`7,000,000`, `7 million`, `thirteen`) | counts, prices, populations |
+| `list_match` | every item of an enumeration appears, optionally in order | "list all countries, alphabetically" |
+| `llm_judge` | the original GPT judge | the residual tasks with no objectively checkable answer |
+
+Entries support `" |OR| "` alternatives and `^regex$` leaves, and
+`"scope": "first_sentence"` restricts matching to the leading sentence — which is
+how a yes/no verdict is read without a justification tail leaking the opposite
+token.
+
+Only tasks still on `llm_judge` need `OPENAI_API_KEY`. Verifier code lives in
+[`normalization.py`](src/browsergym/timewarp/normalization.py) and
+[`evaluators.py`](src/browsergym/timewarp/evaluators.py), with tests in
+[`test_evaluators.py`](src/tests/timewarp/test_evaluators.py):
+
+```sh
+pytest src/tests/timewarp/test_evaluators.py
+```
+
+The per-task specs were annotated and adversarially verified by the pipeline in
+[`scripts/annotation/`](scripts/annotation/), which also documents how to add or
+retune a verifier and how to spot-check a gold answer against environment
+content.
 
 ---
 
