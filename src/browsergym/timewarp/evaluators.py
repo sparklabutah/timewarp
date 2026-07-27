@@ -7,7 +7,7 @@ import logging
 import os
 import re
 from pathlib import Path
-from typing import Union, Any
+from typing import Union, Any, NamedTuple, Optional
 
 from playwright.sync_api import Page
 
@@ -360,10 +360,116 @@ def _normalize_openai_response_text(response: Any) -> str:
     return str(response)
 
 
+# --- LLM judge selection ------------------------------------------------------
+#
+# The paper scores the residual, non-deterministically checkable tasks with an
+# LLM judge. GPT-5 is the primary judge; an open-source model (Gemma) is offered
+# as an alternate so the results reproduce without a proprietary API and so the
+# paper can report judge agreement across an open/closed pair.
+#
+# A GPT / o-series id is sent to the OpenAI API (OPENAI_API_KEY). Anything else is
+# assumed to be an open-weights checkpoint served behind an OpenAI-compatible
+# endpoint (vLLM via ``startVLMmodel.sh``, Ollama, ...) and is routed there with a
+# throwaway key. Every knob is overridable by env var so the alternate judge can
+# be pointed at a running server without editing any task config.
+
+#: Primary judge used throughout the paper.
+DEFAULT_JUDGE_MODEL = "gpt-5.1-2025-11-13"
+
+#: Open-source alternate. The value is the id the serving stack advertises; for
+#: vLLM that is the ``--model`` argument (an HF repo id or a local path).
+#: Override with ``TW_JUDGE_MODEL`` if you serve a different checkpoint/revision.
+GEMMA_JUDGE_MODEL = "google/gemma-4-12b-it"
+
+#: Friendly aliases accepted anywhere a judge is named (``TW_JUDGE`` env var, a
+#: task's ``eval.llm_model``, ``rescore_compare.py --judge-model``).
+JUDGE_ALIASES = {
+    "gpt": DEFAULT_JUDGE_MODEL,
+    "gpt-5": DEFAULT_JUDGE_MODEL,
+    "gpt5": DEFAULT_JUDGE_MODEL,
+    "openai": DEFAULT_JUDGE_MODEL,
+    "gemma": GEMMA_JUDGE_MODEL,
+    "gemma-4": GEMMA_JUDGE_MODEL,
+    "gemma-4-12b": GEMMA_JUDGE_MODEL,
+    "gemma4-12b": GEMMA_JUDGE_MODEL,
+    "open-source": GEMMA_JUDGE_MODEL,
+    "opensource": GEMMA_JUDGE_MODEL,
+}
+
+#: Endpoint assumed for a locally served open-source judge; matches the default
+#: port of ``startVLMmodel.sh``.
+DEFAULT_JUDGE_BASE_URL = "http://localhost:8001/v1"
+
+
+class JudgeConfig(NamedTuple):
+    """Everything needed to reach a judge: which model, where, and with what key."""
+
+    model: str
+    base_url: Optional[str]
+    api_key: str
+    is_openai: bool
+
+
+def _looks_like_openai(model: str) -> bool:
+    """True for OpenAI-hosted families (GPT and the o-series reasoning models)."""
+    name = model.lower()
+    return name.startswith(("gpt-", "gpt3", "gpt4", "gpt5", "o1", "o3", "o4", "chatgpt"))
+
+
+def resolve_judge(model: Optional[str] = None, base_url: Optional[str] = None) -> JudgeConfig:
+    """Resolve the model id, endpoint and API key for the LLM judge.
+
+    Model selection precedence: the explicit ``model`` argument, then the
+    ``TW_JUDGE`` / ``TW_JUDGE_MODEL`` env var, then :data:`DEFAULT_JUDGE_MODEL`.
+    Names are matched against :data:`JUDGE_ALIASES` case-insensitively, so
+    ``"gemma"`` expands to :data:`GEMMA_JUDGE_MODEL`.
+
+    A GPT / o-series id is routed to the OpenAI API and requires
+    ``OPENAI_API_KEY`` (honouring ``OPENAI_BASE_URL`` for proxies). Any other id
+    -- or any call that supplies an explicit ``base_url`` -- is treated as an
+    open-source judge behind an OpenAI-compatible server: the endpoint comes from
+    ``base_url``, then ``TW_JUDGE_BASE_URL`` / ``VLLM_API_URL``, then
+    :data:`DEFAULT_JUDGE_BASE_URL`; the key from ``TW_JUDGE_API_KEY`` /
+    ``VLLM_API_KEY``, defaulting to the throwaway ``"EMPTY"`` that vLLM accepts.
+    """
+    requested = model or os.environ.get("TW_JUDGE") or os.environ.get("TW_JUDGE_MODEL")
+    requested = (requested or DEFAULT_JUDGE_MODEL).strip()
+    resolved_model = JUDGE_ALIASES.get(requested.lower(), requested)
+
+    explicit_base = base_url or os.environ.get("TW_JUDGE_BASE_URL")
+
+    if explicit_base is None and _looks_like_openai(resolved_model):
+        api_key = os.environ.get("OPENAI_API_KEY")
+        if not api_key:
+            raise ValueError(
+                f"OPENAI_API_KEY environment variable not set (judge model {resolved_model!r}). "
+                "Set it, or select the open-source judge with TW_JUDGE=gemma."
+            )
+        return JudgeConfig(
+            model=resolved_model,
+            base_url=os.environ.get("OPENAI_BASE_URL"),
+            api_key=api_key,
+            is_openai=True,
+        )
+
+    endpoint = explicit_base or os.environ.get("VLLM_API_URL") or DEFAULT_JUDGE_BASE_URL
+    api_key = os.environ.get("TW_JUDGE_API_KEY") or os.environ.get("VLLM_API_KEY") or "EMPTY"
+    return JudgeConfig(model=resolved_model, base_url=endpoint, api_key=api_key, is_openai=False)
+
+
 def llm_fuzzy_match(
-    pred: str, reference: str, question: str, model: str = "gpt-5.1-2025-11-13"
+    pred: str,
+    reference: str,
+    question: str,
+    model: Optional[str] = None,
+    base_url: Optional[str] = None,
 ) -> float:
-    """Check whether the prediction matches the reference using an LLM judge."""
+    """Check whether the prediction matches the reference using an LLM judge.
+
+    ``model`` selects the judge (see :func:`resolve_judge`). ``None`` uses the
+    ``TW_JUDGE`` env var or the paper's default GPT judge; pass ``"gemma"`` (or
+    set ``TW_JUDGE=gemma``) to use the open-source alternate served locally.
+    """
     try:
         from openai import OpenAI
     except ImportError:
@@ -371,11 +477,8 @@ def llm_fuzzy_match(
             "openai package required for LLM judge evaluation. Install with: pip install openai"
         )
 
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        raise ValueError("OPENAI_API_KEY environment variable not set")
-
-    client = OpenAI(api_key=api_key)
+    judge = resolve_judge(model, base_url)
+    client = OpenAI(api_key=judge.api_key, base_url=judge.base_url)
 
     message = f"""Help a teacher grade the answer of a student given a question. Keep in mind that the student may use different phrasing or wording to answer the question. The goal is to evaluate whether the answer is semantically equivalent to the reference answer.
 Input:
@@ -404,7 +507,7 @@ Do not include any additional text, explanation, or formatting. Only respond wit
     # API errors (rate limits, auth, network) must propagate — scoring them as
     # 0.0 would silently mark the episode as a failed task.
     response = client.chat.completions.create(
-        model=model,
+        model=judge.model,
         messages=messages,
         temperature=0,
         max_completion_tokens=768,
@@ -443,10 +546,16 @@ Do not include any additional text, explanation, or formatting. Only respond wit
 
 
 class LLMJudgeEvaluator(Evaluator):
-    """LLM-based judge evaluator for semantic matching"""
+    """LLM-based judge evaluator for semantic matching.
 
-    def __init__(self, model: str = "gpt-5.1-2025-11-13"):
+    ``model``/``base_url`` are resolved lazily by :func:`resolve_judge`, so
+    leaving them ``None`` lets the ``TW_JUDGE`` env var (or the GPT default)
+    decide which judge to use at scoring time.
+    """
+
+    def __init__(self, model: Optional[str] = None, base_url: Optional[str] = None):
         self.model = model
+        self.base_url = base_url
 
     def __call__(
         self,
@@ -480,7 +589,7 @@ class LLMJudgeEvaluator(Evaluator):
                     if pred.strip().upper() == "N/A":
                         return 1.0
                 else:
-                    if llm_fuzzy_match(pred, ref, question, self.model) > 0:
+                    if llm_fuzzy_match(pred, ref, question, self.model, self.base_url) > 0:
                         return 1.0
             return 0.0
 
@@ -538,9 +647,14 @@ def evaluator_router(config_file: Path | str) -> EvaluatorComb:
             case "list_match":
                 evaluators.append(ListMatchEvaluator())
             case "llm_judge":
-                # Get model from config if specified, otherwise use default
-                model = configs["eval"].get("llm_model", "gpt-5.1-2025-11-13")
-                evaluators.append(LLMJudgeEvaluator(model=model))
+                # A run-level TW_JUDGE env var (set for the alternate-judge run)
+                # overrides a task's pinned llm_model, which overrides the GPT
+                # default; resolve_judge fills in the default when both are unset.
+                model = os.environ.get("TW_JUDGE") or configs["eval"].get("llm_model")
+                base_url = os.environ.get("TW_JUDGE_BASE_URL") or configs["eval"].get(
+                    "llm_base_url"
+                )
+                evaluators.append(LLMJudgeEvaluator(model=model, base_url=base_url))
             case _:
                 raise ValueError(
                     f"eval_type {eval_type} is not supported. Supported types: "

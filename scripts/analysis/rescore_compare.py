@@ -7,6 +7,10 @@ adjudicating those cases by hand.
     # score an AgentLab study directory with both scorers
     python scripts/analysis/rescore_compare.py results/Qwen3-4B/v1_multiTest --judge --limit 50
 
+    # use the open-source alternate judge instead of GPT-5 (serve it first with
+    # startVLMmodel.sh; see README "How Tasks are Scored")
+    python scripts/analysis/rescore_compare.py results/Qwen3-4B/v1_multiTest --judge --judge-model gemma
+
     # deterministic only (no API key needed, no cost)
     python scripts/analysis/rescore_compare.py results/Qwen3-4B/v1_multiTest
 
@@ -89,7 +93,7 @@ def load_answers(path: Path) -> list:
     return episodes
 
 
-def judge_score(task: dict, answer: str) -> float:
+def judge_score(task: dict, answer: str, model: str | None = None) -> float:
     from annotation_lib import _load_evaluators
 
     evaluators = _load_evaluators()
@@ -98,7 +102,7 @@ def judge_score(task: dict, answer: str) -> float:
         return 0.0
     if gold == "N/A":
         return float(answer.strip().upper() == "N/A")
-    return evaluators.llm_fuzzy_match(answer, gold, task["intent"])
+    return evaluators.llm_fuzzy_match(answer, gold, task["intent"], model)
 
 
 def main() -> int:
@@ -107,6 +111,10 @@ def main() -> int:
     parser.add_argument("--answers", type=Path, help="JSONL of {task_id, answer} instead")
     parser.add_argument("--dataset", type=Path, help="task file to score against")
     parser.add_argument("--judge", action="store_true", help="also run the LLM judge (costs money)")
+    parser.add_argument(
+        "--judge-model",
+        help="judge model or alias (e.g. gpt-5, gemma); default respects $TW_JUDGE, else GPT-5",
+    )
     parser.add_argument("--limit", type=int, help="cap the number of episodes judged")
     parser.add_argument("--output", type=Path, help="write the per-episode table as JSON")
     args = parser.parse_args()
@@ -142,7 +150,7 @@ def main() -> int:
             "deterministic": deterministic,
         }
         if args.judge:
-            row["judge"] = judge_score(task, episode["answer"])
+            row["judge"] = judge_score(task, episode["answer"], args.judge_model)
             if deterministic is not None:
                 if row["judge"] == deterministic:
                     counts["agree"] += 1

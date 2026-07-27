@@ -158,7 +158,8 @@ Make sure the TimeWarp environments are running (see [Running Environments](#-ru
 export TW_WIKI="http://localhost:5000"
 export TW_WEBSHOP="http://localhost:5001"
 export TW_NEWS="http://localhost:5002"
-export OPENAI_API_KEY="your-key"  # For judge evaluation
+export OPENAI_API_KEY="your-key"  # For the default GPT judge; or set TW_JUDGE=gemma
+                                  # for the open-source judge (see "How Tasks are Scored")
 ```
 
 ---
@@ -223,14 +224,44 @@ Each task declares its verifiers in `eval.eval_types`; several combine with AND.
 | `string_match` | `must_include` / `must_exclude` / `exact_match`, matched on word boundaries so `"10"` never matches `"100"` | named entities, titles, years, yes/no |
 | `number_match` | the expected number appears, whatever its formatting (`7,000,000`, `7 million`, `thirteen`) | counts, prices, populations |
 | `list_match` | every item of an enumeration appears, optionally in order | "list all countries, alphabetically" |
-| `llm_judge` | the original GPT judge | the residual tasks with no objectively checkable answer |
+| `llm_judge` | the GPT judge, or an open-source alternate (see below) | the residual tasks with no objectively checkable answer |
 
 Entries support `" |OR| "` alternatives and `^regex$` leaves, and
 `"scope": "first_sentence"` restricts matching to the leading sentence — which is
 how a yes/no verdict is read without a justification tail leaking the opposite
 token.
 
-Only tasks still on `llm_judge` need `OPENAI_API_KEY`. Verifier code lives in
+### Choosing the LLM judge
+
+The residual `llm_judge` tasks are graded by **GPT-5** by default (`OPENAI_API_KEY`
+required). For a fully reproducible, cost-free alternative — and the open/closed
+judge-agreement numbers reported in the paper — you can swap in an **open-source
+judge (Gemma‑4 12B)** served locally through vLLM's OpenAI-compatible endpoint:
+
+```sh
+# 1. Serve the judge (any OpenAI-compatible server works; default port 8001)
+bash scripts/startVLMmodel.sh --port 8001 --model google/gemma-4-12b-it
+
+# 2. Point the harness at it — one env var flips every llm_judge task
+export TW_JUDGE=gemma                       # alias for google/gemma-4-12b-it
+export VLLM_API_URL=http://localhost:8001/v1  # only if not the default above
+```
+
+Selection is resolved in [`evaluators.py`](src/browsergym/timewarp/evaluators.py)
+(`resolve_judge`): a GPT/o-series id goes to the OpenAI API, anything else is
+treated as an open-weights model behind an OpenAI-compatible server. Precedence is
+`TW_JUDGE` env var → a task's `eval.llm_model` → the GPT default. Override the
+served id with `TW_JUDGE_MODEL`, the endpoint with `TW_JUDGE_BASE_URL`, and the key
+with `TW_JUDGE_API_KEY` (defaults to the throwaway `EMPTY` vLLM accepts). To A/B
+the two judges on recorded episodes:
+
+```sh
+python scripts/analysis/rescore_compare.py <study_dir> --judge --judge-model gpt-5
+python scripts/analysis/rescore_compare.py <study_dir> --judge --judge-model gemma
+```
+
+Only tasks still on `llm_judge` need `OPENAI_API_KEY` (GPT judge) or a running
+open-source server (Gemma judge). Verifier code lives in
 [`normalization.py`](src/browsergym/timewarp/normalization.py) and
 [`evaluators.py`](src/browsergym/timewarp/evaluators.py), with tests in
 [`test_evaluators.py`](src/tests/timewarp/test_evaluators.py):

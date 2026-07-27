@@ -13,11 +13,15 @@ from pathlib import Path
 import pytest
 
 from browsergym.timewarp.evaluators import (
+    DEFAULT_JUDGE_BASE_URL,
+    DEFAULT_JUDGE_MODEL,
     DETERMINISTIC_EVAL_TYPES,
+    GEMMA_JUDGE_MODEL,
     ListMatchEvaluator,
     NumberMatchEvaluator,
     StringMatchEvaluator,
     evaluator_router,
+    resolve_judge,
 )
 from browsergym.timewarp.normalization import (
     extract_numbers,
@@ -363,6 +367,92 @@ class TestRouter:
 # --------------------------------------------------------------------------- #
 # Dataset integrity
 # --------------------------------------------------------------------------- #
+
+
+# --------------------------------------------------------------------------- #
+# LLM judge selection (offline: resolve_judge does no network I/O)
+# --------------------------------------------------------------------------- #
+
+
+JUDGE_ENV_VARS = (
+    "TW_JUDGE",
+    "TW_JUDGE_MODEL",
+    "TW_JUDGE_BASE_URL",
+    "TW_JUDGE_API_KEY",
+    "OPENAI_API_KEY",
+    "OPENAI_BASE_URL",
+    "VLLM_API_URL",
+    "VLLM_API_KEY",
+)
+
+
+@pytest.fixture
+def clean_judge_env(monkeypatch):
+    """Start every judge-selection test from an empty, deterministic environment."""
+    for name in JUDGE_ENV_VARS:
+        monkeypatch.delenv(name, raising=False)
+    return monkeypatch
+
+
+class TestJudgeSelection:
+    def test_default_is_the_gpt_paper_judge(self, clean_judge_env):
+        clean_judge_env.setenv("OPENAI_API_KEY", "sk-test")
+        judge = resolve_judge()
+        assert judge.model == DEFAULT_JUDGE_MODEL
+        assert judge.is_openai is True
+        assert judge.base_url is None
+        assert judge.api_key == "sk-test"
+
+    def test_gpt_judge_requires_api_key(self, clean_judge_env):
+        with pytest.raises(ValueError, match="OPENAI_API_KEY"):
+            resolve_judge()
+
+    def test_openai_base_url_is_honoured_for_proxies(self, clean_judge_env):
+        clean_judge_env.setenv("OPENAI_API_KEY", "sk-test")
+        clean_judge_env.setenv("OPENAI_BASE_URL", "https://proxy.example/v1")
+        assert resolve_judge().base_url == "https://proxy.example/v1"
+
+    def test_gemma_alias_routes_to_local_open_source_server(self, clean_judge_env):
+        """No OPENAI_API_KEY needed; the alternate judge is self-hosted."""
+        judge = resolve_judge("gemma")
+        assert judge.model == GEMMA_JUDGE_MODEL
+        assert judge.is_openai is False
+        assert judge.base_url == DEFAULT_JUDGE_BASE_URL
+        assert judge.api_key == "EMPTY"
+
+    def test_tw_judge_env_selects_the_alternate(self, clean_judge_env):
+        clean_judge_env.setenv("TW_JUDGE", "gemma-4-12b")
+        judge = resolve_judge()
+        assert judge.model == GEMMA_JUDGE_MODEL
+        assert judge.is_openai is False
+
+    def test_explicit_argument_beats_env(self, clean_judge_env):
+        clean_judge_env.setenv("TW_JUDGE", "gemma")
+        clean_judge_env.setenv("OPENAI_API_KEY", "sk-test")
+        assert resolve_judge("gpt-5").model == DEFAULT_JUDGE_MODEL
+
+    def test_vllm_env_configures_the_open_source_endpoint(self, clean_judge_env):
+        clean_judge_env.setenv("VLLM_API_URL", "http://gpu-node:9000/v1")
+        clean_judge_env.setenv("VLLM_API_KEY", "secret")
+        judge = resolve_judge("gemma")
+        assert judge.base_url == "http://gpu-node:9000/v1"
+        assert judge.api_key == "secret"
+
+    def test_tw_judge_base_url_overrides_vllm_url(self, clean_judge_env):
+        clean_judge_env.setenv("VLLM_API_URL", "http://gpu-node:9000/v1")
+        clean_judge_env.setenv("TW_JUDGE_BASE_URL", "http://localhost:1234/v1")
+        assert resolve_judge("gemma").base_url == "http://localhost:1234/v1"
+
+    def test_base_url_forces_open_source_route_for_a_gpt_name(self, clean_judge_env):
+        """Pointing at a local endpoint must not demand an OpenAI key."""
+        judge = resolve_judge(model="gpt-5", base_url="http://localhost:8001/v1")
+        assert judge.is_openai is False
+        assert judge.api_key == "EMPTY"
+
+    def test_unknown_model_id_is_passed_through_verbatim(self, clean_judge_env):
+        judge = resolve_judge("Qwen/Qwen2.5-7B-Instruct")
+        assert judge.model == "Qwen/Qwen2.5-7B-Instruct"
+        assert judge.is_openai is False
 
 
 class TestDataset:
