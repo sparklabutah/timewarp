@@ -231,6 +231,123 @@ Entries support `" |OR| "` alternatives and `^regex$` leaves, and
 how a yes/no verdict is read without a justification tail leaking the opposite
 token.
 
+### Running the scorers
+
+**During a benchmark run** scoring is automatic: each task is routed to the
+verifiers in its `eval.eval_types`, and the reward comes back on `env.step`. No
+extra flags. A deterministic task needs nothing; only a task still on `llm_judge`
+needs a judge configured — `OPENAI_API_KEY` for the default GPT judge, or a
+served open-source model selected with `TW_JUDGE` (see
+[Choosing the LLM judge](#choosing-the-llm-judge)).
+
+**Re-scoring recorded episodes** — score an AgentLab study directory (or a JSONL
+of `{task_id, answer}` via `--answers`) after the fact with
+[`rescore_compare.py`](scripts/analysis/rescore_compare.py):
+
+```sh
+# Deterministic verifiers only — no API key, no cost, no sampling variance
+python scripts/analysis/rescore_compare.py <study_dir>
+
+# Deterministic + GPT judge (default), and report where the two disagree
+export OPENAI_API_KEY="your-key"
+python scripts/analysis/rescore_compare.py <study_dir> --judge
+
+# Deterministic + open-source judge (serve it first; see below)
+export TW_JUDGE=gemma
+python scripts/analysis/rescore_compare.py <study_dir> --judge
+# ...or pick the judge inline without the env var:
+python scripts/analysis/rescore_compare.py <study_dir> --judge --judge-model gemma
+```
+
+### Writing a deterministic verifier
+
+Each task's spec lives under `eval.reference_answers`; `eval.eval_types` lists
+which verifiers run (multiple are AND-ed). Pick the **strictest** verifier that
+still accepts every genuinely correct answer. Normalization already handles case,
+unicode/accents, markdown emphasis, surrounding quotes/punctuation, and
+whitespace — you only spell out real wording or number-format alternatives.
+
+**`string_match`** — named entities, titles, years, yes/no. The default.
+
+```json
+{
+  "eval_types": ["string_match"],
+  "reference_answers": {
+    "must_include": ["hdmi"],
+    "must_exclude": ["usb charger"],
+    "scope": "first_sentence"
+  }
+}
+```
+
+| Key | Meaning |
+|---|---|
+| `must_include` | Every entry must appear, matched on word boundaries (`"10"` never matches `"100"`; `"no"` never matches `"north"`). |
+| `must_exclude` | No entry may appear. Reserve for tokens that **cannot** occur in any correct answer (e.g. a competing option, or `"both"`/`"neither"`). |
+| `exact_match` | String or list; the whole normalized answer must equal one. Use only for bare-value answers — a verbose sentence fails it. |
+| `scope` | `"full"` (default) or `"first_sentence"`. |
+
+**`number_match`** — counts, prices, measurements. Parses every number out of
+the answer (`1,234.56`, `$9.99`, `57.7 million`, `13th`, spelled-out `thirteen`)
+and requires the expected value among them. Comparison is **exact unless you give
+a tolerance**.
+
+```json
+{
+  "eval_types": ["number_match"],
+  "reference_answers": {
+    "number_match": {"value": 7000000, "rel_tolerance": 0.1}
+  }
+}
+```
+
+| Key | Meaning |
+|---|---|
+| `value` / `values` | A required number, or a list of numbers that must all appear. |
+| `abs_tolerance` | Absolute slack (e.g. `0.01` for currency). |
+| `rel_tolerance` | Relative slack — only for a gold that is itself hedged ("around 7 million"). |
+| `scope` | `"full"` (default) or `"first_sentence"`. |
+
+**`list_match`** — enumerations. Each item is a list of interchangeable
+spellings; all items must appear. Set `ordered: true` **only when the task itself
+demands an order** ("in alphabetical order", a ranking, a navigation path).
+
+```json
+{
+  "eval_types": ["list_match"],
+  "reference_answers": {
+    "list_match": {
+      "items": [["germany"], ["italy"], ["luxembourg |OR| luxemburg"]],
+      "ordered": true,
+      "forbidden": []
+    }
+  }
+}
+```
+
+| Key | Meaning |
+|---|---|
+| `items` | List of items; each is a list of interchangeable spellings (a bare string is accepted). |
+| `ordered` | If `true`, items' first occurrences must appear in the listed order. |
+| `forbidden` | Entries that must not appear. |
+| `scope` | `"full"` (default) or `"first_sentence"`. |
+
+**Shared conventions.** Any entry may offer alternatives with `" |OR| "`
+(`"kangaroos |OR| kangaroo"`); an entry written as `^...$` is a regex over the
+normalized (scoped) text.
+
+> **Common trap.** If the gold string (or a distractor) also appears in the
+> task's `intent` — *"Which cable is longer, the HDMI cable or the USB charger
+> cable?"* — a plain `must_include` on the full answer is compromised, because a
+> wrong answer restates the question. Set `scope: "first_sentence"`,
+> `must_include` the token unique to the **correct** option, and `must_exclude`
+> the token unique to the **wrong** one.
+
+The full authoring guide — verifier selection table, the complete set of traps,
+confidence levels, and the required positive/negative test cases every spec must
+ship — is in
+[`scripts/annotation/GUIDELINES.md`](scripts/annotation/GUIDELINES.md).
+
 ### Choosing the LLM judge
 
 The residual `llm_judge` tasks are graded by **GPT-5** by default (`OPENAI_API_KEY`
