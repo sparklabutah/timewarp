@@ -54,6 +54,7 @@ instance/
 # Environment variables
 .env
 .env.local
+.pypi_env
 
 # Temporary files
 *.tmp
