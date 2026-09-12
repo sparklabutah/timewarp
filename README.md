@@ -26,6 +26,7 @@ tldr. TimeWarp is a benchmark for evaluating the robustness of agents to tempora
 - [Running your Web Agent](#-running-your-web-agent)
 - [How Tasks are Scored](#-how-tasks-are-scored)
 - [Training your Web Agent](#️-training-your-web-agent)
+- [Formal proofs](#-formal-proofs)
 - [Citation](#citation)
 
 ---
@@ -420,6 +421,12 @@ llamafactory-cli train examples/train_full/your_training_config.yaml
 ```
 
 Example `.yaml` configs for both full fine-tuning and LoRA are provided in [`llamafactory/train_full`](llamafactory/train_full) and [`llamafactory/train_lora`](llamafactory/train_lora). See [`llamafactory/README.md`](llamafactory/readme.md) for the complete walkthrough.
+
+---
+
+## 📐 Formal proofs
+
+Machine-checked Lean 4 proofs of the appendix theory live in [`proofs/`](proofs/). See [`proofs/README.md`](proofs/README.md) for the paper-to-theorem map and build instructions.
 
 ---
 
