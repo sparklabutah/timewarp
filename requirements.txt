@@ -1,4 +1,3 @@
-browsergym-core==0.14.3
-browsergym-experiments==0.14.3
-browsergym-webarena==0.14.3
-
+browsergym-core>=0.14.3
+browsergym-experiments>=0.14.3
+browsergym-webarena>=0.14.3
