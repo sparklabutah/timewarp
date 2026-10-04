@@ -464,13 +464,15 @@ If you enjoyed using this repo, also consider citing us! 😊
 
 ### TimeWarp
 ```bibtex
-@misc{timewarp2026,
-      title={TimeWarp: Evaluating Web Agents by Revisiting the Past}, 
-      author={Md Farhan Ishmam and Kenneth Marino},
-      year={2026},
-      eprint={2603.04949},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2603.04949}, 
-  }
+@inproceedings{ishmam2026timewarp,
+  title         = {{TimeWarp}: Evaluating Web Agents by Revisiting the Past},
+  author        = {Ishmam, Md Farhan and Marino, Kenneth},
+  booktitle     = {Fortieth Conference on Neural Information Processing Systems Evaluations and Datasets Track},
+  year          = {2026},
+  note          = {To appear},
+  eprint        = {2603.04949},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  url           = {https://arxiv.org/abs/2603.04949}
+}
 ```
